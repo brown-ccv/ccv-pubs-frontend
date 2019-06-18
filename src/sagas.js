@@ -9,8 +9,8 @@ const errorText = "Something went wrong.  Please refresh the page in a few minut
 function* fetchData(action) {
 
   try {
-    const data = yield call(Client.getMesh);
-    yield put(actions.fetchData(data));
+    const publications = yield call(Client.getData);
+    yield put(actions.fetchData(publications));
   } catch(error) {
     yield put(actions.changeError(errorText));
   }

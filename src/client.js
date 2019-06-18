@@ -1,13 +1,13 @@
 import _ from 'lodash';
 import fetch from 'isomorphic-fetch';
 
-const SERVICE_ENDPOINT = 'https:/datasci.brown.edu/YOUR_API';
+const SERVICE_ENDPOINT = 'http://localhost:8080';
 
 class Client {
 
   // get all data values from the bcbi db
   async getData() {
-    var url = `${SERVICE_ENDPOINT}/YOUR_DATA`;
+    var url = `${SERVICE_ENDPOINT}/publications`;
 
     var response;
     try {

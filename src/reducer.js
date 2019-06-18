@@ -1,10 +1,7 @@
 import Immutable from 'seamless-immutable';
 
 const initialState = Immutable({
-  array: [],
-  string: "",
-  object: undefined,
-  boolean: false
+  publications: []
 });
 
 
@@ -13,11 +10,11 @@ export default function reduce(state = initialState, action = {}) {
   switch (action.type) {
     case 'CHANGE_DATA':
       return state.merge({
-        array: action.data
+        publications: action.data
       });
     case 'CHANGE_ERROR':
       return state.merge({
-        string: action.data
+        string: action.data //no more string
       });
     default:
       return state;
@@ -25,7 +22,7 @@ export default function reduce(state = initialState, action = {}) {
 }
 
 export function getData(state) {
-  return state.array;
+  return state.publications;
 }
 
 export function getError(state) {

@@ -15,10 +15,12 @@
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
     "react-spinners": "^0.5.4",
+    "react-table": "^6.10.0",
     "reactstrap": "^8.0.0",
     "redux": "^4.0.1",
     "redux-saga": "^1.0.3",
-    "seamless-immutable": "^7.1.4"
+    "seamless-immutable": "^7.1.4",
+    "table": "^5.4.1"
   },
   "scripts": {
     "start": "react-scripts start",

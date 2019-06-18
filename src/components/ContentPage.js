@@ -3,13 +3,14 @@ import { connect } from 'react-redux';
 import * as selectors from '../reducer';
 import * as actions from '../actions'
 import Spinner from './Spinner';
+import PubsTable from './PubsTable';
 
 export class ContentPage extends Component {
 
   constructor(props) {
     super(props);
 
-    if (this.props.array.length === 0) this.props.fetchData();
+    if (this.props.publications.length === 0) this.props.fetchData();
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -29,6 +30,11 @@ export class ContentPage extends Component {
         <p>I am loading forever</p>
 
         <Spinner loading={true} className="spinner" size={100} />
+
+        <PubsTable onFetchData={() => this.props.fetchData()} manual/>
+
+
+
       </div>
     );
   }
@@ -37,7 +43,7 @@ export class ContentPage extends Component {
 
 function mapStateToProps(state) {
   return {
-    array: selectors.getData(state),
+    publications: selectors.getData(state),
     error: selectors.getError(state)
   };
 }
@@ -45,7 +51,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     changeError: (val) => dispatch(actions.changeError(val)),
-    fetchData: data => dispatch({ type: 'FETCH_DATA', payload:'' })
+    fetchData: () => dispatch({ type: 'FETCH_DATA', payload:'' })
   };
 }
 
