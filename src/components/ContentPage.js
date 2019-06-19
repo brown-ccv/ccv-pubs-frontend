@@ -5,10 +5,14 @@ import * as actions from '../actions'
 import Spinner from './Spinner';
 import PubsTable from './PubsTable';
 
+
 export class ContentPage extends Component {
+
 
   constructor(props) {
     super(props);
+
+    this.state = {data: []};
 
     if (this.props.publications.length === 0) this.props.fetchData();
 
@@ -22,7 +26,8 @@ export class ContentPage extends Component {
   }
 
   render(){
-
+    const {data} = this.state;
+    console.log(this.props.publications)
     return(
       <div>
         <p>I am your app</p>
@@ -31,9 +36,7 @@ export class ContentPage extends Component {
 
         <Spinner loading={true} className="spinner" size={100} />
 
-        <PubsTable onFetchData={() => this.props.fetchData()} manual/>
-
-
+        <PubsTable publications={this.props.publications} />
 
       </div>
     );
@@ -54,5 +57,6 @@ function mapDispatchToProps(dispatch) {
     fetchData: () => dispatch({ type: 'FETCH_DATA', payload:'' })
   };
 }
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContentPage);

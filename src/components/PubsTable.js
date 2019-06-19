@@ -6,6 +6,7 @@ import * as actions from '../actions'
 import 'react-table/react-table.css'
 
 export default class PubsTable extends React.Component {
+
 render() {
   const data = this.props.publications;
 
