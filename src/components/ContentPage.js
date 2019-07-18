@@ -14,10 +14,12 @@ export class ContentPage extends Component {
 
     this.state = {data: []};
 
-    if (this.props.publications.length === 0) this.props.fetchData();
+    if (this.props.publications.length === 0)
+      this.props.fetchData();
 
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+
+      this.handleSubmit = this.handleSubmit.bind(this);
+}
 
   handleSubmit(event) {
     this.props.changeError(event.target.value);
@@ -25,18 +27,22 @@ export class ContentPage extends Component {
     event.preventDefault();
   }
 
+
+
   render(){
-    const {data} = this.state;
-    console.log(this.props.publications)
+
+    if (this.props.publications.length != 0){
+      this.props.changeLoading(false)
+    }
+
     return(
+
       <div>
-        <p>I am your app</p>
+        <b className="pub-title">Publications</b>
 
-        <p>I am loading forever</p>
+        <Spinner loading={this.props.loading} className="spinner" size={100} />
 
-        <Spinner loading={true} className="spinner" size={100} />
-
-        <PubsTable publications={this.props.publications} />
+        <PubsTable publications={this.props.publications}   />
 
       </div>
     );
@@ -47,14 +53,16 @@ export class ContentPage extends Component {
 function mapStateToProps(state) {
   return {
     publications: selectors.getData(state),
-    error: selectors.getError(state)
+    error: selectors.getError(state),
+    loading: selectors.getLoading(state)
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     changeError: (val) => dispatch(actions.changeError(val)),
-    fetchData: () => dispatch({ type: 'FETCH_DATA', payload:'' })
+    fetchData: () => dispatch({ type: 'FETCH_DATA', payload:'' }),
+    changeLoading: (val) => dispatch(actions.changeLoading(val))
   };
 }
 
