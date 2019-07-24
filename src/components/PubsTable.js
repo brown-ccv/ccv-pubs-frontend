@@ -21,18 +21,17 @@ render() {
   // }
 
   const changetoHTML = (url) =>  <a href={url.value}>{url.value}</a>
-  
 
-
-  // var newData = data.map( (val) => {...val, val.formattedURL: `<a href=${val.url}>${val.url}</a>`})
 
   const columns = [{
     Header: 'Title',
-    accessor: 'title'
+    accessor: 'title',
+    style:{ 'whiteSpace': 'unset'}
 
   }, {
     Header: 'Author',
     accessor: 'author',
+    style:{ 'whiteSpace': 'unset'}
   },
   {
     Header: 'Year',
@@ -47,19 +46,10 @@ render() {
 
   function filterCaseInsensitive(filter, row) {
     const id = filter.pivotId || filter.id;
-    // if(row[id]!== undefined){
-    //   let words = (String(row[id].toLowerCase())).split()
-    //   console.log(words)
-    //   for ( let word in words){
-    //     if (word.startsWith(filter.value.toLowerCase())){
-    //       return true;
-    //     }
-    //   }
-    // }
-    // return false;
+
     return (
         row[id] !== undefined ?
-            String(row[id].toLowerCase()).startsWith(filter.value.toLowerCase()) : true
+            String(row[id].toLowerCase()).includes(filter.value.toLowerCase()) : true
     );
   }
 
