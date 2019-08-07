@@ -48,11 +48,11 @@ export class ContentPage extends Component {
 
         <b className = "word-cloud-title"> What are these publications all about? </b>
 
-        <div className="my5">
+        <div className="viz">
                   <WordCloud data = {this.props.publications}/>
         </div>
 
-        <div className="my5">
+        <div className="viz">
                   <YearChart data = {this.props.publications}/>
         </div>
 

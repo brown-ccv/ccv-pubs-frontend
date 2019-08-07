@@ -18,16 +18,24 @@ export default class YearChart extends Component {
 
     var data = this.props.publications;
 
-    vegaEmbed('#schedule', spec, { "mode": "vega", "actions": false, "renderer": "svg", "loader": { "target": "_blank" } })
+    vegaEmbed('#yearChart', spec, { "mode": "vega", "actions": false, "renderer": "svg", "loader": { "target": "_blank" } })
      .then((res) => {
        try {
          res.view
-           .runAsync()
-             .then( (view) => {
-               this.updateView(view)
-               // console.log(view)
-               // update the global state with the current mouseover
-             })
+           .insert("source_0", this.props.publications)
+            .runAsync()
+            .then( (view) => {
+                this.updateView(view)
+                // console.log(view)
+                // update the global state with the current mouseover
+                view.addEventListener("click", (name, value) => {
+                  if (value && value.datum.year) {
+                    this.props.setCLick(value.datum.year)
+                  } else {
+                    this.props.setClick(null)
+                  }
+                })
+              })
        } catch(error) {
          console.log("OH NO - The Schedule Viz Broke!")
          console.log(error)

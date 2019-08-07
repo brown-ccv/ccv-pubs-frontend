@@ -29,7 +29,7 @@ render() {
     style:{ 'whiteSpace': 'unset'}
 
   }, {
-    Header: 'Author',
+    Header: 'Authors',
     accessor: 'author',
     style:{ 'whiteSpace': 'unset'}
   },
