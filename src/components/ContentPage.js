@@ -4,6 +4,8 @@ import * as selectors from '../reducer';
 import * as actions from '../actions'
 import Spinner from './Spinner';
 import PubsTable from './PubsTable';
+import YearChart from './YearChart';
+import WordCloud from './WordCloud';
 
 
 export class ContentPage extends Component {
@@ -44,7 +46,20 @@ export class ContentPage extends Component {
 
         <PubsTable publications={this.props.publications}   />
 
+        <b className = "word-cloud-title"> What are these publications all about? </b>
+
+        <div className="my5">
+                  <WordCloud data = {this.props.publications}/>
+        </div>
+
+        <div className="my5">
+                  <YearChart data = {this.props.publications}/>
+        </div>
+
       </div>
+
+
+
     );
   }
 

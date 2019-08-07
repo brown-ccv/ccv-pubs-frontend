@@ -2,7 +2,9 @@ import Immutable from 'seamless-immutable';
 
 const initialState = Immutable({
   publications: [],
-  loading: true
+  loading: true,
+  wordCloudHover: false,
+  selectYear: false
 });
 
 
@@ -21,6 +23,14 @@ export default function reduce(state = initialState, action = {}) {
     return state.merge({
       loading: action.data
     });
+    case 'CHANGE_WORD_CLOUD_HOVER':
+    return state.merge({
+      wordCloudHover: action.data
+    });
+    case 'CHANGE_SELECT_YEAR':
+    return state.merge({
+      selectYear: action.data
+    });
     default:
       return state;
   }
@@ -36,4 +46,12 @@ export function getError(state) {
 
 export function getLoading(state){
   return state.loading;
+}
+
+export function getWordCloudHover(state) {
+  return state.wordCloudHover;
+}
+
+export function getSelectYear(state) {
+  return state.selectYear;
 }

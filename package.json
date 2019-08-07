@@ -20,7 +20,10 @@
     "redux": "^4.0.1",
     "redux-saga": "^1.0.3",
     "seamless-immutable": "^7.1.4",
-    "table": "^5.4.1"
+    "table": "^5.4.1",
+    "vega": "^5.4.0",
+    "vega-embed": "^4.2.2",
+    "vega-lite": "^4.0.0-beta.0"
   },
   "scripts": {
     "start": "react-scripts start",

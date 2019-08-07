@@ -12,13 +12,6 @@ export default class PubsTable extends React.Component {
 
 render() {
   var data = Immutable.asMutable(this.props.publications);
-  // var newData = [...data];
-  //
-  // for(let i =0; i < newData.length; i++){
-  //   let newPub = Immutable.asMutable(newData[i])
-  //   newPub.formattedURL = `<a href=${newData[i].url}>${newData[i].url}</a>`;
-  //   newData[i] = newPub
-  // }
 
   const changetoHTML = (url) =>  <a href={url.value}>{url.value}</a>
 
