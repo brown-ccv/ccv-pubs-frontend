@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import fetch from 'isomorphic-fetch';
 
-const SERVICE_ENDPOINT = 'http://localhost:8080';
+const SERVICE_ENDPOINT = 'https://datasci.brown.edu/ccvpubs-api';
 
 class Client {
 
