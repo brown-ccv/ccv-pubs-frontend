@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "autosize": "pad",
   "padding": 5,
-  "height": 200,
+  "height": 400,
   "title": {
     "text": {
       "signal": "changeTitle"
@@ -249,7 +249,7 @@
   "signals": [
     {
       "name": "x_step",
-      "value": 20
+      "value": 40
     },
     {
       "name": "width",
@@ -292,7 +292,7 @@
       "encode": {
         "update": {
           "fill": {
-            "value": "#00FFFF"
+            "value": "#003c71"
           },
           "stroke": {
             "value": "black"
@@ -387,11 +387,19 @@
       },
       "zindex": 0,
       "domain": false,
-      "labels": true,
+      "labels": false,
       "maxExtent": 0,
       "minExtent": 0,
       "ticks": false
     }
   ],
-  "config": {}
+  "config": {
+    "title": {
+      "fontSize": 24
+    },
+    "axis": {
+      "labelFontSize": 16,
+      "titleFontSize": 20
+    }
+  }
 }

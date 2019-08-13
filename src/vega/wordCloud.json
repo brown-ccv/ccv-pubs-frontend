@@ -1,5 +1,5 @@
 {
-  "height": 350,
+  "height": 500,
   "padding": 10,
   "marks": [
     {
@@ -1221,7 +1221,7 @@
       "type": "log"
     }
   ],
-  "width": 900,
+  "width": 700,
   "signals": [{"name": "hoverID", "value": 0}],
   "config": {}
 }

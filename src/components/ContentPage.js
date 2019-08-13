@@ -37,6 +37,8 @@ export class ContentPage extends Component {
       this.props.changeLoading(false)
     }
 
+
+
     return(
 
       <div>
@@ -46,14 +48,11 @@ export class ContentPage extends Component {
 
         <PubsTable publications={this.props.publications}   />
 
-        <b className = "word-cloud-title"> What are these publications all about? </b>
 
-        <div className="viz">
-                  <WordCloud data = {this.props.publications}/>
-        </div>
-
-        <div className="viz">
-                  <YearChart data = {this.props.publications}/>
+        <h3 className="word-cloud-title pt-4 mt-4"> What are these publications all about? </h3>
+        <div className="viz d-flex justify-content-center pt-5">
+          <div className="px-5"><WordCloud data = {this.props.publications}/></div>
+          <div className="px-5"><YearChart data = {this.props.publications}/></div>
         </div>
 
       </div>

@@ -4,7 +4,7 @@ const initialState = Immutable({
   publications: [],
   loading: true,
   wordCloudHover: false,
-  selectYear: false
+  selectYear: null
 });
 
 

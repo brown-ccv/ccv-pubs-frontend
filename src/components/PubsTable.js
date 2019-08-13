@@ -11,7 +11,18 @@ export default class PubsTable extends React.Component {
 
 
 render() {
-  var data = Immutable.asMutable(this.props.publications);
+var data;
+  //console.log(data[1]);
+  if (this.props.selectYear != null){
+    var pub;
+    for (pub in data){
+      if (pub["year"] == this.props.selectYear){
+        data.push(pub);
+    }
+  }
+} else{
+  data = Immutable.asMutable(this.props.publications);
+}
   // var newData = [...data];
   //
   // for(let i =0; i < newData.length; i++){
@@ -36,7 +47,7 @@ render() {
   {
     Header: 'Year',
     accessor: 'year',
-    width: 100
+    width: 100,
   },
   {
     Header: 'URL',
@@ -46,12 +57,14 @@ render() {
 
   function filterCaseInsensitive(filter, row) {
     const id = filter.pivotId || filter.id;
+    console.log(id)
 
     return (
         row[id] !== undefined ?
             String(row[id].toLowerCase()).includes(filter.value.toLowerCase()) : true
     );
   }
+
 
   return <ReactTable
     data={data}
@@ -66,7 +79,7 @@ render() {
       ]}
     classname = "-striped -highlight"
     resolveData={data => data.map(row => row)}
-
+    defaultPageSize = {5}
   />
 }
 }
