@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
 import Navbar from 'react-brownccv/dist/components/Navbar';
 import BrownFooter from 'react-brownccv/dist/components/BrownFooter';
 
@@ -12,18 +11,16 @@ class App extends Component {
     console.log("Public URL");
     console.log(`${process.env.PUBLIC_URL}`);
     return (
-      <BrowserRouter basename={`${process.env.PUBLIC_URL}`}>
+      <div>
       <Navbar />
-        <div className="App">
-          <div className="topContent">
-            <div className="main-content">
-              <Route path="/about" component={AboutPage} />
-              <Route exact path="/" component={ContentPage} />
-            </div>
+      <div className="App">
+          <div className="main-content">
+            <ContentPage />
           </div>
           <BrownFooter />
         </div>
-      </BrowserRouter>
+      </div>
+
     );
   }
 }
