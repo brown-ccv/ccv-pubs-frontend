@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBook } from '@fortawesome/free-solid-svg-icons'
 import { connect } from 'react-redux';
 import * as selectors from '../reducer';
 import * as actions from '../actions'
@@ -42,7 +44,12 @@ export class ContentPage extends Component {
     return(
 
       <div>
-        <b className="pub-title">Publications</b>
+        <div className="d-flex flex-row justify-content-center align-items-center">
+          <div className="pub-title pt-2 bg-primary text-white rounded-circle">
+            <FontAwesomeIcon icon={faBook} />
+          </div>
+          <h1 className="pl-2">Publications</h1>
+        </div>
 
         <Spinner loading={this.props.loading} className="spinner" size={100} />
 
