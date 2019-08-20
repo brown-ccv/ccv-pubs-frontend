@@ -5,81 +5,94 @@ import * as selectors from '../reducer'
 import * as actions from '../actions'
 import 'react-table/react-table.css'
 import Immutable from 'seamless-immutable';
+import _ from 'lodash';
 
 
-export default class PubsTable extends React.Component {
+
+export class PubsTable extends React.Component {
+
+  constructor(props) {
+    super(props);
+
+    this.data = Immutable.asMutable(this.props.publications);
+  }
+
+  render() {
 
 
-render() {
-var data;
-  //console.log(data[1]);
-  if (this.props.selectYear != null){
-    var pub;
-    for (pub in data){
-      if (pub["year"] == this.props.selectYear){
-        data.push(pub);
+    var filteredData = [];
+
+    if (this.props.selectYear !== null) {
+      filteredData = _.filter(this.data, (pub) => parseInt(pub.year) === parseInt(this.props.selectYear) )
+    } else {
+      filteredData = this.data
     }
+
+    const changetoHTML = (url) =>  <a href={url.value}>{url.value}</a>
+
+    const columns = [{
+      Header: 'Title',
+      accessor: 'title',
+      style:{ 'whiteSpace': 'unset'}
+
+    }, {
+      Header: 'Authors',
+      accessor: 'author',
+      style:{ 'whiteSpace': 'unset'}
+    },
+    {
+      Header: 'Year',
+      accessor: 'year',
+      width: 100,
+    },
+    {
+      Header: 'URL',
+      accessor:'url',
+      Cell: (val) => changetoHTML(val)
+    }]
+
+    function filterCaseInsensitive(filter, row) {
+      const id = filter.pivotId || filter.id;
+
+      return (
+          row[id] !== undefined ?
+              String(row[id].toLowerCase()).includes(filter.value.toLowerCase()) : true
+      );
+    }
+
+
+    return <ReactTable
+      data={filteredData}
+      columns={columns}
+      filterable
+      defaultFilterMethod={(filter, row) => filterCaseInsensitive(filter, row) }
+      defaultSorted={[
+          {
+            id: 'year',
+            desc: true
+          }
+        ]}
+      classname = "-striped -highlight"
+      resolveData={data => data.map(row => row)}
+      defaultPageSize = {5}
+    />
   }
-} else{
-  data = Immutable.asMutable(this.props.publications);
+
 }
-  // var newData = [...data];
-  //
-  // for(let i =0; i < newData.length; i++){
-  //   let newPub = Immutable.asMutable(newData[i])
-  //   newPub.formattedURL = `<a href=${newData[i].url}>${newData[i].url}</a>`;
-  //   newData[i] = newPub
-  // }
 
-  const changetoHTML = (url) =>  <a href={url.value}>{url.value}</a>
+function mapStateToProps(state) {
+  return {
+    selectYear: selectors.getSelectYear(state)
 
-
-  const columns = [{
-    Header: 'Title',
-    accessor: 'title',
-    style:{ 'whiteSpace': 'unset'}
-
-  }, {
-    Header: 'Authors',
-    accessor: 'author',
-    style:{ 'whiteSpace': 'unset'}
-  },
-  {
-    Header: 'Year',
-    accessor: 'year',
-    width: 100,
-  },
-  {
-    Header: 'URL',
-    accessor:'url',
-    Cell: (val) => changetoHTML(val)
-  }]
-
-  function filterCaseInsensitive(filter, row) {
-    const id = filter.pivotId || filter.id;
-    console.log(id)
-
-    return (
-        row[id] !== undefined ?
-            String(row[id].toLowerCase()).includes(filter.value.toLowerCase()) : true
-    );
-  }
-
-
-  return <ReactTable
-    data={data}
-    columns={columns}
-    filterable
-    defaultFilterMethod={(filter, row) => filterCaseInsensitive(filter, row) }
-    defaultSorted={[
-        {
-          id: 'year',
-          desc: true
-        }
-      ]}
-    classname = "-striped -highlight"
-    resolveData={data => data.map(row => row)}
-    defaultPageSize = {5}
-  />
+  };
 }
+
+function mapDispatchToProps(dispatch) {
+  return {
+    changeSelectYear: (val) => dispatch(actions.changeError(val)),
+  };
 }
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(PubsTable);

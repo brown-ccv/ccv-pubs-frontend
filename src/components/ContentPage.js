@@ -16,11 +16,8 @@ export class ContentPage extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {data: []};
-
     if (this.props.publications.length === 0)
       this.props.fetchData();
-
 
       this.handleSubmit = this.handleSubmit.bind(this);
 }
@@ -53,7 +50,7 @@ export class ContentPage extends Component {
 
         <Spinner loading={this.props.loading} className="spinner" size={100} />
 
-        <PubsTable publications={this.props.publications}   />
+        {this.props.publications.length > 0 && <PubsTable publications={this.props.publications} /> }
 
 
         <h3 className="word-cloud-title pt-4 mt-4"> What are these publications all about? </h3>
