@@ -377,21 +377,31 @@
       "labels": true
     },
     {
-      "scale": "y",
-      "orient": "left",
-      "grid": true,
-      "title": "Count of Records",
-      "labelOverlap": false,
-      "tickCount": {
-        "signal": "ceil(height/40)"
-      },
-      "zindex": 0,
-      "domain": false,
-      "labels": false,
-      "maxExtent": 0,
-      "minExtent": 0,
-      "ticks": false
-    }
+       "scale": "y",
+       "orient": "left",
+       "grid": false,
+       "title": "Count of Records",
+       "labelOverlap": true,
+       "tickCount": {
+         "signal": "ceil(height/40)"
+       },
+       "zindex": 1
+     },
+     {
+       "scale": "y",
+       "orient": "left",
+       "gridScale": "x",
+       "grid": true,
+       "tickCount": {
+         "signal": "ceil(height/40)"
+       },
+       "domain": false,
+       "labels": false,
+       "maxExtent": 0,
+       "minExtent": 0,
+       "ticks": false,
+       "zindex": 0
+     }
   ],
   "config": {
     "title": {

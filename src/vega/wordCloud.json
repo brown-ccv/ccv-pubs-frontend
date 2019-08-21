@@ -11,6 +11,7 @@
           ]
         },
         "hover": {"fillOpacity": {"value": 1}},
+        "click": {"fillOpacity": {"value": 1}},
         "enter": {
           "text": {"field": "abstract"},
           "baseline": {"value": "alphabetic"},

@@ -28,6 +28,23 @@ export class PubsTable extends React.Component {
       filteredData = this.data
     }
 
+    console.log(this.props.selectWord,)
+    function findAbstracts(word, data){
+      var matches = [];
+      for (var index of word ){
+        matches.push(data[index]);
+      }
+      return matches;
+    }
+
+    if (Array.isArray(this.props.selectWord)){
+      console.log("here")
+      filteredData = findAbstracts(this.props.selectWord, this.data);
+      console.log(filteredData)
+    } else {
+      filteredData = this.data
+    }
+
     const changetoHTML = (url) =>  <a href={url.value}>{url.value}</a>
 
     const columns = [{
@@ -48,7 +65,8 @@ export class PubsTable extends React.Component {
     {
       Header: 'URL',
       accessor:'url',
-      Cell: (val) => changetoHTML(val)
+      Cell: (val) => changetoHTML(val),
+      filterable: false
     }]
 
     function filterCaseInsensitive(filter, row) {
@@ -82,7 +100,8 @@ export class PubsTable extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    selectYear: selectors.getSelectYear(state)
+    selectYear: selectors.getSelectYear(state),
+    selectWord: selectors.getSelectWord(state)
 
   };
 }
@@ -90,6 +109,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     changeSelectYear: (val) => dispatch(actions.changeError(val)),
+    changeSelectWord: (val) => dispatch(actions.changeError(val))
   };
 }
 

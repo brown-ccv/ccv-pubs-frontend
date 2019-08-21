@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import vegaEmbed from 'vega-embed';
 import spec from '../vega/wordCloud';
+import * as selectors from '../reducer';
 
-export default class WordCloud extends Component {
+
+export class WordCloud extends Component {
 
   constructor(props) {
     super(props);
@@ -25,11 +27,14 @@ export default class WordCloud extends Component {
           // console.log(view)
           this.updateView(view)
           // update the global state with the current mouseover
-          view.addEventListener("mouseover", (name, value) => {
+          view.addEventListener("click", (name, value) => {
             if (value && value.datum.pubs) {
-              this.props.setHover(value.datum.pubs)
+              console.log(name)
+              console.log(value)
+              this.props.setWord(value.datum.pubs)
+              console.log(this.props.selectWord)
             } else {
-              this.props.setHover(null)
+              this.props.setWord(null)
             }
           })
         })
@@ -45,3 +50,17 @@ export default class WordCloud extends Component {
     )
   }
 }
+  const mapStateToProps = state => {
+    return {
+      selectWord: selectors.getSelectWord(state)
+    }
+  }
+
+   const mapDispatchToProps = dispatch => {
+    return {
+      setWord: id => dispatch({type: 'CHANGE_SELECT_WORD', data: id})
+    }
+  }
+
+
+  export default connect(mapStateToProps, mapDispatchToProps)(WordCloud);

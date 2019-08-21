@@ -15,6 +15,6 @@ export function changeYear(data){
   return ({type: 'CHANGE_SELECT_YEAR', data})
 }
 
-export function changeWordCloudHover(data){
-  return ({type: 'CHANGE_WORD_CLOUD_HOVER', data})
+export function changeSelectWord(data){
+  return ({type: 'CHANGE_SELECT_WORD', data})
 }
