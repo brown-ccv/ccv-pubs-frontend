@@ -18,10 +18,15 @@ export class WordCloud extends Component {
   }
 
   componentDidMount() {
+
+    var data = this.props.ngrams;
+    console.log(this.props.ngrams);
+
     vegaEmbed('#wordcloud', spec, { "mode": "vega", "actions": false, "renderer": "svg"})
     .then( (res)  => {
       try {
         res.view
+        .insert("table", this.props.ngrams)
         .runAsync()
         .then( (view) => {
           // console.log(view)

@@ -2,6 +2,7 @@ import Immutable from 'seamless-immutable';
 
 const initialState = Immutable({
   publications: [],
+  ngrams: [],
   loading: true,
   selectWord: null,
   selectYear: null
@@ -14,6 +15,10 @@ export default function reduce(state = initialState, action = {}) {
     case 'CHANGE_DATA':
     return state.merge({
       publications: action.data
+    });
+    case 'CHANGE_NGRAMS':
+    return state.merge({
+      ngrams: action.data
     });
     case 'CHANGE_ERROR':
     return state.merge({
@@ -34,6 +39,10 @@ export default function reduce(state = initialState, action = {}) {
     default:
       return state;
   }
+}
+
+export function getNgrams(state){
+  return state.ngrams;
 }
 
 export function getData(state) {

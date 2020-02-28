@@ -19,6 +19,9 @@ export class ContentPage extends Component {
     if (this.props.publications.length === 0)
       this.props.fetchData();
 
+    if(this.props.ngrams.length === 0)
+      this.props.fetchNgrams();
+
       this.handleSubmit = this.handleSubmit.bind(this);
 }
 
@@ -72,7 +75,8 @@ function mapStateToProps(state) {
   return {
     publications: selectors.getData(state),
     error: selectors.getError(state),
-    loading: selectors.getLoading(state)
+    loading: selectors.getLoading(state),
+    ngrams : selectors.getNgrams(state)
   };
 }
 
@@ -80,7 +84,8 @@ function mapDispatchToProps(dispatch) {
   return {
     changeError: (val) => dispatch(actions.changeError(val)),
     fetchData: () => dispatch({ type: 'FETCH_DATA', payload:'' }),
-    changeLoading: (val) => dispatch(actions.changeLoading(val))
+    changeLoading: (val) => dispatch(actions.changeLoading(val)),
+    fetchNgrams: () => dispatch({ type: 'FETCH_NGRAMS', payload:'' })
   };
 }
 

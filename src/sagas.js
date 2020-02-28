@@ -17,10 +17,22 @@ function* fetchData(action) {
 
 }
 
+function* fetchNgrams(action) {
+
+  try {
+    const ngrams = yield call(Client.getNgrams);
+    yield put(actions.fetchNgrams(ngrams));
+  } catch(error) {
+    yield put(actions.changeError(errorText));
+  }
+
+}
+
 // -------------ROOT SAGA-----------------
 
 export default function* rootSaga() {
   yield all([
-    takeEvery('FETCH_DATA', fetchData)
+    takeEvery('FETCH_DATA', fetchData),
+    takeEvery('FETCH_NGRAMS', fetchNgrams)
   ])
 }
