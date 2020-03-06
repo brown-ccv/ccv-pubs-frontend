@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import vegaEmbed from 'vega-embed';
 import spec from '../vega/wordCloud';
 import * as selectors from '../reducer';
+import Immutable from 'seamless-immutable';
 
 
 export class WordCloud extends Component {
@@ -11,6 +12,9 @@ export class WordCloud extends Component {
     super(props);
 
     this.view = null;
+    this.data = Immutable.asMutable(this.props.ngrams);
+    console.log(Immutable.isImmutable(this.data))
+
   }
 
   updateView(v) {
@@ -18,31 +22,30 @@ export class WordCloud extends Component {
   }
 
   componentDidMount() {
-
-    var data = this.props.ngrams;
-    console.log(this.props.ngrams);
+    var data = Immutable.asMutable(this.props.ngrams, {deep: true});
+    console.log(this.data);
 
     vegaEmbed('#wordcloud', spec, { "mode": "vega", "actions": false, "renderer": "svg"})
     .then( (res)  => {
       try {
         res.view
-        .insert("table", this.props.ngrams)
-        .runAsync()
-        .then( (view) => {
-          // console.log(view)
-          this.updateView(view)
-          // update the global state with the current mouseover
-          view.addEventListener("click", (name, value) => {
-            if (value && value.datum.pubs) {
-              console.log(name)
-              console.log(value)
-              this.props.setWord(value.datum.pubs)
-              console.log(this.props.selectWord)
-            } else {
-              this.props.setWord(null)
-            }
-          })
-        })
+        .insert("table", data)
+        .run()
+        // .then( (view) => {
+        //   // console.log(view)
+        //   this.updateView(view)
+        //   // update the global state with the current mouseover
+        //   view.addEventListener("click", (name, value) => {
+        //     if (value && value.datum.pubs) {
+        //       console.log(name)
+        //       console.log(value)
+        //       this.props.setWord(value.datum.pubs)
+        //       console.log(this.props.selectWord)
+        //     } else {
+        //       this.props.setWord(null)
+        //     }
+        //   })
+        // })
       } catch(error) {
         console.log("OH NO - The Word Cloud Viz Broke!")
         console.log(error)
@@ -57,7 +60,9 @@ export class WordCloud extends Component {
 }
   const mapStateToProps = state => {
     return {
-      selectWord: selectors.getSelectWord(state)
+      selectWord: selectors.getSelectWord(state),
+      ngrams: selectors.getNgrams(state)
+      
     }
   }
 

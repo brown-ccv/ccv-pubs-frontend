@@ -17,6 +17,7 @@ export default function reduce(state = initialState, action = {}) {
       publications: action.data
     });
     case 'CHANGE_NGRAMS':
+      console.log(action.data)
     return state.merge({
       ngrams: action.data
     });

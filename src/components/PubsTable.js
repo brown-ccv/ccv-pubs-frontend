@@ -15,6 +15,7 @@ export class PubsTable extends React.Component {
     super(props);
 
     this.data = Immutable.asMutable(this.props.publications);
+   
   }
 
   render() {

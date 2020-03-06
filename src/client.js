@@ -1,8 +1,8 @@
 import _ from 'lodash';
 import fetch from 'isomorphic-fetch';
 
-const SERVICE_ENDPOINT = 'https://datasci.brown.edu/ccvpubs-api';
-
+//const SERVICE_ENDPOINT = 'https://datasci.brown.edu/ccvpubs-api';
+const SERVICE_ENDPOINT = process.env.NODE_ENV === 'production' ? 'https://datasci.brown.edu/ccvpubs-api' : 'http://localhost:8080';
 class Client {
 
   // get all data values from the bcbi db
