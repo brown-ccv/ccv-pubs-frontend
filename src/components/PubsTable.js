@@ -18,15 +18,25 @@ export class PubsTable extends React.Component {
    
   }
 
+  // componentDidUpdate(prevProps){
+  //   if(prevProps.selectYear !== this.selectYear){
+  //     this.data = filteredData;
+  //   }
+  // }
+
   render() {
 
 
     var filteredData = [];
 
     if (this.props.selectYear !== null) {
+      console.log(this.props.selectYear)
       filteredData = _.filter(this.data, (pub) => parseInt(pub.year) === parseInt(this.props.selectYear) )
+      console.log(filteredData)
+      this.data = filteredData
     } else {
-      filteredData = this.data
+      console.log("no word")
+      this.data = Immutable.asMutable(this.props.publications)
     }
 
     console.log(this.props.selectWord,)
@@ -98,6 +108,8 @@ export class PubsTable extends React.Component {
   }
 
 }
+
+
 
 function mapStateToProps(state) {
   return {

@@ -57,10 +57,12 @@ export class ContentPage extends Component {
         {this.props.publications.length > 0 && <PubsTable publications={this.props.publications} /> }
         
 
-        <h3 className="word-cloud-title pt-4 mt-4"> What are these publications all about? </h3>
+        {this.props.publications.length > 0 && <h3 className="word-cloud-title pt-4 mt-4"> What are these publications all about? </h3>}
         <div className="viz d-flex justify-content-center pt-5">
-        {this.props.ngrams.length > 0 && <WordCloud /> }
-        {this.props.publications.length > 0 && <YearChart /> }
+        <Spinner loading={this.props.loading} className="spinner" size={100} />
+        {this.props.ngrams.length > 0 && <WordCloud/> }
+        <Spinner loading={this.props.loading} className="spinner" size={100} />
+        {this.props.publications.length > 0 && <YearChart/> }
         </div>
 
       </div>

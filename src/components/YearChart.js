@@ -4,12 +4,14 @@ import * as selectors from '../reducer';
 import * as actions from '../actions'
 import vegaEmbed from 'vega-embed';
 import spec from '../vega/yearChart';
+import Immutable from 'seamless-immutable';
 
 export class YearChart extends Component {
 
   constructor(props) {
     super(props);
     this.view = null;
+    this.data = Immutable.asMutable(this.props.publications, {deep: true});
   }
 
   updateView(v) {
@@ -18,21 +20,21 @@ export class YearChart extends Component {
 
   componentDidMount(){
 
-    var data = this.props.publications;
+    //var data = Immutable.asMutable(this.props.publications);
 
     vegaEmbed('#yearChart', spec, { "mode": "vega", "actions": false, "renderer":
     "svg", "loader": { "target": "_blank" } })
      .then((res) => {
        try {
          res.view
-           .insert("source_0", this.props.publications)
+           .insert("source_0", this.data)
             .runAsync()
             .then( (view) => {
                 this.updateView(view)
                 // console.log(view)
                 // update the global state with the current mouseover
                 view.addEventListener("click", (name, value) => {
-                  console.log(value.datum)
+                  console.log(isNaN(value.datum.xfield))
                   if (value && value.datum.xfield && !isNaN(value.datum.xfield)) {
                     this.props.changeYear(value.datum.xfield)
                   } else {
@@ -64,7 +66,8 @@ export class YearChart extends Component {
 
  const mapStateToProps = state => {
    return {
-     selectYear: selectors.getSelectYear(state)
+     selectYear: selectors.getSelectYear(state),
+     publications: selectors.getData(state)
    }
  }
 
