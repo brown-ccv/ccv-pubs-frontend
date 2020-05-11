@@ -8,6 +8,9 @@ import Spinner from './Spinner';
 import PubsTable from './PubsTable';
 import YearChart from './YearChart';
 import WordCloud from './WordCloud';
+import { Button } from 'react-bulma-components';
+import { BrowserRouter, Route, Link, Switch, Router } from 'react-router-dom';
+
 
 
 export class ContentPage extends Component {
@@ -43,10 +46,14 @@ export class ContentPage extends Component {
 
 
     return(
-
       <div>
+        <div align="right">
+        <Button to="/secured" renderAs={Link}>Secured Component</Button>
+        <Button to="/addPub" renderAs={Link} class="button is-rounded is-success" className = "align-items-left" >Add Publication</Button>
+        </div>
         <div className="d-flex flex-row justify-content-center align-items-center">
           <div className="pub-title pt-2 bg-primary text-white rounded-circle">
+          
             <FontAwesomeIcon icon={faBook} />
           </div>
           <h1 className="pl-2">Publications</h1>

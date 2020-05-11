@@ -1,0 +1,8 @@
+{
+    "realm": "ccvpubs",
+    "auth-server-url": "https://datasci.brown.edu/keycloak/auth/",
+    "ssl-required": "external",
+    "resource": "ccvpubs-app-test",
+    "public-client": true,
+    "confidential-port": 0
+  }
