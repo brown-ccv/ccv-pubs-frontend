@@ -5,6 +5,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import axios from 'axios';
 import { BrowserRouter, Route, Link, Switch, Router } from 'react-router-dom';
+import * as actions from '../actions';
+import { connect } from 'react-redux';
 export class AddPub extends Component {
   constructor(props) {
     super(props);
@@ -25,12 +27,8 @@ export class AddPub extends Component {
       doi: this.state.doi
     };
 
-    axios.post('http://localhost:8080/addPublications', doiObject)
-      .then((res) => {
-        console.log(res.data)
-      }).catch((error) => {
-        console.log(error)
-      });
+    console.log(doiObject)
+    this.props.postPubAction(doiObject);
 
     this.setState({ doi : " " })
   }
@@ -69,4 +67,15 @@ export class AddPub extends Component {
 const style = {
   margin: 15,
 };
-export default AddPub;
+
+
+
+
+function mapDispatchToProps(dispatch) {
+  return {
+    postPubAction: (newPub) => dispatch(actions.postPubAction(newPub))
+  };
+}
+
+export default connect(null, mapDispatchToProps)(AddPub);
+

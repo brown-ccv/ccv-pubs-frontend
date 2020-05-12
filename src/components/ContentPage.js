@@ -86,7 +86,7 @@ function mapStateToProps(state) {
     publications: selectors.getData(state),
     error: selectors.getError(state),
     loading: selectors.getLoading(state),
-    ngrams : selectors.getNgrams(state)
+    ngrams : selectors.getNgrams(state),
   };
 }
 
@@ -95,7 +95,8 @@ function mapDispatchToProps(dispatch) {
     changeError: (val) => dispatch(actions.changeError(val)),
     fetchData: () => dispatch({ type: 'FETCH_DATA', payload:'' }),
     changeLoading: (val) => dispatch(actions.changeLoading(val)),
-    fetchNgrams: () => dispatch({ type: 'FETCH_NGRAMS', payload:'' })
+    fetchNgrams: () => dispatch({ type: 'FETCH_NGRAMS', payload:'' }),
+    postPubAction: (newMovie) => dispatch(actions.postPubAction(newMovie))
   };
 }
 

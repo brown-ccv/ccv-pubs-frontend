@@ -28,11 +28,23 @@ function* fetchNgrams(action) {
 
 }
 
+function* postPub(action) {
+
+  try {
+    console.log("here")
+    yield call(Client.postPub(action.newPub));
+  } catch(error) {
+    yield put(actions.changeError(errorText));
+  }
+
+}
+
 // -------------ROOT SAGA-----------------
 
 export default function* rootSaga() {
   yield all([
     takeEvery('FETCH_DATA', fetchData),
-    takeEvery('FETCH_NGRAMS', fetchNgrams)
+    takeEvery('FETCH_NGRAMS', fetchNgrams),
+    takeEvery('POST_PUB', postPub)
   ])
 }

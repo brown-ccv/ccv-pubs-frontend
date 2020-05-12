@@ -42,6 +42,25 @@ class Client {
     return data;
   }
 
+  async postPub(newPub){
+    var url = `${SERVICE_ENDPOINT}/addPublications`;
+    console.log(url)
+    console.log(newPub)
+    var response;
+    try {
+      response =  fetch(url, {
+        method: 'POST',
+        body: String(newPub.doi),
+      });
+      console.log(response)
+    } catch(error) {
+      throw new Error(`Could not connect to server: ${error}`);
+    }
+    if (!response.ok) {
+      throw new Error(`CCVService getConcepts failed, HTTP status ${response.status}`);
+    }
+  }
+
 }
 
 export default new Client();

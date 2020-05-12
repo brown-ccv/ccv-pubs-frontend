@@ -22,3 +22,8 @@ export function changeYear(data){
 export function changeSelectWord(data){
   return ({type: 'CHANGE_SELECT_WORD', data})
 }
+
+export function postPubAction(newPub){
+  console.log(newPub)
+  return ({type: 'POST_PUB', newPub})
+}

@@ -65,3 +65,4 @@ export function getSelectWord(state) {
 export function getSelectYear(state) {
   return state.selectYear;
 }
+
