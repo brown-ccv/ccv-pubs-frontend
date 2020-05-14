@@ -30,6 +30,7 @@ class Client {
     var response;
     try {
       response = await fetch(url);
+      console.log(response)
     } catch(error) {
       throw new Error(`Could not connect to server: ${error}`);
     }
@@ -38,29 +39,59 @@ class Client {
       throw new Error(`CCVService getConcepts failed, HTTP status ${response.status}`);
     }
     const data = await response.json();
-
+    console.log(data)
     return data;
   }
 
-  async postPub(newPub){
-    var url = `${SERVICE_ENDPOINT}/addPublications`;
-    console.log(url)
-    console.log(newPub)
+  async getDoiInfo(newPub){
+    var url = `${SERVICE_ENDPOINT}/getDOI`;
     var response;
+    var status;
+    var resp;
+    var data;
+    console.log(newPub)
     try {
-      response =  fetch(url, {
+      response = await fetch(url, {
         method: 'POST',
         body: String(newPub.doi),
       });
-      console.log(response)
+      data = await response.json()
     } catch(error) {
       throw new Error(`Could not connect to server: ${error}`);
     }
     if (!response.ok) {
-      throw new Error(`CCVService getConcepts failed, HTTP status ${response.status}`);
-    }
+      throw new Error(`No DOI found`);
+   }
+   console.log(data)
+   return data;
   }
 
+  // async postPub(newPub){
+  //   var url = `${SERVICE_ENDPOINT}/addPublications`;
+  //   var response;
+  //   var status;
+  //   var resp;
+  //   try {
+  //     response = await fetch(url, {
+  //       method: 'POST',
+  //       body: String(newPub.doi),
+  //     })
+  //     .then(function(res){
+  //       return res.json(); 
+  //    }).then(function(data){
+  //      resp = data
+  //   }).catch((error)=>{console.log(error);
+  //   });
+  //   console.log(resp)
+  //   } catch(error) {
+  //     throw new Error(`Could not connect to server: ${error}`);
+  //   }
+  //   if (!resp) {
+  //     throw new Error(`No DOI found`);
+  //  }
+  //  return resp;
+  // }
+  
 }
 
 export default new Client();

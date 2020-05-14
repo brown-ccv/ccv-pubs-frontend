@@ -25,8 +25,6 @@ class Secured extends Component {
         if(this.state.authenticated) return (
             console.log("here"),
           <div>
-            <p>This is a Keycloak-secured component of your application. You shouldn't be able
-            to see this unless you've authenticated with Keycloak.</p>
             {/* <UserInfo keycloak={this.state.keycloak} />
             <Logout keycloak={this.state.keycloak} /> */}
              <AddPub />

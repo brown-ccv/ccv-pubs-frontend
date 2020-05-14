@@ -7,11 +7,18 @@ import axios from 'axios';
 import { BrowserRouter, Route, Link, Switch, Router } from 'react-router-dom';
 import * as actions from '../actions';
 import { connect } from 'react-redux';
+import * as selectors from '../reducer';
+
+import Immutable from 'seamless-immutable';
+
 export class AddPub extends Component {
   constructor(props) {
     super(props);
     this.state = {
       doi: ''
+    }
+    if(this.props.doiInfo){
+    this.data = Immutable.asMutable(this.props.doiInfo, {deep: true});
     }
   }
 
@@ -28,8 +35,7 @@ export class AddPub extends Component {
     };
 
     console.log(doiObject)
-    this.props.postPubAction(doiObject);
-
+    this.props.fetchDoiInfo(doiObject);
     this.setState({ doi : " " })
   }
 
@@ -50,7 +56,7 @@ export class AddPub extends Component {
               onChange={(event, newValue) => this.setState({ doi: newValue })}
             />
             <br />
-
+            {this.data.length > 0  && <p>We have data</p>}
             <RaisedButton  label="Submit" primary={true} style={style} onClick={(event) => this.onSubmit(event)} />
             </form>
             <br />
@@ -69,13 +75,19 @@ const style = {
 };
 
 
-
-
-function mapDispatchToProps(dispatch) {
+function mapStateToProps(state) {
   return {
-    postPubAction: (newPub) => dispatch(actions.postPubAction(newPub))
+    doiInfo: selectors.getDoiInfo(state)
+
   };
 }
 
-export default connect(null, mapDispatchToProps)(AddPub);
+function mapDispatchToProps(dispatch) {
+  return {
+    //postPubAction: (newPub) => dispatch(actions.postPubAction(newPub))
+    fetchDoiInfo: (newPub) => dispatch(actions.fetchDoiInfo(newPub))
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddPub);
 

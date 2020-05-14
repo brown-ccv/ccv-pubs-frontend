@@ -4,6 +4,7 @@ export function fetchData(data) {
 }
 
 export function fetchNgrams(data) {
+  console.log(data)
   return({ type: 'CHANGE_NGRAMS', data})
 }
 
@@ -26,4 +27,9 @@ export function changeSelectWord(data){
 export function postPubAction(newPub){
   console.log(newPub)
   return ({type: 'POST_PUB', newPub})
+}
+
+export function fetchDoiInfo(data){
+  console.log(data)
+  return ({type: 'CHANGE_DOI_INFO', data})
 }

@@ -21,6 +21,7 @@ function* fetchNgrams(action) {
 
   try {
     const ngrams = yield call(Client.getNgrams);
+    console.log(ngrams)
     yield put(actions.fetchNgrams(ngrams));
   } catch(error) {
     yield put(actions.changeError(errorText));
@@ -31,8 +32,19 @@ function* fetchNgrams(action) {
 function* postPub(action) {
 
   try {
-    console.log("here")
     yield call(Client.postPub(action.newPub));
+  } catch(error) {
+    yield put(actions.changeError(errorText));
+  }
+
+}
+
+function* fetchDoiInfo(action) {
+  try {
+    console.log(action.data)
+    const doiInfo = yield call(Client.getDoiInfo(action.data));
+    console.log(doiInfo)
+    yield put(actions.fetchDoiInfo(doiInfo));
   } catch(error) {
     yield put(actions.changeError(errorText));
   }
@@ -45,6 +57,7 @@ export default function* rootSaga() {
   yield all([
     takeEvery('FETCH_DATA', fetchData),
     takeEvery('FETCH_NGRAMS', fetchNgrams),
-    takeEvery('POST_PUB', postPub)
+    takeEvery('POST_PUB', postPub),
+    takeEvery('CHANGE_DOI_INFO', fetchDoiInfo)
   ])
 }

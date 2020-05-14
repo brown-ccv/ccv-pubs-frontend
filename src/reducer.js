@@ -5,7 +5,8 @@ const initialState = Immutable({
   ngrams: [],
   loading: true,
   selectWord: null,
-  selectYear: null
+  selectYear: null,
+  doiInfo: []
 });
 
 
@@ -37,12 +38,18 @@ export default function reduce(state = initialState, action = {}) {
     return state.merge({
       selectYear: action.data
     });
+    case 'CHANGE_DOI_INFO':
+      console.log(action)
+    return state.merge({
+      doiInfo: action.data
+    });
     default:
       return state;
   }
 }
 
 export function getNgrams(state){
+  console.log(state.ngrams)
   return state.ngrams;
 }
 
@@ -64,5 +71,10 @@ export function getSelectWord(state) {
 
 export function getSelectYear(state) {
   return state.selectYear;
+}
+
+export function getDoiInfo(state){
+  console.log(state.doiInfo)
+  return state.doiInfo;
 }
 

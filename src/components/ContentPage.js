@@ -48,8 +48,7 @@ export class ContentPage extends Component {
     return(
       <div>
         <div align="right">
-        <Button to="/secured" renderAs={Link}>Secured Component</Button>
-        <Button to="/addPub" renderAs={Link} class="button is-rounded is-success" className = "align-items-left" >Add Publication</Button>
+        <Button to="/secured" renderAs={Link} className="button is-rounded is-info">Add a Publication</Button>
         </div>
         <div className="d-flex flex-row justify-content-center align-items-center">
           <div className="pub-title pt-2 bg-primary text-white rounded-circle">
@@ -96,7 +95,6 @@ function mapDispatchToProps(dispatch) {
     fetchData: () => dispatch({ type: 'FETCH_DATA', payload:'' }),
     changeLoading: (val) => dispatch(actions.changeLoading(val)),
     fetchNgrams: () => dispatch({ type: 'FETCH_NGRAMS', payload:'' }),
-    postPubAction: (newMovie) => dispatch(actions.postPubAction(newMovie))
   };
 }
 
