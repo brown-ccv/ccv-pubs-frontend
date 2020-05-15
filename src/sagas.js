@@ -41,8 +41,8 @@ function* postPub(action) {
 
 function* fetchDoiInfo(action) {
   try {
-    console.log(action.data)
-    const doiInfo = yield call(Client.getDoiInfo(action.data));
+    console.log(action.newPub)
+    const doiInfo = yield call(Client.getDoiInfo, action.newPub);
     console.log(doiInfo)
     yield put(actions.fetchDoiInfo(doiInfo));
   } catch(error) {
@@ -58,6 +58,6 @@ export default function* rootSaga() {
     takeEvery('FETCH_DATA', fetchData),
     takeEvery('FETCH_NGRAMS', fetchNgrams),
     takeEvery('POST_PUB', postPub),
-    takeEvery('CHANGE_DOI_INFO', fetchDoiInfo)
+    takeEvery('REQUEST_DOI_INFO', fetchDoiInfo)
   ])
 }

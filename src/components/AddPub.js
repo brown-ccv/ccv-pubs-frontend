@@ -35,7 +35,9 @@ export class AddPub extends Component {
     };
 
     console.log(doiObject)
-    this.props.fetchDoiInfo(doiObject);
+    this.props.requestDoiInfo(doiObject);
+    this.data = Immutable.asMutable(this.props.doiInfo, {deep: true});
+    console.log(this.data)
     this.setState({ doi : " " })
   }
 
@@ -56,7 +58,7 @@ export class AddPub extends Component {
               onChange={(event, newValue) => this.setState({ doi: newValue })}
             />
             <br />
-            {this.data.length > 0  && <p>We have data</p>}
+            {this.props.doiInfo.length > 0  && <p>We have data</p>}
             <RaisedButton  label="Submit" primary={true} style={style} onClick={(event) => this.onSubmit(event)} />
             </form>
             <br />
@@ -85,7 +87,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     //postPubAction: (newPub) => dispatch(actions.postPubAction(newPub))
-    fetchDoiInfo: (newPub) => dispatch(actions.fetchDoiInfo(newPub))
+    //fetchDoiInfo: (newPub) => dispatch(actions.fetchDoiInfo(newPub))
+    requestDoiInfo: (newPub) => dispatch(actions.requestDoiInfo(newPub))
   };
 }
 

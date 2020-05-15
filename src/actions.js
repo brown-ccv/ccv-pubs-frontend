@@ -29,6 +29,10 @@ export function postPubAction(newPub){
   return ({type: 'POST_PUB', newPub})
 }
 
+export function requestDoiInfo(newPub){
+  return ({type: 'REQUEST_DOI_INFO', newPub})
+}
+
 export function fetchDoiInfo(data){
   console.log(data)
   return ({type: 'CHANGE_DOI_INFO', data})
