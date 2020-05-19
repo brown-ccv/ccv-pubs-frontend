@@ -22,6 +22,7 @@ export class AddPub extends Component {
     }
   }
   render() {
+    this.data = this.props.doiInfo;
     return (
       <div>
         <MuiThemeProvider>

@@ -57,6 +57,7 @@ export default function* rootSaga() {
   yield all([
     takeEvery('FETCH_DATA', fetchData),
     takeEvery('FETCH_NGRAMS', fetchNgrams),
+    
     takeEvery('POST_PUB', postPub),
     takeEvery('REQUEST_DOI_INFO', fetchDoiInfo)
   ])

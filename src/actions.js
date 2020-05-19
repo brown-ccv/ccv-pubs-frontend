@@ -37,3 +37,7 @@ export function fetchDoiInfo(data){
   console.log(data)
   return ({type: 'CHANGE_DOI_INFO', data})
 }
+
+export function changeDoiInfo(data){
+  return({ type: 'UPDATE_DOI_INFO', data})
+}

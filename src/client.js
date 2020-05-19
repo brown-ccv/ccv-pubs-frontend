@@ -66,31 +66,25 @@ class Client {
    return data;
   }
 
-  // async postPub(newPub){
-  //   var url = `${SERVICE_ENDPOINT}/addPublications`;
-  //   var response;
-  //   var status;
-  //   var resp;
-  //   try {
-  //     response = await fetch(url, {
-  //       method: 'POST',
-  //       body: String(newPub.doi),
-  //     })
-  //     .then(function(res){
-  //       return res.json(); 
-  //    }).then(function(data){
-  //      resp = data
-  //   }).catch((error)=>{console.log(error);
-  //   });
-  //   console.log(resp)
-  //   } catch(error) {
-  //     throw new Error(`Could not connect to server: ${error}`);
-  //   }
-  //   if (!resp) {
-  //     throw new Error(`No DOI found`);
-  //  }
-  //  return resp;
-  // }
+  async postPub(newPub){
+    console.log(newPub.data)
+    var url = `${SERVICE_ENDPOINT}/addPublications`;
+    var response;
+    var status;
+    var resp;
+    try {
+      response = await fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(newPub.data),
+      });
+      
+    } catch(error) {
+      throw new Error(`Could not connect to server: ${error}`);
+    }
+    if (!response.ok) {
+      throw new Error(`No DOI found`);
+   }
+  }
   
 }
 

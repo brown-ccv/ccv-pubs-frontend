@@ -1,5 +1,5 @@
 {
-    "realm": "ccvpubs",
+    "realm": "ccv-shib",
     "auth-server-url": "https://datasci.brown.edu/keycloak/auth/",
     "ssl-required": "external",
     "resource": "ccvpubs-app-test",

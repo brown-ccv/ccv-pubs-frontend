@@ -1,27 +1,156 @@
 import React, { Component } from 'react';
+import Immutable from 'seamless-immutable';
+import { getDoiInfo } from '../reducer';
+import * as selectors from '../reducer';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
+import TextField from '@material-ui/core/TextField';
+
 
 class UserInfo extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      name: "",
-      email: "",
-      id: ""
-    };
-    this.props.keycloak.loadUserInfo().then(userInfo => {
-        this.setState({name: userInfo.name, email: userInfo.email, id: userInfo.sub})
-    });
+    this.data = Immutable.asMutable(this.props.doiInfo, {deep: true});
+    var i;
+    for (i = 0; i < this.data.length; i++) {
+      if (this.data[i] == "Missing"){
+        this.data[i] = null;
+      }
+  
+    }
+    console.log(this.props.doiInfo)
+  }
+
+  handleChange(e){
+    console.log(e.target)
+    //var index = 0
+    //this.temp = Immutable.asMutable(this.props.doiInfo, {deep: true});
+    //this.temp[index] = e.target.value
+    //this.props.updateDoiInfo(this.temp)
+
   }
 
   render() {
+    //console.log(this.props.doiInfo)
+    //this.data = Immutable.asMutable(this.props.doiInfo, {deep: true});
+
     return (
-      <div className="UserInfo">
-        <p>Name: {this.state.name}</p>
-        <p>Email: {this.state.email}</p>
-        <p>ID: {this.state.id}</p>
+      <div className="UserInfo" >
+        <h3>We found this information from the DOI:</h3>
+        <div >
+        <br/>
+        <TextField
+          id="standard-helperText"
+          label="Title"
+          defaultValue={this.data[5]}
+          name = "Title"
+          fullWidth = {true}
+          onChange = {(event) => (this.props.updateDoiInfo(this.props.doiInfo.slice(0,5).concat([event.target.value], this.props.doiInfo.slice(6,9))))}
+        />
+                <br/>
+
+        <TextField
+          id="standard-helperText"
+          label="Author"
+          defaultValue={this.data[0]}
+          name = "Author"
+          fullWidth = {true}
+          onChange = {(event) => (this.props.updateDoiInfo([event.target.value].concat(this.props.doiInfo.slice(1,9))))}
+        />
+                <br/>
+
+        <TextField
+          id="standard-helperText"
+          label="Publisher"
+          defaultValue={this.data[1]}
+          name = "Publisher"
+          fullWidth = {true}
+          onChange = {(event) => (this.props.updateDoiInfo(this.props.doiInfo[0].concat([event.target.value], this.props.doiInfo.slice(2,9))))}
+        />
+                <br/>
+
+        <TextField
+          id="standard-helperText"
+          label="Volume"
+          defaultValue={this.data[2]}
+          name = "Volume"
+          fullWidth = {true}
+          onChange = {(event) => (this.props.updateDoiInfo(this.props.doiInfo.slice(0,2).concat([event.target.value], this.props.doiInfo.slice(3,9))))}
+
+        />
+                <br/>
+
+        <TextField
+          id="standard-helperText"
+          label="URL"
+          defaultValue={this.data[3]}
+          name = "URL"
+          fullWidth = {true}
+          onChange = {(event) => (this.props.updateDoiInfo(this.props.doiInfo.slice(0,3).concat([event.target.value], this.props.doiInfo.slice(4,9))))}
+
+        />
+                <br/>
+
+        <TextField
+          id="standard-helperText"
+          label="DOI"
+          defaultValue={this.data[4]}
+          name = "DOI"
+          fullWidth = {true}
+          onChange = {(event) => (this.props.updateDoiInfo(this.props.doiInfo.slice(0,4).concat([event.target.value], this.props.doiInfo.slice(5,9))))}
+
+        />
+                <br/>
+
+        <TextField
+          id="standard-helperText"
+          label="Month"
+          defaultValue={this.data[6]}
+          name = "Month"
+          fullWidth = {true}
+          onChange = {(event) => (this.props.updateDoiInfo(this.props.doiInfo.slice(0,6).concat([event.target.value], this.props.doiInfo.slice(7,9))))}
+
+        />
+                <br/>
+
+        <TextField
+          id="standard-helperText"
+          label="Year"
+          defaultValue={this.data[7]}
+          name = "Year"
+          fullWidth = {true}
+          onChange = {(event) => (this.props.updateDoiInfo(this.props.doiInfo.slice(0,7).concat([event.target.value], this.props.doiInfo.slice(8,9))))}
+
+        />
+                <br/>
+
+        <TextField
+          id="standard-helperText"
+          label="Abstract"
+          defaultValue={this.data[8]}
+          name = "Abstract"
+          fullWidth = {true}
+          onChange = {(event) => (this.props.updateDoiInfo(this.props.doiInfo.slice(0,8).concat([event.target.value])))}
+
+        />
+        </div>
+
       </div>
     );
   }
 }
-export default UserInfo;
+function mapStateToProps(state) {
+  return {
+    doiInfo: selectors.getDoiInfo(state)
+
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    updateDoiInfo: (newPub) => dispatch(actions.changeDoiInfo(newPub))
+
+  };
+}
+export default connect(mapStateToProps, mapDispatchToProps)(UserInfo);

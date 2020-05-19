@@ -44,6 +44,11 @@ export default function reduce(state = initialState, action = {}) {
     return state.merge({
       doiInfo: action.data
     });
+    case 'UPDATE_DOI_INFO':
+      console.log(action)
+    return state.merge({
+      doiInfo: action.data
+    });
     case 'REQUEST_DOI_INFO':
       console.log(action)
     //return state.merge({
