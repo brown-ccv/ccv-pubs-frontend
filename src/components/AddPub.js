@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
-import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 import { BrowserRouter, Route, Link, Switch, Router } from 'react-router-dom';
 import * as actions from '../actions';
 import { connect } from 'react-redux';
@@ -11,6 +11,9 @@ import ManualAdd from './ManualAdd';
 import Immutable from 'seamless-immutable';
 import UserInfo from './UserInfo';
 import Spinner from './Spinner';
+import Keycloak from 'keycloak-js';
+
+
 
 
 export class AddPub extends Component {
@@ -18,16 +21,21 @@ export class AddPub extends Component {
     super(props);
     this.state = {
       doi: '',
-      pressed: false
+      pressed: false,
+      keycloak: null, 
+      authenticated: false
     }
     if(this.props.doiInfo){
     this.data = Immutable.asMutable(this.props.doiInfo, {deep: true});
     }
   }
 
-  // onChangedoi(e) {
-  //   this.setState({ doi: e.target.value })
-  // }
+  componentDidMount() {
+    const keycloak = Keycloak('/keycloak.json');
+    keycloak.init({onLoad: 'login-required'}).then(authenticated => {
+      this.setState({ keycloak: keycloak, authenticated: authenticated })
+    })
+  }
 
 
   onSubmit(e) {
@@ -52,6 +60,8 @@ export class AddPub extends Component {
       data: data
     }
     this.props.postPubAction(dataObject)
+    this.props.history.push('/');
+
   }
 
 
@@ -67,7 +77,8 @@ export class AddPub extends Component {
       this.props.changeLoading(false);
       this.setState({pressed : false})
     }
-    return (
+    if(this.state.keycloak) {
+      if(this.state.authenticated) return (
       <div>
         <MuiThemeProvider>
           <div>
@@ -76,26 +87,34 @@ export class AddPub extends Component {
             />
              <form onSubmit={this.onSubmit}>
             <br />
+            <div className = "doi-width">
             <TextField
-              hintText="Enter the doi"
-              floatingLabelText="Enter a DOI"
-              onChange={(event, newValue) => this.setState({ doi: newValue })}
+              name="DOI"
+              label="Enter a DOI"
+              fullWidth = {true}
+              onChange={(event) => this.setState({ doi: event.target.value})}
             />
+            </div>
             <br />
             <Spinner loading={this.props.loading} className="spinner" size={100} />
             {this.props.doiInfo.length > 0  && <UserInfo></UserInfo>}
-            {this.props.doiInfo.length == 0  &&<RaisedButton  label="Submit" primary={true} style={style} onClick={(event) => this.onSubmit(event)} />}
-            {this.props.doiInfo.length > 0  && <RaisedButton  label="Continue with Submission" primary={true} style={style} onClick={(event) => this.onContinue(event)} />}
+            <br/>
+            {this.props.doiInfo.length == 0  &&<Button variant="contained" color = "primary" onClick={(event) => this.onSubmit(event)}>Submit</Button>}
+            {this.props.doiInfo.length > 0  &&  <Button  variant="contained" color = "primary" onClick={(event) => this.onContinue(event)}>Continue with Submission</Button>}
             </form>
             <br />
-            <p>Or</p>
+            <p>OR</p>
             <Link to="/manualadd">
-              <RaisedButton style={{ background: '#2E3B55' }} label="Enter Manually" primary={true} to="/manualadd"  />
+              <Button variant="contained" color = "primary">Enter Manually</Button>
             </Link>
           </div>
         </MuiThemeProvider>
       </div>
-    );
+    ); else return (<div>Unable to authenticate!</div>)
+  }
+  return (
+    <div>Initializing Keycloak...</div>
+  );
   }
 }
 const style = {
@@ -115,7 +134,6 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     postPubAction: (newPub) => dispatch(actions.postPubAction(newPub)),
-    //fetchDoiInfo: (newPub) => dispatch(actions.fetchDoiInfo(newPub))
     requestDoiInfo: (newPub) => dispatch(actions.requestDoiInfo(newPub)),
     changeLoading: (val) => dispatch(actions.changeLoading(val)),
 

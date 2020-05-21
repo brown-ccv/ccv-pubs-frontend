@@ -10,6 +10,7 @@ import ContentPage from './components/ContentPage';
 import Secured from './components/Secured';
 import AddPub from './components/AddPub';
 import ManualAdd from './components/ManualAdd';
+import UserInfo from './components/UserInfo';
 
 class App extends Component {
   render() {
@@ -21,17 +22,23 @@ class App extends Component {
         <Navbar />
         <div className="App">
           <BrowserRouter>
-            <div className="container">
+            <div className="Secured">
               <Route path="/secured" component={Secured} />
             </div>
-            <div className="container">
+            <div className="AddPub">
               <Route path="/addpub" component={AddPub} />
             </div>
+            <div className = "ManualAdd">
+              <Route path="/manualadd" component={ManualAdd} />
+              </div>
+              <div className = "UserInfo">
+              <Route path="/userInfo" component={UserInfo} />
+              </div>
             <div className="main-content">
               <Route exact path="/" component={ContentPage} />
               {/* <ContentPage /> */}
             </div>
-              <Route path="/manualadd" component={ManualAdd} />
+            
           </BrowserRouter>
           <BrownFooter />
         </div>

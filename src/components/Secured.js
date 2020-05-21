@@ -24,11 +24,10 @@ class Secured extends Component {
     if(this.state.keycloak) {
         if(this.state.authenticated) return (
             console.log("here"),
-          <div>
-            {/* <UserInfo keycloak={this.state.keycloak} />
-            <Logout keycloak={this.state.keycloak} /> */}
-             <AddPub />
-          </div>
+          
+            this.props.history.push('/addPub')
+            //  <AddPub />
+          
         // <AddPub />
         ); else return (<div>Unable to authenticate!</div>)
     }

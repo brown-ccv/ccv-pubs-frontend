@@ -1,26 +1,33 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
-import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
-import axios from 'axios';
-import { BrowserRouter, Route, Link, Switch, Router } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import { Link,  } from 'react-router-dom';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
 
-export class AddPub extends Component {
+export class ManualAdd extends Component {
   constructor(props){
     super(props);
-    this.state={
-      title:'',
-      author:'',
-      publisher:'',
-      pub_year: '',
-      pub_month: '',
-      volume: '',
-      URL: '',
-      doi: '',
-    //   manual: false
-    }
+    this.newData =["Missing", "Missing", "Missing", "Missing", "Missing", "Missing", "Missing", "Missing", "Missing"];
   }
+
+  handleClick(event){
+    console.log(this.newData)
+    this.props.updateDoiInfo(this.newData)
+    const dataObject = {
+      data: this.newData
+    }
+    this.props.postPubAction(dataObject)
+  }
+
+  handleCancel(event){
+    this.props.updateDoiInfo([])
+    this.props.history.push('/addPub');
+
+  }
+
   render() {
     this.data = this.props.doiInfo;
     return (
@@ -31,52 +38,96 @@ export class AddPub extends Component {
              title="Add a Publication"
            />
              <br/>
-           <TextField
-             hintText="Enter the doi"
-             floatingLabelText="Title"
-             onChange = {(event,newValue) => this.setState({title:newValue})}
-             />
-           <br/>
-           <TextField
-             hintText="Enter the doi"
-             floatingLabelText="DOI"
-             onChange = {(event,newValue) => this.setState({doi:newValue})}
-             />
-             <br/>
+             <div className = "manAdd-width">
              <TextField
-             hintText="Enter the doi"
-             floatingLabelText="Author"
-             onChange = {(event,newValue) => this.setState({doi:newValue})}
-             />
-             <br/>
-             <TextField
-             hintText="Enter the doi"
-             floatingLabelText="Publisher"
-             onChange = {(event,newValue) => this.setState({doi:newValue})}
-             />
-             <br/>
-             <TextField
-             hintText="Enter the doi"
-             floatingLabelText="Year of Publication"
-             onChange = {(event,newValue) => this.setState({doi:newValue})}
-             />
-             <br/>
-             <TextField
-             hintText="Enter the doi"
-             floatingLabelText="Month of Publication"
-             onChange = {(event,newValue) => this.setState({doi:newValue})}
-             />
-             <br/>
-             <TextField
-             hintText="Enter the doi"
-             floatingLabelText="Volume"
-             onChange = {(event,newValue) => this.setState({doi:newValue})}
-             />
-             <br/>
-           <RaisedButton style={{ background: '#2E3B55' }} label="Submit" primary={true} style={style} onClick={(event) => this.handleClick(event)}/>
-           <Link to = "/">
-           <RaisedButton style={{ background: '#2E3B55' }} label="Cancel" primary={true} style={style} />
-           </Link>
+          id="standard-helperText"
+          label="Title"
+          name = "Title"
+          fullWidth = {true}
+          onChange = {(event) => (this.newData[5] = event.target.value)}
+        />
+                <br/>
+
+        <TextField
+          id="standard-helperText"
+          label="Author"
+          name = "Author"
+          fullWidth = {true}
+          onChange = {(event) => (this.newData[0] = event.target.value)}
+        />
+                <br/>
+
+        <TextField
+          id="standard-helperText"
+          label="Publisher"
+          name = "Publisher"
+          fullWidth = {true}
+          onChange = {(event) => (this.newData[1] = event.target.value)}
+        />
+                <br/>
+
+        <TextField
+          id="standard-helperText"
+          label="Volume"
+          name = "Volume"
+          fullWidth = {true}
+          onChange = {(event) => (this.newData[2] = event.target.value)}
+
+        />
+                <br/>
+
+        <TextField
+          id="standard-helperText"
+          label="URL"
+          name = "URL"
+          fullWidth = {true}
+          onChange = {(event) => (this.newData[3] = event.target.value)}
+
+        />
+                <br/>
+
+        <TextField
+          id="standard-helperText"
+          label="DOI"
+          name = "DOI"
+          fullWidth = {true}
+          onChange = {(event) => (this.newData[4] = event.target.value)}
+
+        />
+                <br/>
+
+        <TextField
+          id="standard-helperText"
+          label="Month"
+          name = "Month"
+          fullWidth = {true}
+          onChange = {(event) => (this.newData[6] = event.target.value)}
+
+        />
+                <br/>
+
+        <TextField
+          id="standard-helperText"
+          label="Year"
+          name = "Year"
+          fullWidth = {true}
+          onChange = {(event) => (this.newData[7] = event.target.value)}
+
+        />
+                <br/>
+
+        <TextField
+          id="standard-helperText"
+          label="Abstract"
+          name = "Abstract"
+          multiline
+          fullWidth = {true}
+          onChange = {(event) => (this.newData[8] = event.target.value)}
+        />
+        </div>
+                        <br/>
+           <Button style={{ background: '#2E3B55' }}  variant="contained" color = "primary" style={style} onClick={(event) => this.handleClick(event)}>Submit</Button> 
+           <Button style={{ background: '#2E3B55' }}   variant="contained" color = "primary" style={style} onClick={(event) => this.handleCancel(event)}> Cancel </Button>
           </div>
          </MuiThemeProvider>
       </div>
@@ -86,4 +137,12 @@ export class AddPub extends Component {
 const style = {
   margin: 15,
 };
-export default AddPub;
+
+function mapDispatchToProps(dispatch) {
+  return {
+    updateDoiInfo: (newPub) => dispatch(actions.changeDoiInfo(newPub)),
+    postPubAction: (newPub) => dispatch(actions.postPubAction(newPub))
+
+  };
+}
+export default connect(null, mapDispatchToProps)(ManualAdd);

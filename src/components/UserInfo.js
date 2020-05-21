@@ -5,6 +5,8 @@ import * as selectors from '../reducer';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+
 
 
 class UserInfo extends Component {
@@ -30,6 +32,8 @@ class UserInfo extends Component {
     //this.props.updateDoiInfo(this.temp)
 
   }
+
+
 
   render() {
     //console.log(this.props.doiInfo)
@@ -130,10 +134,12 @@ class UserInfo extends Component {
           label="Abstract"
           defaultValue={this.data[8]}
           name = "Abstract"
+          multiline
           fullWidth = {true}
           onChange = {(event) => (this.props.updateDoiInfo(this.props.doiInfo.slice(0,8).concat([event.target.value])))}
-
         />
+                        <br/>
+
         </div>
 
       </div>
@@ -149,7 +155,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    updateDoiInfo: (newPub) => dispatch(actions.changeDoiInfo(newPub))
+    updateDoiInfo: (newPub) => dispatch(actions.changeDoiInfo(newPub)),
+    postPubAction: (newPub) => dispatch(actions.postPubAction(newPub))
 
   };
 }
