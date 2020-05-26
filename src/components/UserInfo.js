@@ -41,8 +41,9 @@ class UserInfo extends Component {
 
     return (
       <div className="UserInfo" >
-        <h3>We found this information from the DOI:</h3>
-        <div >
+        {this.data.length < 10 && <h3>We found this information from the DOI:</h3>}
+        {this.data.length > 9 && <h2>This publication already exists in the database with the following info: </h2>}
+        <div className = "manAdd-width">
         <br/>
         <TextField
           id="standard-helperText"
@@ -50,7 +51,7 @@ class UserInfo extends Component {
           defaultValue={this.data[5]}
           name = "Title"
           fullWidth = {true}
-          onChange = {(event) => (this.props.updateDoiInfo(this.props.doiInfo.slice(0,5).concat([event.target.value], this.props.doiInfo.slice(6,9))))}
+          onChange = {(event) => (this.props.updateDoiInfo(this.props.doiInfo.slice(0,5).concat([event.target.value], this.props.doiInfo.slice(6))))}
         />
                 <br/>
 
@@ -60,7 +61,7 @@ class UserInfo extends Component {
           defaultValue={this.data[0]}
           name = "Author"
           fullWidth = {true}
-          onChange = {(event) => (this.props.updateDoiInfo([event.target.value].concat(this.props.doiInfo.slice(1,9))))}
+          onChange = {(event) => (this.props.updateDoiInfo([event.target.value].concat(this.props.doiInfo.slice(1))))}
         />
                 <br/>
 
@@ -70,7 +71,7 @@ class UserInfo extends Component {
           defaultValue={this.data[1]}
           name = "Publisher"
           fullWidth = {true}
-          onChange = {(event) => (this.props.updateDoiInfo(this.props.doiInfo[0].concat([event.target.value], this.props.doiInfo.slice(2,9))))}
+          onChange = {(event) => (this.props.updateDoiInfo(this.props.doiInfo[0].concat([event.target.value], this.props.doiInfo.slice(2))))}
         />
                 <br/>
 
@@ -80,7 +81,7 @@ class UserInfo extends Component {
           defaultValue={this.data[2]}
           name = "Volume"
           fullWidth = {true}
-          onChange = {(event) => (this.props.updateDoiInfo(this.props.doiInfo.slice(0,2).concat([event.target.value], this.props.doiInfo.slice(3,9))))}
+          onChange = {(event) => (this.props.updateDoiInfo(this.props.doiInfo.slice(0,2).concat([event.target.value], this.props.doiInfo.slice(3))))}
 
         />
                 <br/>
@@ -91,7 +92,7 @@ class UserInfo extends Component {
           defaultValue={this.data[3]}
           name = "URL"
           fullWidth = {true}
-          onChange = {(event) => (this.props.updateDoiInfo(this.props.doiInfo.slice(0,3).concat([event.target.value], this.props.doiInfo.slice(4,9))))}
+          onChange = {(event) => (this.props.updateDoiInfo(this.props.doiInfo.slice(0,3).concat([event.target.value], this.props.doiInfo.slice(4))))}
 
         />
                 <br/>
@@ -102,29 +103,29 @@ class UserInfo extends Component {
           defaultValue={this.data[4]}
           name = "DOI"
           fullWidth = {true}
-          onChange = {(event) => (this.props.updateDoiInfo(this.props.doiInfo.slice(0,4).concat([event.target.value], this.props.doiInfo.slice(5,9))))}
+          onChange = {(event) => (this.props.updateDoiInfo(this.props.doiInfo.slice(0,4).concat([event.target.value], this.props.doiInfo.slice(5))))}
 
         />
                 <br/>
 
         <TextField
           id="standard-helperText"
-          label="Month"
+          label="Month of Publication"
           defaultValue={this.data[6]}
           name = "Month"
           fullWidth = {true}
-          onChange = {(event) => (this.props.updateDoiInfo(this.props.doiInfo.slice(0,6).concat([event.target.value], this.props.doiInfo.slice(7,9))))}
+          onChange = {(event) => (this.props.updateDoiInfo(this.props.doiInfo.slice(0,6).concat([event.target.value], this.props.doiInfo.slice(7))))}
 
         />
                 <br/>
 
         <TextField
           id="standard-helperText"
-          label="Year"
+          label="Year of Publication"
           defaultValue={this.data[7]}
           name = "Year"
           fullWidth = {true}
-          onChange = {(event) => (this.props.updateDoiInfo(this.props.doiInfo.slice(0,7).concat([event.target.value], this.props.doiInfo.slice(8,9))))}
+          onChange = {(event) => (this.props.updateDoiInfo(this.props.doiInfo.slice(0,7).concat([event.target.value], this.props.doiInfo.slice(8))))}
 
         />
                 <br/>

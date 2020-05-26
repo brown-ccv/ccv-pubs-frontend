@@ -44,7 +44,12 @@ function* fetchDoiInfo(action) {
     console.log(action.newPub)
     const doiInfo = yield call(Client.getDoiInfo, action.newPub);
     console.log(doiInfo)
-    yield put(actions.fetchDoiInfo(doiInfo));
+    if(doiInfo.length > 0) {
+      yield put(actions.fetchDoiInfo(doiInfo));
+    } else {
+      console.log ("here")
+      yield put(actions.setFailure(true))
+    }
   } catch(error) {
     yield put(actions.changeError(errorText));
   }

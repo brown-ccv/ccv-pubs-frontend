@@ -14,27 +14,33 @@ import Spinner from './Spinner';
 import Keycloak from 'keycloak-js';
 
 
-
-
 export class AddPub extends Component {
   constructor(props) {
     super(props);
     this.state = {
       doi: '',
       pressed: false,
-      keycloak: null, 
-      authenticated: false
     }
     if(this.props.doiInfo){
     this.data = Immutable.asMutable(this.props.doiInfo, {deep: true});
     }
+    this.manualadd = false;
+    this.keycloak = null;
+    this.pressed = false;
   }
 
   componentDidMount() {
-    const keycloak = Keycloak('/keycloak.json');
-    keycloak.init({onLoad: 'login-required'}).then(authenticated => {
-      this.setState({ keycloak: keycloak, authenticated: authenticated })
+    console.log(this.props.keycloak)
+    console.log(this.props.authenticated)
+    if(!this.props.authenticated){
+      const keycloak = Keycloak('/keycloak.json');
+      console.log(keycloak)
+      keycloak.init({onLoad: 'login-required'}).then(authenticated => {
+      this.props.changeKeycloak(keycloak)
+      this.keycloak = this.props.keycloak;
+      this.props.changeAuthenticated(authenticated)
     })
+  }
   }
 
 
@@ -44,12 +50,11 @@ export class AddPub extends Component {
     const doiObject = {
       doi: this.state.doi
     };
-
     console.log(doiObject)
     this.props.requestDoiInfo(doiObject);
     this.data = Immutable.asMutable(this.props.doiInfo, {deep: true});
     console.log(this.data)
-    this.setState({pressed : true})
+    this.pressed = true
     this.props.changeLoading(true);
   }
 
@@ -61,24 +66,38 @@ export class AddPub extends Component {
     }
     this.props.postPubAction(dataObject)
     this.props.history.push('/');
+    this.props.changeDoiInfo([]);
+  }
 
+  onCancel(e){
+    this.props.changeDoiInfo([]);
+    this.props.history.push('/');
+    this.props.setFailure(false)
   }
 
 
   render() {
     
-    if (this.state.pressed == false && this.props.doiInfo.length == 0){
+    if (this.pressed == false && this.props.doiInfo.length == 0){
       this.props.changeLoading(false);
     }
-    if (this.state.pressed == true && this.props.doiInfo.length == 0){
+    if (this.pressed == true && this.props.doiInfo.length == 0){
       this.props.changeLoading(true);
     }
-    if (this.state.pressed == true && this.props.doiInfo.length > 0){
+    if (this.pressed == true && this.props.doiInfo.length > 0){
       this.props.changeLoading(false);
-      this.setState({pressed : false})
+      this.pressed = false
     }
-    if(this.state.keycloak) {
-      if(this.state.authenticated) return (
+
+    if(this.props.doiFailure){
+      this.props.changeLoading(false);
+      this.pressed = false
+    }
+    
+    console.log(this.props.keycloak)
+    console.log(this.props.authenticated)
+    //if(this.keycloak) {
+      if(this.props.authenticated) return (
       <div>
         <MuiThemeProvider>
           <div>
@@ -98,20 +117,24 @@ export class AddPub extends Component {
             <br />
             <Spinner loading={this.props.loading} className="spinner" size={100} />
             {this.props.doiInfo.length > 0  && <UserInfo></UserInfo>}
+            {this.props.doiFailure && <p>No Information Found</p>}
             <br/>
             {this.props.doiInfo.length == 0  &&<Button variant="contained" color = "primary" onClick={(event) => this.onSubmit(event)}>Submit</Button>}
-            {this.props.doiInfo.length > 0  &&  <Button  variant="contained" color = "primary" onClick={(event) => this.onContinue(event)}>Continue with Submission</Button>}
+            {this.props.doiInfo.length == 9  &&  <Button  variant="contained" color = "primary" onClick={(event) => this.onContinue(event)}>Continue with Submission</Button>}
+            {this.props.doiInfo.length == 10  &&  <Button  variant="contained" color = "primary" onClick={(event) => this.onContinue(event)}>Edit Publication Information</Button>}
             </form>
             <br />
             <p>OR</p>
             <Link to="/manualadd">
               <Button variant="contained" color = "primary">Enter Manually</Button>
             </Link>
+            <div className="divider"/>
+            <Button variant="contained" color = "primary" onClick={(event) => this.onCancel(event)} >Cancel</Button>
           </div>
         </MuiThemeProvider>
       </div>
-    ); else return (<div>Unable to authenticate!</div>)
-  }
+    ); else return (<div>Authenticating...</div>)
+  //}
   return (
     <div>Initializing Keycloak...</div>
   );
@@ -126,7 +149,9 @@ function mapStateToProps(state) {
   return {
     doiInfo: selectors.getDoiInfo(state),
     loading: selectors.getLoading(state),
-    
+    keycloak: selectors.getKeycloak(state),
+    authenticated: selectors.getAunthenticated(state),
+    doiFailure: selectors.getFailure(state)
 
   };
 }
@@ -136,7 +161,10 @@ function mapDispatchToProps(dispatch) {
     postPubAction: (newPub) => dispatch(actions.postPubAction(newPub)),
     requestDoiInfo: (newPub) => dispatch(actions.requestDoiInfo(newPub)),
     changeLoading: (val) => dispatch(actions.changeLoading(val)),
-
+    changeKeycloak: (val) => dispatch(actions.changeKeycloak(val)),
+    changeAuthenticated: (val) => dispatch(actions.changeAuthenticated(val)),
+    changeDoiInfo: (val) => dispatch(actions.changeDoiInfo(val)),
+    setFailure: (val) => dispatch(actions.setFailure(val))
   };
 }
 

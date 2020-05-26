@@ -7,7 +7,10 @@ const initialState = Immutable({
   selectWord: null,
   selectYear: null,
   doiInfo: [], 
-  doi: null
+  doi: null,
+  keycloak: null,
+  authenticated: false,
+  doiFailure: false
 });
 
 
@@ -54,6 +57,21 @@ export default function reduce(state = initialState, action = {}) {
     //return state.merge({
       //doiInfo: action.data
     //});
+    case 'UPDATE_KEYCLOAK':
+      console.log(action)
+    return state.merge({
+      keycloak: action.data
+    });
+    case 'UPDATE_AUTHENTICATED':
+      console.log(action)
+    return state.merge({
+      authenticated: action.data
+    });
+    case 'FETCH_DOI_FAILURE':
+      console.log(action)
+    return state.merge({
+      doiFailure: action.data
+    });
     default:
       return state;
   }
@@ -87,5 +105,18 @@ export function getSelectYear(state) {
 export function getDoiInfo(state){
   console.log(state.doiInfo)
   return state.doiInfo;
+}
+
+export function getKeycloak(state){
+  console.log(state.keycloak)
+  return state.keycloak;
+}
+
+export function getAunthenticated(state){
+  return state.authenticated;
+}
+
+export function getFailure(state){
+  return state.doiFailure;
 }
 

@@ -55,13 +55,26 @@ class Client {
         method: 'POST',
         body: String(newPub.doi),
       });
-      data = await response.json()
+      console.log(response)
+      console.log(response.ok)
+      if (!response.ok) {
+        console.log("here")
+        return [];
+        throw new Error(`No DOI found`);
+     }
+    
+     if (response.status == 208) {
+      console.log("here")
+      data = await response.json();
+      console.log(data)
+      data.push("found")
+      return data
+   }
+
     } catch(error) {
       throw new Error(`Could not connect to server: ${error}`);
     }
-    if (!response.ok) {
-      throw new Error(`No DOI found`);
-   }
+    data = await response.json()
    console.log(data)
    return data;
   }

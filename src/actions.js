@@ -41,3 +41,16 @@ export function fetchDoiInfo(data){
 export function changeDoiInfo(data){
   return({ type: 'UPDATE_DOI_INFO', data})
 }
+
+export function changeKeycloak(data){
+  console.log(data)
+  return({ type: 'UPDATE_KEYCLOAK', data}) 
+}
+
+export function changeAuthenticated(data){
+  return({ type: 'UPDATE_AUTHENTICATED', data}) 
+}
+
+export function setFailure(data){
+  return ({type: 'FETCH_DOI_FAILURE', data})
+}
