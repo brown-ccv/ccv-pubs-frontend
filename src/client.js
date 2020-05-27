@@ -30,7 +30,6 @@ class Client {
     var response;
     try {
       response = await fetch(url);
-      console.log(response)
     } catch(error) {
       throw new Error(`Could not connect to server: ${error}`);
     }
@@ -39,34 +38,25 @@ class Client {
       throw new Error(`CCVService getConcepts failed, HTTP status ${response.status}`);
     }
     const data = await response.json();
-    console.log(data)
     return data;
   }
-
+//gets doin information for user to check
   async getDoiInfo(newPub){
     var url = `${SERVICE_ENDPOINT}/getDOI`;
     var response;
-    var status;
-    var resp;
     var data;
-    console.log(newPub)
     try {
       response = await fetch(url, {
         method: 'POST',
         body: String(newPub.doi),
       });
-      console.log(response)
-      console.log(response.ok)
+      
       if (!response.ok) {
-        console.log("here")
         return [];
-        throw new Error(`No DOI found`);
      }
     
      if (response.status == 208) {
-      console.log("here")
       data = await response.json();
-      console.log(data)
       data.push("found")
       return data
    }
@@ -75,12 +65,11 @@ class Client {
       throw new Error(`Could not connect to server: ${error}`);
     }
     data = await response.json()
-   console.log(data)
    return data;
   }
 
+  //adds publication to database
   async postPub(newPub){
-    console.log(newPub.data)
     var url = `${SERVICE_ENDPOINT}/addPublications`;
     var response;
     var status;

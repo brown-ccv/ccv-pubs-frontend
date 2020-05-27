@@ -5,7 +5,6 @@ import * as selectors from '../reducer';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
 
 
 
@@ -21,23 +20,11 @@ class UserInfo extends Component {
       }
   
     }
-    console.log(this.props.doiInfo)
-  }
-
-  handleChange(e){
-    console.log(e.target)
-    //var index = 0
-    //this.temp = Immutable.asMutable(this.props.doiInfo, {deep: true});
-    //this.temp[index] = e.target.value
-    //this.props.updateDoiInfo(this.temp)
-
   }
 
 
 
   render() {
-    //console.log(this.props.doiInfo)
-    //this.data = Immutable.asMutable(this.props.doiInfo, {deep: true});
 
     return (
       <div className="UserInfo" >

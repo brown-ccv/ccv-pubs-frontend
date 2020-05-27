@@ -14,7 +14,6 @@ export class ManualAdd extends Component {
   }
 
   handleClick(event){
-    console.log(this.newData)
     this.props.updateDoiInfo(this.newData)
     const dataObject = {
       data: this.newData

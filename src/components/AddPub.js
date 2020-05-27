@@ -3,11 +3,10 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import { BrowserRouter, Route, Link, Switch, Router } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import * as actions from '../actions';
 import { connect } from 'react-redux';
 import * as selectors from '../reducer';
-import ManualAdd from './ManualAdd';
 import Immutable from 'seamless-immutable';
 import UserInfo from './UserInfo';
 import Spinner from './Spinner';
@@ -17,24 +16,18 @@ import Keycloak from 'keycloak-js';
 export class AddPub extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      doi: '',
-      pressed: false,
-    }
     if(this.props.doiInfo){
     this.data = Immutable.asMutable(this.props.doiInfo, {deep: true});
     }
+    this.doi = ''
     this.manualadd = false;
     this.keycloak = null;
     this.pressed = false;
   }
 
   componentDidMount() {
-    console.log(this.props.keycloak)
-    console.log(this.props.authenticated)
     if(!this.props.authenticated){
       const keycloak = Keycloak('/keycloak.json');
-      console.log(keycloak)
       keycloak.init({onLoad: 'login-required'}).then(authenticated => {
       this.props.changeKeycloak(keycloak)
       this.keycloak = this.props.keycloak;
@@ -46,14 +39,12 @@ export class AddPub extends Component {
 
   onSubmit(e) {
     e.preventDefault()
-
+    this.props.setFailure(false)
     const doiObject = {
-      doi: this.state.doi
+      doi: this.doi
     };
-    console.log(doiObject)
     this.props.requestDoiInfo(doiObject);
     this.data = Immutable.asMutable(this.props.doiInfo, {deep: true});
-    console.log(this.data)
     this.pressed = true
     this.props.changeLoading(true);
   }
@@ -94,9 +85,6 @@ export class AddPub extends Component {
       this.pressed = false
     }
     
-    console.log(this.props.keycloak)
-    console.log(this.props.authenticated)
-    //if(this.keycloak) {
       if(this.props.authenticated) return (
       <div>
         <MuiThemeProvider>
@@ -111,7 +99,7 @@ export class AddPub extends Component {
               name="DOI"
               label="Enter a DOI"
               fullWidth = {true}
-              onChange={(event) => this.setState({ doi: event.target.value})}
+              onChange={(event) => { this.doi = event.target.value}}
             />
             </div>
             <br />
@@ -121,7 +109,7 @@ export class AddPub extends Component {
             <br/>
             {this.props.doiInfo.length == 0  &&<Button variant="contained" color = "primary" onClick={(event) => this.onSubmit(event)}>Submit</Button>}
             {this.props.doiInfo.length == 9  &&  <Button  variant="contained" color = "primary" onClick={(event) => this.onContinue(event)}>Continue with Submission</Button>}
-            {this.props.doiInfo.length == 10  &&  <Button  variant="contained" color = "primary" onClick={(event) => this.onContinue(event)}>Edit Publication Information</Button>}
+            {this.props.doiInfo.length == 10  &&  <Button  variant="contained" color = "primary" onClick={(event) => this.onContinue(event)}>Insert Edited Publication Information</Button>}
             </form>
             <br />
             <p>OR</p>
@@ -134,10 +122,7 @@ export class AddPub extends Component {
         </MuiThemeProvider>
       </div>
     ); else return (<div>Authenticating...</div>)
-  //}
-  return (
-    <div>Initializing Keycloak...</div>
-  );
+  
   }
 }
 const style = {

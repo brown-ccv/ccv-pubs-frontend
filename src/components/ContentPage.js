@@ -9,7 +9,7 @@ import PubsTable from './PubsTable';
 import YearChart from './YearChart';
 import WordCloud from './WordCloud';
 import { Button } from '@material-ui/core';
-import { BrowserRouter, Route, Link, Switch, Router } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 

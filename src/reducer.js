@@ -22,7 +22,6 @@ export default function reduce(state = initialState, action = {}) {
       publications: action.data
     });
     case 'CHANGE_NGRAMS':
-      console.log(action)
     return state.merge({
       ngrams: action.data
     });
@@ -43,32 +42,22 @@ export default function reduce(state = initialState, action = {}) {
       selectYear: action.data
     });
     case 'CHANGE_DOI_INFO':
-      console.log(action)
     return state.merge({
       doiInfo: action.data
     });
     case 'UPDATE_DOI_INFO':
-      console.log(action)
     return state.merge({
       doiInfo: action.data
     });
-    case 'REQUEST_DOI_INFO':
-      console.log(action)
-    //return state.merge({
-      //doiInfo: action.data
-    //});
     case 'UPDATE_KEYCLOAK':
-      console.log(action)
     return state.merge({
       keycloak: action.data
     });
     case 'UPDATE_AUTHENTICATED':
-      console.log(action)
     return state.merge({
       authenticated: action.data
     });
     case 'FETCH_DOI_FAILURE':
-      console.log(action)
     return state.merge({
       doiFailure: action.data
     });
@@ -78,7 +67,6 @@ export default function reduce(state = initialState, action = {}) {
 }
 
 export function getNgrams(state){
-  console.log(state.ngrams)
   return state.ngrams;
 }
 
@@ -103,12 +91,10 @@ export function getSelectYear(state) {
 }
 
 export function getDoiInfo(state){
-  console.log(state.doiInfo)
   return state.doiInfo;
 }
 
 export function getKeycloak(state){
-  console.log(state.keycloak)
   return state.keycloak;
 }
 
