@@ -14,17 +14,12 @@ import UserInfo from './components/UserInfo';
 
 class App extends Component {
   render() {
-    console.log("Public URL");
-    console.log(`${process.env.PUBLIC_URL}`);
     return (
 
       <div>
         <Navbar />
         <div className="App">
           <BrowserRouter>
-            <div className="Secured">
-              <Route path="/secured" component={Secured} />
-            </div>
             <div className="AddPub">
               <Route path="/addpub" component={AddPub} />
             </div>
@@ -36,7 +31,6 @@ class App extends Component {
               </div>
             <div className="main-content">
               <Route exact path="/" component={ContentPage} />
-              {/* <ContentPage /> */}
             </div>
             
           </BrowserRouter>

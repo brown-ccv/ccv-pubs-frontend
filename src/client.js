@@ -1,10 +1,11 @@
-import _ from 'lodash';
-import fetch from 'isomorphic-fetch';
+import _ from "lodash";
+import fetch from "isomorphic-fetch";
 
-//const SERVICE_ENDPOINT = 'https://datasci.brown.edu/ccvpubs-api';
-const SERVICE_ENDPOINT = process.env.NODE_ENV === 'production' ? 'https://datasci.brown.edu/ccvpubs-api' : 'http://localhost:8080';
+const SERVICE_ENDPOINT =
+  process.env.NODE_ENV === "production"
+    ? "https://datasci.brown.edu/ccvpubs-api"
+    : "http://localhost:8080";
 class Client {
-
   // get all data values from the bcbi db
   async getData() {
     var url = `${SERVICE_ENDPOINT}/publications`;
@@ -12,12 +13,14 @@ class Client {
     var response;
     try {
       response = await fetch(url);
-    } catch(error) {
+    } catch (error) {
       throw new Error(`Could not connect to server: ${error}`);
     }
 
     if (!response.ok) {
-      throw new Error(`CCVService getConcepts failed, HTTP status ${response.status}`);
+      throw new Error(
+        `CCVService getConcepts failed, HTTP status ${response.status}`
+      );
     }
     const data = await response.json();
 
@@ -30,64 +33,71 @@ class Client {
     var response;
     try {
       response = await fetch(url);
-    } catch(error) {
+    } catch (error) {
       throw new Error(`Could not connect to server: ${error}`);
     }
 
     if (!response.ok) {
-      throw new Error(`CCVService getConcepts failed, HTTP status ${response.status}`);
+      throw new Error(
+        `CCVService getConcepts failed, HTTP status ${response.status}`
+      );
     }
     const data = await response.json();
     return data;
   }
-//gets doin information for user to check
-  async getDoiInfo(newPub){
+  //gets doi information for user to check
+  async getDoiInfo(newPub) {
     var url = `${SERVICE_ENDPOINT}/getDOI`;
     var response;
     var data;
     try {
       response = await fetch(url, {
-        method: 'POST',
+        method: "POST",
         body: String(newPub.doi),
       });
-      
+
+      /**
+       * In this case instead of throwing an error like the other gets, if the response is no ok (404),
+       * it means nothing was found from the doi API
+       */
       if (!response.ok) {
         return [];
-     }
-    
-     if (response.status == 208) {
-      data = await response.json();
-      data.push("found")
-      return data
-   }
+      }
 
-    } catch(error) {
+      /**
+       * My thought process here is that 208 represents when a value was already in the database and found
+       * instead of needing to a add a new one. Open to other ideas
+       */
+      if (response.status == 208) {
+        data = await response.json();
+        data.push("found");
+        return data;
+      }
+    } catch (error) {
       throw new Error(`Could not connect to server: ${error}`);
     }
-    data = await response.json()
-   return data;
+    data = await response.json();
+    return data;
   }
 
   //adds publication to database
-  async postPub(newPub){
+  async postPub(newPub) {
     var url = `${SERVICE_ENDPOINT}/addPublications`;
     var response;
     var status;
     var resp;
     try {
       response = await fetch(url, {
-        method: 'POST',
+        method: "POST",
         body: JSON.stringify(newPub.data),
       });
-      
-    } catch(error) {
+    } catch (error) {
       throw new Error(`Could not connect to server: ${error}`);
     }
     if (!response.ok) {
-      throw new Error(`No DOI found`);
-   }
+      throw new Error(`Publication not able to be added to database.`);
+    }
   }
-  
 }
 
 export default new Client();
