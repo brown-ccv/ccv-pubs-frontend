@@ -47,7 +47,7 @@ class Client {
   }
   //gets doi information for user to check
   async getDoiInfo(newPub) {
-    var url = `${SERVICE_ENDPOINT}/getDOI`;
+    var url = `${SERVICE_ENDPOINT}/getdoi`;
     var response;
     var data;
     try {
@@ -82,7 +82,7 @@ class Client {
 
   //adds publication to database
   async postPub(newPub) {
-    var url = `${SERVICE_ENDPOINT}/addPublications`;
+    var url = `${SERVICE_ENDPOINT}/addpublications`;
     var response;
     var status;
     var resp;

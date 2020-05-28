@@ -7,7 +7,6 @@ import 'react-bulma-components/dist/react-bulma-components.min.css';
 // import components
 import AboutPage from './components/AboutPage';
 import ContentPage from './components/ContentPage';
-import Secured from './components/Secured';
 import AddPub from './components/AddPub';
 import ManualAdd from './components/ManualAdd';
 import UserInfo from './components/UserInfo';

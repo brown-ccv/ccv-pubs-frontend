@@ -14,12 +14,6 @@ export class PubsTable extends React.Component {
     this.data = Immutable.asMutable(this.props.publications);
   }
 
-  // componentDidUpdate(prevProps){
-  //   if(prevProps.selectYear !== this.selectYear){
-  //     this.data = filteredData;
-  //   }
-  // }
-
   render() {
     var filteredData = [];
 

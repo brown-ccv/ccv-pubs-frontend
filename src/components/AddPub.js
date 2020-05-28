@@ -41,6 +41,7 @@ export class AddPub extends Component {
   onSubmit(e) {
     e.preventDefault();
     this.props.setFailure(false);
+    this.props.changeDoiInfo([]);
     const doiObject = {
       doi: this.doi,
     };
@@ -111,10 +112,7 @@ export class AddPub extends Component {
                   className="spinner"
                   size={100}
                 />
-                {this.props.doiInfo.length > 0 && <UserInfo></UserInfo>}
-                {this.props.doiFailure && <p>No Information Found</p>}
-                <br />
-                {this.props.doiInfo.length == 0 && (
+                {(
                   <Button
                     variant="contained"
                     color="primary"
@@ -123,6 +121,11 @@ export class AddPub extends Component {
                     Submit
                   </Button>
                 )}
+                <br /> <br/>
+                {this.props.doiInfo.length > 0 && <UserInfo></UserInfo>}
+                {this.props.doiFailure && <p>No Information Found</p>}
+                <br />
+                
                 {this.props.doiInfo.length == 9 && (
                   <Button
                     variant="contained"
