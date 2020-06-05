@@ -76,3 +76,40 @@
   display:inline-block;
 }
 
+.form-label{
+  font-family: Circular-Book, Arial, Helvetica, sans-serif !important;
+  align-items: left;
+
+}
+
+.btn.btn-contained{
+  background-color: #003c71 !important;
+  color: white;
+  font-family: Circular-Book, Arial, Helvetica, sans-serif !important;
+}
+
+.navbar{
+  font-family: Circular-Book, Arial, Helvetica, sans-serif !important;
+  //align-items: center;
+  //text-align: center !important;
+  //display: inline-block !important;
+  //width: 100%;
+}
+
+.navbar-brand{
+  color: white !important;
+  //display: inline-block !important;
+}
+
+.container{
+  align-items: center !important;
+  display: inline-block !important;
+  width : 100%;
+  margin-left: 95px;
+}
+
+.btn-outline-primary{
+  border-color: white;
+  color: white;
+}
+

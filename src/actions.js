@@ -31,6 +31,7 @@ export function requestDoiInfo(newPub) {
 }
 
 export function fetchDoiInfo(data) {
+  console.log(data)
   return { type: "CHANGE_DOI_INFO", data };
 }
 
@@ -48,4 +49,9 @@ export function changeAuthenticated(data) {
 
 export function setFailure(data) {
   return { type: "FETCH_DOI_FAILURE", data };
+}
+
+export function changeAddSuccess(data){
+  console.log(data)
+  return {type: "UPDATE_ADD_SUCCESS", data};
 }

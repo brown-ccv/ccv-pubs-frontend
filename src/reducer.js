@@ -1,16 +1,17 @@
 import Immutable from "seamless-immutable";
 
-const initialState = Immutable({
+export const initialState = Immutable({
   publications: [],
   ngrams: [],
   loading: true,
   selectWord: null,
   selectYear: null,
-  doiInfo: [],
+  doiInfo: {data : {}, status: "empty"},
   doi: null,
   keycloak: null,
   authenticated: false,
   doiFailure: false,
+  addSuccess: false
 });
 
 export default function reduce(state = initialState, action = {}) {
@@ -40,6 +41,7 @@ export default function reduce(state = initialState, action = {}) {
         selectYear: action.data,
       });
     case "CHANGE_DOI_INFO":
+      console.log(action.data)
       return state.merge({
         doiInfo: action.data,
       });
@@ -58,6 +60,10 @@ export default function reduce(state = initialState, action = {}) {
     case "FETCH_DOI_FAILURE":
       return state.merge({
         doiFailure: action.data,
+      });
+      case "UPDATE_ADD_SUCCESS":
+      return state.merge({
+        addSuccess: action.data,
       });
     default:
       return state;
@@ -102,4 +108,8 @@ export function getAunthenticated(state) {
 
 export function getFailure(state) {
   return state.doiFailure;
+}
+
+export function getAddSuccess(state){
+  return state.addSuccess;
 }

@@ -8,7 +8,7 @@ import Spinner from "./Spinner";
 import PubsTable from "./PubsTable";
 import YearChart from "./YearChart";
 import WordCloud from "./WordCloud";
-import { Button } from "@material-ui/core";
+import Button from 'react-bootstrap/Button'
 import { Link } from "react-router-dom";
 
 export class ContentPage extends Component {
@@ -32,6 +32,9 @@ export class ContentPage extends Component {
     if (this.props.publications.length != 0 && this.props.ngrams.length != 0) {
       this.props.changeLoading(false);
     }
+
+    console.log(this.props.publications)
+    console.log(this.props.ngrams)
 
     return (
       <div>

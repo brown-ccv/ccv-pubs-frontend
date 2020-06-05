@@ -28,7 +28,17 @@ function* fetchNgrams(action) {
 
 function* postPub(action) {
   try {
-    yield call(Client.postPub(action.newPub));
+    var newInfo = yield call(Client.postPub,action.newPub);
+    console.log(newInfo)
+    newInfo["newdata"] = JSON.parse(newInfo["newdata"])
+    newInfo["newngrams"] = JSON.parse(newInfo["newngrams"])
+
+    console.log(newInfo["newdata"])
+    console.log(newInfo["newngrams"])
+
+    yield put(actions.fetchData(newInfo["newdata"]))
+    yield put(actions.fetchNgrams(newInfo["newngrams"]))
+    yield put(actions.changeAddSuccess(true))
   } catch (error) {
     yield put(actions.changeError(errorText));
   }
@@ -37,7 +47,9 @@ function* postPub(action) {
 function* fetchDoiInfo(action) {
   try {
     const doiInfo = yield call(Client.getDoiInfo, action.newPub);
-    if (doiInfo.length > 0) {
+    console.log(doiInfo)
+    console.log(doiInfo["status"])
+    if (doiInfo["status"] !== "not found") {
       yield put(actions.fetchDoiInfo(doiInfo));
     } else {
       yield put(actions.setFailure(true));

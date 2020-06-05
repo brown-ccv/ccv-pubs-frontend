@@ -56,27 +56,18 @@ class Client {
         body: String(newPub.doi),
       });
 
-      /**
-       * In this case instead of throwing an error like the other gets, if the response is no ok (404),
-       * it means nothing was found from the doi API
-       */
       if (!response.ok) {
-        return [];
+        throw new Error(
+          `getdoi route failed, HTTP status ${response.status}`
+        );
       }
 
-      /**
-       * My thought process here is that 208 represents when a value was already in the database and found
-       * instead of needing to a add a new one. Open to other ideas
-       */
-      if (response.status == 208) {
-        data = await response.json();
-        data.push("found");
-        return data;
-      }
+      
     } catch (error) {
       throw new Error(`Could not connect to server: ${error}`);
     }
     data = await response.json();
+    console.log(data)
     return data;
   }
 
@@ -84,8 +75,8 @@ class Client {
   async postPub(newPub) {
     var url = `${SERVICE_ENDPOINT}/addpublications`;
     var response;
-    var status;
-    var resp;
+    var update;
+    
     try {
       response = await fetch(url, {
         method: "POST",
@@ -94,9 +85,14 @@ class Client {
     } catch (error) {
       throw new Error(`Could not connect to server: ${error}`);
     }
+    
     if (!response.ok) {
-      throw new Error(`Publication not able to be added to database.`);
+      throw new Error(`Publication was not able to be added to database.`);
     }
+    
+    update = await response.json();
+    console.log(update)
+    return update;
   }
 }
 
