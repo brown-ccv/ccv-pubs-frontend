@@ -8,8 +8,8 @@ export const initialState = Immutable({
   selectYear: null,
   doiInfo: {data : {}, status: "empty"},
   doi: null,
-  keycloak: null,
-  authenticated: false,
+  keycloak: {keycloak: null, authenticated: null, iscis: null, profile: null},
+  //authenticated: false,
   doiFailure: false,
   addSuccess: false
 });
@@ -53,10 +53,10 @@ export default function reduce(state = initialState, action = {}) {
       return state.merge({
         keycloak: action.data,
       });
-    case "UPDATE_AUTHENTICATED":
-      return state.merge({
-        authenticated: action.data,
-      });
+    // case "UPDATE_AUTHENTICATED":
+    //   return state.merge({
+    //     authenticated: action.data,
+    //   });
     case "FETCH_DOI_FAILURE":
       return state.merge({
         doiFailure: action.data,
@@ -99,12 +99,13 @@ export function getDoiInfo(state) {
 }
 
 export function getKeycloak(state) {
+  console.log(state.keycloak)
   return state.keycloak;
 }
 
-export function getAunthenticated(state) {
-  return state.authenticated;
-}
+// export function getAunthenticated(state) {
+//   return state.authenticated;
+// }
 
 export function getFailure(state) {
   return state.doiFailure;

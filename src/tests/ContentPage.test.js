@@ -3,6 +3,17 @@ import ReactDOM from 'react-dom';
 import { shallow } from 'enzyme';
 import ConnectedContentPage, { ContentPage } from '../components/ContentPage';
 
+let setWord = jest.fn();
+function shallowSetup(){
+    const props = {
+        ngrams : [{word: "cat", count: 4, freq: 33, pubs:"[117]"}]
+    }
+    const wrapper = shallow(<WordCloud {...props} />);
+    return {
+        props,
+        wrapper
+      };
+}
 
 it('renders ComponentPage without crashing', () => {
     shallow(<ContentPage/>)

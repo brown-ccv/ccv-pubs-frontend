@@ -47,7 +47,7 @@ export function changeAuthenticated(data) {
   return { type: "UPDATE_AUTHENTICATED", data };
 }
 
-export function setFailure(data) {
+export function changeFailure(data) {
   return { type: "FETCH_DOI_FAILURE", data };
 }
 

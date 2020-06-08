@@ -24,12 +24,11 @@ export class ContentPage extends Component {
 
   handleSubmit(event) {
     this.props.changeError(event.target.value);
-
     event.preventDefault();
   }
 
   render() {
-    if (this.props.publications.length != 0 && this.props.ngrams.length != 0) {
+    if (this.props.publications.length !== 0 && this.props.ngrams.length !== 0) {
       this.props.changeLoading(false);
     }
 
@@ -54,29 +53,21 @@ export class ContentPage extends Component {
 
         <Spinner loading={this.props.loading} className="spinner" size={100} />
 
-        {this.props.publications.length > 0 && (
+        {!this.props.loading && (
           <PubsTable publications={this.props.publications} />
         )}
 
-        {this.props.publications.length > 0 && (
+        {!this.props.loading && (
           <h3 className="word-cloud-title pt-4 mt-4">
             {" "}
             What are these publications all about?{" "}
           </h3>
         )}
         <div className="viz d-flex justify-content-center pt-5">
-          <Spinner
-            loading={this.props.loading}
-            className="spinner"
-            size={100}
-          />
-          {this.props.ngrams.length > 0 && <WordCloud />}
-          <Spinner
-            loading={this.props.loading}
-            className="spinner"
-            size={100}
-          />
-          {this.props.publications.length > 0 && <YearChart />}
+          
+          {!this.props.loading && <WordCloud />}
+          
+          {!this.props.loading && <YearChart />}
         </div>
       </div>
     );

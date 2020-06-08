@@ -29,21 +29,6 @@ export class WordCloud extends Component {
     }).then((res) => {
       try {
         res.view.insert("table", data).run();
-        // .then( (view) => {
-        //   // console.log(view)
-        //   this.updateView(view)
-        //   // update the global state with the current mouseover
-        //   view.addEventListener("click", (name, value) => {
-        //     if (value && value.datum.pubs) {
-        //       console.log(name)
-        //       console.log(value)
-        //       this.props.setWord(value.datum.pubs)
-        //       console.log(this.props.selectWord)
-        //     } else {
-        //       this.props.setWord(null)
-        //     }
-        //   })
-        // })
       } catch (error) {
         console.log("OH NO - The Word Cloud Viz Broke!");
         console.log(error);

@@ -52,7 +52,7 @@ function* fetchDoiInfo(action) {
     if (doiInfo["status"] !== "not found") {
       yield put(actions.fetchDoiInfo(doiInfo));
     } else {
-      yield put(actions.setFailure(true));
+      yield put(actions.changeFailure(true));
     }
   } catch (error) {
     yield put(actions.changeError(errorText));

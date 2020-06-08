@@ -4,7 +4,6 @@ import { getDoiInfo } from "../reducer";
 import * as selectors from "../reducer";
 import { connect } from "react-redux";
 import * as actions from "../actions";
-import TextField from "@material-ui/core/TextField";
 import { Col, Row, Form } from "react-bootstrap";
 
 
@@ -13,7 +12,6 @@ export class DoiInfo extends Component {
     super(props);
     this.dataObject = Immutable.asMutable(this.props.doiInfo, { deep: true });
     this.data = this.dataObject["data"]
-    var i;
     for (let value in this.data){
       if (this.data[value] == "Missing") {
         this.data[value] = '';
@@ -52,7 +50,7 @@ export class DoiInfo extends Component {
           </h2>
         )}
         <div className="manAdd-width">
-            <Form>
+            <Form className = "DoiForm">
               <Form.Group as={Row} controlId = "title">
                 <Form.Label column sm="2">Title</Form.Label>
                 <Col sm={10}>
@@ -103,6 +101,7 @@ export class DoiInfo extends Component {
                 <Form.Label column sm="2">DOI</Form.Label>
                 <Col sm={10}>
                 <Form.Control type="doi" 
+                    required
                     placeholder="DOI" 
                     defaultValue = {this.data["doi"]}
                     onChange={this.onTextChange.bind(this, "doi")}/>
