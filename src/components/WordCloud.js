@@ -10,8 +10,24 @@ export class WordCloud extends Component {
     super(props);
 
     this.view = null;
-    this.data = Immutable.asMutable(this.props.ngrams);
+    this.data = Immutable.asMutable(this.props.ngrams, { deep: true });
     console.log(Immutable.isImmutable(this.data));
+  }
+
+  embed(){
+    vegaEmbed("#wordcloud", spec, {
+      mode: "vega",
+      actions: false,
+      renderer: "svg",
+    }).then((res) => {
+      try {
+        //look at async run and componentDidMount, etc.
+        res.view.insert("table", this.data).run();
+      } catch (error) {
+        console.log("OH NO - The Word Cloud Viz Broke!");
+        console.log(error);
+      }
+    }).catch(error => console.log(error))
   }
 
   updateView(v) {
@@ -19,21 +35,12 @@ export class WordCloud extends Component {
   }
 
   componentDidMount() {
-    var data = Immutable.asMutable(this.props.ngrams, { deep: true });
-    console.log(this.data);
+    this.embed()
+  }
 
-    vegaEmbed("#wordcloud", spec, {
-      mode: "vega",
-      actions: false,
-      renderer: "svg",
-    }).then((res) => {
-      try {
-        res.view.insert("table", data).run();
-      } catch (error) {
-        console.log("OH NO - The Word Cloud Viz Broke!");
-        console.log(error);
-      }
-    });
+  componentDidUpdate(){
+    this.data = Immutable.asMutable(this.props.ngrams, { deep: true });
+    this.embed()
   }
   render() {
     return <div id="wordcloud"></div>;

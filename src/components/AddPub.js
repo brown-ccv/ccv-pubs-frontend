@@ -1,8 +1,5 @@
 import React, { Component } from "react";
-import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
-import AppBar from "material-ui/AppBar";
-import { Navbar, Nav, Button, FormControl } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Navbar, Nav, Button } from "react-bootstrap";
 import * as actions from "../actions";
 import { connect } from "react-redux";
 import * as selectors from "../reducer";
@@ -15,14 +12,8 @@ import Form from "react-bootstrap/Form";
 export class AddPub extends Component {
   constructor(props) {
     super(props);
-    // this.state = {
-    //   keycloak: null,
-    //   authenticated: false,
-    //   profile: null,
-    //   iscis: true,
-    // };
     const newDoiInfo = {
-      data: [],
+      data: {},
       status: "empty",
     };
     this.props.changeDoiInfo(newDoiInfo);
@@ -33,14 +24,16 @@ export class AddPub extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props.keycloak);
+    /**
+     * User is authenticated as a member of CIS when routed to AddPub component. User is
+     * only authenticated once when using the app, unless they have logged out. 
+     */
     if (!this.props.keycloak["authenticated"]) {
       var temp = Immutable.asMutable(this.props.keycloak, { deep: true });
       const keycloak = Keycloak("../keycloak.json");
       keycloak
         .init({ onLoad: "login-required" })
         .then((authenticated) => {
-          //this.setState({ keycloak: keycloak, authenticated: authenticated });
           temp["keycloak"] = keycloak;
           temp["authenticated"] = authenticated;
           this.props.changeKeycloak(temp);
@@ -49,18 +42,20 @@ export class AddPub extends Component {
             .then((profile) => {
               temp["profile"] = profile;
               this.props.changeKeycloak(temp);
-              console.log(profile);
             })
             .catch((err) => console.log(err));
           let hasRole = keycloak.hasRealmRole("cis-all-role");
           temp["iscis"] = hasRole;
           this.props.changeKeycloak(temp);
-          console.log(hasRole);
         })
         .catch((err) => console.log(err));
     }
   }
 
+  /**
+   * When a user submits a DOI for fetch from CrossRef API. Erases 
+   * current DOI info if there is any and requests info.
+   */
   onSubmit(e) {
     e.preventDefault();
     this.props.setFailure(false);
@@ -77,8 +72,16 @@ export class AddPub extends Component {
     this.pressed = true;
     this.props.changeLoading(true);
     this.manual = false;
+    this.props.changeError(null)
   }
 
+  /**
+   * Called after a user recieves the information from the requested DOI and has
+   * had the oppurtunity to edit before submitting to be added to the database or 
+   * elected to submit manually.
+   * 
+   * If submitting manually, doi and title must be specified 
+   */
   onContinue(e) {
     e.preventDefault();
     var data = this.props.doiInfo;
@@ -87,10 +90,10 @@ export class AddPub extends Component {
     };
 
     if (
-      data["data"]["doi"] != null &&
-      data["data"]["doi"] != "" &&
-      data["data"]["title"] != null &&
-      data["data"]["title"] != ""
+      data["data"]["doi"] !== null &&
+      data["data"]["doi"] !== "" &&
+      data["data"]["title"] !== null &&
+      data["data"]["title"] !== ""
     ) {
       this.full = true;
     } else {
@@ -98,25 +101,15 @@ export class AddPub extends Component {
       this.forceUpdate();
     }
 
-    // for (var key in data["data"]) {
-    //   if (data["data"][key] != null && data["data"][key] != "") {
-    //     console.log(data["data"][key]);
-    //     values.push(data["data"][key]);
-    //     break;
-    //   }
-    // }
-
-    // if (values.length == 0) {
-    //   this.full = false;
-    //   this.forceUpdate();
-    // }
-    console.log(this.full);
     if (this.full) {
       this.props.changeLoading(true);
       this.props.postPubAction(dataObject);
     }
   }
 
+  /**
+   * Called when "Back to Home button is pressed"
+   */
   onCancel(e) {
     const newDoiInfo = {
       data: {},
@@ -128,6 +121,10 @@ export class AddPub extends Component {
     this.props.changeAddSuccess(false);
   }
 
+  /**
+   * When a user elects to add a publication manually,
+   * the previous doi info (if any) is cleared
+   */
   onManual(e) {
     const newDoiInfo = {
       data: {
@@ -149,6 +146,10 @@ export class AddPub extends Component {
     this.manual = true;
   }
 
+  /**
+   * When a user elects to enter a DOI after previosly pressing 
+   * "enter manually". 
+   */
   onDOI(e) {
     const newDoiInfo = {
       data: {},
@@ -160,6 +161,10 @@ export class AddPub extends Component {
     this.props.changeAddSuccess(false);
   }
 
+  /**
+   * When a user logs out everything in props is reset and
+   * any class variables are reverted back to oringinal state
+   */
   onLogout(e) {
     const newDoiInfo = {
       data: {},
@@ -174,68 +179,51 @@ export class AddPub extends Component {
   }
 
   render() {
-    // console.log(this.manual);
-    console.log(this.props.keycloak);
+    //nothing to be loaded
     if (
       !this.manual &&
       !this.pressed &&
-      this.props.doiInfo["status"] == "empty"
+      !this.props.error && 
+      this.props.doiInfo["status"] === "empty"
     ) {
       this.props.changeLoading(false);
     }
-    if (this.pressed && this.props.doiInfo["status"] === "empty") {
+    //user has submitted a doi, start loading
+    if (!this.props.error && this.pressed && this.props.doiInfo["status"] === "empty") {
       this.props.changeLoading(true);
     }
-    if (this.pressed && this.props.doiInfo["status"] !== "empty") {
+    //user got response from doi query, loading is false
+    if (!this.props.error && this.pressed && this.props.doiInfo["status"] !== "empty") {
       this.props.changeLoading(false);
       this.pressed = false;
     }
-
-    if (this.props.addSuccess) {
+    //user successfully added publication to database
+    if (!this.props.error && this.props.addSuccess) {
       this.props.changeLoading(false);
     }
-
-    if (this.props.doiFailure) {
+    //no information could be retrieved from the DOI query, loading is false
+    if (!this.props.error && this.props.doiFailure) {
       this.props.changeLoading(false);
       this.pressed = false;
     }
-
+    if(this.props.error){
+      this.props.changeLoading(false);
+    }
+    //main div is only displayed if user is authenticated by shib and in CIS group
     if (this.props.keycloak["keycloak"]) {
       if (this.props.keycloak["authenticated"]) {
-        // console.log(this.state.iscis)
-        // if (this.state.iscis) {
-        //   if (this.state.profile) {
+        if (this.props.keycloak["iscis"]) {
+          if (this.props.keycloak["profile"]) {
         return (
           <div>
             <div>
-              <Navbar bg="primary">
-                <div className="container">
-                  <Nav className="justify-content-center">
-                    <Nav.Item>
-                      <Navbar.Brand>Add a Publication</Navbar.Brand>
-                    </Nav.Item>
-                  </Nav>
-                </div>
-                <Form inline>
-                  <Nav className="ml-auto">
-                    <Button
-                      variant="outline-primary"
-                      onClick={(event) => this.onLogout(event)}
-                    >
-                      Logout
-                    </Button>
-                  </Nav>
-                </Form>
-              </Navbar>
 
               <Navbar bg="primary">
-                <Nav>
-                  <Nav.Item>
-                    <Navbar.Brand className="mx-auto">
+                
+                    <Navbar.Brand className="navbar-brand-custom">
                       Add a Publication
                     </Navbar.Brand>
-                  </Nav.Item>
-                </Nav>
+                  
                 <Nav className="ml-auto mr-1">
                   <Nav.Item>
                     <Button
@@ -248,7 +236,6 @@ export class AddPub extends Component {
                 </Nav>
               </Navbar>
 
-              {/* <form onSubmit={this.onSubmit}> */}
               {!this.props.addSuccess && (
                 <div>
                   <br />
@@ -291,6 +278,9 @@ export class AddPub extends Component {
                     )}
                   {this.manual && <DoiInfo></DoiInfo>}
                   {this.props.doiFailure && <p>No Information Found</p>}
+                  {this.props.error && <div className = "error-text">
+                    <h1>{this.props.error}</h1>
+                  </div>}
                   <br />
                   {this.props.doiInfo["status"] === "new" && (
                     <Button
@@ -385,12 +375,16 @@ export class AddPub extends Component {
             </div>
           </div>
         );
-        //   } else {
-        //     return (<div>Loading Profile</div>)
-        //   }
-        // } else {
-        //   return (<div>Only members of CIS can do this - open a ticket to request your publication be added</div>)
-        // }
+          } else {
+            return (<div>Loading Profile</div>)
+          }
+        } else {
+
+          return (<div className = "cis-false">
+          <div>Only members of CIS can do this - <a href = "mailto:support@ccv.brown.edu">open a ticket </a>to request your publication be added</div>
+              </div>
+            )
+        }
       } else {
         return <div>Unable to authenticate!</div>;
       }
@@ -398,17 +392,15 @@ export class AddPub extends Component {
     return <div>Initializing Keycloak...</div>;
   }
 }
-const style = {
-  margin: 15,
-};
+
 
 function mapStateToProps(state) {
   return {
     doiInfo: selectors.getDoiInfo(state),
     loading: selectors.getLoading(state),
+    error: selectors.getError(state),
     keycloak: selectors.getKeycloak(state),
-    //authenticated: selectors.getAunthenticated(state),
-    doiFailure: selectors.getFailure(state),
+    doiFailure: selectors.getDoiFailure(state),
     addSuccess: selectors.getAddSuccess(state),
   };
 }
@@ -419,9 +411,9 @@ function mapDispatchToProps(dispatch) {
     requestDoiInfo: (newPub) => dispatch(actions.requestDoiInfo(newPub)),
     changeLoading: (val) => dispatch(actions.changeLoading(val)),
     changeKeycloak: (val) => dispatch(actions.changeKeycloak(val)),
-    //changeAuthenticated: (val) => dispatch(actions.changeAuthenticated(val)),
     changeDoiInfo: (val) => dispatch(actions.changeDoiInfo(val)),
-    setFailure: (val) => dispatch(actions.changeFailure(val)),
+    setFailure: (val) => dispatch(actions.changeDoiFailure(val)),
+    changeError: (val) => dispatch(actions.changeError(val)),
     changeAddSuccess: (val) => dispatch(actions.changeAddSuccess(val)),
   };
 }

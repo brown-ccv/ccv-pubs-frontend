@@ -1,13 +1,12 @@
-import { takeLatest, takeEvery, call, put, all } from "redux-saga/effects";
+import { takeEvery, call, put, all } from "redux-saga/effects";
 import Client from "./client";
 import * as actions from "./actions";
-import * as _ from "lodash";
 
 const errorText =
-  "Something went wrong.  Please refresh the page in a few minutes and try again.";
+  "Could not connect to server.  Please refresh the page in a few minutes and try again.";
 
 // -------------FETCHING SAGAS -----------------
-function* fetchData(action) {
+export function* fetchData(action) {
   try {
     const publications = yield call(Client.getData);
     yield put(actions.fetchData(publications));
@@ -16,7 +15,7 @@ function* fetchData(action) {
   }
 }
 
-function* fetchNgrams(action) {
+export function* fetchNgrams(action) {
   try {
     const ngrams = yield call(Client.getNgrams);
     console.log(ngrams);
@@ -26,33 +25,37 @@ function* fetchNgrams(action) {
   }
 }
 
-function* postPub(action) {
+export function* postPub(action) {
   try {
-    var newInfo = yield call(Client.postPub,action.newPub);
+    var newInfo = yield call(Client.postPub, action.newPub);
+    console.log(newInfo);
+    console.log(newInfo["newdata"]);
+    console.log(newInfo["newngrams"]);
+    newInfo["newdata"] = JSON.parse(newInfo["newdata"]);
+    newInfo["newngrams"] = JSON.parse(newInfo["newngrams"]);
+
+    console.log(newInfo["newdata"]);
+    console.log(newInfo["newngrams"]);
     console.log(newInfo)
-    newInfo["newdata"] = JSON.parse(newInfo["newdata"])
-    newInfo["newngrams"] = JSON.parse(newInfo["newngrams"])
 
-    console.log(newInfo["newdata"])
-    console.log(newInfo["newngrams"])
-
-    yield put(actions.fetchData(newInfo["newdata"]))
-    yield put(actions.fetchNgrams(newInfo["newngrams"]))
-    yield put(actions.changeAddSuccess(true))
+    yield put(actions.fetchData(newInfo["newdata"]));
+    yield put(actions.fetchNgrams(newInfo["newngrams"]));
+    yield put(actions.changeAddSuccess(true));
   } catch (error) {
+    console.log(error)
     yield put(actions.changeError(errorText));
   }
 }
 
-function* fetchDoiInfo(action) {
+export function* fetchDoiInfo(action) {
   try {
     const doiInfo = yield call(Client.getDoiInfo, action.newPub);
-    console.log(doiInfo)
-    console.log(doiInfo["status"])
+    console.log(doiInfo);
+    console.log(doiInfo["status"]);
     if (doiInfo["status"] !== "not found") {
       yield put(actions.fetchDoiInfo(doiInfo));
     } else {
-      yield put(actions.changeFailure(true));
+      yield put(actions.changeDoiFailure(true));
     }
   } catch (error) {
     yield put(actions.changeError(errorText));

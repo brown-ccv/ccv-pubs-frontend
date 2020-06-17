@@ -14,29 +14,31 @@ import { Link } from "react-router-dom";
 export class ContentPage extends Component {
   constructor(props) {
     super(props);
-
+    console.log(this.props.publications.length)
     if (this.props.publications.length === 0) this.props.fetchData();
 
     if (this.props.ngrams.length === 0) this.props.fetchNgrams();
 
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit(event) {
-    this.props.changeError(event.target.value);
-    event.preventDefault();
-  }
+  
 
   render() {
     if (this.props.publications.length !== 0 && this.props.ngrams.length !== 0) {
       this.props.changeLoading(false);
     }
 
-    console.log(this.props.publications)
-    console.log(this.props.ngrams)
+    if(this.props.error){
+      this.props.changeLoading(false);
+    }
+
+    // console.log(this.props.error)
+
+    // console.log(this.props.publications)
+    // console.log(this.props.ngrams)
 
     return (
-      <div>
+      <div className = "ContentPage">
         <div align="right">
           <Link to="/addPub">
             <Button variant="contained" color="primary">
@@ -52,12 +54,15 @@ export class ContentPage extends Component {
         </div>
 
         <Spinner loading={this.props.loading} className="spinner" size={100} />
-
-        {!this.props.loading && (
+        
+        {!this.props.loading && !this.props.error &&
+        <div className = "PubsTable-CP">
           <PubsTable publications={this.props.publications} />
-        )}
+          </div>
+        }
+        
 
-        {!this.props.loading && (
+        {(!this.props.loading && !this.props.error)&& (
           <h3 className="word-cloud-title pt-4 mt-4">
             {" "}
             What are these publications all about?{" "}
@@ -65,9 +70,12 @@ export class ContentPage extends Component {
         )}
         <div className="viz d-flex justify-content-center pt-5">
           
-          {!this.props.loading && <WordCloud />}
+          {(!this.props.loading && !this.props.error) && <WordCloud />}
           
-          {!this.props.loading && <YearChart />}
+          {(!this.props.loading && !this.props.error) && <YearChart />}
+        </div>
+        <div className = "error-text">
+          <h1>{this.props.error}</h1>
         </div>
       </div>
     );

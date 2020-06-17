@@ -4,21 +4,6 @@
     color: #fff;
 }
 
-.MuiButton-containedPrimary{
-  background-color: #003c71 !important;
-}
-
-.MuiButton-label{
-  font-family: Circular-Book, Arial, Helvetica, sans-serif !important;
-}
-.MuiInput-underline:after{
-  border-bottom-color: $cyan !important;
-  color: $yellow !important;
-}
-.MuiFormLabel-root.Mui-focused{
-  color:$cyan !important;
-}
-
 .doi-width{
   width: 250px;
   align-items: center;
@@ -73,4 +58,10 @@
   border-color: white;
   color: white;
 }
+
+.navbar-brand-custom {
+    width: 100% !important;
+    text-align: center !important;
+    margin-left: 92px !important;
+  }
 

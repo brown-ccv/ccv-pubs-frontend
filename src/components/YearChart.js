@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as selectors from "../reducer";
-import * as actions from "../actions";
 import vegaEmbed from "vega-embed";
 import spec from "../vega/yearChart";
 import Immutable from "seamless-immutable";
@@ -13,13 +12,8 @@ export class YearChart extends Component {
     this.data = Immutable.asMutable(this.props.publications, { deep: true });
   }
 
-  updateView(v) {
-    this.view = v;
-  }
-
-  componentDidMount() {
-    //var data = Immutable.asMutable(this.props.publications);
-
+  embed(){
+    console.log("embed")
     vegaEmbed("#yearChart", spec, {
       mode: "vega",
       actions: false,
@@ -50,11 +44,22 @@ export class YearChart extends Component {
     });
   }
 
-  componentDidUpdate() {
-    var update = this.props.selectYear ? this.props.selectYear : null;
-    // this.view
-    //   .signal("hoverIDs", update)
-    //   .run()
+  updateView(v) {
+    this.view = v;
+  }
+
+  componentDidUpdate(){
+    console.log("update")
+    console.log(this.data)
+    this.data = Immutable.asMutable(this.props.publications, { deep: true });
+    this.embed();
+  }
+
+  componentDidMount() {
+    //var data = Immutable.asMutable(this.props.publications);
+    console.log("here")
+    this.embed();
+    
   }
 
   render() {

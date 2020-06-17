@@ -6,10 +6,9 @@ export const initialState = Immutable({
   loading: true,
   selectWord: null,
   selectYear: null,
+  error:null,
   doiInfo: {data : {}, status: "empty"},
-  doi: null,
   keycloak: {keycloak: null, authenticated: null, iscis: null, profile: null},
-  //authenticated: false,
   doiFailure: false,
   addSuccess: false
 });
@@ -25,8 +24,8 @@ export default function reduce(state = initialState, action = {}) {
         ngrams: action.data,
       });
     case "CHANGE_ERROR":
-      return state.merge({
-        string: action.data, //no more string
+        return state.merge({
+        error: action.data, 
       });
     case "CHANGE_LOADING":
       return state.merge({
@@ -41,7 +40,6 @@ export default function reduce(state = initialState, action = {}) {
         selectYear: action.data,
       });
     case "CHANGE_DOI_INFO":
-      console.log(action.data)
       return state.merge({
         doiInfo: action.data,
       });
@@ -53,10 +51,6 @@ export default function reduce(state = initialState, action = {}) {
       return state.merge({
         keycloak: action.data,
       });
-    // case "UPDATE_AUTHENTICATED":
-    //   return state.merge({
-    //     authenticated: action.data,
-    //   });
     case "FETCH_DOI_FAILURE":
       return state.merge({
         doiFailure: action.data,
@@ -79,7 +73,7 @@ export function getData(state) {
 }
 
 export function getError(state) {
-  return state.string;
+  return state.error;
 }
 
 export function getLoading(state) {
@@ -103,11 +97,7 @@ export function getKeycloak(state) {
   return state.keycloak;
 }
 
-// export function getAunthenticated(state) {
-//   return state.authenticated;
-// }
-
-export function getFailure(state) {
+export function getDoiFailure(state) {
   return state.doiFailure;
 }
 

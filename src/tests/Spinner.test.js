@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+//import ReactDOM from 'react-dom';
 import Spinner from '../components/Spinner';
 import { shallow } from 'enzyme';
 

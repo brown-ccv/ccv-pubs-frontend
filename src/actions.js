@@ -31,7 +31,6 @@ export function requestDoiInfo(newPub) {
 }
 
 export function fetchDoiInfo(data) {
-  console.log(data)
   return { type: "CHANGE_DOI_INFO", data };
 }
 
@@ -43,15 +42,10 @@ export function changeKeycloak(data) {
   return { type: "UPDATE_KEYCLOAK", data };
 }
 
-export function changeAuthenticated(data) {
-  return { type: "UPDATE_AUTHENTICATED", data };
-}
-
-export function changeFailure(data) {
+export function changeDoiFailure(data) {
   return { type: "FETCH_DOI_FAILURE", data };
 }
 
 export function changeAddSuccess(data){
-  console.log(data)
   return {type: "UPDATE_ADD_SUCCESS", data};
 }

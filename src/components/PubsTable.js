@@ -1,5 +1,5 @@
 import ReactTable from "react-table";
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import * as selectors from "../reducer";
 import * as actions from "../actions";
@@ -12,11 +12,12 @@ export class PubsTable extends React.Component {
     super(props);
 
     this.data = Immutable.asMutable(this.props.publications);
+    console.log(this.data)
   }
 
   render() {
     var filteredData = [];
-
+    //if a user selected a bar from the bar chart, filter table with rows of that year
     if (this.props.selectYear !== null) {
       console.log(this.props.selectYear);
       filteredData = _.filter(
@@ -28,6 +29,7 @@ export class PubsTable extends React.Component {
     } else {
       console.log("no word");
       this.data = Immutable.asMutable(this.props.publications);
+      console.log(this.data)
     }
 
     console.log(this.props.selectWord);
@@ -76,9 +78,9 @@ export class PubsTable extends React.Component {
     function filterCaseInsensitive(filter, row) {
       const id = filter.pivotId || filter.id;
 
-      return row[id] !== undefined
+      return (row[id] !== undefined && row[id] !== null)
         ? String(row[id].toLowerCase()).includes(filter.value.toLowerCase())
-        : true;
+        : false;
     }
 
     return (

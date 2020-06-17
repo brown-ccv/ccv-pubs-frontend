@@ -1,4 +1,3 @@
-import _ from "lodash";
 import fetch from "isomorphic-fetch";
 
 const SERVICE_ENDPOINT =
@@ -6,27 +5,28 @@ const SERVICE_ENDPOINT =
     ? "https://datasci.brown.edu/ccvpubs-api"
     : "http://localhost:8080";
 class Client {
-  // get all data values from the bcbi db
+  // get all publications from ccvpubs database
   async getData() {
     var url = `${SERVICE_ENDPOINT}/publications`;
 
     var response;
     try {
       response = await fetch(url);
+      console.log(response)
     } catch (error) {
       throw new Error(`Could not connect to server: ${error}`);
     }
 
     if (!response.ok) {
       throw new Error(
-        `CCVService getConcepts failed, HTTP status ${response.status}`
+        `Fetching Publications failed, HTTP status ${response.status}`
       );
     }
     const data = await response.json();
 
     return data;
   }
-
+  //get ngrams table from ccvpubs database
   async getNgrams() {
     var url = `${SERVICE_ENDPOINT}/ngrams`;
 
@@ -38,9 +38,7 @@ class Client {
     }
 
     if (!response.ok) {
-      throw new Error(
-        `CCVService getConcepts failed, HTTP status ${response.status}`
-      );
+      throw new Error(`Fetching Ngrams failed, HTTP status ${response.status}`);
     }
     const data = await response.json();
     return data;
@@ -57,17 +55,13 @@ class Client {
       });
 
       if (!response.ok) {
-        throw new Error(
-          `getdoi route failed, HTTP status ${response.status}`
-        );
+        throw new Error(`Get doi failed, HTTP status ${response.status}`);
       }
-
-      
     } catch (error) {
       throw new Error(`Could not connect to server: ${error}`);
     }
     data = await response.json();
-    console.log(data)
+    console.log(data);
     return data;
   }
 
@@ -76,7 +70,7 @@ class Client {
     var url = `${SERVICE_ENDPOINT}/addpublications`;
     var response;
     var update;
-    
+
     try {
       response = await fetch(url, {
         method: "POST",
@@ -85,13 +79,13 @@ class Client {
     } catch (error) {
       throw new Error(`Could not connect to server: ${error}`);
     }
-    
+
     if (!response.ok) {
       throw new Error(`Publication was not able to be added to database.`);
     }
-    
+
     update = await response.json();
-    console.log(update)
+    console.log(update);
     return update;
   }
 }
