@@ -11,6 +11,7 @@ export function* fetchData(action) {
     const publications = yield call(Client.getData);
     yield put(actions.fetchData(publications));
   } catch (error) {
+    console.log(error)
     yield put(actions.changeError(errorText));
   }
 }
@@ -21,6 +22,7 @@ export function* fetchNgrams(action) {
     console.log(ngrams);
     yield put(actions.fetchNgrams(ngrams));
   } catch (error) {
+    console.log(error)
     yield put(actions.changeError(errorText));
   }
 }

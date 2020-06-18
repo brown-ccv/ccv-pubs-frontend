@@ -18,8 +18,6 @@ export class AddPub extends Component {
     };
     this.props.changeDoiInfo(newDoiInfo);
     this.doi = "";
-    this.pressed = false;
-    this.manual = false;
     this.full = true;
   }
 
@@ -28,6 +26,7 @@ export class AddPub extends Component {
      * User is authenticated as a member of CIS when routed to AddPub component. User is
      * only authenticated once when using the app, unless they have logged out. 
      */
+    this.props.changeLoading(false)
     if (!this.props.keycloak["authenticated"]) {
       var temp = Immutable.asMutable(this.props.keycloak, { deep: true });
       const keycloak = Keycloak("../keycloak.json");
@@ -69,9 +68,9 @@ export class AddPub extends Component {
     };
     this.props.requestDoiInfo(doiObject);
     this.data = Immutable.asMutable(this.props.doiInfo, { deep: true });
-    this.pressed = true;
+    this.props.changePressed(true);
     this.props.changeLoading(true);
-    this.manual = false;
+    this.props.changeManual(false);
     this.props.changeError(null)
   }
 
@@ -119,6 +118,7 @@ export class AddPub extends Component {
     this.props.history.push("/");
     this.props.setFailure(false);
     this.props.changeAddSuccess(false);
+    this.props.changeManual(false);
   }
 
   /**
@@ -143,7 +143,7 @@ export class AddPub extends Component {
     this.props.setFailure(false);
     this.data = [];
     this.props.changeDoiInfo(newDoiInfo);
-    this.manual = true;
+    this.props.changeManual(true);
   }
 
   /**
@@ -157,7 +157,7 @@ export class AddPub extends Component {
     };
     this.props.setFailure(false);
     this.props.changeDoiInfo(newDoiInfo);
-    this.manual = false;
+    this.props.changeManual(false);
     this.props.changeAddSuccess(false);
   }
 
@@ -172,7 +172,7 @@ export class AddPub extends Component {
     };
     this.props.setFailure(false);
     this.props.changeDoiInfo(newDoiInfo);
-    this.manual = false;
+    this.props.changeManual(false);
     this.props.changeAddSuccess(false);
     this.props.history.push("/");
     this.props.keycloak["keycloak"].logout();
@@ -180,35 +180,36 @@ export class AddPub extends Component {
 
   render() {
     //nothing to be loaded
-    if (
-      !this.manual &&
-      !this.pressed &&
-      !this.props.error && 
-      this.props.doiInfo["status"] === "empty"
-    ) {
-      this.props.changeLoading(false);
-    }
+    // if (
+    //   !this.manual &&
+    //   !this.pressed &&
+    //   !this.props.error && 
+    //   this.props.doiInfo["status"] === "empty"
+    // ) {
+    //   this.props.changeLoading(false);
+    // }
     //user has submitted a doi, start loading
-    if (!this.props.error && this.pressed && this.props.doiInfo["status"] === "empty") {
-      this.props.changeLoading(true);
-    }
+    // if (!this.props.error && this.pressed && this.props.doiInfo["status"] === "empty") {
+    //   this.props.changeLoading(true);
+    // }
     //user got response from doi query, loading is false
-    if (!this.props.error && this.pressed && this.props.doiInfo["status"] !== "empty") {
-      this.props.changeLoading(false);
-      this.pressed = false;
-    }
+    // if (!this.props.error && this.pressed && this.props.doiInfo["status"] !== "empty") {
+    //   this.props.changeLoading(false);
+    //   this.pressed = false;
+    // }
     //user successfully added publication to database
-    if (!this.props.error && this.props.addSuccess) {
-      this.props.changeLoading(false);
-    }
+    // if (!this.props.error && this.props.addSuccess) {
+    //   this.props.changeLoading(false);
+    // }
     //no information could be retrieved from the DOI query, loading is false
-    if (!this.props.error && this.props.doiFailure) {
-      this.props.changeLoading(false);
-      this.pressed = false;
-    }
-    if(this.props.error){
-      this.props.changeLoading(false);
-    }
+    // if (!this.props.error && this.props.doiFailure) {
+    //   this.props.changeLoading(false);
+    //   this.pressed = false;
+    // }
+    // if(this.props.error){
+    //   this.props.changeLoading(false);
+    // }
+    console.log(this.props.manual)
     //main div is only displayed if user is authenticated by shib and in CIS group
     if (this.props.keycloak["keycloak"]) {
       if (this.props.keycloak["authenticated"]) {
@@ -239,7 +240,7 @@ export class AddPub extends Component {
               {!this.props.addSuccess && (
                 <div>
                   <br />
-                  {!this.manual && (
+                  {!this.props.manual && (
                     <div className="doi-width">
                       <Form>
                         <Form.Group controlId="doientry">
@@ -276,7 +277,7 @@ export class AddPub extends Component {
                     this.props.doiInfo["status"] !== "not found" && (
                       <DoiInfo></DoiInfo>
                     )}
-                  {this.manual && <DoiInfo></DoiInfo>}
+                  {this.props.manual && <DoiInfo></DoiInfo>}
                   {this.props.doiFailure && <p>No Information Found</p>}
                   {this.props.error && <div className = "error-text">
                     <h1>{this.props.error}</h1>
@@ -300,10 +301,10 @@ export class AddPub extends Component {
                       Insert Edited Publication Information
                     </Button>
                   )}
-                  {this.manual && !this.full && (
+                  {this.props.manual && !this.full && (
                     <p>Please enter at least DOI and Title</p>
                   )}
-                  {this.manual && (
+                  {this.props.manual && (
                     <div>
                       <Button
                         variant="contained"
@@ -322,7 +323,7 @@ export class AddPub extends Component {
                   <br /> <br />
                   <p>OR</p>
                   {/* <Link to="/doiinfo"> */}
-                  {!this.manual && (
+                  {!this.props.manual && (
                     <Button
                       variant="contained"
                       color="primary"
@@ -331,7 +332,7 @@ export class AddPub extends Component {
                       Enter Manually
                     </Button>
                   )}
-                  {this.manual && (
+                  {this.props.manual && (
                     <Button
                       variant="contained"
                       color="primary"
@@ -402,6 +403,8 @@ function mapStateToProps(state) {
     keycloak: selectors.getKeycloak(state),
     doiFailure: selectors.getDoiFailure(state),
     addSuccess: selectors.getAddSuccess(state),
+    manual: selectors.getManual(state),
+    pressed: selectors.getPressed(state)
   };
 }
 
@@ -415,6 +418,8 @@ function mapDispatchToProps(dispatch) {
     setFailure: (val) => dispatch(actions.changeDoiFailure(val)),
     changeError: (val) => dispatch(actions.changeError(val)),
     changeAddSuccess: (val) => dispatch(actions.changeAddSuccess(val)),
+    changeManual: (val) => dispatch(actions.changeManual(val)),
+    changePressed: (val) => dispatch(actions.changePressed(val))
   };
 }
 

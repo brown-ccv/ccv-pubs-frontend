@@ -10,20 +10,43 @@ export const initialState = Immutable({
   doiInfo: {data : {}, status: "empty"},
   keycloak: {keycloak: null, authenticated: null, iscis: null, profile: null},
   doiFailure: false,
-  addSuccess: false
+  addSuccess: false,
+  manual: false,
+  pressed: false
 });
 
 export default function reduce(state = initialState, action = {}) {
+  console.log(action)
   switch (action.type) {
     case "CHANGE_DATA":
+      if (action.data.length > 0 && state.ngrams.length > 0){
+        return state.merge({
+          publications: action.data,
+          loading: false
+        });
+      }
       return state.merge({
         publications: action.data,
       });
     case "CHANGE_NGRAMS":
+      console.log(state)
+      console.log(action.data)
+      if (action.data.length > 0 && state.publications.length > 0){
+        return state.merge({
+          ngrams: action.data,
+          loading: false
+        });
+      }
       return state.merge({
         ngrams: action.data,
       });
     case "CHANGE_ERROR":
+      if(action.data){
+        return state.merge({
+          error: action.data, 
+          loading: false
+        });
+      }
         return state.merge({
         error: action.data, 
       });
@@ -40,6 +63,14 @@ export default function reduce(state = initialState, action = {}) {
         selectYear: action.data,
       });
     case "CHANGE_DOI_INFO":
+      if(!state.error && state.pressed && action.data["status"] !== "empty"){
+        console.log("change with data")
+        return state.merge({
+          doiInfo: action.data,
+          loading: false,
+          pressed: false
+        });
+      }
       return state.merge({
         doiInfo: action.data,
       });
@@ -52,12 +83,40 @@ export default function reduce(state = initialState, action = {}) {
         keycloak: action.data,
       });
     case "FETCH_DOI_FAILURE":
+      if(!state.error){
+        return state.merge({
+          doiFailure: action.data,
+          pressed: false,
+          loading: false
+        });
+      }
       return state.merge({
         doiFailure: action.data,
       });
       case "UPDATE_ADD_SUCCESS":
+        if(!state.error){
+          return state.merge({
+            addSuccess: action.data,
+            loading: false
+          });
+        }
       return state.merge({
         addSuccess: action.data,
+      });
+      case "UPDATE_MANUAL":
+        console.log(action.data)
+      return state.merge({
+        manual: action.data,
+      });
+      case "UPDATE_PRESSED":
+        if(state.doiInfo["status"] === "empty" && !state.error){
+          return state.merge({
+            pressed: action.data,
+            loading: true
+          });
+        }
+      return state.merge({
+        pressed: action.data,
       });
     default:
       return state;
@@ -103,4 +162,12 @@ export function getDoiFailure(state) {
 
 export function getAddSuccess(state){
   return state.addSuccess;
+}
+
+export function getManual(state){
+  return state.manual;
+}
+
+export function getPressed(state){
+  return state.pressed;
 }

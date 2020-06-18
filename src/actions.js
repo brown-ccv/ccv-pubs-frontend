@@ -49,3 +49,11 @@ export function changeDoiFailure(data) {
 export function changeAddSuccess(data){
   return {type: "UPDATE_ADD_SUCCESS", data};
 }
+
+export function changeManual(data){
+  return {type: "UPDATE_MANUAL", data};
+}
+
+export function changePressed(data){
+  return {type: "UPDATE_PRESSED", data};
+}
