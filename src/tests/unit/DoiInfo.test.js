@@ -1,5 +1,5 @@
 import React from "react";
-import { DoiInfo } from "../components/DoiInfo";
+import { DoiInfo } from "../../components/DoiInfo";
 import { shallow } from "enzyme";
 
 let updateDoiInfo = jest.fn();
@@ -35,13 +35,11 @@ function shallowSetupFilled() {
 describe("DoiInfo Component Tests", () => {
   it("DoiInfo exists", () => {
     const { wrapper, props } = shallowSetup();
-    console.log(wrapper.props());
     expect(wrapper.props().className).toEqual("DoiInfo");
   });
 
   it("renders with correct empty Form", () => {
     const { wrapper, props } = shallowSetup();
-    console.log(wrapper.find("FormControl").first().props());
     expect(wrapper.find("Form").hasClass("DoiForm")).toBe(true);
     expect(wrapper.find("FormGroup").length).toBe(9);
 
@@ -121,7 +119,6 @@ describe("DoiInfo Component Tests", () => {
   it("renders with correct filled in form", () => {
     const { wrapper, props } = shallowSetupFilled();
 
-    console.log(wrapper.find("FormControl").first().props());
     expect(wrapper.find("Form").hasClass("DoiForm")).toBe(true);
     expect(wrapper.find("FormGroup").length).toBe(9);
 
@@ -209,7 +206,6 @@ describe("DoiInfo Component Tests", () => {
       //   const button = wrapper.find('button').first();
       //   button.simulate('click');
       // find the input field containing the todo title and simulate a change to it's value
-      console.log(_wrapper);
       const titleInput = _wrapper.find("FormControl").at(0);
       titleInput.simulate("change", {
         target: {
@@ -224,7 +220,6 @@ describe("DoiInfo Component Tests", () => {
     it("should change state when input values change and call handleFieldChange", () => {
       //const { wrapper, props } = shallowSetup();
       // this.state.todo should now have a title field with it's value as the new title we entered.
-      console.log(updateDoiInfo.mock.calls[0][0]);
       expect(updateDoiInfo.mock.calls[0][0]["data"]["title"]).toEqual(
         "Changed Title"
       );

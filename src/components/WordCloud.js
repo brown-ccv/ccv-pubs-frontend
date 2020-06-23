@@ -22,7 +22,7 @@ export class WordCloud extends Component {
     }).then((res) => {
       try {
         //look at async run and componentDidMount, etc.
-        res.view.insert("table", this.data).run();
+        res.view.insert("table", Immutable.asMutable(this.props.ngrams, { deep: true })).run();
       } catch (error) {
         console.log("OH NO - The Word Cloud Viz Broke!");
         console.log(error);
@@ -39,7 +39,7 @@ export class WordCloud extends Component {
   }
 
   componentDidUpdate(){
-    this.data = Immutable.asMutable(this.props.ngrams, { deep: true });
+    //this.data = Immutable.asMutable(this.props.ngrams, { deep: true });
     this.embed()
   }
   render() {

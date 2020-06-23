@@ -179,47 +179,15 @@ export class AddPub extends Component {
   }
 
   render() {
-    //nothing to be loaded
-    // if (
-    //   !this.manual &&
-    //   !this.pressed &&
-    //   !this.props.error && 
-    //   this.props.doiInfo["status"] === "empty"
-    // ) {
-    //   this.props.changeLoading(false);
-    // }
-    //user has submitted a doi, start loading
-    // if (!this.props.error && this.pressed && this.props.doiInfo["status"] === "empty") {
-    //   this.props.changeLoading(true);
-    // }
-    //user got response from doi query, loading is false
-    // if (!this.props.error && this.pressed && this.props.doiInfo["status"] !== "empty") {
-    //   this.props.changeLoading(false);
-    //   this.pressed = false;
-    // }
-    //user successfully added publication to database
-    // if (!this.props.error && this.props.addSuccess) {
-    //   this.props.changeLoading(false);
-    // }
-    //no information could be retrieved from the DOI query, loading is false
-    // if (!this.props.error && this.props.doiFailure) {
-    //   this.props.changeLoading(false);
-    //   this.pressed = false;
-    // }
-    // if(this.props.error){
-    //   this.props.changeLoading(false);
-    // }
-    console.log(this.props.manual)
     //main div is only displayed if user is authenticated by shib and in CIS group
     if (this.props.keycloak["keycloak"]) {
       if (this.props.keycloak["authenticated"]) {
         if (this.props.keycloak["iscis"]) {
           if (this.props.keycloak["profile"]) {
         return (
-          <div>
-            <div>
+          <div id = "AddPub">
 
-              <Navbar bg="primary">
+              <Navbar id = "navbar-addPub" bg="primary">
                 
                     <Navbar.Brand className="navbar-brand-custom">
                       Add a Publication
@@ -238,7 +206,7 @@ export class AddPub extends Component {
               </Navbar>
 
               {!this.props.addSuccess && (
-                <div>
+                <div id = "body">
                   <br />
                   {!this.props.manual && (
                     <div className="doi-width">
@@ -373,7 +341,6 @@ export class AddPub extends Component {
                   </Button>
                 </div>
               )}
-            </div>
           </div>
         );
           } else {

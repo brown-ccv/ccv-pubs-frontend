@@ -1,5 +1,5 @@
-import reducer from '../reducer';
-import * as selectors from "../reducer";
+import reducer from '../../reducer';
+import * as selectors from "../../reducer";
 import Immutable from "seamless-immutable";
 
 let initialstate = Immutable({
@@ -12,7 +12,9 @@ let initialstate = Immutable({
   doiInfo: {data : {}, status: "empty"},
   keycloak: {keycloak: null, authenticated: null, iscis: null, profile: null},
   doiFailure: false,
-  addSuccess: false
+  addSuccess: false,
+  pressed: false,
+  manual: false
 })
 let getData = jest.fn();
 
@@ -40,7 +42,9 @@ describe('reducer', () => {
             doiInfo: {data : {}, status: "empty"},
             keycloak: {keycloak: null, authenticated: null, iscis: null, profile: null},
             doiFailure: false,
-            addSuccess: false
+            addSuccess: false,
+            pressed: false,
+            manual: false
         }
     )
 
@@ -58,7 +62,9 @@ describe('reducer', () => {
         doiInfo: {data : {}, status: "empty"},
         keycloak: {keycloak: null, authenticated: null, iscis: null, profile: null},
         doiFailure: false,
-        addSuccess: false
+        addSuccess: false,
+        pressed: false,
+        manual: false
     }), {
         type: "CHANGE_NGRAMS",
         data: [{word: "cat", count: 4, freq: 33, pubs:"[117]"}]
@@ -67,14 +73,16 @@ describe('reducer', () => {
         {
             publications: [{title: "test", author:"Maura"}],
             ngrams: [{word: "cat", count: 4, freq: 33, pubs:"[117]"}],
-            loading: true,
+            loading: false,
             selectWord: null,
             selectYear: null,
             error:null,
             doiInfo: {data : {}, status: "empty"},
             keycloak: {keycloak: null, authenticated: null, iscis: null, profile: null},
             doiFailure: false,
-            addSuccess: false
+            addSuccess: false,
+            pressed: false,
+            manual: false
         }
     )
 
@@ -93,7 +101,9 @@ describe('reducer', () => {
         doiInfo: {data : {}, status: "empty"},
         keycloak: {keycloak: null, authenticated: null, iscis: null, profile: null},
         doiFailure: false,
-        addSuccess: false
+        addSuccess: false,
+        pressed: false,
+        manual: false
     }), {
         type: "CHANGE_ERROR",
         data: "Something went wrong"
@@ -102,14 +112,16 @@ describe('reducer', () => {
         {
             publications: [{title: "test", author:"Maura"}],
             ngrams: [{word: "cat", count: 4, freq: 33, pubs:"[117]"}],
-            loading: true,
+            loading: false,
             selectWord: null,
             selectYear: null,
             error:"Something went wrong",
             doiInfo: {data : {}, status: "empty"},
             keycloak: {keycloak: null, authenticated: null, iscis: null, profile: null},
             doiFailure: false,
-            addSuccess: false
+            addSuccess: false,
+            pressed: false,
+            manual: false
         }
     )
 
@@ -128,7 +140,9 @@ describe('reducer', () => {
         doiInfo: {data : {}, status: "empty"},
         keycloak: {keycloak: null, authenticated: null, iscis: null, profile: null},
         doiFailure: false,
-        addSuccess: false
+        addSuccess: false,
+        pressed: false,
+        manual: false
     }), {
         type: "CHANGE_LOADING",
         data: false
@@ -144,7 +158,9 @@ describe('reducer', () => {
             doiInfo: {data : {}, status: "empty"},
             keycloak: {keycloak: null, authenticated: null, iscis: null, profile: null},
             doiFailure: false,
-            addSuccess: false
+            addSuccess: false,
+            pressed: false,
+            manual: false
         }
     )
 
@@ -163,7 +179,9 @@ describe('reducer', () => {
         doiInfo: {data : {}, status: "empty"},
         keycloak: {keycloak: null, authenticated: null, iscis: null, profile: null},
         doiFailure: false,
-        addSuccess: false
+        addSuccess: false,
+        pressed: false,
+        manual: false
     }), {
         type: "CHANGE_SELECT_WORD",
         data: "test"
@@ -179,7 +197,9 @@ describe('reducer', () => {
           doiInfo: {data : {}, status: "empty"},
           keycloak: {keycloak: null, authenticated: null, iscis: null, profile: null},
           doiFailure: false,
-          addSuccess: false
+          addSuccess: false,
+          pressed: false,
+          manual: false
         }
     )
 
@@ -198,7 +218,9 @@ describe('reducer', () => {
         doiInfo: {data : {}, status: "empty"},
         keycloak: {keycloak: null, authenticated: null, iscis: null, profile: null},
         doiFailure: false,
-        addSuccess: false
+        addSuccess: false,
+        pressed: false,
+        manual: false
     }), {
         type: "CHANGE_SELECT_YEAR",
         data: 2015
@@ -214,7 +236,9 @@ describe('reducer', () => {
           doiInfo: {data : {}, status: "empty"},
           keycloak: {keycloak: null, authenticated: null, iscis: null, profile: null},
           doiFailure: false,
-          addSuccess: false
+          addSuccess: false,
+          pressed: false,
+          manual: false
         }
     )
 
@@ -233,7 +257,9 @@ describe('reducer', () => {
         doiInfo: {data : {}, status: "empty"},
         keycloak: {keycloak: null, authenticated: null, iscis: null, profile: null},
         doiFailure: false,
-        addSuccess: false
+        addSuccess: false,
+        pressed: false,
+        manual: false
     }), {
         type: "CHANGE_DOI_INFO",
         data: {data:{title: "testing-123", author: "me"}, status:"old"}
@@ -249,7 +275,9 @@ describe('reducer', () => {
           doiInfo: {data:{title: "testing-123", author: "me"}, status:"old"},
           keycloak: {keycloak: null, authenticated: null, iscis: null, profile: null},
           doiFailure: false,
-          addSuccess: false
+          addSuccess: false,
+          pressed: false,
+          manual: false
         }
     )
 
@@ -268,7 +296,9 @@ describe('reducer', () => {
         doiInfo: {data : {}, status: "empty"},
         keycloak: {keycloak: null, authenticated: null, iscis: null, profile: null},
         doiFailure: false,
-        addSuccess: false
+        addSuccess: false,
+        pressed: false,
+        manual: false
     }), {
         type: "UPDATE_DOI_INFO",
         data: {data:{title: "testing-1234", author: "me2"}, status:"old"}
@@ -284,7 +314,9 @@ describe('reducer', () => {
           doiInfo: {data:{title: "testing-1234", author: "me2"}, status:"old"},
           keycloak: {keycloak: null, authenticated: null, iscis: null, profile: null},
           doiFailure: false,
-          addSuccess: false
+          addSuccess: false,
+          pressed: false,
+          manual: false
         }
     )
 
@@ -302,7 +334,9 @@ describe('reducer', () => {
         doiInfo: {data:{title: "testing-1234", author: "me2"}, status:"old"},
         keycloak: {keycloak: null, authenticated: null, iscis: null, profile: null},
         doiFailure: false,
-        addSuccess: false
+        addSuccess: false,
+        pressed: false,
+        manual: false
     }), {
         type: "UPDATE_KEYCLOAK",
         data: {keycloak: "keycloak", authenticated: true, iscis: true, profile: "abc123"}
@@ -318,7 +352,9 @@ describe('reducer', () => {
           doiInfo: {data:{title: "testing-1234", author: "me2"}, status:"old"},
           keycloak: {keycloak: "keycloak", authenticated: true, iscis: true, profile: "abc123"},
           doiFailure: false,
-          addSuccess: false
+          addSuccess: false,
+          pressed: false,
+          manual: false
         }
     )
 
@@ -337,7 +373,9 @@ describe('reducer', () => {
         doiInfo: {data:{title: "testing-1234", author: "me2"}, status:"old"},
         keycloak: {keycloak: "keycloak", authenticated: true, iscis: true, profile: "abc123"},
         doiFailure: false,
-        addSuccess: false
+        addSuccess: false,
+        pressed: false,
+        manual: false
     }), {
         type: "FETCH_DOI_FAILURE",
         data: true
@@ -353,7 +391,9 @@ describe('reducer', () => {
           doiInfo: {data:{title: "testing-1234", author: "me2"}, status:"old"},
           keycloak: {keycloak: "keycloak", authenticated: true, iscis: true, profile: "abc123"},
           doiFailure: true,
-          addSuccess: false
+          addSuccess: false,
+          pressed: false,
+          manual: false
         }
     )
     
@@ -371,7 +411,9 @@ describe('reducer', () => {
         doiInfo: {data:{title: "testing-1234", author: "me2"}, status:"old"},
         keycloak: {keycloak: "keycloak", authenticated: true, iscis: true, profile: "abc123"},
         doiFailure: true,
-        addSuccess: false
+        addSuccess: false,
+        pressed: false,
+        manual: false
     }), {
         type: "UPDATE_ADD_SUCCESS",
         data: true
@@ -387,7 +429,85 @@ describe('reducer', () => {
           doiInfo: {data:{title: "testing-1234", author: "me2"}, status:"old"},
           keycloak: {keycloak: "keycloak", authenticated: true, iscis: true, profile: "abc123"},
           doiFailure: true,
-          addSuccess: true
+          addSuccess: true,
+          pressed: false,
+          manual: false
+        }
+    )
+    
+  })
+
+  it('should handle UPDATE_PRESSED', () => {
+    expect(
+      reducer(Immutable({
+        publications: [{title: "test", author:"Maura"}],
+        ngrams: [{word: "cat", count: 4, freq: 33, pubs:"[117]"}],
+        loading: false,
+        selectWord: "test",
+        selectYear: 2015,
+        error:"Something went wrong",
+        doiInfo: {data:{title: "testing-1234", author: "me2"}, status:"old"},
+        keycloak: {keycloak: "keycloak", authenticated: true, iscis: true, profile: "abc123"},
+        doiFailure: true,
+        addSuccess: true,
+        pressed: false,
+        manual: false
+    }), {
+        type: "UPDATE_PRESSED",
+        data: true
+      })
+    ).toEqual(
+        {
+          publications: [{title: "test", author:"Maura"}],
+          ngrams: [{word: "cat", count: 4, freq: 33, pubs:"[117]"}],
+          loading: false,
+          selectWord: "test",
+          selectYear: 2015,
+          error:"Something went wrong",
+          doiInfo: {data:{title: "testing-1234", author: "me2"}, status:"old"},
+          keycloak: {keycloak: "keycloak", authenticated: true, iscis: true, profile: "abc123"},
+          doiFailure: true,
+          addSuccess: true,
+          pressed: true,
+          manual: false
+        }
+    )
+    
+  })
+
+  it('should handle UPDATE_MANUAL', () => {
+    expect(
+      reducer(Immutable({
+        publications: [{title: "test", author:"Maura"}],
+        ngrams: [{word: "cat", count: 4, freq: 33, pubs:"[117]"}],
+        loading: false,
+        selectWord: "test",
+        selectYear: 2015,
+        error:"Something went wrong",
+        doiInfo: {data:{title: "testing-1234", author: "me2"}, status:"old"},
+        keycloak: {keycloak: "keycloak", authenticated: true, iscis: true, profile: "abc123"},
+        doiFailure: true,
+        addSuccess: true,
+        pressed: true,
+        manual: false
+    }), {
+        type: "UPDATE_MANUAL",
+        data: true
+      })
+    ).toEqual(
+        {
+          publications: [{title: "test", author:"Maura"}],
+          ngrams: [{word: "cat", count: 4, freq: 33, pubs:"[117]"}],
+          loading: false,
+          selectWord: "test",
+          selectYear: 2015,
+          error:"Something went wrong",
+          doiInfo: {data:{title: "testing-1234", author: "me2"}, status:"old"},
+          keycloak: {keycloak: "keycloak", authenticated: true, iscis: true, profile: "abc123"},
+          doiFailure: true,
+          addSuccess: true,
+          pressed: true,
+          manual: true
         }
     )
     
@@ -403,7 +523,9 @@ let fullState = {
   doiInfo: {data:{title: "testing-1234", author: "me2"}, status:"old"},
   keycloak: {keycloak: "keycloak", authenticated: true, iscis: true, profile: "abc123"},
   doiFailure: true,
-  addSuccess: true
+  addSuccess: true,
+  pressed: true,
+  manual: true
 }
 
 describe('selectors', () => {
@@ -446,6 +568,14 @@ it('should select doiFailure from state', () => {
 it('should select addSuccess from state', () => {
   const state = fullState;
   expect(selectors.getAddSuccess(state)).toBe(true);
+});
+it('should select manual from state', () => {
+  const state = fullState;
+  expect(selectors.getManual(state)).toBe(true);
+});
+it('should select pressed from state', () => {
+  const state = fullState;
+  expect(selectors.getPressed(state)).toBe(true);
 });
 
 })

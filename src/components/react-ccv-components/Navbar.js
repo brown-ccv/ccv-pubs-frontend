@@ -5,10 +5,10 @@ import '../../styles/custom.scss';
 
 const Navbar = () => (
     <section className="p-2 pl-10 brown-nav bg-white">
-        <a href="https://www.brown.edu">
+        <a href="https://www.brown.edu" aria-label="Brown Website">
             <BrownLogo />
         </a>
-        <a href="https://ccv.brown.edu">
+        <a href="https://ccv.brown.edu" aria-label="CCV Website">
             <CCVLogo />
         </a>
     </section>

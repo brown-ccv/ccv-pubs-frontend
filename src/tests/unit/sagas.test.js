@@ -1,7 +1,7 @@
 import { runSaga } from 'redux-saga';
-import Client from "../client";
-import * as actions from '../actions'
-import {fetchData, fetchNgrams, postPub, fetchDoiInfo } from '../sagas';
+import Client from "../../client";
+import * as actions from '../../actions'
+import {fetchData, fetchNgrams, postPub, fetchDoiInfo } from '../../sagas';
 import { iteratee } from 'lodash';
 
 describe('make getData request', () => {

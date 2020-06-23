@@ -1,9 +1,10 @@
 import fetch from "isomorphic-fetch";
 
-const SERVICE_ENDPOINT =
-  process.env.NODE_ENV === "production"
-    ? "https://datasci.brown.edu/ccvpubs-api"
-    : "http://localhost:8080";
+// const SERVICE_ENDPOINT =
+//   process.env.NODE_ENV === "production"
+//     ? "https://datasci.brown.edu/ccvpubs-api"
+//     : "http://localhost:8080";
+const SERVICE_ENDPOINT = "http://localhost:8080";
 class Client {
   // get all publications from ccvpubs database
   async getData() {

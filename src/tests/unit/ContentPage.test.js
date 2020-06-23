@@ -1,11 +1,13 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import  { ContentPage } from '../components/ContentPage';
+import  { ContentPage } from '../../components/ContentPage';
 
 let changeError = jest.fn();
 let changeLoading = jest.fn();
 let fetchNgrams = jest.fn();
 let fetchData = jest.fn();
+
+//set up wrapper with empty props
 function shallowSetup(){
     const props = {
         changeError: changeError,
@@ -25,6 +27,7 @@ function shallowSetup(){
       };
 }
 
+//set up wrapper with full props
 function shallowSetupFull(){
     const props = {
         changeError: changeError,
@@ -44,6 +47,7 @@ function shallowSetupFull(){
       };
 }
 
+//set up wrapper when an error occurs
 function shallowSetupError(){
     const props = {
         changeError: changeError,
@@ -76,9 +80,9 @@ it('renders ComponentPage with correct display when loading w no data', () => {
     const { wrapper, props } = shallowSetup();
     expect(wrapper.find("Button").text()).toBe("Add a Publication");
     expect(wrapper.find("Spinner").props().loading).toBe(true)
-
     expect(wrapper.find("h1").first().text()).toBe("Publications")
     expect(wrapper.find("FontAwesomeIcon").exists()).toBe(true)
+
     expect(wrapper.find("h3").exists()).toBe(false)
     expect(wrapper.find("div.PubsTable-CP").exists()).toBe(false)
     expect(wrapper.find("div.viz").children().length).toBe(0)
@@ -114,7 +118,7 @@ it('renders ComponentPage with correct display when loaded', () => {
 
     expect(fetchData.mock.calls.length).toBe(0)
     expect(fetchNgrams.mock.calls.length).toBe(0)
-    expect(changeLoading.mock.calls.length).toBe(1)
+    expect(changeLoading.mock.calls.length).toBe(0)
 
 });
 
@@ -129,7 +133,7 @@ it('renders with errortext when an error occurs', () => {
 
     expect(fetchData.mock.calls.length).toBe(1)
     expect(fetchNgrams.mock.calls.length).toBe(1)
-    expect(changeLoading.mock.calls.length).toBe(1)
+    expect(changeLoading.mock.calls.length).toBe(0)
 });
 
 });

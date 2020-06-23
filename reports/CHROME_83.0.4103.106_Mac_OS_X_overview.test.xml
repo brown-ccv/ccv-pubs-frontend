@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="0"
+            tests="1">
+
+  <testsuite name="overview.test"
+    errors="0" failures="0" hostname="" id="" package="overview.test" skipped="0"
+    tests="1" time="4.041" timestamp="">
+  
+    <testcase name="Does not show the task list if there are no tasks" classname="overview.test" time="4.041" assertions="3">
+
+    
+
+    
+
+    
+    </testcase>
+  
+
+  
+
+    
+
+  
+  </testsuite>
+</testsuites>

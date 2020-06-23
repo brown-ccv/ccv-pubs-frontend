@@ -12,7 +12,7 @@ class App extends Component {
     return (
 //nest routes; check for authentication with /secured; man add and add kick back to homepage
 //logout
-      <div>
+      <div aria-live = "polite" aria-busy = {this.props.loading}>
         <Navbar />
         <div className="App">
           <BrowserRouter>

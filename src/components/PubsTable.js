@@ -12,44 +12,30 @@ export class PubsTable extends React.Component {
     super(props);
 
     this.data = Immutable.asMutable(this.props.publications);
-    console.log(this.data)
+
+    this.changetoHTML = (url) => <a href={url.value}>{url.value}</a>;
+  }
+
+  filterCaseInsensitive(filter, row) {
+    const id = filter.pivotId || filter.id;
+    return (row[id] !== undefined && row[id] !== null)
+      ? String(row[id].toLowerCase()).includes(filter.value.toLowerCase())
+      : false;
   }
 
   render() {
     var filteredData = [];
     //if a user selected a bar from the bar chart, filter table with rows of that year
     if (this.props.selectYear !== null) {
-      console.log(this.props.selectYear);
       filteredData = _.filter(
         this.data,
         (pub) => parseInt(pub.year) === parseInt(this.props.selectYear)
       );
-      console.log(filteredData);
       this.data = filteredData;
     } else {
-      console.log("no word");
-      this.data = Immutable.asMutable(this.props.publications);
-      console.log(this.data)
+      filteredData = Immutable.asMutable(this.props.publications);
     }
 
-    console.log(this.props.selectWord);
-    function findAbstracts(word, data) {
-      var matches = [];
-      for (var index of word) {
-        matches.push(data[index]);
-      }
-      return matches;
-    }
-
-    if (Array.isArray(this.props.selectWord)) {
-      console.log("here");
-      filteredData = findAbstracts(this.props.selectWord, this.data);
-      console.log(filteredData);
-    } else {
-      filteredData = this.data;
-    }
-
-    const changetoHTML = (url) => <a href={url.value}>{url.value}</a>;
 
     const columns = [
       {
@@ -70,18 +56,11 @@ export class PubsTable extends React.Component {
       {
         Header: "URL",
         accessor: "url",
-        Cell: (val) => changetoHTML(val),
+        Cell: (val) => this.changetoHTML(val),
         filterable: false,
       },
     ];
 
-    function filterCaseInsensitive(filter, row) {
-      const id = filter.pivotId || filter.id;
-
-      return (row[id] !== undefined && row[id] !== null)
-        ? String(row[id].toLowerCase()).includes(filter.value.toLowerCase())
-        : false;
-    }
 
     return (
       <ReactTable
@@ -89,7 +68,7 @@ export class PubsTable extends React.Component {
         columns={columns}
         filterable
         defaultFilterMethod={(filter, row) =>
-          filterCaseInsensitive(filter, row)
+          this.filterCaseInsensitive(filter, row)
         }
         defaultSorted={[
           {
