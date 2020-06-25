@@ -27,6 +27,7 @@ export class AddPub extends Component {
     this.props.changeDoiInfo(newDoiInfo);
     this.doi = "";
     this.full = true;
+    this.props.changeYear(null);
   }
 
   componentDidMount() {
@@ -395,7 +396,8 @@ function mapDispatchToProps(dispatch) {
     changeError: (val) => dispatch(actions.changeError(val)),
     changeAddSuccess: (val) => dispatch(actions.changeAddSuccess(val)),
     changeManual: (val) => dispatch(actions.changeManual(val)),
-    changePressed: (val) => dispatch(actions.changePressed(val))
+    changePressed: (val) => dispatch(actions.changePressed(val)),
+    changeYear: (val) => dispatch(actions.changeYear(val))
   };
 }
 

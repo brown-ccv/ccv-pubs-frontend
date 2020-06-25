@@ -24,19 +24,6 @@ export class ContentPage extends Component {
   
 
   render() {
-    // if (this.props.publications.length !== 0 && this.props.ngrams.length !== 0) {
-    //   this.props.changeLoading(false);
-    // }
-
-    // if(this.props.error){
-    //   this.props.changeLoading(false);
-    // }
-
-    // console.log(this.props.error)
-
-    // console.log(this.props.publications)
-    // console.log(this.props.ngrams)
-
     return (
       <div className = "ContentPage">
         <div align="right">

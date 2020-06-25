@@ -24,19 +24,19 @@ export class PubsTable extends React.Component {
   }
 
   render() {
+    console.log(this.props.selectYear)
     var filteredData = [];
     //if a user selected a bar from the bar chart, filter table with rows of that year
     if (this.props.selectYear !== null) {
       filteredData = _.filter(
-        this.data,
+        Immutable.asMutable(this.props.publications),
         (pub) => parseInt(pub.year) === parseInt(this.props.selectYear)
       );
-      this.data = filteredData;
     } else {
       filteredData = Immutable.asMutable(this.props.publications);
     }
-
-
+    console.log(this.props.publications)
+    console.log(filteredData)
     const columns = [
       {
         Header: "Title",

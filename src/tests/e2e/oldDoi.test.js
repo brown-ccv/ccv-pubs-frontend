@@ -7,8 +7,8 @@ module.exports = {
       .waitForElementVisible('.App')
       .click('#AddPubButton')
       .waitForElementVisible('#kc-content')
-      .setValue('#username', "ccvpubs-test")
-      .setValue('#password', "test")
+      .setValue('#username', process.env.KEYCLOAK_TEST_USER)
+      .setValue('#password', process.env.KEYCLOAK_TEST_PASS)
       .click('input[type=submit]')
       .waitForElementVisible('#AddPub', time = 60000)
       .setValue('input[type = doi]', '10.1038/nphys1170')
@@ -25,5 +25,7 @@ module.exports = {
       .assert.containsText('.ReactTable .rt-tbody', "Measured Measurements")
     client.end();
   },
+
+
 
 }

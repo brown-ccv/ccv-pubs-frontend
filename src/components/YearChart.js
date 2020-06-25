@@ -29,13 +29,13 @@ export class YearChart extends Component {
             // console.log(view)
             // update the global state with the current mouseover
             view.addEventListener("click", (name, value) => {
-              console.log(isNaN(value.datum.xfield));
+              //console.log(isNaN(value.datum.xfield));
               console.log(value)
               if (value && value.datum.xfield && !isNaN(value.datum.xfield)) {
                 this.props.changeYear(value.datum.xfield);
-              } else {
+              } else if (value.datum.xfield && isNaN(value.datum.xfield)){
                 this.props.changeYear(null);
-              }
+              } 
             });
           });
       } catch (error) {
@@ -53,11 +53,13 @@ export class YearChart extends Component {
     console.log("update")
     console.log(this.data)
     this.data = Immutable.asMutable(this.props.publications, { deep: true });
-    this.embed();
+    if (!this.props.selectYear){
+      this.embed();
+    }
   }
 
   componentDidMount() {
-    //var data = Immutable.asMutable(this.props.publications);
+    this.data = Immutable.asMutable(this.props.publications, { deep: true });
     console.log("here")
     this.embed();
     
