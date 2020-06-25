@@ -9,6 +9,14 @@ import Spinner from "./Spinner";
 import Keycloak from "keycloak-js";
 import Form from "react-bootstrap/Form";
 
+let KEYCLOAK_USER =  {
+  realm : "ccv-shib",
+  url : "https://datasci.brown.edu/keycloak/auth/",
+  clientId: "ccvpubs-app-test"
+}
+if (process.env.NODE_ENV === "production")
+  KEYCLOAK_USER["clientId"] = "ccvpubs-app"
+
 export class AddPub extends Component {
   constructor(props) {
     super(props);
@@ -29,7 +37,8 @@ export class AddPub extends Component {
     this.props.changeLoading(false)
     if (!this.props.keycloak["authenticated"]) {
       var temp = Immutable.asMutable(this.props.keycloak, { deep: true });
-      const keycloak = Keycloak("../keycloak.json");
+      //pass an object instead of file(change client id )
+      const keycloak = Keycloak(KEYCLOAK_USER);
       keycloak
         .init({ onLoad: "login-required" })
         .then((authenticated) => {

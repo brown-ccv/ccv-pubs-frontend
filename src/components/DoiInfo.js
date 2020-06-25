@@ -126,6 +126,7 @@ export class DoiInfo extends Component {
               <Col sm={10}>
                 <Form.Control
                   type="doi"
+                  id = "doi"
                   required
                   placeholder="Enter DOI"
                   defaultValue={this.data["doi"]}
@@ -139,6 +140,7 @@ export class DoiInfo extends Component {
               </Form.Label>
               <Col sm={10}>
                 <Form.Control
+                  id = "month"
                   placeholder="Enter Month (ex. 5)"
                   defaultValue={this.data["month"]}
                   onChange={this.onTextChange.bind(this, "month")}
@@ -151,6 +153,7 @@ export class DoiInfo extends Component {
               </Form.Label>
               <Col sm={10}>
                 <Form.Control
+                  id = "year"
                   type="year"
                   placeholder="Enter Year (ex. 2000)"
                   defaultValue={this.data["year"]}

@@ -41,7 +41,7 @@ export class ContentPage extends Component {
       <div className = "ContentPage">
         <div align="right">
           <Link to="/addPub">
-            <Button variant="contained" color="primary">
+            <Button variant="contained" color="primary" id = "AddPubButton">
               Add a Publication
             </Button>
           </Link>

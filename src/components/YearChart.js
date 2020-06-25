@@ -30,6 +30,7 @@ export class YearChart extends Component {
             // update the global state with the current mouseover
             view.addEventListener("click", (name, value) => {
               console.log(isNaN(value.datum.xfield));
+              console.log(value)
               if (value && value.datum.xfield && !isNaN(value.datum.xfield)) {
                 this.props.changeYear(value.datum.xfield);
               } else {
