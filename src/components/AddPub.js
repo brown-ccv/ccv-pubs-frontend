@@ -112,6 +112,7 @@ export class AddPub extends Component {
 
     if (this.full) {
       this.props.changeLoading(true);
+      console.log(data["data"])
       this.props.postPubAction(dataObject);
     }
   }

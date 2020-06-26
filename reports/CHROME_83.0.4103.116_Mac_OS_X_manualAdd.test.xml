@@ -5,9 +5,9 @@
 
   <testsuite name="manualAdd.test"
     errors="0" failures="0" hostname="" id="" package="manualAdd.test" skipped="0"
-    tests="3" time="32.38" timestamp="">
+    tests="3" time="24.54" timestamp="">
   
-    <testcase name="Test Navigation through AddPub - manual add" classname="manualAdd.test" time="7.644" assertions="5">
+    <testcase name="Test Navigation through AddPub - manual add" classname="manualAdd.test" time="7.777" assertions="5">
 
     
 
@@ -20,7 +20,7 @@
     
     </testcase>
   
-    <testcase name="Test Navigation through AddPub - manual add in table" classname="manualAdd.test" time="14.05" assertions="7">
+    <testcase name="Test Navigation through AddPub - manual add in table" classname="manualAdd.test" time="9.674" assertions="7">
 
     
 
@@ -37,7 +37,7 @@
     
     </testcase>
   
-    <testcase name="Test Navigation through AddPub - manual add no title or doi" classname="manualAdd.test" time="10.68" assertions="5">
+    <testcase name="Test Navigation through AddPub - manual add no title or doi" classname="manualAdd.test" time="7.086" assertions="5">
 
     
 

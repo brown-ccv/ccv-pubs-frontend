@@ -5,9 +5,9 @@
 
   <testsuite name="AddPub.test"
     errors="0" failures="0" hostname="" id="" package="AddPub.test" skipped="0"
-    tests="3" time="30.38" timestamp="">
+    tests="3" time="27.20" timestamp="">
   
-    <testcase name="Test Navigation through keycloak to AddPub" classname="AddPub.test" time="7.615" assertions="3">
+    <testcase name="Test Navigation through keycloak to AddPub" classname="AddPub.test" time="5.899" assertions="3">
 
     
 
@@ -16,7 +16,7 @@
     
     </testcase>
   
-    <testcase name="Test Navigation through AddPub - logout" classname="AddPub.test" time="12.08" assertions="4">
+    <testcase name="Test Navigation through AddPub - logout" classname="AddPub.test" time="9.145" assertions="4">
 
     
 
@@ -27,7 +27,7 @@
     
     </testcase>
   
-    <testcase name="Test Navigation through AddPub - no info found for DOI" classname="AddPub.test" time="10.69" assertions="4">
+    <testcase name="Test Navigation through AddPub - no info found for DOI" classname="AddPub.test" time="12.15" assertions="4">
 
     
 

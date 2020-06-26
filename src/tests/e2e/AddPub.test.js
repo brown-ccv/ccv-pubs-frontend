@@ -39,7 +39,7 @@ module.exports = {
         .waitForElementVisible('#AddPub', time = 60000)
         .setValue('input[type = doi]', '2')
         .useXpath().click("//*[contains(text(),'Submit')]")    
-        .useCss().assert.containsText("#AddPub", "No Information Found")
+        .waitForElementVisible("//*[contains(text(),'No Information Found')]")
       client.end();
     },
     

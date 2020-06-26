@@ -5,9 +5,9 @@
 
   <testsuite name="filterChart.test"
     errors="0" failures="0" hostname="" id="" package="filterChart.test" skipped="0"
-    tests="1" time="4.949" timestamp="">
+    tests="1" time="3.267" timestamp="">
   
-    <testcase name="Test filtering of table and chart" classname="filterChart.test" time="4.949" assertions="12">
+    <testcase name="Test filtering of table and chart" classname="filterChart.test" time="3.267" assertions="12">
 
     
 

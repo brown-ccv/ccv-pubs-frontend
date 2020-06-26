@@ -5,9 +5,9 @@
 
   <testsuite name="newDoi.test"
     errors="0" failures="0" hostname="" id="" package="newDoi.test" skipped="0"
-    tests="1" time="9.689" timestamp="">
+    tests="1" time="8.050" timestamp="">
   
-    <testcase name="Test Navigation through AddPub - search new DOI" classname="newDoi.test" time="9.689" assertions="5">
+    <testcase name="Test Navigation through AddPub - search new DOI" classname="newDoi.test" time="8.050" assertions="5">
 
     
 
