@@ -280,7 +280,7 @@ export class AddPub extends Component {
                       Insert Edited Publication Information
                     </Button>
                   )}
-                  {this.props.manual && !this.full && (
+                  {!this.full && (
                     <p>Please enter at least DOI and Title</p>
                   )}
                   {this.props.manual && (
