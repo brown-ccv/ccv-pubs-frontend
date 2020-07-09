@@ -71,11 +71,15 @@ class Client {
     var url = `${SERVICE_ENDPOINT}/addpublications`;
     var response;
     var update;
-
+    //to make sure order is correct when sent to API
+    let dict = {data: newPub.data["data"], status: newPub.data["status"]}
     try {
       response = await fetch(url, {
         method: "POST",
-        body: JSON.stringify(newPub.data),
+        body: JSON.stringify(dict),
+        headers : {
+          "Authorization" : 'Bearer ' + newPub.token
+        }
       });
     } catch (error) {
       throw new Error(`Could not connect to server: ${error}`);

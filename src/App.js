@@ -16,12 +16,12 @@ class App extends Component {
         <Navbar />
         <div className="App">
           <BrowserRouter>
-          <div className = "main-content">
+          <main>
             <div className="AddPub">
               <Route path="/addpub" component={AddPub} />
             </div>
               <Route exact path="/" component={ContentPage} />
-              </div>
+              </main>
           </BrowserRouter>
           <Footer />
         </div>

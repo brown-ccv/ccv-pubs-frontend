@@ -3,6 +3,7 @@
   "autosize": "pad",
   "padding": 5,
   "height": 400,
+  "description": "Bar Chart of the years of publications",
   "title": {
     "text": {
       "signal": "changeTitle"

@@ -28,6 +28,7 @@ export class AddPub extends Component {
     this.doi = "";
     this.full = true;
     this.props.changeYear(null);
+    this.token = null;
   }
 
   componentDidMount() {
@@ -40,11 +41,13 @@ export class AddPub extends Component {
       var temp = Immutable.asMutable(this.props.keycloak, { deep: true });
       //pass an object instead of file(change client id )
       const keycloak = Keycloak(KEYCLOAK_USER);
+      
       keycloak
         .init({ onLoad: "login-required" })
         .then((authenticated) => {
           temp["keycloak"] = keycloak;
           temp["authenticated"] = authenticated;
+          this.token = keycloak["token"]
           this.props.changeKeycloak(temp);
           keycloak
             .loadUserProfile()
@@ -96,6 +99,7 @@ export class AddPub extends Component {
     var data = this.props.doiInfo;
     const dataObject = {
       data: data,
+      token: this.token
     };
 
     if (
