@@ -28,11 +28,11 @@ const Loader = ({ height, ...restProps }) => (
 );
 
 Loader.propTypes = {
-  height: PropTypes.number
+  height: PropTypes.number,
 };
 
 Loader.defaultProps = {
-  height: 250
+  height: 250,
 };
 
 export default Loader;

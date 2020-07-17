@@ -13,7 +13,6 @@ export class YearChart extends Component {
   }
 
   embed(){
-    console.log("embed")
     vegaEmbed("#yearChart", spec, {
       mode: "vega",
       actions: false,
@@ -26,10 +25,8 @@ export class YearChart extends Component {
           .runAsync()
           .then((view) => {
             this.updateView(view);
-            // console.log(view)
             // update the global state with the current mouseover
             view.addEventListener("click", (name, value) => {
-              //console.log(isNaN(value.datum.xfield));
               console.log(value)
               if (value && value.datum.xfield && !isNaN(value.datum.xfield)) {
                 this.props.changeYear(value.datum.xfield);
@@ -39,7 +36,7 @@ export class YearChart extends Component {
             });
           });
       } catch (error) {
-        console.log("OH NO - The Schedule Viz Broke!");
+        console.log("OH NO - The YearChart Viz Broke!");
         console.log(error);
       }
     });

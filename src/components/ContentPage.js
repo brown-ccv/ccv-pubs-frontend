@@ -8,27 +8,23 @@ import Spinner from "./Spinner";
 import PubsTable from "./PubsTable";
 import YearChart from "./YearChart";
 import WordCloud from "./WordCloud";
-import Button from 'react-bootstrap/Button'
+import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 
 export class ContentPage extends Component {
   constructor(props) {
     super(props);
-    console.log(this.props.publications.length)
     if (this.props.publications.length === 0) this.props.fetchData();
 
     if (this.props.ngrams.length === 0) this.props.fetchNgrams();
-
   }
-
-  
 
   render() {
     return (
-      <div className = "ContentPage">
+      <div className="ContentPage">
         <div align="right">
           <Link to="/addPub">
-            <Button variant="contained" color="primary" id = "AddPubButton">
+            <Button variant="contained" color="primary" id="AddPubButton">
               Add a Publication
             </Button>
           </Link>
@@ -41,27 +37,23 @@ export class ContentPage extends Component {
         </div>
 
         <Spinner loading={this.props.loading} className="spinner" size={100} />
-        
-        {!this.props.loading && !this.props.error &&
-        <div className = "PubsTable-CP">
-          <PubsTable publications={this.props.publications} />
-          </div>
-        }
-        
 
-        {(!this.props.loading && !this.props.error)&& (
-          <h3 className="word-cloud-title pt-4 mt-4">
-            {" "}
-            What are these publications all about?{" "}
-          </h3>
+        {!this.props.loading && !this.props.error && (
+          <div id="main-content">
+            <div className="PubsTable-CP">
+              <PubsTable publications={this.props.publications} />
+            </div>
+            <h3 className="word-cloud-title pt-4 mt-4">
+              {" "}
+              What are these publications all about?{" "}
+            </h3>
+            <div className="viz d-flex justify-content-center pt-5">
+              <WordCloud />
+              <YearChart />
+            </div>
+          </div>
         )}
-        <div className="viz d-flex justify-content-center pt-5">
-          
-          {(!this.props.loading && !this.props.error) && <WordCloud />}
-          
-          {(!this.props.loading && !this.props.error) && <YearChart />}
-        </div>
-        <div className = "error-text">
+        <div className="error-text">
           <h1>{this.props.error}</h1>
         </div>
       </div>

@@ -1,5 +1,0 @@
-{
-  "realm": "ccv-shib",
-  "auth-server-url": "https://datasci.brown.edu/keycloak/auth/",
-  "resource": "ccvpubs-app-test"
-}

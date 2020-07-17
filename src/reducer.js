@@ -11,12 +11,10 @@ export const initialState = Immutable({
   keycloak: {keycloak: null, authenticated: null, iscis: null, profile: null},
   doiFailure: false,
   addSuccess: false,
-  manual: false,
   pressed: false
 });
 
 export default function reduce(state = initialState, action = {}) {
-  console.log(action)
   switch (action.type) {
     case "CHANGE_DATA":
       if (action.data.length > 0 && state.ngrams.length > 0){
@@ -62,7 +60,6 @@ export default function reduce(state = initialState, action = {}) {
       });
     case "CHANGE_DOI_INFO":
       if(!state.error && state.pressed && action.data["status"] !== "empty"){
-        console.log("change with data")
         return state.merge({
           doiInfo: action.data,
           loading: false,
@@ -100,11 +97,6 @@ export default function reduce(state = initialState, action = {}) {
         }
       return state.merge({
         addSuccess: action.data,
-      });
-      case "UPDATE_MANUAL":
-        console.log(action.data)
-      return state.merge({
-        manual: action.data,
       });
       case "UPDATE_PRESSED":
         if(state.doiInfo["status"] === "empty" && !state.error){
@@ -150,7 +142,6 @@ export function getDoiInfo(state) {
 }
 
 export function getKeycloak(state) {
-  console.log(state.keycloak)
   return state.keycloak;
 }
 
@@ -160,10 +151,6 @@ export function getDoiFailure(state) {
 
 export function getAddSuccess(state){
   return state.addSuccess;
-}
-
-export function getManual(state){
-  return state.manual;
 }
 
 export function getPressed(state){

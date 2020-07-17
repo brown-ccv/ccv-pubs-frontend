@@ -126,7 +126,7 @@ export class DoiInfo extends Component {
               <Col sm={10}>
                 <Form.Control
                   type="doi"
-                  id = "doi"
+                  id="doi"
                   required
                   placeholder="Enter DOI"
                   defaultValue={this.data["doi"]}
@@ -140,7 +140,7 @@ export class DoiInfo extends Component {
               </Form.Label>
               <Col sm={10}>
                 <Form.Control
-                  id = "month"
+                  id="month"
                   placeholder="Enter Month (ex. 5)"
                   defaultValue={this.data["month"]}
                   onChange={this.onTextChange.bind(this, "month")}
@@ -153,7 +153,7 @@ export class DoiInfo extends Component {
               </Form.Label>
               <Col sm={10}>
                 <Form.Control
-                  id = "year"
+                  id="year"
                   type="year"
                   placeholder="Enter Year (ex. 2000)"
                   defaultValue={this.data["year"]}
@@ -193,7 +193,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    updateDoiInfo: (newPub) => dispatch(actions.changeDoiInfo(newPub))
+    updateDoiInfo: (newPub) => dispatch(actions.changeDoiInfo(newPub)),
   };
 }
 export default connect(mapStateToProps, mapDispatchToProps)(DoiInfo);

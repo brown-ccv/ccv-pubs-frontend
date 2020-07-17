@@ -13,7 +13,6 @@ class Client {
     var response;
     try {
       response = await fetch(url);
-      console.log(response)
     } catch (error) {
       throw new Error(`Could not connect to server: ${error}`);
     }
@@ -62,7 +61,6 @@ class Client {
       throw new Error(`Could not connect to server: ${error}`);
     }
     data = await response.json();
-    console.log(data);
     return data;
   }
 
@@ -72,14 +70,14 @@ class Client {
     var response;
     var update;
     //to make sure order is correct when sent to API
-    let dict = {data: newPub.data["data"], status: newPub.data["status"]}
+    let dict = { data: newPub.data["data"], status: newPub.data["status"] };
     try {
       response = await fetch(url, {
         method: "POST",
         body: JSON.stringify(dict),
-        headers : {
-          "Authorization" : 'Bearer ' + newPub.token
-        }
+        headers: {
+          Authorization: "Bearer " + newPub.token,
+        },
       });
     } catch (error) {
       throw new Error(`Could not connect to server: ${error}`);
@@ -90,7 +88,6 @@ class Client {
     }
 
     update = await response.json();
-    console.log(update);
     return update;
   }
 }

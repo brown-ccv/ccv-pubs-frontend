@@ -18,13 +18,13 @@ export class PubsTable extends React.Component {
 
   filterCaseInsensitive(filter, row) {
     const id = filter.pivotId || filter.id;
-    return (row[id] !== undefined && row[id] !== null)
+    return row[id] !== undefined && row[id] !== null
       ? String(row[id].toLowerCase()).includes(filter.value.toLowerCase())
       : false;
   }
 
   render() {
-    console.log(this.props.selectYear)
+    console.log(this.props.selectYear);
     var filteredData = [];
     //if a user selected a bar from the bar chart, filter table with rows of that year
     if (this.props.selectYear !== null) {
@@ -35,8 +35,8 @@ export class PubsTable extends React.Component {
     } else {
       filteredData = Immutable.asMutable(this.props.publications);
     }
-    console.log(this.props.publications)
-    console.log(filteredData)
+    console.log(this.props.publications);
+    console.log(filteredData);
     const columns = [
       {
         Header: "Title",
@@ -60,7 +60,6 @@ export class PubsTable extends React.Component {
         filterable: false,
       },
     ];
-
 
     return (
       <ReactTable
