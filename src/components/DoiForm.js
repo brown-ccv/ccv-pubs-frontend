@@ -9,10 +9,7 @@ import * as actions from "../actions";
 
 
 export class DoiForm extends Component {
-    constructor(props) {
-        super(props);
-    }
-
+    
     /**
    * When a user submits a DOI for fetch from CrossRef API. Erases
    * current DOI info if there is any and requests info.
@@ -71,26 +68,17 @@ function mapStateToProps(state) {
     return {
       doiInfo: selectors.getDoiInfo(state),
       loading: selectors.getLoading(state),
-      error: selectors.getError(state),
-      keycloak: selectors.getKeycloak(state),
-      doiFailure: selectors.getDoiFailure(state),
-      addSuccess: selectors.getAddSuccess(state),
-      pressed: selectors.getPressed(state),
     };
   }
   
   function mapDispatchToProps(dispatch) {
     return {
-      postPubAction: (newPub) => dispatch(actions.postPubAction(newPub)),
       requestDoiInfo: (newPub) => dispatch(actions.requestDoiInfo(newPub)),
       changeLoading: (val) => dispatch(actions.changeLoading(val)),
-      changeKeycloak: (val) => dispatch(actions.changeKeycloak(val)),
       changeDoiInfo: (val) => dispatch(actions.changeDoiInfo(val)),
       setFailure: (val) => dispatch(actions.changeDoiFailure(val)),
       changeError: (val) => dispatch(actions.changeError(val)),
-      changeAddSuccess: (val) => dispatch(actions.changeAddSuccess(val)),
       changePressed: (val) => dispatch(actions.changePressed(val)),
-      changeYear: (val) => dispatch(actions.changeYear(val)),
     };
   }
 

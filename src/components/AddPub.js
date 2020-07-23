@@ -7,9 +7,9 @@ import Immutable from "seamless-immutable";
 import DoiInfo from "./DoiInfo";
 import Spinner from "./Spinner";
 import Keycloak from "keycloak-js";
-import Form from "react-bootstrap/Form";
 import DoiForm from "./DoiForm";
 import StaticButtons from "./StaticButtons"
+import SuccessScreen from "./SuccessScreen";
 
 let KEYCLOAK_USER = {
   realm: "ccv-shib",
@@ -21,7 +21,6 @@ if (process.env.NODE_ENV === "production")
 
 export class AddPub extends Component {
   constructor(props) {
-    console.log("constructor");
     super(props);
     const newDoiInfo = {
       data: {},
@@ -46,7 +45,6 @@ export class AddPub extends Component {
   }
 
   componentDidMount() {
-    console.log("mount");
     /**
      * User is authenticated as a member of CIS when routed to AddPub component. User is
      * only authenticated once when using the app, unless they have logged out.
@@ -262,59 +260,16 @@ export class AddPub extends Component {
                         />
                       </div>
                     )}
-                    <br /> <br />
+                    {/* <br /> <br /> */}
                     <p>OR</p>
-                    {/* {!this.state.manual && (
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={(event) => this.onManual(event)}
-                      >
-                        Enter Manually
-                      </Button>
-                    )}
-                    {this.state.manual && (
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={(event) => this.onDOI(event)}
-                      >
-                        Enter DOI
-                      </Button>
-                    )}
-                    <div className="divider" />
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      onClick={(event) => this.onCancel(event)}
-                    >
-                      Back to Home
-                    </Button> */}
+                    <StaticButtons onDOI = {this.onDOI} manual = {this.state.manual} onCancel = {this.onCancel} onManual = {this.onManual}/>
+                <br/>
                   </div>
                 )}
-                <StaticButtons onDOI = {this.onDOI} manual = {this.state.manual} onCancel = {this.onCancel} onManual = {this.onManual}>
-                </StaticButtons>
+                
 
                 {this.props.addSuccess && (
-                  <div>
-                    <h1>Success!</h1>
-                    <br />
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      onClick={(event) => this.onDOI(event)}
-                    >
-                      Insert Another Publication
-                    </Button>
-                    <div className="divider" />
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      onClick={(event) => this.onCancel(event)}
-                    >
-                      Back to Home
-                    </Button>
-                  </div>
+                  <SuccessScreen onDOI = {this.onDOI} onCancel = {this.onCancel}/>
                 )}
               </div>
             );

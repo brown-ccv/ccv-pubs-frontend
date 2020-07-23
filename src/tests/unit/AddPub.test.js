@@ -1,18 +1,10 @@
 import React from "react";
 import { AddPub } from "../../components/AddPub";
-import { shallow } from "enzyme";
+import { shallow, mount } from "enzyme";
 import { expressionFunction } from "vega";
 import { MemoryRouter } from 'react-router-dom';
 
 
-// const mockHistoryPush = jest.fn();
-
-// jest.mock('react-router-dom', () => ({
-//   ...jest.requireActual('react-router-dom'),
-//   useHistory: () => ({
-//     push: mockHistoryPush,
-//   }),
-// }));
 let setFailure = jest.fn()
 let requestDoiInfo =jest.fn()
  let   postPubAction = jest.fn()
@@ -23,6 +15,7 @@ let requestDoiInfo =jest.fn()
   let  changeAddSuccess = jest.fn()
   let  changeManual = jest.fn()
    let changePressed = jest.fn()
+   let changeYear = jest.fn()
    const historyMock = { push: jest.fn() };
 
 
@@ -46,7 +39,7 @@ function shallowSetup() {
     changeAddSuccess : changeAddSuccess,
     changeManual :changeManual,
     changePressed : changePressed,
-
+    changeYear: changeYear,
   };
   let wrapper = shallow(<AddPub {...props} history={historyMock}/>);
   return {
@@ -88,6 +81,7 @@ function shallowSetupManual() {
       changeAddSuccess : changeAddSuccess,
       changeManual :changeManual,
       changePressed : changePressed,
+      changeYear: changeYear,
   
     };
     let wrapper = shallow(<AddPub {...props} history={historyMock}/>);
@@ -117,7 +111,7 @@ function shallowSetupManual() {
       changeAddSuccess : changeAddSuccess,
       changeManual :changeManual,
       changePressed : changePressed,
-  
+      changeYear: changeYear,
     };
     let wrapper = shallow(<AddPub {...props} history={historyMock}/>);
     return {
@@ -146,7 +140,7 @@ function shallowSetupManual() {
       changeAddSuccess : changeAddSuccess,
       changeManual :changeManual,
       changePressed : changePressed,
-  
+      changeYear: changeYear,
     };
     let wrapper = shallow(<AddPub {...props} history={historyMock}/>);
     return {
@@ -175,9 +169,42 @@ function shallowSetupManual() {
       changeAddSuccess : changeAddSuccess,
       changeManual :changeManual,
       changePressed : changePressed,
+      changeYear: changeYear,
+
   
     };
     let wrapper = shallow(<AddPub {...props} history={historyMock}/>);
+    return {
+      props,
+      wrapper,
+    };
+  }
+
+  function deepSetup() {
+    let props = {
+      doiInfo: { data: {}, status: "empty" },
+      loading: false,
+      error: null,
+      keycloak: {keycloak: null, authenticated: null, iscis: null, profile: null},
+      doiFailure: true,
+      addSuccess: false,
+      manual: false,
+      pressed:false,
+      requestDoiInfo :requestDoiInfo,
+      postPubAction : postPubAction,
+      changeLoading : changeLoading,
+      changeKeycloak : changeKeycloak,
+      changeDoiInfo : changeDoiInfo,
+      setFailure : setFailure,
+      changeError :  changeError ,
+      changeAddSuccess : changeAddSuccess,
+      changeManual :changeManual,
+      changePressed : changePressed,
+      changeYear: changeYear,
+
+  
+    };
+    let wrapper = mount(<AddPub {...props} history={historyMock}/>);
     return {
       props,
       wrapper,
@@ -242,16 +269,10 @@ describe("AddPub Render Tests", () => {
         })
 
     it("renders with body", ()=>{
-        let form = wrapper.find('.doi-width')
-        console.log(form.props())
-        expect(form.find('FormGroup').props().controlId).toBe("doientry")
-        expect(form.find('FormLabel').text()).toBe("Please enter a DOI or DOI URL")
-        expect(form.find('FormControl').props().type).toBe("doi")
-        expect(form.find('Button').text()).toBe("Submit")
-        expect(form.find("DoiInfo").exists()).toBe(false)
+        expect(wrapper.find("Connect(DoiForm)").exists()).toBe(true)
         expect(wrapper.find('p').text()).toBe("OR")
-        expect(wrapper.find('Button').at(2).text()).toBe("Enter Manually")
-        expect(wrapper.find('Button').at(3).text()).toBe("Back to Home")
+        expect(wrapper.find("StaticButtons").exists()).toBe(true)
+
 
         })
 
@@ -262,8 +283,8 @@ describe("AddPub Button Functionality", () => {
     let wrapper; 
     let props;
     beforeEach(() => {
-        wrapper = shallowSetup()["wrapper"]
-        props = shallowSetup()["props"]
+      wrapper = shallowSetup()["wrapper"]
+      props = shallowSetup()["props"]
         wrapper.setProps({keycloak: {keycloak: {id: "test", logout: jest.fn()}, authenticated: true, iscis: true, profile: "abc123"}})     
         props["keycloak"] = {keycloak: {id: "test", logout: jest.fn()}, authenticated: true, iscis: true, profile: "abc123"}
     });
@@ -276,41 +297,16 @@ describe("AddPub Button Functionality", () => {
         button.simulate('click');
         expect(setFailure.mock.calls.length).toBe(1);
         expect(changeDoiInfo).toHaveBeenCalled();
-        expect(changeManual.mock.calls.length).toBe(1);
-        expect(changeAddSuccess.mock.calls.length).toBe(1);
-        expect(historyMock.push.mock.calls.length).toBe(1);
-    })
-    it("tests Logout Button", () => {
-        let Navbar = wrapper.find('div').children().at(0)
-        let button = Navbar.find('NavItem').children().at(0)
-        button.simulate('click');
-        expect(setFailure.mock.calls.length).toBe(1);
-        expect(changeDoiInfo).toHaveBeenCalled();
-        expect(changeManual.mock.calls.length).toBe(1);
+        expect(props.manual).toBe(false);
         expect(changeAddSuccess.mock.calls.length).toBe(1);
         expect(historyMock.push.mock.calls.length).toBe(1);
     })
 
-    it("tests Submit Button", () => {
-        const event = Object.assign(jest.fn(), {preventDefault: () => {}})
-        let button = wrapper.find("Button").at(1)
-        button.simulate('click', event);
-        expect(setFailure.mock.calls.length).toBe(1)
-        expect(setFailure).toHaveBeenCalledWith(false)
-        expect(changeDoiInfo).toHaveBeenCalledWith({
-            data: {},
-            status: "empty",
-          })
-          expect(changePressed).toHaveBeenCalledWith(true)
-          expect(changeLoading).toHaveBeenCalledWith(true)
-          expect(changeManual).toHaveBeenCalledWith(false)
-          expect(changeError).toHaveBeenCalledWith(null)
-    })
+    
 
     it("tests Enter Manual Button", () => {
         const event = Object.assign(jest.fn(), {preventDefault: () => {}})
-        let button = wrapper.find("Button").at(2)
-        button.simulate('click', event);
+       wrapper.find('StaticButtons').props().onManual()
         expect(setFailure.mock.calls.length).toBe(1)
         expect(setFailure).toHaveBeenCalledWith(false)
         expect(changeDoiInfo).toHaveBeenCalledWith({
@@ -327,8 +323,8 @@ describe("AddPub Button Functionality", () => {
             },
             status: "empty",
           })
-        expect(changeManual.mock.calls.length).toBe(1)
-        expect(changeManual).toHaveBeenCalledWith(true)
+        expect(wrapper.state('manual')).toBe(true)
+    
     })
 
 
@@ -338,16 +334,15 @@ describe("AddPub Button Functionality", () => {
         wrapper.setProps({keycloak: {keycloak: {id: "test", logout: jest.fn()}, authenticated: true, iscis: true, profile: "abc123"}})     
         props["keycloak"] = {keycloak: {id: "test", logout: jest.fn()}, authenticated: true, iscis: true, profile: "abc123"}
         const event = Object.assign(jest.fn(), {preventDefault: () => {}})
-        let button = wrapper.find("Button").at(2)
-        button.simulate('click', event);
+        wrapper.find('StaticButtons').props().onDOI()
         expect(setFailure.mock.calls.length).toBe(1)
         expect(setFailure).toHaveBeenCalledWith(false)
         expect(changeDoiInfo).toHaveBeenCalledWith({
             data: {},
             status: "empty",
           })
-        expect(changeManual).toHaveBeenCalledWith(false)
-        expect(changeAddSuccess).toHaveBeenCalledWith(false)
+          expect(wrapper.state('manual')).toBe(false)
+          expect(changeAddSuccess).toHaveBeenCalledWith(false)
 
     })
 
@@ -357,14 +352,13 @@ describe("AddPub Button Functionality", () => {
         wrapper.setProps({keycloak: {keycloak: {id: "test", logout: jest.fn()}, authenticated: true, iscis: true, profile: "abc123"}})     
         props["keycloak"] = {keycloak: {id: "test", logout: jest.fn()}, authenticated: true, iscis: true, profile: "abc123"}
         const event = Object.assign(jest.fn(), {preventDefault: () => {}})
-        let button = wrapper.find("Button").at(3)
-        button.simulate('click', event);
+        wrapper.find('StaticButtons').props().onCancel()
         expect(setFailure).toHaveBeenCalledWith(false)
         expect(changeDoiInfo).toHaveBeenCalledWith({
             data: {},
             status: "empty",
           })
-        expect(changeManual).toHaveBeenCalledWith(false)
+          expect(wrapper.state('manual')).toBe(false)
         expect(changeAddSuccess).toHaveBeenCalledWith(false)
 
     })
@@ -375,9 +369,9 @@ describe("AddPub Button Functionality", () => {
         wrapper.setProps({keycloak: {keycloak: {id: "test", logout: jest.fn()}, authenticated: true, iscis: true, profile: "abc123"}})     
         props["keycloak"] = {keycloak: {id: "test", logout: jest.fn()}, authenticated: true, iscis: true, profile: "abc123"}
         const event = Object.assign(jest.fn(), {preventDefault: () => {}})
+        wrapper.setState({ manual: true });
         let button = wrapper.find("Button").at(1)
         button.simulate('click', event);
-        console.log(props)
         expect(wrapper.find('p').at(0).text()).toBe("Please enter at least DOI and Title")
         const data = {
             data: {
@@ -414,6 +408,7 @@ describe("ManualAdd Render Test", () => {
         props = shallowSetupManual()["props"]
         wrapper.setProps({keycloak: {keycloak: {id: "test", logout: jest.fn()}, authenticated: true, iscis: true, profile: "abc123"}})     
         props["keycloak"] = {keycloak: {id: "test", logout: jest.fn()}, authenticated: true, iscis: true, profile: "abc123"}
+        wrapper.setState({manual: true})
         props["doiInfo"] = {
             data: {
               title: null,
@@ -434,7 +429,6 @@ describe("ManualAdd Render Test", () => {
     });
     it('renders blank DoiInfo', () => {
         expect(wrapper.find("Connect(DoiInfo)").exists()).toBe(true)
-        expect(wrapper.find("Button").at(2).text()).toBe("Enter DOI")
     })
 })
 
@@ -452,7 +446,6 @@ describe("Old Doi Render Test", () => {
 
         it('renders blank DoiInfo', () => {
             expect(wrapper.find("Connect(DoiInfo)").exists()).toBe(true)
-            expect(wrapper.find('Button').at(2).text()).toBe('Insert Edited Publication Information')
         })
 
     })
@@ -471,7 +464,7 @@ describe("Old Doi Render Test", () => {
     
             it('renders DoiInfo', () => {
                 expect(wrapper.find("Connect(DoiInfo)").exists()).toBe(true)
-                expect(wrapper.find('Button').at(2).text()).toBe('Continue with Submission')
+                expect(wrapper.find('Button').at(1).text()).toBe('Continue with Submission')
             })
     
         })

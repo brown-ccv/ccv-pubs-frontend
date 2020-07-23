@@ -1,13 +1,7 @@
 import React, { Component } from "react";
-import Form from "react-bootstrap/Form";
-import Spinner from "./Spinner";
 import { Button } from "react-bootstrap";
-import { connect } from "react-redux";
-import * as selectors from "../reducer";
-import Immutable from "seamless-immutable";
-import * as actions from "../actions";
 
-export class StaticButtons extends Component {
+export default class StaticButtons extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -58,32 +52,3 @@ onManual = (event) => {
     );
   }
 }
-
-function mapStateToProps(state) {
-  return {
-    doiInfo: selectors.getDoiInfo(state),
-    loading: selectors.getLoading(state),
-    error: selectors.getError(state),
-    keycloak: selectors.getKeycloak(state),
-    doiFailure: selectors.getDoiFailure(state),
-    addSuccess: selectors.getAddSuccess(state),
-    pressed: selectors.getPressed(state),
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    postPubAction: (newPub) => dispatch(actions.postPubAction(newPub)),
-    requestDoiInfo: (newPub) => dispatch(actions.requestDoiInfo(newPub)),
-    changeLoading: (val) => dispatch(actions.changeLoading(val)),
-    changeKeycloak: (val) => dispatch(actions.changeKeycloak(val)),
-    changeDoiInfo: (val) => dispatch(actions.changeDoiInfo(val)),
-    setFailure: (val) => dispatch(actions.changeDoiFailure(val)),
-    changeError: (val) => dispatch(actions.changeError(val)),
-    changeAddSuccess: (val) => dispatch(actions.changeAddSuccess(val)),
-    changePressed: (val) => dispatch(actions.changePressed(val)),
-    changeYear: (val) => dispatch(actions.changeYear(val)),
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(StaticButtons);
