@@ -27,7 +27,6 @@ export class YearChart extends Component {
             this.updateView(view);
             // update the global state with the current mouseover
             view.addEventListener("click", (name, value) => {
-              console.log(value)
               if (value && value.datum.xfield && !isNaN(value.datum.xfield)) {
                 this.props.changeYear(value.datum.xfield);
               } else if (value.datum.xfield && isNaN(value.datum.xfield)){
@@ -37,7 +36,6 @@ export class YearChart extends Component {
           });
       } catch (error) {
         console.log("OH NO - The YearChart Viz Broke!");
-        console.log(error);
       }
     });
   }
@@ -47,8 +45,6 @@ export class YearChart extends Component {
   }
 
   componentDidUpdate(){
-    console.log("update")
-    console.log(this.data)
     this.data = Immutable.asMutable(this.props.publications, { deep: true });
     if (!this.props.selectYear){
       this.embed();
@@ -57,7 +53,6 @@ export class YearChart extends Component {
 
   componentDidMount() {
     this.data = Immutable.asMutable(this.props.publications, { deep: true });
-    console.log("here")
     this.embed();
     
   }

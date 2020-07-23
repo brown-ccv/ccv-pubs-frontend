@@ -11,7 +11,6 @@ export class WordCloud extends Component {
 
     this.view = null;
     this.data = Immutable.asMutable(this.props.ngrams, { deep: true });
-    console.log(Immutable.isImmutable(this.data));
   }
 
   embed() {
@@ -31,7 +30,6 @@ export class WordCloud extends Component {
             .run();
         } catch (error) {
           console.log("OH NO - The Word Cloud Viz Broke!");
-          console.log(error);
         }
       })
       .catch((error) => console.log(error));
@@ -46,7 +44,6 @@ export class WordCloud extends Component {
   }
 
   componentDidUpdate() {
-    //this.data = Immutable.asMutable(this.props.ngrams, { deep: true });
     this.embed();
   }
   render() {

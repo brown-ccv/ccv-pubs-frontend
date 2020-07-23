@@ -8,7 +8,7 @@ import DoiInfo from "./DoiInfo";
 import Spinner from "./Spinner";
 import Keycloak from "keycloak-js";
 import DoiForm from "./DoiForm";
-import StaticButtons from "./StaticButtons"
+import StaticButtons from "./StaticButtons";
 import SuccessScreen from "./SuccessScreen";
 
 let KEYCLOAK_USER = {
@@ -39,9 +39,9 @@ export class AddPub extends Component {
       iscis: null,
       profile: null,
     };
-    this.onManual = this.onManual.bind(this)
-    this.onCancel = this.onCancel.bind(this)
-    this.onDOI = this.onDOI.bind(this)
+    this.onManual = this.onManual.bind(this);
+    this.onCancel = this.onCancel.bind(this);
+    this.onDOI = this.onDOI.bind(this);
   }
 
   componentDidMount() {
@@ -262,14 +262,18 @@ export class AddPub extends Component {
                     )}
                     {/* <br /> <br /> */}
                     <p>OR</p>
-                    <StaticButtons onDOI = {this.onDOI} manual = {this.state.manual} onCancel = {this.onCancel} onManual = {this.onManual}/>
-                <br/>
+                    <StaticButtons
+                      onDOI={this.onDOI}
+                      manual={this.state.manual}
+                      onCancel={this.onCancel}
+                      onManual={this.onManual}
+                    />
+                    <br />
                   </div>
                 )}
-                
 
                 {this.props.addSuccess && (
-                  <SuccessScreen onDOI = {this.onDOI} onCancel = {this.onCancel}/>
+                  <SuccessScreen onDOI={this.onDOI} onCancel={this.onCancel} />
                 )}
               </div>
             );

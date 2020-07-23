@@ -22,7 +22,6 @@ export class DoiInfo extends Component {
         this.data[value] = "";
       }
     }
-    //console.log(this.data);
   }
 
   /**

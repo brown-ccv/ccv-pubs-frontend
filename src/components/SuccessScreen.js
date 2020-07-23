@@ -6,17 +6,16 @@ export default class SuccessScreen extends Component {
   //   super(props);
   // }
 
-onDOI = (event) => {
-    this.props.onDOI(event)
-}
-onCancel = (event) => {
-    this.props.onCancel(event)
-}
-
+  onDOI = (event) => {
+    this.props.onDOI(event);
+  };
+  onCancel = (event) => {
+    this.props.onCancel(event);
+  };
 
   render() {
     return (
-        <div className="success-screen">
+      <div className="success-screen">
         <h1>Success!</h1>
         <br />
         <Button
@@ -38,4 +37,3 @@ onCancel = (event) => {
     );
   }
 }
-

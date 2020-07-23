@@ -7,10 +7,8 @@ import * as selectors from "../reducer";
 import Immutable from "seamless-immutable";
 import * as actions from "../actions";
 
-
 export class DoiForm extends Component {
-    
-    /**
+  /**
    * When a user submits a DOI for fetch from CrossRef API. Erases
    * current DOI info if there is any and requests info.
    */
@@ -65,21 +63,21 @@ export class DoiForm extends Component {
 }
 
 function mapStateToProps(state) {
-    return {
-      doiInfo: selectors.getDoiInfo(state),
-      loading: selectors.getLoading(state),
-    };
-  }
-  
-  function mapDispatchToProps(dispatch) {
-    return {
-      requestDoiInfo: (newPub) => dispatch(actions.requestDoiInfo(newPub)),
-      changeLoading: (val) => dispatch(actions.changeLoading(val)),
-      changeDoiInfo: (val) => dispatch(actions.changeDoiInfo(val)),
-      setFailure: (val) => dispatch(actions.changeDoiFailure(val)),
-      changeError: (val) => dispatch(actions.changeError(val)),
-      changePressed: (val) => dispatch(actions.changePressed(val)),
-    };
-  }
+  return {
+    doiInfo: selectors.getDoiInfo(state),
+    loading: selectors.getLoading(state),
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    requestDoiInfo: (newPub) => dispatch(actions.requestDoiInfo(newPub)),
+    changeLoading: (val) => dispatch(actions.changeLoading(val)),
+    changeDoiInfo: (val) => dispatch(actions.changeDoiInfo(val)),
+    setFailure: (val) => dispatch(actions.changeDoiFailure(val)),
+    changeError: (val) => dispatch(actions.changeError(val)),
+    changePressed: (val) => dispatch(actions.changePressed(val)),
+  };
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(DoiForm);

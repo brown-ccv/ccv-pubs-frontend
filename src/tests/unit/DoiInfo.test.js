@@ -340,8 +340,17 @@ describe("DoiInfo Component Tests", () => {
 
       // Since we simulated a change to an input field, the handleFieldChange event handler should be called.
       expect(updateDoiInfo.mock.calls.length).toBe(9);
-      expect(updateDoiInfo.mock.calls[0][0]["data"]).toEqual({abstract: "This is a test", author: "Changed Author", doi: "10.1038/nphys1170", month: 10, publisher: "Changed Publisher", title: "Changed Title", url: "www.test.com", volume: 5, year: 2000});
-
+      expect(updateDoiInfo.mock.calls[0][0]["data"]).toEqual({
+        abstract: "This is a test",
+        author: "Changed Author",
+        doi: "10.1038/nphys1170",
+        month: 10,
+        publisher: "Changed Publisher",
+        title: "Changed Title",
+        url: "www.test.com",
+        volume: 5,
+        year: 2000,
+      });
     });
 
     // describe('Submit edits', () => {

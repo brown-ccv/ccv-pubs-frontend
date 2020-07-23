@@ -5,19 +5,19 @@ export default class StaticButtons extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        manual: this.props.manual
-    }
+      manual: this.props.manual,
+    };
   }
 
-onDOI = (event) => {
-    this.props.onDOI(event)
-}
-onCancel = (event) => {
-    this.props.onCancel(event)
-}
-onManual = (event) => {
-    this.props.onManual(event)
-}
+  onDOI = (event) => {
+    this.props.onDOI(event);
+  };
+  onCancel = (event) => {
+    this.props.onCancel(event);
+  };
+  onManual = (event) => {
+    this.props.onManual(event);
+  };
 
   render() {
     return (
