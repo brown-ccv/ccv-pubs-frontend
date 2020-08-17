@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ccvpubs-front
+  namespace: ccvpubs-front
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ccvpubs-front
+  template:
+    metadata:
+      labels:
+        app: ccvpubs-front
+    spec:
+      containers:
+      - name: keycloak
+        image: dtr.services.brown.edu/cis/ccv-pubs-frontend:latest
+        ports:
+        - containerPort: 8080
+        env:
+        - name: KEYCLOAK_USER
+          value: admin
+        - name: KEYCLOAK_PASSWORD
+          value: admin
+        - name: PROXY_ADDRESS_FORWARDING
+          value: "true"
+        volumeMounts:
+        - mountPath: /opt/jboss/keycloak/standalone/data
+          name: keycloak-volume
+      imagePullSecrets:
+      - name: regcred
+      nodeSelector:
+        node-role.kubernetes.io/worker: "true"
+        proddmz: "true"
+      tolerations:
+      - key: "env"
+        operator: "Equal"
+        value: "prod"
+        effect: "NoSchedule"
+      - key: "location"
+        operator: "Equal"
+        value: "dmz"
+        effect: "NoSchedule"
+      volumes:
+      - name: keycloak-volume
+        persistentVolumeClaim:
+          claimName: keycloak-pv-claim
+     
