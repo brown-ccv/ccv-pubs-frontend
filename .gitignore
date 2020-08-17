@@ -9,6 +9,7 @@ node_modules
 /coverage
 chromedriver.log
 /reports
+/tests_output
 
 # production
 /build
