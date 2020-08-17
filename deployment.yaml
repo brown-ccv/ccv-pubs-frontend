@@ -14,12 +14,14 @@ spec:
         app: ccvpubs-front
     spec:
       containers:
-      - name: keycloak
+      - name: ccvpubs-front
         image: dtr.services.brown.edu/cis/ccv-pubs-frontend:latest
         ports:
         - containerPort: 8080
+      #not sure what to do here
       imagePullSecrets:
       - name: regcred
+      ########
       nodeSelector:
         node-role.kubernetes.io/worker: "true"
         proddmz: "true"
