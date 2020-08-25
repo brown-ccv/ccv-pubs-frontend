@@ -1,4 +1,4 @@
-.ReactTable{
+.ReactTable {
   border: $yellow !important;
   font-family: Circular-Book, Arial, Helvetica, sans-serif !important;
 }
@@ -15,24 +15,22 @@
 .ReactTable .rt-thead.-header {
   box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 1) !important;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2) !important;
-
 }
 
 .ReactTable .rt-thead.-filters {
-  border-bottom:1px solid rgba(0, 0, 0, 0) !important
+  border-bottom: 1px solid rgba(0, 0, 0, 0) !important;
 }
 
-
 .pub-title {
-  color: 'black';
+  color: "black";
   font-size: 2rem;
   height: 4rem;
   width: 4rem;
   font-family: Circular-Book, Arial, Helvetica, sans-serif !important;
 }
 
-.word-cloud-title{
-  color: 'black';
+.word-cloud-title {
+  color: "black";
   font-size: 50px;
   font-family: Circular-Book, Arial, Helvetica, sans-serif !important;
 }

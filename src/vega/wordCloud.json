@@ -6,30 +6,30 @@
       "encode": {
         "update": {
           "fillOpacity": [
-            {"test": "indexof(datum.pubs, hoverID) > 0", "value": 1},
-            {"value": 0.3}
+            { "test": "indexof(datum.pubs, hoverID) > 0", "value": 1 },
+            { "value": 0.3 }
           ]
         },
-        "hover": {"fillOpacity": {"value": 1}},
-        "click": {"fillOpacity": {"value": 1}},
+        "hover": { "fillOpacity": { "value": 1 } },
+        "click": { "fillOpacity": { "value": 1 } },
         "enter": {
-          "text": {"field": "word"},
-          "baseline": {"value": "alphabetic"},
-          "fill": {"field": "freq", "scale": "color"},
-          "align": {"value": "center"}
+          "text": { "field": "word" },
+          "baseline": { "value": "alphabetic" },
+          "fill": { "field": "freq", "scale": "color" },
+          "align": { "value": "center" }
         }
       },
-      "from": {"data": "table"},
+      "from": { "data": "table" },
       "type": "text",
       "transform": [
         {
           "padding": 2,
           "fontSizeRange": [12, 56],
           "font": "Helvetica Neue, Arial",
-          "size": [{"signal": "width"}, {"signal": "height"}],
-          "text": {"field": "text"},
+          "size": [{ "signal": "width" }, { "signal": "height" }],
+          "text": { "field": "text" },
           "type": "wordcloud",
-          "fontSize": {"field": "datum.freq"}
+          "fontSize": { "field": "datum.freq" }
         }
       ]
     }
@@ -37,18 +37,17 @@
   "data": [
     {
       "name": "table"
-      
     }
   ],
   "scales": [
     {
       "name": "color",
-      "range": {"scheme": "purpleblue"},
-      "domain": {"data": "table", "field": "freq"},
+      "range": { "scheme": "purpleblue" },
+      "domain": { "data": "table", "field": "freq" },
       "type": "log"
     }
   ],
   "width": 700,
-  "signals": [{"name": "hoverID", "value": 0}],
+  "signals": [{ "name": "hoverID", "value": 0 }],
   "config": {}
 }

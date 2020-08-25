@@ -83,7 +83,11 @@ class Client {
       throw new Error(`Could not connect to server: ${error}`);
     }
 
-    if (!response.ok) {
+    if (response.status === 304) {
+      alert(
+        "Could not refresh publication data. Added publication may not be viewed in the table, but is still in the database. Try to refresh page."
+      );
+    } else if (!response.ok) {
       throw new Error(`Publication was not able to be added to database.`);
     }
 

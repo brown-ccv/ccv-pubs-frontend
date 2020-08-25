@@ -39,7 +39,8 @@
           "expr": "select ? select.xfield == datum.year : datum"
         },
         {
-          "type": "collect", "sort": {
+          "type": "collect",
+          "sort": {
             "field": ["year", "int_month"],
             "order": ["ascending", "ascending"]
           }
@@ -52,18 +53,10 @@
       "transform": [
         {
           "type": "aggregate",
-          "groupby": [
-            "xfield"
-          ],
-          "ops": [
-            "count"
-          ],
-          "fields": [
-            null
-          ],
-          "as": [
-            "__count"
-          ]
+          "groupby": ["xfield"],
+          "ops": ["count"],
+          "fields": [null],
+          "as": ["__count"]
         }
       ]
     }
@@ -97,7 +90,7 @@
     },
     {
       "name": "changeTitle",
-      "value" : "Number of Publications vs Year",
+      "value": "Number of Publications vs Year",
       "update": "select ? 'Number of Publications vs Month' + ' (' + select.xfield + ')' : 'Number of Publications vs Year'"
     }
   ],
@@ -105,9 +98,7 @@
     {
       "name": "marks",
       "type": "rect",
-      "style": [
-        "bar"
-      ],
+      "style": ["bar"],
       "from": {
         "data": "data_0"
       },
@@ -199,31 +190,31 @@
       "labels": true
     },
     {
-       "scale": "y",
-       "orient": "left",
-       "grid": false,
-       "title": "Count of Records",
-       "labelOverlap": true,
-       "tickCount": {
-         "signal": "ceil(height/40)"
-       },
-       "zindex": 1
-     },
-     {
-       "scale": "y",
-       "orient": "left",
-       "gridScale": "x",
-       "grid": true,
-       "tickCount": {
-         "signal": "ceil(height/40)"
-       },
-       "domain": false,
-       "labels": false,
-       "maxExtent": 0,
-       "minExtent": 0,
-       "ticks": false,
-       "zindex": 0
-     }
+      "scale": "y",
+      "orient": "left",
+      "grid": false,
+      "title": "Count of Records",
+      "labelOverlap": true,
+      "tickCount": {
+        "signal": "ceil(height/40)"
+      },
+      "zindex": 1
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "gridScale": "x",
+      "grid": true,
+      "tickCount": {
+        "signal": "ceil(height/40)"
+      },
+      "domain": false,
+      "labels": false,
+      "maxExtent": 0,
+      "minExtent": 0,
+      "ticks": false,
+      "zindex": 0
+    }
   ],
   "config": {
     "title": {

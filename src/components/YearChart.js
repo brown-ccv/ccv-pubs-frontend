@@ -12,7 +12,7 @@ export class YearChart extends Component {
     this.data = Immutable.asMutable(this.props.publications, { deep: true });
   }
 
-  embed(){
+  embed() {
     vegaEmbed("#yearChart", spec, {
       mode: "vega",
       actions: false,
@@ -29,9 +29,9 @@ export class YearChart extends Component {
             view.addEventListener("click", (name, value) => {
               if (value && value.datum.xfield && !isNaN(value.datum.xfield)) {
                 this.props.changeYear(value.datum.xfield);
-              } else if (value.datum.xfield && isNaN(value.datum.xfield)){
+              } else if (value.datum.xfield && isNaN(value.datum.xfield)) {
                 this.props.changeYear(null);
-              } 
+              }
             });
           });
       } catch (error) {
@@ -44,9 +44,9 @@ export class YearChart extends Component {
     this.view = v;
   }
 
-  componentDidUpdate(){
+  componentDidUpdate() {
     this.data = Immutable.asMutable(this.props.publications, { deep: true });
-    if (!this.props.selectYear){
+    if (!this.props.selectYear) {
       this.embed();
     }
   }
@@ -54,7 +54,6 @@ export class YearChart extends Component {
   componentDidMount() {
     this.data = Immutable.asMutable(this.props.publications, { deep: true });
     this.embed();
-    
   }
 
   render() {

@@ -46,14 +46,14 @@ export function changeDoiFailure(data) {
   return { type: "FETCH_DOI_FAILURE", data };
 }
 
-export function changeAddSuccess(data){
-  return {type: "UPDATE_ADD_SUCCESS", data};
+export function changeAddSuccess(data) {
+  return { type: "UPDATE_ADD_SUCCESS", data };
 }
 
-export function changePressed(data){
-  return {type: "UPDATE_PRESSED", data};
+export function changePressed(data) {
+  return { type: "UPDATE_PRESSED", data };
 }
 
-export function changeAuthenticated(data){
-  return {type: "CHANGE_AUTHENTICATED", data}
+export function changeAuthenticated(data) {
+  return { type: "CHANGE_AUTHENTICATED", data };
 }
