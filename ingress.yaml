@@ -7,6 +7,10 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: proddmz
 spec:
+  tls:
+    - hosts:
+      - publications.ccv.brown.edu
+      secretName: ccvpubs-front-tls
   rules:
     - host: publications.ccv.brown.edu
       http:
