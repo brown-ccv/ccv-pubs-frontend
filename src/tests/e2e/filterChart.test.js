@@ -6,7 +6,7 @@ module.exports = {
       .waitForElementVisible(".ContentPage")
       //when the 2014 bar is clicked on the Year Chart, only 2014 publications are shown in the table (first 5 shownz)
       .click(
-        "#yearChart > svg > g > g > g > g > g.mark-rect.role-mark.marks > path:nth-child(4)"
+        "#yearChart > svg > g > g > g > g > g.mark-rect.role-mark.marks > path:nth-child(3)"
       )
       .assert.containsText(
         "#main-content > div.PubsTable-CP > div > div.rt-table > div.rt-tbody > div:nth-child(1) > div > div:nth-child(3)",
