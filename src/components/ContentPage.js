@@ -17,6 +17,7 @@ export class ContentPage extends Component {
     if (this.props.publications.length === 0) this.props.fetchData();
 
     if (this.props.ngrams.length === 0) this.props.fetchNgrams();
+
   }
 
   render() {

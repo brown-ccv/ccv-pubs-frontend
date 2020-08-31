@@ -30,3 +30,7 @@ keycloak.json
 
 # checkpoints
 .ipynb_checkpoints
+
+#kubernetes
+*.key 
+*.cer

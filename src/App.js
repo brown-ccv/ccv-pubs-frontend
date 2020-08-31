@@ -9,6 +9,7 @@ import AddPub from "./components/AddPub";
 
 class App extends Component {
   render() {
+    console.log(process.env)
     return (
       <div aria-live="polite" aria-busy={this.props.loading}>
         <Navbar />
