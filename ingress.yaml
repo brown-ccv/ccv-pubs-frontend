@@ -17,5 +17,5 @@ spec:
         paths:
           - path: /
             backend:
-              serviceName: ccvpubs-front-service
+              serviceName: ccvpubs-front
               servicePort: 80
