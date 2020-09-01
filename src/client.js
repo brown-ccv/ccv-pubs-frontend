@@ -2,7 +2,7 @@ import fetch from "isomorphic-fetch";
 
 const SERVICE_ENDPOINT =
   process.env.NODE_ENV === "production"
-    ? "https://datasci.brown.edu/ccvpubs-api"
+    ? "http://publications-api.ccv.brown.edu"
     : "http://localhost:8080";
 
 class Client {

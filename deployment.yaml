@@ -18,7 +18,7 @@ spec:
         image: dtr.services.brown.edu/cis/ccv-pubs-frontend:latest
         imagePullPolicy: "Always"
         ports:
-        - containerPort: 8080
+        - containerPort: 80
       imagePullSecrets:
       - name: regcred
       nodeSelector:
