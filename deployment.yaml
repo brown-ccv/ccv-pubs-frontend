@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ccvpubs-front
-  namespace: ccvpubs-front
+  name: ccv-pubs-front
+  namespace: ccv-pubs-front
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ccvpubs-front
+      app: ccv-pubs-front
   template:
     metadata:
       labels:
-        app: ccvpubs-front
+        app: ccv-pubs-front
     spec:
       containers:
-      - name: ccvpubs-front
+      - name: ccv-pubs-front
         image: dtr.services.brown.edu/cis/ccv-pubs-frontend:latest
         imagePullPolicy: "Always"
         ports:

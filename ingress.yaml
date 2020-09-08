@@ -1,21 +1,21 @@
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  name: ccvpubs-front
+  name: ccv-pubs-front
   labels:
-    app: ccvpubs-front
+    app: ccv-pubs-front
   annotations:
     kubernetes.io/ingress.class: proddmz
 spec:
   tls:
     - hosts:
       - publications.ccv.brown.edu
-      secretName: ccvpubs-front-tls
+      secretName: ccv-pubs-front-tls
   rules:
     - host: publications.ccv.brown.edu
       http:
         paths:
           - path: /
             backend:
-              serviceName: ccvpubs-front
+              serviceName: ccv-pubs-front
               servicePort: 80

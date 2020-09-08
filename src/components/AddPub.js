@@ -16,8 +16,10 @@ let KEYCLOAK_USER = {
   url: "https://datasci.brown.edu/keycloak/auth/",
   clientId: "ccvpubs-app-test",
 };
-if (process.env.NODE_ENV === "production")
+if (process.env.NODE_ENV === "production"){
   KEYCLOAK_USER["clientId"] = "ccvpubs-app";
+  KEYCLOAK_USER["url"] = "https://keycloak.ccv.brown.edu/auth/"
+};
 
 export class AddPub extends Component {
   constructor(props) {
