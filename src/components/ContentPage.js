@@ -22,7 +22,7 @@ export class ContentPage extends Component {
 
   render() {
     return (
-      <div className="ContentPage">
+      <div className="ContentPage main-content">
         <div align="right">
           <Link to="/addPub">
             <Button variant="contained" color="primary" id="AddPubButton">
