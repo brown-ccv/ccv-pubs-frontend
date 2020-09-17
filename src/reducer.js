@@ -8,7 +8,7 @@ export const initialState = Immutable({
   selectYear: null,
   error: null,
   doiInfo: { data: {}, status: "empty" },
-  keycloak: { keycloak: null, authenticated: null, iscis: null, profile: null },
+  keycloak: { keycloak: null, authenticated: null, iscis: null, profile: null, token: null },
   doiFailure: false,
   addSuccess: false,
   pressed: false,

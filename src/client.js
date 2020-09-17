@@ -87,9 +87,8 @@ class Client {
       alert(
         "Could not refresh publication data. Added publication may not be viewed in the table, but is still in the database. Try to refresh page."
       );
-    if (response.status === 401) {
+    } else if (response.status === 401) {
       throw new Error(`Unauthorized`);
-      }
     } else if (!response.ok) {
       throw new Error(`Can't Add.`);
     }

@@ -10,7 +10,7 @@ let initialstate = Immutable({
   selectYear: null,
   error: null,
   doiInfo: { data: {}, status: "empty" },
-  keycloak: { keycloak: null, authenticated: null, iscis: null, profile: null },
+  keycloak: { keycloak: null, authenticated: null, iscis: null, profile: null, token: null },
   doiFailure: false,
   addSuccess: false,
   pressed: false,
@@ -41,6 +41,7 @@ describe("reducer", () => {
         authenticated: null,
         iscis: null,
         profile: null,
+        token: null
       },
       doiFailure: false,
       addSuccess: false,
@@ -63,6 +64,7 @@ describe("reducer", () => {
             authenticated: null,
             iscis: null,
             profile: null,
+            token: null
           },
           doiFailure: false,
           addSuccess: false,
@@ -86,6 +88,7 @@ describe("reducer", () => {
         authenticated: null,
         iscis: null,
         profile: null,
+        token: null
       },
       doiFailure: false,
       addSuccess: false,
@@ -109,6 +112,7 @@ describe("reducer", () => {
             authenticated: null,
             iscis: null,
             profile: null,
+            token: null
           },
           doiFailure: false,
           addSuccess: false,
@@ -132,6 +136,7 @@ describe("reducer", () => {
         authenticated: null,
         iscis: null,
         profile: null,
+        token: null
       },
       doiFailure: false,
       addSuccess: false,
@@ -155,6 +160,7 @@ describe("reducer", () => {
             authenticated: null,
             iscis: null,
             profile: null,
+            token: null
           },
           doiFailure: false,
           addSuccess: false,
@@ -178,6 +184,7 @@ describe("reducer", () => {
         authenticated: null,
         iscis: null,
         profile: null,
+        token: null
       },
       doiFailure: false,
       addSuccess: false,
@@ -201,6 +208,7 @@ describe("reducer", () => {
             authenticated: null,
             iscis: null,
             profile: null,
+            token: null
           },
           doiFailure: false,
           addSuccess: false,
@@ -224,6 +232,7 @@ describe("reducer", () => {
         authenticated: null,
         iscis: null,
         profile: null,
+        token: null
       },
       doiFailure: false,
       addSuccess: false,
@@ -247,6 +256,7 @@ describe("reducer", () => {
             authenticated: null,
             iscis: null,
             profile: null,
+            token: null
           },
           doiFailure: false,
           addSuccess: false,
@@ -270,6 +280,7 @@ describe("reducer", () => {
         authenticated: null,
         iscis: null,
         profile: null,
+        token: null
       },
       doiFailure: false,
       addSuccess: false,
@@ -293,6 +304,7 @@ describe("reducer", () => {
             authenticated: null,
             iscis: null,
             profile: null,
+            token: null
           },
           doiFailure: false,
           addSuccess: false,
@@ -316,6 +328,7 @@ describe("reducer", () => {
         authenticated: null,
         iscis: null,
         profile: null,
+        token: null
       },
       doiFailure: false,
       addSuccess: false,
@@ -339,6 +352,7 @@ describe("reducer", () => {
             authenticated: null,
             iscis: null,
             profile: null,
+            token: null
           },
           doiFailure: false,
           addSuccess: false,
@@ -368,6 +382,7 @@ describe("reducer", () => {
         authenticated: null,
         iscis: null,
         profile: null,
+        token: null
       },
       doiFailure: false,
       addSuccess: false,
@@ -393,6 +408,7 @@ describe("reducer", () => {
             authenticated: null,
             iscis: null,
             profile: null,
+            token: null
           },
           doiFailure: false,
           addSuccess: false,
@@ -405,6 +421,7 @@ describe("reducer", () => {
             authenticated: true,
             iscis: true,
             profile: "abc123",
+            token: null
           },
         }
       )
@@ -424,6 +441,7 @@ describe("reducer", () => {
         authenticated: true,
         iscis: true,
         profile: "abc123",
+        token: null
       },
       doiFailure: false,
       addSuccess: false,
@@ -450,6 +468,7 @@ describe("reducer", () => {
             authenticated: true,
             iscis: true,
             profile: "abc123",
+            token: null
           },
           doiFailure: false,
           addSuccess: false,
@@ -476,6 +495,7 @@ describe("reducer", () => {
         authenticated: true,
         iscis: true,
         profile: "abc123",
+        token: null
       },
       doiFailure: true,
       addSuccess: false,
@@ -502,6 +522,7 @@ describe("reducer", () => {
             authenticated: true,
             iscis: true,
             profile: "abc123",
+            token: null
           },
           doiFailure: true,
           addSuccess: false,
@@ -528,6 +549,7 @@ describe("reducer", () => {
         authenticated: true,
         iscis: true,
         profile: "abc123",
+        token: null
       },
       doiFailure: true,
       addSuccess: true,
@@ -554,6 +576,7 @@ describe("reducer", () => {
             authenticated: true,
             iscis: true,
             profile: "abc123",
+            token: null
           },
           doiFailure: true,
           addSuccess: true,
@@ -580,6 +603,7 @@ describe("reducer", () => {
         authenticated: true,
         iscis: true,
         profile: "abc123",
+        token: null
       },
       doiFailure: true,
       addSuccess: true,
@@ -600,6 +624,7 @@ describe("reducer", () => {
       authenticated: true,
       iscis: true,
       profile: "abc123",
+      token: null
     },
     doiFailure: true,
     addSuccess: true,
@@ -650,6 +675,7 @@ describe("reducer", () => {
         authenticated: true,
         iscis: true,
         profile: "abc123",
+        token: null
       });
     });
     it("should select doiFailure from state", () => {

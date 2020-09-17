@@ -72,7 +72,7 @@ describe("Rendering Component Page", () => {
   });
   it("renders ComponentPage without crashing", () => {
     const { wrapper, props } = shallowSetup();
-    expect(wrapper.props().className).toEqual("ContentPage");
+    expect(wrapper.props().className).toEqual("ContentPage main-content");
   });
 
   it("renders ComponentPage with correct display when loading w no data", () => {

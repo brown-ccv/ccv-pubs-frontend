@@ -32,14 +32,11 @@ export class AddPub extends Component {
     this.doi = "";
     this.full = true;
     this.props.changeYear(null);
-    this.token = null;
-
     this.state = {
-      manual: false,
-      keycloak: null,
-      // authenticated: null,
-      iscis: null,
-      profile: null,
+    manual: false,
+    keycloak: null,
+    iscis: null,
+    profile: null,
     };
     this.onManual = this.onManual.bind(this);
     this.onCancel = this.onCancel.bind(this);
@@ -62,7 +59,7 @@ export class AddPub extends Component {
         .then((authenticated) => {
           temp["keycloak"] = keycloak;
           temp["authenticated"] = authenticated;
-          this.token = keycloak["token"];
+          temp["token"] = keycloak["token"];
           this.props.changeKeycloak(temp);
           keycloak
             .loadUserProfile()
@@ -92,7 +89,7 @@ export class AddPub extends Component {
     var data = this.props.doiInfo;
     const dataObject = {
       data: data,
-      token: this.token,
+      token: this.props.keycloak["token"]
     };
 
     if (
@@ -126,6 +123,7 @@ export class AddPub extends Component {
     this.props.setFailure(false);
     this.props.changeAddSuccess(false);
     this.setState({ manual: false });
+    this.props.changeError(null);
   }
 
   /**

@@ -158,7 +158,7 @@ describe("make postPub request", () => {
   it("should call api and dispatch CHANGE_ERROR action", async () => {
     const postPubDummy = jest
       .spyOn(Client, "postPub")
-      .mockImplementation(() => Promise.reject(new Error('fail')));
+      .mockImplementation(() => Promise.reject(new Error("fail")));
     const dispatched = [];
     const result = await runSaga(
       { dispatch: (action) => dispatched.push(action) },

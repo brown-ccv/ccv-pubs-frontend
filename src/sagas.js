@@ -34,14 +34,20 @@ export function* postPub(action) {
     yield put(actions.fetchNgrams(newInfo["newngrams"]));
     yield put(actions.changeAddSuccess(true));
   } catch (error) {
-    if (error.message === "Can't Add."){
-      yield put(actions.changeError("Publication was not able to be added to database. Try to submit again."));
-    } 
-     else if(error.message === "Unauthorized"){
-      yield put(actions.changeError("You are not authorized to add a publication. Trying relogging in."));
-    }
-    else{
-    yield put(actions.changeError(errorText));
+    if (error.message === "Can't Add.") {
+      yield put(
+        actions.changeError(
+          "Publication was not able to be added to database. Try to submit again."
+        )
+      );
+    } else if (error.message === "Unauthorized") {
+      yield put(
+        actions.changeError(
+          "You are not authorized to add a publication. Trying relogging in."
+        )
+      );
+    } else {
+      yield put(actions.changeError(errorText));
     }
   }
 }
