@@ -16,10 +16,10 @@ let KEYCLOAK_USER = {
   url: "https://datasci.brown.edu/keycloak/auth/",
   clientId: "ccvpubs-app-test",
 };
-if (process.env.NODE_ENV === "production"){
+if (process.env.NODE_ENV === "production") {
   KEYCLOAK_USER["clientId"] = "ccvpubs-app";
-  KEYCLOAK_USER["url"] = "https://keycloak.ccv.brown.edu/auth/"
-};
+  KEYCLOAK_USER["url"] = "https://keycloak.ccv.brown.edu/auth/";
+}
 
 export class AddPub extends Component {
   constructor(props) {
@@ -33,10 +33,10 @@ export class AddPub extends Component {
     this.full = true;
     this.props.changeYear(null);
     this.state = {
-    manual: false,
-    keycloak: null,
-    iscis: null,
-    profile: null,
+      manual: false,
+      keycloak: null,
+      iscis: null,
+      profile: null,
     };
     this.onManual = this.onManual.bind(this);
     this.onCancel = this.onCancel.bind(this);
@@ -89,7 +89,7 @@ export class AddPub extends Component {
     var data = this.props.doiInfo;
     const dataObject = {
       data: data,
-      token: this.props.keycloak["token"]
+      token: this.props.keycloak["token"],
     };
 
     if (
