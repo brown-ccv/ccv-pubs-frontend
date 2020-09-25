@@ -1,8 +1,7 @@
-import React from 'react';
-import { RingLoader } from 'react-spinners';
+import React from "react";
+import { RingLoader } from "react-spinners";
 
 export default class Spinner extends React.Component {
-
   render() {
     return (
       <div className="sweet-loading row justify-content-md-center">
@@ -14,6 +13,6 @@ export default class Spinner extends React.Component {
           />
         </div>
       </div>
-    )
+    );
   }
 }

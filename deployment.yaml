@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ccv-pubs-front
+  namespace: ccv-pubs-front
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ccv-pubs-front
+  template:
+    metadata:
+      labels:
+        app: ccv-pubs-front
+    spec:
+      containers:
+      - name: ccv-pubs-front
+        image: dtr.services.brown.edu/cis/ccv-pubs-frontend:latest
+        imagePullPolicy: "Always"
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+      - name: regcred
+      nodeSelector:
+        node-role.kubernetes.io/worker: "true"
+        proddmz: "true"
+      tolerations:
+      - key: "env"
+        operator: "Equal"
+        value: "prod"
+        effect: "NoSchedule"
+      - key: "location"
+        operator: "Equal"
+        value: "dmz"
+        effect: "NoSchedule"
+     

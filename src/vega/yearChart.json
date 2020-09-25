@@ -3,6 +3,7 @@
   "autosize": "pad",
   "padding": 5,
   "height": 400,
+  "description": "Bar Chart of the years of publications",
   "title": {
     "text": {
       "signal": "changeTitle"
@@ -12,186 +13,7 @@
   "style": "cell",
   "data": [
     {
-      "name": "source_0",
-      "values": [
-        {"month": "9", "year": 2017},
-      {"month": "9", "year": 2017},
-      {"month": "9", "year": 2017},
-      {"month": "9", "year": 2017},
-      {"month": "9", "year": 2017},
-      {"month": "8", "year": 2017},
-      {"month": "6", "year": 2016},
-      {"month": "8", "year": 2016},
-      {"month": "8", "year": 2016},
-      {"month": "12", "year": 2013},
-      {"month": "10", "year": 2013},
-      {"month": "5", "year": 2018},
-      {"month": "5", "year": 2018},
-      {"month": "5", "year": 2018},
-      {"month": "Missing", "year": 2017},
-      {"month": "4", "year": 2017},
-      {"month": "4", "year": 2017},
-      {"month": "3", "year": 2017},
-      {"month": "1", "year": 2017},
-      {"month": "1", "year": 2017},
-      {"month": "2", "year": 2017},
-      {"month": "2", "year": 2017},
-      {"month": "4", "year": 2016},
-      {"month": "4", "year": 2016},
-      {"month": "1", "year": 2016},
-      {"month": "Missing", "year": 2016},
-      {"month": "11", "year": 2016},
-      {"month": "Missing", "year": 2016},
-      {"month": "8", "year": 2016},
-      {"month": "10", "year": 2016},
-      {"month": "2", "year": 2016},
-      {"month": "3", "year": 2016},
-      {"month": "1", "year": 2016},
-      {"month": "4", "year": 2016},
-      {"month": "1", "year": 2017},
-      {"month": "3", "year": 2016},
-      {"month": "1", "year": 2017},
-      {"month": "6", "year": 2016},
-      {"month": "8", "year": 2016},
-      {"month": "10", "year": 2016},
-      {"month": "4", "year": 2016},
-      {"month": "2", "year": 2016},
-      {"month": "6", "year": 2016},
-      {"month": "3", "year": 2016},
-      {"month": "3", "year": 2016},
-      {"month": "12", "year": 2014},
-      {"month": "12", "year": 2017},
-      {"month": "3", "year": 2015},
-      {"month": "3", "year": 2015},
-      {"month": "4", "year": 2015},
-      {"month": "4", "year": 2015},
-      {"month": "Missing", "year": 2015},
-      {"month": "5", "year": 2014},
-      {"month": "2", "year": 2015},
-      {"month": "3", "year": 2014},
-      {"month": "Missing", "year": 2014},
-      {"month": "11", "year": 2014},
-      {"month": "8", "year": 2014},
-      {"month": "8", "year": 2014},
-      {"month": "Missing", "year": 2014},
-      {"month": "Missing", "year": 2014},
-      {"month": "7", "year": 2014},
-      {"month": "3", "year": 2014},
-      {"month": "4", "year": 2014},
-      {"month": "6", "year": 2014},
-      {"month": "6", "year": 2014},
-      {"month": "6", "year": 2014},
-      {"month": "6", "year": 2014},
-      {"month": "6", "year": 2014},
-      {"month": "5", "year": 2014},
-      {"month": "4", "year": 2014},
-      {"month": "12", "year": 2013},
-      {"month": "4", "year": 2014},
-      {"month": "3", "year": 2014},
-      {"month": "12", "year": 2013},
-      {"month": "3", "year": 2014},
-      {"month": "3", "year": 2014},
-      {"month": "3", "year": 2014},
-      {"month": "3", "year": 2014},
-      {"month": "10", "year": 2013},
-      {"month": "2", "year": 2014},
-      {"month": "2", "year": 2014},
-      {"month": "1", "year": 2014},
-      {"month": "1", "year": 2014},
-      {"month": "12", "year": 2013},
-      {"month": "6", "year": 2018},
-      {"month": "6", "year": 2018},
-      {"month": "5", "year": 2018},
-      {"month": "11", "year": 2018},
-      {"month": "4", "year": 2018},
-      {"month": "Missing", "year": 2018},
-      {"month": "9", "year": 2016},
-      {"month": "2", "year": 2016},
-      {"month": "8", "year": 2015},
-      {"month": "2", "year": 2015},
-      {"month": "5", "year": 2015},
-      {"month": "5", "year": 2015},
-      {"month": "3", "year": 2018},
-      {"month": "12", "year": 2017},
-      {"month": "8", "year": 2017},
-      {"month": "7", "year": 2017},
-      {"month": "5", "year": 2019},
-      {"month": "3", "year": 2016},
-      {"month": "Missing", "year": 2016},
-      {"month": "10", "year": 2014},
-      {"month": "11", "year": 2014},
-      {"month": "Missing", "year": 2015},
-      {"month": "11", "year": 2015},
-      {"month": "Missing", "year": 2015},
-      {"month": "10", "year": 2015},
-      {"month": "9", "year": 2015},
-      {"month": "10", "year": 2015},
-      {"month": "7", "year": 2015},
-      {"month": "7", "year": 2015},
-      {"month": "9", "year": 2014},
-      {"month": "Missing", "year": 2014},
-      {"month": "6", "year": 2014},
-      {"month": "4", "year": 2018},
-      {"month": "2", "year": 2018},
-      {"month": "10", "year": 2018},
-      {"month": "4", "year": 2018},
-      {"month": "6", "year": 2017},
-      {"month": "3", "year": 2018},
-      {"month": "2", "year": 2018},
-      {"month": "4", "year": 2018},
-      {"month": "9", "year": 2018},
-      {"month": "7", "year": 2018},
-      {"month": "6", "year": 2018},
-      {"month": "3", "year": 2018},
-      {"month": "8", "year": 2016},
-      {"month": "Missing", "year": 2018},
-      {"month": "3", "year": 2018},
-      {"month": "6", "year": 2018},
-      {"month": "3", "year": 2018},
-      {"month": "2", "year": 2017},
-      {"month": "2", "year": 2017},
-      {"month": "3", "year": 2017},
-      {"month": "8", "year": 2017},
-      {"month": "4", "year": 2017},
-      {"month": "2", "year": 2016},
-      {"month": "8", "year": 2016},
-      {"month": "7", "year": 2016},
-      {"month": "5", "year": 2016},
-      {"month": "3", "year": 2015},
-      {"month": "3", "year": 2016},
-      {"month": "9", "year": 2015},
-      {"month": "10", "year": 2016},
-      {"month": "1", "year": 2016},
-      {"month": "11", "year": 2016},
-      {"month": "2", "year": 2016},
-      {"month": "3", "year": 2015},
-      {"month": "9", "year": 2015},
-      {"month": "1", "year": 2015},
-      {"month": "12", "year": 2015},
-      {"month": "2", "year": 2015},
-      {"month": "1", "year": 2015},
-      {"month": "3", "year": 2015},
-      {"month": "6", "year": 2015},
-      {"month": "8", "year": 2015},
-      {"month": "9", "year": 2015},
-      {"month": "11", "year": 2015},
-      {"month": "4", "year": 2015},
-      {"month": "3", "year": 2015},
-      {"month": "8", "year": 2014},
-      {"month": "Missing", "year": 2014},
-      {"month": "3", "year": 2014},
-      {"month": "Missing", "year": 2014},
-      {"month": "8", "year": 2014},
-      {"month": "7", "year": 2014},
-      {"month": "12", "year": 2017},
-      {"month": "10", "year": 2015},
-      {"month": "6", "year": 2018},
-      {"month": "7", "year": 2018},
-      {"month": "7", "year": 2017},
-      {"month": "Missing", "year": 2017},
-      {"month": "Missing", "year": 2016},
-      {"month": "Missing", "year": 2014}
-      ]
+      "name": "source_0"
     },
     {
       "name": "data_1",
@@ -217,7 +39,8 @@
           "expr": "select ? select.xfield == datum.year : datum"
         },
         {
-          "type": "collect", "sort": {
+          "type": "collect",
+          "sort": {
             "field": ["year", "int_month"],
             "order": ["ascending", "ascending"]
           }
@@ -230,18 +53,10 @@
       "transform": [
         {
           "type": "aggregate",
-          "groupby": [
-            "xfield"
-          ],
-          "ops": [
-            "count"
-          ],
-          "fields": [
-            null
-          ],
-          "as": [
-            "__count"
-          ]
+          "groupby": ["xfield"],
+          "ops": ["count"],
+          "fields": [null],
+          "as": ["__count"]
         }
       ]
     }
@@ -275,7 +90,7 @@
     },
     {
       "name": "changeTitle",
-      "value" : "Number of Publications vs Year",
+      "value": "Number of Publications vs Year",
       "update": "select ? 'Number of Publications vs Month' + ' (' + select.xfield + ')' : 'Number of Publications vs Year'"
     }
   ],
@@ -283,9 +98,7 @@
     {
       "name": "marks",
       "type": "rect",
-      "style": [
-        "bar"
-      ],
+      "style": ["bar"],
       "from": {
         "data": "data_0"
       },
@@ -377,31 +190,31 @@
       "labels": true
     },
     {
-       "scale": "y",
-       "orient": "left",
-       "grid": false,
-       "title": "Count of Records",
-       "labelOverlap": true,
-       "tickCount": {
-         "signal": "ceil(height/40)"
-       },
-       "zindex": 1
-     },
-     {
-       "scale": "y",
-       "orient": "left",
-       "gridScale": "x",
-       "grid": true,
-       "tickCount": {
-         "signal": "ceil(height/40)"
-       },
-       "domain": false,
-       "labels": false,
-       "maxExtent": 0,
-       "minExtent": 0,
-       "ticks": false,
-       "zindex": 0
-     }
+      "scale": "y",
+      "orient": "left",
+      "grid": false,
+      "title": "Count of Records",
+      "labelOverlap": true,
+      "tickCount": {
+        "signal": "ceil(height/40)"
+      },
+      "zindex": 1
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "gridScale": "x",
+      "grid": true,
+      "tickCount": {
+        "signal": "ceil(height/40)"
+      },
+      "domain": false,
+      "labels": false,
+      "maxExtent": 0,
+      "minExtent": 0,
+      "ticks": false,
+      "zindex": 0
+    }
   ],
   "config": {
     "title": {
