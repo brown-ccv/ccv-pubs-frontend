@@ -6,7 +6,6 @@
       "encode": {
         "update": {
           "fillOpacity": [
-            { "test": "indexof(datum.pubs, hoverID) > 0", "value": 1 },
             { "value": 0.3 }
           ]
         },
@@ -24,7 +23,7 @@
       "transform": [
         {
           "padding": 2,
-          "fontSizeRange": [12, 56],
+          "fontSizeRange": [20, 56],
           "font": "Helvetica Neue, Arial",
           "size": [{ "signal": "width" }, { "signal": "height" }],
           "text": { "field": "text" },
