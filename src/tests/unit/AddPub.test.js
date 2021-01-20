@@ -19,7 +19,7 @@ const historyMock = { push: jest.fn() };
 
 function shallowSetup() {
   let props = {
-    doiInfo: { data: {}, status: "empty" },
+    doiInfo: { data: {}, status: "empty", abstract: "na" },
     loading: false,
     error: null,
     keycloak: {
@@ -66,6 +66,7 @@ function shallowSetupManual() {
         year: null,
       },
       status: "empty",
+      abstract: "na"
     },
     loading: false,
     error: null,
@@ -100,7 +101,7 @@ function shallowSetupManual() {
 
 function shallowSetupNewDoi() {
   let props = {
-    doiInfo: { data: { title: "test", author: "test2" }, status: "new" },
+    doiInfo: { data: { title: "test", author: "test2" }, status: "new", abstract: "na" },
     loading: false,
     error: null,
     keycloak: {
@@ -134,7 +135,7 @@ function shallowSetupNewDoi() {
 
 function shallowSetupOldDoi() {
   let props = {
-    doiInfo: { data: { title: "test", author: "test2" }, status: "old" },
+    doiInfo: { data: { title: "test", author: "test2" }, status: "old", abstract: "no" },
     loading: false,
     error: null,
     keycloak: {
@@ -168,7 +169,7 @@ function shallowSetupOldDoi() {
 
 function shallowSetupNoDoiInfo() {
   let props = {
-    doiInfo: { data: {}, status: "empty" },
+    doiInfo: { data: {}, status: "empty", abstract: "na" },
     loading: false,
     error: null,
     keycloak: {
@@ -202,7 +203,7 @@ function shallowSetupNoDoiInfo() {
 
 function deepSetup() {
   let props = {
-    doiInfo: { data: {}, status: "empty" },
+    doiInfo: { data: {}, status: "empty", abstract: "na" },
     loading: false,
     error: null,
     keycloak: {
@@ -394,6 +395,7 @@ describe("AddPub Button Functionality", () => {
         year: null,
       },
       status: "empty",
+      abstract: "na"
     });
     expect(wrapper.state("manual")).toBe(true);
   });
@@ -422,6 +424,7 @@ describe("AddPub Button Functionality", () => {
     expect(changeDoiInfo).toHaveBeenCalledWith({
       data: {},
       status: "empty",
+      abstract: "na"
     });
     expect(wrapper.state("manual")).toBe(false);
     expect(changeAddSuccess).toHaveBeenCalledWith(false);
@@ -450,6 +453,7 @@ describe("AddPub Button Functionality", () => {
     expect(changeDoiInfo).toHaveBeenCalledWith({
       data: {},
       status: "empty",
+      abstract: "na"
     });
     expect(wrapper.state("manual")).toBe(false);
     expect(changeAddSuccess).toHaveBeenCalledWith(false);
@@ -492,6 +496,7 @@ describe("AddPub Button Functionality", () => {
         year: null,
       },
       status: "empty",
+      abstract: "na"
     };
     wrapper.setProps({ doiInfo: data });
 
@@ -535,6 +540,7 @@ describe("ManualAdd Render Test", () => {
         year: null,
       },
       status: "empty",
+      abstract: "na"
     };
   });
   afterEach(() => {

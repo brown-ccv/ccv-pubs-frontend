@@ -34,8 +34,8 @@ export class DoiInfo extends Component {
     const dataObject = {
       data: newData["data"],
       status: newData["status"],
+      abstract: newData["abstract"]
     };
-
     this.props.updateDoiInfo(dataObject);
   }
 

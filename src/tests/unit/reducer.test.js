@@ -9,7 +9,7 @@ let initialstate = Immutable({
   selectWord: null,
   selectYear: null,
   error: null,
-  doiInfo: { data: {}, status: "empty" },
+  doiInfo: { data: {}, status: "empty", abstract: "na" },
   keycloak: {
     keycloak: null,
     authenticated: null,
@@ -41,7 +41,7 @@ describe("reducer", () => {
       selectWord: null,
       selectYear: null,
       error: null,
-      doiInfo: { data: {}, status: "empty" },
+      doiInfo: { data: {}, status: "empty", abstract: "na" },
       keycloak: {
         keycloak: null,
         authenticated: null,
@@ -64,7 +64,7 @@ describe("reducer", () => {
           selectWord: null,
           selectYear: null,
           error: null,
-          doiInfo: { data: {}, status: "empty" },
+          doiInfo: { data: {}, status: "empty", abstract: "na" },
           keycloak: {
             keycloak: null,
             authenticated: null,
@@ -88,7 +88,7 @@ describe("reducer", () => {
       selectWord: null,
       selectYear: null,
       error: null,
-      doiInfo: { data: {}, status: "empty" },
+      doiInfo: { data: {}, status: "empty", abstract: "na" },
       keycloak: {
         keycloak: null,
         authenticated: null,
@@ -112,7 +112,7 @@ describe("reducer", () => {
           selectWord: null,
           selectYear: null,
           error: null,
-          doiInfo: { data: {}, status: "empty" },
+          doiInfo: { data: {}, status: "empty", abstract: "na" },
           keycloak: {
             keycloak: null,
             authenticated: null,
@@ -136,7 +136,7 @@ describe("reducer", () => {
       selectWord: null,
       selectYear: null,
       error: "Something went wrong",
-      doiInfo: { data: {}, status: "empty" },
+      doiInfo: { data: {}, status: "empty", abstract: "na" },
       keycloak: {
         keycloak: null,
         authenticated: null,
@@ -160,7 +160,7 @@ describe("reducer", () => {
           selectWord: null,
           selectYear: null,
           error: "Something went wrong",
-          doiInfo: { data: {}, status: "empty" },
+          doiInfo: { data: {}, status: "empty", abstract: "na" },
           keycloak: {
             keycloak: null,
             authenticated: null,
@@ -184,7 +184,7 @@ describe("reducer", () => {
       selectWord: null,
       selectYear: null,
       error: "Something went wrong",
-      doiInfo: { data: {}, status: "empty" },
+      doiInfo: { data: {}, status: "empty", abstract: "na" },
       keycloak: {
         keycloak: null,
         authenticated: null,
@@ -208,7 +208,7 @@ describe("reducer", () => {
           selectWord: null,
           selectYear: null,
           error: "Something went wrong",
-          doiInfo: { data: {}, status: "empty" },
+          doiInfo: { data: {}, status: "empty", abstract: "na" },
           keycloak: {
             keycloak: null,
             authenticated: null,
@@ -232,7 +232,7 @@ describe("reducer", () => {
       selectWord: "test",
       selectYear: null,
       error: "Something went wrong",
-      doiInfo: { data: {}, status: "empty" },
+      doiInfo: { data: {}, status: "empty", abstract: "na" },
       keycloak: {
         keycloak: null,
         authenticated: null,
@@ -256,7 +256,7 @@ describe("reducer", () => {
           selectWord: "test",
           selectYear: null,
           error: "Something went wrong",
-          doiInfo: { data: {}, status: "empty" },
+          doiInfo: { data: {}, status: "empty", abstract: "na" },
           keycloak: {
             keycloak: null,
             authenticated: null,
@@ -280,7 +280,7 @@ describe("reducer", () => {
       selectWord: "test",
       selectYear: 2015,
       error: "Something went wrong",
-      doiInfo: { data: {}, status: "empty" },
+      doiInfo: { data: {}, status: "empty", abstract: "na" },
       keycloak: {
         keycloak: null,
         authenticated: null,
@@ -304,7 +304,7 @@ describe("reducer", () => {
           selectWord: "test",
           selectYear: 2015,
           error: "Something went wrong",
-          doiInfo: { data: {}, status: "empty" },
+          doiInfo: { data: {}, status: "empty", abstract: "na" },
           keycloak: {
             keycloak: null,
             authenticated: null,
@@ -318,7 +318,7 @@ describe("reducer", () => {
         }),
         {
           type: "CHANGE_DOI_INFO",
-          data: { data: { title: "testing-123", author: "me" }, status: "old" },
+          data: { data: { title: "testing-123", author: "me" }, status: "old", abstract: "no" },
         }
       )
     ).toEqual({
@@ -328,7 +328,7 @@ describe("reducer", () => {
       selectWord: "test",
       selectYear: 2015,
       error: "Something went wrong",
-      doiInfo: { data: { title: "testing-123", author: "me" }, status: "old" },
+      doiInfo: { data: { title: "testing-123", author: "me" }, status: "old", abstract: "no"  },
       keycloak: {
         keycloak: null,
         authenticated: null,
@@ -352,7 +352,7 @@ describe("reducer", () => {
           selectWord: "test",
           selectYear: 2015,
           error: "Something went wrong",
-          doiInfo: { data: {}, status: "empty" },
+          doiInfo: { data: {}, status: "empty", abstract: "na"  },
           keycloak: {
             keycloak: null,
             authenticated: null,
@@ -369,6 +369,7 @@ describe("reducer", () => {
           data: {
             data: { title: "testing-1234", author: "me2" },
             status: "old",
+            abstract: "no"
           },
         }
       )
@@ -382,6 +383,7 @@ describe("reducer", () => {
       doiInfo: {
         data: { title: "testing-1234", author: "me2" },
         status: "old",
+        abstract:"no"
       },
       keycloak: {
         keycloak: null,
@@ -408,6 +410,7 @@ describe("reducer", () => {
           doiInfo: {
             data: { title: "testing-1234", author: "me2" },
             status: "old",
+            abstract: "no"
           },
           keycloak: {
             keycloak: null,
@@ -441,6 +444,7 @@ describe("reducer", () => {
       doiInfo: {
         data: { title: "testing-1234", author: "me2" },
         status: "old",
+        abstract: "no"
       },
       keycloak: {
         keycloak: "keycloak",
@@ -468,6 +472,7 @@ describe("reducer", () => {
           doiInfo: {
             data: { title: "testing-1234", author: "me2" },
             status: "old",
+            abstract: "no"
           },
           keycloak: {
             keycloak: "keycloak",
@@ -495,6 +500,7 @@ describe("reducer", () => {
       doiInfo: {
         data: { title: "testing-1234", author: "me2" },
         status: "old",
+        abstract: "no"
       },
       keycloak: {
         keycloak: "keycloak",
@@ -522,6 +528,7 @@ describe("reducer", () => {
           doiInfo: {
             data: { title: "testing-1234", author: "me2" },
             status: "old",
+            abstract: "no"
           },
           keycloak: {
             keycloak: "keycloak",
@@ -549,6 +556,7 @@ describe("reducer", () => {
       doiInfo: {
         data: { title: "testing-1234", author: "me2" },
         status: "old",
+        abstract: "no"
       },
       keycloak: {
         keycloak: "keycloak",
@@ -576,6 +584,7 @@ describe("reducer", () => {
           doiInfo: {
             data: { title: "testing-1234", author: "me2" },
             status: "old",
+            abstract: "no"
           },
           keycloak: {
             keycloak: "keycloak",
@@ -603,6 +612,7 @@ describe("reducer", () => {
       doiInfo: {
         data: { title: "testing-1234", author: "me2" },
         status: "old",
+        abstract: "no"
       },
       keycloak: {
         keycloak: "keycloak",
@@ -624,7 +634,7 @@ describe("reducer", () => {
     selectWord: "test",
     selectYear: 2015,
     error: "Something went wrong",
-    doiInfo: { data: { title: "testing-1234", author: "me2" }, status: "old" },
+    doiInfo: { data: { title: "testing-1234", author: "me2" }, status: "old", abstract: "no" },
     keycloak: {
       keycloak: "keycloak",
       authenticated: true,
@@ -672,6 +682,7 @@ describe("reducer", () => {
       expect(selectors.getDoiInfo(state)).toStrictEqual({
         data: { title: "testing-1234", author: "me2" },
         status: "old",
+        abstract: "no"
       });
     });
     it("should select keycloak from state", () => {
