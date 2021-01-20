@@ -70,7 +70,7 @@ class Client {
     var response;
     var update;
     //to make sure order is correct when sent to API
-    let dict = { data: newPub.data["data"], status: newPub.data["status"] };
+    let dict = { data: newPub.data["data"], status: newPub.data["status"], abstract: newPub.data["abstract"] };
     try {
       response = await fetch(url, {
         method: "POST",

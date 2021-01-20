@@ -27,6 +27,7 @@ export class AddPub extends Component {
     const newDoiInfo = {
       data: {},
       status: "empty",
+      abstract: "na"
     };
     this.props.changeDoiInfo(newDoiInfo);
     this.doi = "";
@@ -117,6 +118,7 @@ export class AddPub extends Component {
     const newDoiInfo = {
       data: {},
       status: "empty",
+      abstract: "na"
     };
     this.props.changeDoiInfo(newDoiInfo);
     this.props.history.push("/");
@@ -144,6 +146,7 @@ export class AddPub extends Component {
         year: null,
       },
       status: "empty",
+      abstract:"na"
     };
     this.props.setFailure(false);
     this.data = [];
@@ -159,6 +162,7 @@ export class AddPub extends Component {
     const newDoiInfo = {
       data: {},
       status: "empty",
+      abstract: "na"
     };
     this.props.setFailure(false);
     this.props.changeDoiInfo(newDoiInfo);
@@ -174,6 +178,7 @@ export class AddPub extends Component {
     const newDoiInfo = {
       data: {},
       status: "empty",
+      abstract: "na"
     };
     this.props.setFailure(false);
     this.props.changeDoiInfo(newDoiInfo);
