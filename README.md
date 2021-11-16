@@ -1,6 +1,8 @@
 # ccvpubs-frontend
 The frontend for the CCV Publications WebApp (https://publications.ccv.brown.edu). Deployed automatically  using firebase and github actions.
 
+**NOTE:** Preview deployments will not work for the authenticated part of the app (adding publications) due to the dynamism of the redirect URL.
+
 ## Installation
 
 * git clone this repository
