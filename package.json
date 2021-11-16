@@ -10,7 +10,7 @@
     "@fortawesome/react-fontawesome": "^0.1.4",
     "babel-eslint": "10.0.1",
     "bootstrap": "^4.4.1",
-    "brown-university-styles": "git+https://bitbucket.brown.edu/scm/react/brown-university-styles.git",
+    "brown-university-styles": "git+https://github.com/BrownUniversity/brown-university-styles.git",
     "isomorphic-fetch": "^2.2.1",
     "keycloak-js": "^9.0.2",
     "lodash": "^4.17.11",
