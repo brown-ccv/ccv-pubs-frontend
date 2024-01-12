@@ -6,10 +6,10 @@
 @import "~brown-university-styles/dist/styles.css";
 
 // Import Custom Components
-@import "components/_navbar";
-@import "components/_brown_fonts";
-@import "components/_brown_icons";
-@import "components/_brown_footer";
-@import "components/_app";
-@import "components/_table";
-@import "components/_addPub";
+@import "./components/_navbar.scss";
+//@import "./components/_brown_fonts.scss";
+//@import "./components/_brown_icons.scss";
+@import "./components/_brown_footer.scss";
+@import "./components/_app.scss";
+@import "./components/_table.scss";
+@import "./components/_addPub.scss";

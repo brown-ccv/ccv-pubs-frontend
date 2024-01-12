@@ -20,7 +20,7 @@
     "react-dom": "^16.8.6",
     "react-redux": "^7.1.0",
     "react-router-dom": "^5.0.1",
-    "react-scripts": "3.0.1",
+    "react-scripts": "^5.0.1",
     "react-spinners": "^0.5.4",
     "react-table": "^6.10.0",
     "react-tap-event-plugin": "^3.0.3",
@@ -32,9 +32,9 @@
     "seamless-immutable": "^7.1.4",
     "styled-components": "^5.1.1",
     "table": "^5.4.1",
-    "vega": "^5.4.0",
+    "vega": "^5.27.0",
     "vega-embed": "^4.2.2",
-    "vega-lite": "^4.0.0-beta.0",
+    "vega-lite": "^5.16.3",
     "vue": "^2.6.11"
   },
   "scripts": {
