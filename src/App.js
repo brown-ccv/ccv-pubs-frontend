@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Navbar from "./components/react-ccv-components/Navbar";
 import Footer from "./components/react-ccv-components/Footer";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 // import components
 import ContentPage from "./components/ContentPage";
@@ -15,10 +15,10 @@ class App extends Component {
         <div className="App">
           <BrowserRouter>
             <main>
-              <div className="AddPub">
-                <Route path="/addpub" component={AddPub} />
-              </div>
-              <Route exact path="/" component={ContentPage} />
+              <Routes>
+                <Route path="/addpub" className="AddPub" element={<AddPub />} />
+                <Route exact path="/" element={<ContentPage />} />
+              </Routes>
             </main>
           </BrowserRouter>
           <Footer />
