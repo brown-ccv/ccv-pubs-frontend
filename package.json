@@ -32,7 +32,7 @@
     "styled-components": "^5.1.1",
     "table": "^5.4.1",
     "vega": "^5.27.0",
-    "vega-embed": "^4.2.2",
+    "vega-embed": "^6.24.0",
     "vega-lite": "^5.16.3"
   },
   "scripts": {
