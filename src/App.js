@@ -1,10 +1,10 @@
-import React from "react";
-import Navbar from "./components/react-ccv-components/Navbar";
-import Footer from "./components/react-ccv-components/Footer";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import React from 'react';
+import Navbar from './components/react-ccv-components/Navbar';
+import Footer from './components/react-ccv-components/Footer';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import { ContentPage } from "./components/ContentPage";
-import AddPub from "./components/AddPub";
+import { ContentPage } from './components/ContentPage';
+import AddPub from './components/AddPub';
 
 export function App() {
   return (

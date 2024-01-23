@@ -1,24 +1,24 @@
-import React, { Component } from "react";
-import { Navbar, Nav, Button } from "react-bootstrap";
-import * as actions from "../actions";
-import { connect } from "react-redux";
-import * as selectors from "../reducer";
-import Immutable from "seamless-immutable";
-import DoiInfo from "./DoiInfo";
-import Spinner from "./Spinner";
-import Keycloak from "keycloak-js";
-import DoiForm from "./DoiForm";
-import StaticButtons from "./StaticButtons";
-import SuccessScreen from "./SuccessScreen";
+import React, { Component } from 'react';
+import { Navbar, Nav, Button } from 'react-bootstrap';
+import * as actions from '../actions';
+import { connect } from 'react-redux';
+import * as selectors from '../reducer';
+import Immutable from 'seamless-immutable';
+import DoiInfo from './DoiInfo';
+import Spinner from './Spinner';
+import Keycloak from 'keycloak-js';
+import DoiForm from './DoiForm';
+import StaticButtons from './StaticButtons';
+import SuccessScreen from './SuccessScreen';
 
 let KEYCLOAK_USER = {
-  realm: "ccv-shib",
-  url: "https://datasci.brown.edu/keycloak/auth/",
-  clientId: "ccvpubs-app-test",
+  realm: 'ccv-shib',
+  url: 'https://datasci.brown.edu/keycloak/auth/',
+  clientId: 'ccvpubs-app-test',
 };
-if (process.env.NODE_ENV === "production") {
-  KEYCLOAK_USER["clientId"] = "ccvpubs-app";
-  KEYCLOAK_USER["url"] = "https://keycloak.ccv.brown.edu/auth/";
+if (process.env.NODE_ENV === 'production') {
+  KEYCLOAK_USER['clientId'] = 'ccvpubs-app';
+  KEYCLOAK_USER['url'] = 'https://keycloak.ccv.brown.edu/auth/';
 }
 
 export class AddPub extends Component {
@@ -26,11 +26,11 @@ export class AddPub extends Component {
     super(props);
     const newDoiInfo = {
       data: {},
-      status: "empty",
-      abstract: "na"
+      status: 'empty',
+      abstract: 'na',
     };
     this.props.changeDoiInfo(newDoiInfo);
-    this.doi = "";
+    this.doi = '';
     this.full = true;
     this.props.changeYear(null);
     this.state = {
@@ -50,27 +50,27 @@ export class AddPub extends Component {
      * only authenticated once when using the app, unless they have logged out.
      */
     this.props.changeLoading(false);
-    if (!this.props.keycloak["authenticated"]) {
+    if (!this.props.keycloak['authenticated']) {
       var temp = Immutable.asMutable(this.props.keycloak, { deep: true });
       //pass an object instead of file(change client id )
       const keycloak = Keycloak(KEYCLOAK_USER);
 
       keycloak
-        .init({ onLoad: "login-required" })
+        .init({ onLoad: 'login-required' })
         .then((authenticated) => {
-          temp["keycloak"] = keycloak;
-          temp["authenticated"] = authenticated;
-          temp["token"] = keycloak["token"];
+          temp['keycloak'] = keycloak;
+          temp['authenticated'] = authenticated;
+          temp['token'] = keycloak['token'];
           this.props.changeKeycloak(temp);
           keycloak
             .loadUserProfile()
             .then((profile) => {
-              temp["profile"] = profile;
+              temp['profile'] = profile;
               this.props.changeKeycloak(temp);
             })
             .catch((err) => console.log(err));
-          let hasRole = keycloak.hasRealmRole("cis-all-role");
-          temp["iscis"] = hasRole;
+          let hasRole = keycloak.hasRealmRole('cis-all-role');
+          temp['iscis'] = hasRole;
           this.props.changeKeycloak(temp);
         })
         .catch((err) => console.log(err));
@@ -90,14 +90,14 @@ export class AddPub extends Component {
     var data = this.props.doiInfo;
     const dataObject = {
       data: data,
-      token: this.props.keycloak["token"],
+      token: this.props.keycloak['token'],
     };
 
     if (
-      data["data"]["doi"] !== null &&
-      data["data"]["doi"] !== "" &&
-      data["data"]["title"] !== null &&
-      data["data"]["title"] !== ""
+      data['data']['doi'] !== null &&
+      data['data']['doi'] !== '' &&
+      data['data']['title'] !== null &&
+      data['data']['title'] !== ''
     ) {
       this.full = true;
     } else {
@@ -117,11 +117,11 @@ export class AddPub extends Component {
   onCancel(e) {
     const newDoiInfo = {
       data: {},
-      status: "empty",
-      abstract: "na"
+      status: 'empty',
+      abstract: 'na',
     };
     this.props.changeDoiInfo(newDoiInfo);
-    this.props.history.push("/");
+    this.props.history.push('/');
     this.props.setFailure(false);
     this.props.changeAddSuccess(false);
     this.setState({ manual: false });
@@ -145,8 +145,8 @@ export class AddPub extends Component {
         month: null,
         year: null,
       },
-      status: "empty",
-      abstract:"na"
+      status: 'empty',
+      abstract: 'na',
     };
     this.props.setFailure(false);
     this.data = [];
@@ -161,8 +161,8 @@ export class AddPub extends Component {
   onDOI(e) {
     const newDoiInfo = {
       data: {},
-      status: "empty",
-      abstract: "na"
+      status: 'empty',
+      abstract: 'na',
     };
     this.props.setFailure(false);
     this.props.changeDoiInfo(newDoiInfo);
@@ -177,36 +177,31 @@ export class AddPub extends Component {
   onLogout(e) {
     const newDoiInfo = {
       data: {},
-      status: "empty",
-      abstract: "na"
+      status: 'empty',
+      abstract: 'na',
     };
     this.props.setFailure(false);
     this.props.changeDoiInfo(newDoiInfo);
     this.setState({ manual: false });
     this.props.changeAddSuccess(false);
-    this.props.history.push("/");
-    this.props.keycloak["keycloak"].logout();
+    this.props.history.push('/');
+    this.props.keycloak['keycloak'].logout();
   }
 
   render() {
     //main div is only displayed if user is authenticated by shib and in CIS group
-    if (this.props.keycloak["keycloak"]) {
-      if (this.props.keycloak["authenticated"]) {
-        if (this.props.keycloak["iscis"]) {
-          if (this.props.keycloak["profile"]) {
+    if (this.props.keycloak['keycloak']) {
+      if (this.props.keycloak['authenticated']) {
+        if (this.props.keycloak['iscis']) {
+          if (this.props.keycloak['profile']) {
             return (
               <div id="AddPub">
                 <Navbar id="navbar-addPub" bg="primary">
-                  <Navbar.Brand className="navbar-brand-custom">
-                    Add a Publication
-                  </Navbar.Brand>
+                  <Navbar.Brand className="navbar-brand-custom">Add a Publication</Navbar.Brand>
 
                   <Nav className="ml-auto mr-1">
                     <Nav.Item>
-                      <Button
-                        variant="outline-primary"
-                        onClick={(event) => this.onLogout(event)}
-                      >
+                      <Button variant="outline-primary" onClick={(event) => this.onLogout(event)}>
                         Logout
                       </Button>
                     </Nav.Item>
@@ -218,10 +213,8 @@ export class AddPub extends Component {
                     <br />
                     {!this.state.manual && <DoiForm></DoiForm>}
                     <br /> <br />
-                    {this.props.doiInfo["status"] !== "empty" &&
-                      this.props.doiInfo["status"] !== "not found" && (
-                        <DoiInfo></DoiInfo>
-                      )}
+                    {this.props.doiInfo['status'] !== 'empty' &&
+                      this.props.doiInfo['status'] !== 'not found' && <DoiInfo></DoiInfo>}
                     {this.state.manual && <DoiInfo></DoiInfo>}
                     {this.props.doiFailure && <p>No Information Found</p>}
                     {this.props.error && (
@@ -230,7 +223,7 @@ export class AddPub extends Component {
                       </div>
                     )}
                     <br />
-                    {this.props.doiInfo["status"] === "new" && (
+                    {this.props.doiInfo['status'] === 'new' && (
                       <Button
                         variant="contained"
                         color="primary"
@@ -239,7 +232,7 @@ export class AddPub extends Component {
                         Continue with Submission
                       </Button>
                     )}
-                    {this.props.doiInfo["status"] === "old" && (
+                    {this.props.doiInfo['status'] === 'old' && (
                       <Button
                         variant="contained"
                         color="primary"
@@ -258,11 +251,7 @@ export class AddPub extends Component {
                         >
                           Submit
                         </Button>
-                        <Spinner
-                          loading={this.props.loading}
-                          className="spinner"
-                          size={100}
-                        />
+                        <Spinner loading={this.props.loading} className="spinner" size={100} />
                       </div>
                     )}
                     {/* <br /> <br /> */}
@@ -289,9 +278,9 @@ export class AddPub extends Component {
           return (
             <div className="cis-false">
               <div>
-                Only members of CIS can do this -{" "}
-                <a href="mailto:support@ccv.brown.edu">open a ticket </a>to
-                request your publication be added
+                Only members of CIS can do this -{' '}
+                <a href="mailto:support@ccv.brown.edu">open a ticket </a>to request your publication
+                be added
               </div>
             </div>
           );

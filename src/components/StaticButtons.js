@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Button } from "react-bootstrap";
+import React, { Component } from 'react';
+import { Button } from 'react-bootstrap';
 
 export default class StaticButtons extends Component {
   constructor(props) {
@@ -23,29 +23,17 @@ export default class StaticButtons extends Component {
     return (
       <div className="static-buttons">
         {!this.props.manual && (
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={(event) => this.onManual(event)}
-          >
+          <Button variant="contained" color="primary" onClick={(event) => this.onManual(event)}>
             Enter Manually
           </Button>
         )}
         {this.props.manual && (
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={(event) => this.onDOI(event)}
-          >
+          <Button variant="contained" color="primary" onClick={(event) => this.onDOI(event)}>
             Enter DOI
           </Button>
         )}
         <div className="divider" />
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={(event) => this.onCancel(event)}
-        >
+        <Button variant="contained" color="primary" onClick={(event) => this.onCancel(event)}>
           Back to Home
         </Button>
       </div>

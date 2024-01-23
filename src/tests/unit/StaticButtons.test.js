@@ -1,6 +1,6 @@
-import React from "react";
-import StaticButtons from "../../components/StaticButtons";
-import { shallow } from "enzyme";
+import React from 'react';
+import StaticButtons from '../../components/StaticButtons';
+import { shallow } from 'enzyme';
 
 let onDOI = jest.fn();
 let onCancel = jest.fn();
@@ -37,65 +37,65 @@ function shallowSetupManual() {
   };
 }
 
-describe("StaticButtons Functionality", () => {
+describe('StaticButtons Functionality', () => {
   let wrapper;
   let props;
   beforeEach(() => {
-    wrapper = shallowSetup()["wrapper"];
-    props = shallowSetup()["props"];
+    wrapper = shallowSetup()['wrapper'];
+    props = shallowSetup()['props'];
     wrapper.setProps({
       keycloak: {
-        keycloak: { id: "test", logout: jest.fn() },
+        keycloak: { id: 'test', logout: jest.fn() },
         authenticated: true,
         iscis: true,
-        profile: "abc123",
+        profile: 'abc123',
       },
     });
-    props["keycloak"] = {
-      keycloak: { id: "test", logout: jest.fn() },
+    props['keycloak'] = {
+      keycloak: { id: 'test', logout: jest.fn() },
       authenticated: true,
       iscis: true,
-      profile: "abc123",
+      profile: 'abc123',
     };
   });
   afterEach(() => {
     jest.resetAllMocks();
   });
 
-  it("tests Enter Manual Button", () => {
+  it('tests Enter Manual Button', () => {
     const event = Object.assign(jest.fn(), { preventDefault: () => {} });
-    let button = wrapper.find("Button").at(0);
-    button.simulate("click", event);
+    let button = wrapper.find('Button').at(0);
+    button.simulate('click', event);
     expect(onManual).toHaveBeenCalled();
     expect(onManual.mock.calls.length).toBe(1);
   });
-  it("tests Enter Doi Button", () => {
-    wrapper = shallowSetupManual()["wrapper"];
-    props = shallowSetupManual()["props"];
+  it('tests Enter Doi Button', () => {
+    wrapper = shallowSetupManual()['wrapper'];
+    props = shallowSetupManual()['props'];
     wrapper.setProps({
       keycloak: {
-        keycloak: { id: "test", logout: jest.fn() },
+        keycloak: { id: 'test', logout: jest.fn() },
         authenticated: true,
         iscis: true,
-        profile: "abc123",
+        profile: 'abc123',
       },
     });
-    props["keycloak"] = {
-      keycloak: { id: "test", logout: jest.fn() },
+    props['keycloak'] = {
+      keycloak: { id: 'test', logout: jest.fn() },
       authenticated: true,
       iscis: true,
-      profile: "abc123",
+      profile: 'abc123',
     };
     const event = Object.assign(jest.fn(), { preventDefault: () => {} });
-    let button = wrapper.find("Button").at(0);
-    button.simulate("click", event);
+    let button = wrapper.find('Button').at(0);
+    button.simulate('click', event);
     expect(onDOI).toHaveBeenCalled();
     expect(onDOI.mock.calls.length).toBe(1);
   });
-  it("tests Back To Home Button", () => {
+  it('tests Back To Home Button', () => {
     const event = Object.assign(jest.fn(), { preventDefault: () => {} });
-    let button = wrapper.find("Button").at(1);
-    button.simulate("click", event);
+    let button = wrapper.find('Button').at(1);
+    button.simulate('click', event);
     expect(onCancel).toHaveBeenCalled();
     expect(onCancel.mock.calls.length).toBe(1);
   });

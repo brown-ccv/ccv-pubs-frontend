@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
 
 export const appStateSlice = createSlice({
   name: 'appState',
@@ -7,12 +7,12 @@ export const appStateSlice = createSlice({
   },
   reducers: {
     setPublications: (state, action) => {
-      state.publications = action.payload
+      state.publications = action.payload;
     },
   },
-})
+});
 
-export const { setPublications } = appStateSlice.actions
+export const { setPublications } = appStateSlice.actions;
 export const selectPublications = (state) => state.publications;
 
-export default appStateSlice.reducer
+export default appStateSlice.reducer;

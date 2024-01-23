@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import * as selectors from "../reducer";
-import vegaEmbed from "vega-embed";
-import spec from "../vega/yearChart";
-import Immutable from "seamless-immutable";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import * as selectors from '../reducer';
+import vegaEmbed from 'vega-embed';
+import spec from '../vega/yearChart';
+import Immutable from 'seamless-immutable';
 
 export class YearChart extends Component {
   constructor(props) {
@@ -13,20 +13,20 @@ export class YearChart extends Component {
   }
 
   embed() {
-    vegaEmbed("#yearChart", spec, {
-      mode: "vega",
+    vegaEmbed('#yearChart', spec, {
+      mode: 'vega',
       actions: false,
-      renderer: "svg",
-      loader: { target: "_blank" },
+      renderer: 'svg',
+      loader: { target: '_blank' },
     }).then((res) => {
       try {
         res.view
-          .insert("source_0", this.data)
+          .insert('source_0', this.data)
           .runAsync()
           .then((view) => {
             this.updateView(view);
             // update the global state with the current mouseover
-            view.addEventListener("click", (name, value) => {
+            view.addEventListener('click', (name, value) => {
               if (value && value.datum.xfield && !isNaN(value.datum.xfield)) {
                 this.props.changeYear(value.datum.xfield);
               } else if (value.datum.xfield && isNaN(value.datum.xfield)) {
@@ -35,7 +35,7 @@ export class YearChart extends Component {
             });
           });
       } catch (error) {
-        console.log("OH NO - The YearChart Viz Broke!");
+        console.log('OH NO - The YearChart Viz Broke!');
       }
     });
   }
@@ -70,7 +70,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    changeYear: (id) => dispatch({ type: "CHANGE_SELECT_YEAR", data: id }),
+    changeYear: (id) => dispatch({ type: 'CHANGE_SELECT_YEAR', data: id }),
   };
 };
 

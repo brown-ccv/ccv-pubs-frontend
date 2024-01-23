@@ -4,7 +4,7 @@
  * see ./store/slice/appState.js
  */
 
-import Immutable from "seamless-immutable";
+import Immutable from 'seamless-immutable';
 
 export const initialState = Immutable({
   publications: [],
@@ -13,7 +13,7 @@ export const initialState = Immutable({
   selectWord: null,
   selectYear: null,
   error: null,
-  doiInfo: { data: {}, status: "empty", abstract: "na" },
+  doiInfo: { data: {}, status: 'empty', abstract: 'na' },
   keycloak: {
     keycloak: null,
     authenticated: null,
@@ -28,7 +28,7 @@ export const initialState = Immutable({
 
 export default function reduce(state = initialState, action = {}) {
   switch (action.type) {
-    case "CHANGE_DATA":
+    case 'CHANGE_DATA':
       if (action.data.length > 0 && state.ngrams.length > 0) {
         return state.merge({
           publications: action.data,
@@ -38,7 +38,7 @@ export default function reduce(state = initialState, action = {}) {
       return state.merge({
         publications: action.data,
       });
-    case "CHANGE_NGRAMS":
+    case 'CHANGE_NGRAMS':
       if (action.data.length > 0 && state.publications.length > 0) {
         return state.merge({
           ngrams: action.data,
@@ -48,7 +48,7 @@ export default function reduce(state = initialState, action = {}) {
       return state.merge({
         ngrams: action.data,
       });
-    case "CHANGE_ERROR":
+    case 'CHANGE_ERROR':
       if (action.data) {
         return state.merge({
           error: action.data,
@@ -58,20 +58,20 @@ export default function reduce(state = initialState, action = {}) {
       return state.merge({
         error: action.data,
       });
-    case "CHANGE_LOADING":
+    case 'CHANGE_LOADING':
       return state.merge({
         loading: action.data,
       });
-    case "CHANGE_SELECT_WORD":
+    case 'CHANGE_SELECT_WORD':
       return state.merge({
         selectWord: action.data,
       });
-    case "CHANGE_SELECT_YEAR":
+    case 'CHANGE_SELECT_YEAR':
       return state.merge({
         selectYear: action.data,
       });
-    case "CHANGE_DOI_INFO":
-      if (!state.error && state.pressed && action.data["status"] !== "empty") {
+    case 'CHANGE_DOI_INFO':
+      if (!state.error && state.pressed && action.data['status'] !== 'empty') {
         return state.merge({
           doiInfo: action.data,
           loading: false,
@@ -81,15 +81,15 @@ export default function reduce(state = initialState, action = {}) {
       return state.merge({
         doiInfo: action.data,
       });
-    case "UPDATE_DOI_INFO":
+    case 'UPDATE_DOI_INFO':
       return state.merge({
         doiInfo: action.data,
       });
-    case "UPDATE_KEYCLOAK":
+    case 'UPDATE_KEYCLOAK':
       return state.merge({
         keycloak: action.data,
       });
-    case "FETCH_DOI_FAILURE":
+    case 'FETCH_DOI_FAILURE':
       if (!state.error) {
         return state.merge({
           doiFailure: action.data,
@@ -100,7 +100,7 @@ export default function reduce(state = initialState, action = {}) {
       return state.merge({
         doiFailure: action.data,
       });
-    case "UPDATE_ADD_SUCCESS":
+    case 'UPDATE_ADD_SUCCESS':
       if (!state.error) {
         return state.merge({
           addSuccess: action.data,
@@ -110,8 +110,8 @@ export default function reduce(state = initialState, action = {}) {
       return state.merge({
         addSuccess: action.data,
       });
-    case "UPDATE_PRESSED":
-      if (state.doiInfo["status"] === "empty" && !state.error) {
+    case 'UPDATE_PRESSED':
+      if (state.doiInfo['status'] === 'empty' && !state.error) {
         return state.merge({
           pressed: action.data,
           loading: true,
