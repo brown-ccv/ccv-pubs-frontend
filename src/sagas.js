@@ -1,3 +1,7 @@
+/**
+ * Deprecation Notice
+ */
+
 import { takeEvery, call, put, all } from "redux-saga/effects";
 import Client from "./client";
 import * as actions from "./actions";
