@@ -1,7 +1,6 @@
 import ReactTable from "react-table";
 import React from "react";
 import "react-table/react-table.css";
-import _ from "lodash";
 
 export function PubsTable({ publications }) {
   const changetoHTML = (url) => <a href={url.value}>{url.value}</a>;
@@ -12,8 +11,6 @@ export function PubsTable({ publications }) {
       ? String(row[id].toLowerCase()).includes(filter.value.toLowerCase())
       : false;
   }
-
-  var filteredData = _.cloneDeep(publications)
 
   const columns = [
     {
@@ -41,7 +38,7 @@ export function PubsTable({ publications }) {
 
     return (
       <ReactTable
-        data={filteredData}
+        data={publications}
         columns={columns}
         filterable
         defaultFilterMethod={(filter, row) =>

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBook } from "@fortawesome/free-solid-svg-icons";
-// import Spinner from "./Spinner";
+import Spinner from "./Spinner";
 import { PubsTable } from "./PubsTable";
 // import YearChart from "./YearChart";
 // import WordCloud from "./WordCloud";
@@ -40,11 +40,9 @@ export function ContentPage() {
         <h1 className="pl-2">Publications</h1>
       </div>
 
-      {/* TODO: Error Boundary */}
-      {/* TODO: Put back in suspense component */}
-      {/*<Spinner loading={this.props.loading} className="spinner" size={100} />*/}
+      <Spinner loading={publications.length === 0} className="spinner" size={100} />
 
-      <div id="main-content">
+      {publications.length !== 0 && (<div id="main-content">
         <div className="PubsTable-CP">
           <PubsTable publications={publications} />
         </div>
@@ -59,7 +57,7 @@ export function ContentPage() {
         {/*  <WordCloud />*/}
         {/*  <YearChart />*/}
         {/*</div>*/}
-      </div>
+      </div>)}
     </div>
   );
 }
