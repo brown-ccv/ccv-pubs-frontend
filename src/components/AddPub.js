@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Navbar, Nav, Button } from 'react-bootstrap';
-import * as actions from '../actions';
 import { connect } from 'react-redux';
-import * as selectors from '../reducer';
 import Immutable from 'seamless-immutable';
+import Keycloak from 'keycloak-js';
+import * as actions from '../actions';
+import * as selectors from '../reducer';
 import DoiInfo from './DoiInfo';
 import Spinner from './Spinner';
-import Keycloak from 'keycloak-js';
 import DoiForm from './DoiForm';
 import StaticButtons from './StaticButtons';
 import SuccessScreen from './SuccessScreen';

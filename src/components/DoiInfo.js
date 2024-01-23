@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Immutable from 'seamless-immutable';
-import * as selectors from '../reducer';
 import { connect } from 'react-redux';
-import * as actions from '../actions';
 import { Col, Row, Form } from 'react-bootstrap';
+import * as selectors from '../reducer';
+import * as actions from '../actions';
 
 /**
  * Component responsible for holding information from doi queries as well as manually adds

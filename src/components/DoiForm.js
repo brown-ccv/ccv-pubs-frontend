@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import Form from 'react-bootstrap/Form';
-import Spinner from './Spinner';
 import { Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import * as selectors from '../reducer';
 import Immutable from 'seamless-immutable';
+import * as selectors from '../reducer';
 import * as actions from '../actions';
+import Spinner from './Spinner';
 
 export class DoiForm extends Component {
   /**

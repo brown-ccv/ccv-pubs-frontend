@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as selectors from '../reducer';
 import vegaEmbed from 'vega-embed';
-import spec from '../vega/yearChart';
 import Immutable from 'seamless-immutable';
+import * as selectors from '../reducer';
+import spec from '../vega/yearChart';
 
 export class YearChart extends Component {
   constructor(props) {

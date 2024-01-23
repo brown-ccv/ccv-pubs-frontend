@@ -1,6 +1,6 @@
 import React from 'react';
-import Spinner from '../../components/Spinner';
 import { shallow } from 'enzyme';
+import Spinner from '../../components/Spinner';
 
 describe('Spinner', () => {
   it('renders App without crashing', () => {

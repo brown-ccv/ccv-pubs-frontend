@@ -1,6 +1,6 @@
+import Immutable from 'seamless-immutable';
 import reducer from '../../reducer';
 import * as selectors from '../../reducer';
-import Immutable from 'seamless-immutable';
 
 let initialstate = Immutable({
   publications: [],

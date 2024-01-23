@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBook } from '@fortawesome/free-solid-svg-icons';
-import Spinner from './Spinner';
-import { PubsTable } from './PubsTable';
 // import YearChart from "./YearChart";
 // import WordCloud from "./WordCloud";
 import Button from 'react-bootstrap/Button';
@@ -10,6 +8,8 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPublicationsData } from '../utils/firebase.ts';
 import { selectPublications, setPublications } from '../store/slice/appState';
+import { PubsTable } from './PubsTable';
+import Spinner from './Spinner';
 
 export function ContentPage() {
   const publications = useSelector(selectPublications);

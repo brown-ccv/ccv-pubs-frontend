@@ -1,8 +1,8 @@
 import React from 'react';
-import { AddPub } from '../../components/AddPub';
 import { shallow, mount } from 'enzyme';
 import { expressionFunction } from 'vega';
 import { MemoryRouter } from 'react-router-dom';
+import { AddPub } from '../../components/AddPub';
 
 let setFailure = jest.fn();
 let requestDoiInfo = jest.fn();

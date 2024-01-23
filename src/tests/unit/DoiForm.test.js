@@ -1,6 +1,6 @@
 import React from 'react';
-import { DoiForm } from '../../components/DoiForm';
 import { shallow } from 'enzyme';
+import { DoiForm } from '../../components/DoiForm';
 
 let setFailure = jest.fn();
 let requestDoiInfo = jest.fn();

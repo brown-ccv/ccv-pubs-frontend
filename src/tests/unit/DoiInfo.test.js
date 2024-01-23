@@ -1,6 +1,6 @@
 import React from 'react';
-import { DoiInfo } from '../../components/DoiInfo';
 import { shallow } from 'enzyme';
+import { DoiInfo } from '../../components/DoiInfo';
 
 let updateDoiInfo = jest.fn();
 let postPubAction = jest.fn();

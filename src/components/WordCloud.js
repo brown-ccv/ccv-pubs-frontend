@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import vegaEmbed from 'vega-embed';
+import Immutable from 'seamless-immutable';
 import spec from '../vega/wordCloud';
 import * as selectors from '../reducer';
-import Immutable from 'seamless-immutable';
 
 export class WordCloud extends Component {
   constructor(props) {

@@ -1,6 +1,6 @@
 import React from 'react';
-import StaticButtons from '../../components/StaticButtons';
 import { shallow } from 'enzyme';
+import StaticButtons from '../../components/StaticButtons';
 
 let onDOI = jest.fn();
 let onCancel = jest.fn();

@@ -1,8 +1,8 @@
 import React from 'react';
-import { PubsTable } from '../../components/PubsTable';
 import { shallow } from 'enzyme';
 import Immutable from 'seamless-immutable';
 import _ from 'lodash';
+import { PubsTable } from '../../components/PubsTable';
 
 let changeSelectWord = jest.fn();
 let changeSelectYear = jest.fn();

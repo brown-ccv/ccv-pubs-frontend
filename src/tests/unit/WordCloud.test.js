@@ -1,6 +1,6 @@
 import React from 'react';
-import { WordCloud } from '../../components/WordCloud';
 import { shallow } from 'enzyme';
+import { WordCloud } from '../../components/WordCloud';
 
 let setWord = jest.fn();
 function shallowSetup() {
