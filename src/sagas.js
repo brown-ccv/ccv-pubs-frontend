@@ -10,7 +10,7 @@ const errorText =
   'Could not connect to server.  Please refresh the page in a few minutes and try again.';
 
 // -------------FETCHING SAGAS -----------------
-export function* fetchData(action) {
+export function* fetchData() {
   try {
     const publications = yield call(Client.getData);
     yield put(actions.fetchData(publications));
@@ -19,7 +19,7 @@ export function* fetchData(action) {
   }
 }
 
-export function* fetchNgrams(action) {
+export function* fetchNgrams() {
   try {
     const ngrams = yield call(Client.getNgrams);
     yield put(actions.fetchNgrams(ngrams));
