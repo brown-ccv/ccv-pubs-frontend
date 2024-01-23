@@ -3,6 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "homepage": ".",
+  "scripts": {
+    "start": "react-scripts --openssl-legacy-provider start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --testPathPattern=src/tests/unit",
+    "eject": "react-scripts eject"
+  },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
     "@fortawesome/free-regular-svg-icons": "^6.5.1",
@@ -34,14 +40,37 @@
     "vega-embed": "^6.24.0",
     "vega-lite": "^5.16.3"
   },
-  "scripts": {
-    "start": "react-scripts --openssl-legacy-provider start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --testPathPattern=src/tests/unit",
-    "eject": "react-scripts eject"
+  "devDependencies": {
+    "@brown-ccv/eslint-config": "^0.3.0",
+    "@brown-ccv/prettier-config": "^0.3.0",
+    "babel-preset-react-app": "^10.0.1",
+    "chromedriver": "^83.0.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "firebase-admin": "^12.0.0",
+    "firebase-tools": "^13.0.3",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
+    "nightwatch": "^1.3.6",
+    "prettier": "^3.2.4"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": [
+      "react-app",
+      "@brown-ccv/eslint-config"
+    ]
+  },
+  "prettier": "@brown-ccv/prettier-config",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "prettier --write",
+      "eslint --ext .ts,.js,.jsx src --fix"
+    ]
   },
   "browserslist": {
     "production": [
@@ -54,15 +83,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "babel-preset-react-app": "^10.0.1",
-    "chromedriver": "^83.0.0",
-    "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.2",
-    "firebase-admin": "^12.0.0",
-    "firebase-tools": "^13.0.3",
-    "nightwatch": "^1.3.6",
-    "prettier": "^3.2.1"
   }
 }
