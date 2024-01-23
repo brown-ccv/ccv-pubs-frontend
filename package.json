@@ -9,7 +9,8 @@
     "test": "react-scripts test --testPathPattern=src/tests/unit",
     "eject": "react-scripts eject",
     "prettier": "prettier --write .",
-    "lint": "eslint --ext .ts,.js,.jsx src --fix"
+    "lint": "eslint --ext .ts,.js,.jsx src --fix",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
