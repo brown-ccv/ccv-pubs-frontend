@@ -4,6 +4,9 @@ import Navbar from './components/react-ccv-components/Navbar';
 import Footer from './components/react-ccv-components/Footer';
 
 import { ContentPage } from './components/ContentPage';
+
+// TODO: Ignoring for now because it's to be refactored
+// eslint-disable-next-line import/no-named-as-default
 import AddPub from './components/AddPub';
 
 export function App() {

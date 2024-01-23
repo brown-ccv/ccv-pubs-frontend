@@ -5,8 +5,12 @@ import Immutable from 'seamless-immutable';
 import Keycloak from 'keycloak-js';
 import * as actions from '../actions';
 import * as selectors from '../reducer';
+// TODO: Ignoring for now because it's to be refactored
+// eslint-disable-next-line import/no-named-as-default
 import DoiInfo from './DoiInfo';
 import Spinner from './Spinner';
+// TODO: Ignoring for now because it's to be refactored
+// eslint-disable-next-line import/no-named-as-default
 import DoiForm from './DoiForm';
 import StaticButtons from './StaticButtons';
 import SuccessScreen from './SuccessScreen';
@@ -114,7 +118,7 @@ export class AddPub extends Component {
   /**
    * Called when "Back to Home button is pressed"
    */
-  onCancel(e) {
+  onCancel() {
     const newDoiInfo = {
       data: {},
       status: 'empty',
@@ -132,7 +136,7 @@ export class AddPub extends Component {
    * When a user elects to add a publication manually,
    * the previous doi info (if any) is cleared
    */
-  onManual(e) {
+  onManual() {
     const newDoiInfo = {
       data: {
         title: null,
@@ -158,7 +162,7 @@ export class AddPub extends Component {
    * When a user elects to enter a DOI after previosly pressing
    * "enter manually".
    */
-  onDOI(e) {
+  onDOI() {
     const newDoiInfo = {
       data: {},
       status: 'empty',
@@ -174,7 +178,7 @@ export class AddPub extends Component {
    * When a user logs out everything in props is reset and
    * any class variables are reverted back to oringinal state
    */
-  onLogout(e) {
+  onLogout() {
     const newDoiInfo = {
       data: {},
       status: 'empty',
