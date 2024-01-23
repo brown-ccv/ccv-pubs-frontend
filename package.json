@@ -8,7 +8,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --testPathPattern=src/tests/unit",
     "eject": "react-scripts eject",
-    "prettier": "prettier --write .",
+    "format": "prettier --write .",
     "lint": "eslint --ext .ts,.js,.jsx src --fix",
     "prepare": "husky install"
   },
@@ -64,11 +64,6 @@
     ]
   },
   "prettier": "@brown-ccv/prettier-config",
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
       "prettier --write .",
