@@ -8,7 +8,7 @@ import { extractDOI, fetchDoi } from '../utils/utils.ts';
 
 const formID = 'form';
 
-export function PublicationModal() {
+export function AddPublicationModal() {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -40,7 +40,7 @@ export function PublicationModal() {
               console.log(await fetchDoi(doi));
             }}
           >
-            {({ handleChange, handleSubmit, values, touched, errors }) => (
+            {({ handleChange, handleSubmit, values, errors }) => (
               <Form id={formID} onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="validationDoiOrUrl">
                   <Form.Label>DOI or DOI URL</Form.Label>

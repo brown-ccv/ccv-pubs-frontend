@@ -8,7 +8,7 @@ import { fetchPublicationsData } from '../utils/firebase.ts';
 import { selectPublications, setPublications } from '../store/slice/appState';
 import { PubsTable } from './PubsTable';
 import Spinner from './Spinner';
-import { PublicationModal } from './AddPub';
+import { AddPublicationModal } from './AddPublicationModal';
 
 export function ContentPage() {
   const publications = useSelector(selectPublications);
@@ -24,7 +24,7 @@ export function ContentPage() {
   return (
     <div className="ContentPage main-content">
       <div align="right">
-        <PublicationModal />
+        <AddPublicationModal />
       </div>
       <div className="d-flex flex-row justify-content-center align-items-center">
         <div className="pub-title pt-2 bg-primary text-white rounded-circle">
