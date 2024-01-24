@@ -3,13 +3,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBook } from '@fortawesome/free-solid-svg-icons';
 // import YearChart from "./YearChart";
 // import WordCloud from "./WordCloud";
-import Button from 'react-bootstrap/Button';
-import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPublicationsData } from '../utils/firebase.ts';
 import { selectPublications, setPublications } from '../store/slice/appState';
 import { PubsTable } from './PubsTable';
 import Spinner from './Spinner';
+import { PublicationModal } from './AddPub';
 
 export function ContentPage() {
   const publications = useSelector(selectPublications);
@@ -25,11 +24,7 @@ export function ContentPage() {
   return (
     <div className="ContentPage main-content">
       <div align="right">
-        <Link to="/addpub">
-          <Button variant="contained" color="primary" id="AddPubButton">
-            Add a Publication
-          </Button>
-        </Link>
+        <PublicationModal />
       </div>
       <div className="d-flex flex-row justify-content-center align-items-center">
         <div className="pub-title pt-2 bg-primary text-white rounded-circle">
