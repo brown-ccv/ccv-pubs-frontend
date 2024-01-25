@@ -1,3 +1,12 @@
+/**
+ * Deprecation Notice
+ *
+ * getData --> See ./utils/firebase.ts fetchPublicationsData
+ * getNgrams --> TODO
+ * getDoiInfo --> TODO
+ * postPub --> TODO
+ */
+
 import fetch from "isomorphic-fetch";
 
 const SERVICE_ENDPOINT =

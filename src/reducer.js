@@ -1,3 +1,9 @@
+/**
+ * Deprecation Notice
+ *
+ * see ./store/slice/appState.js
+ */
+
 import Immutable from "seamless-immutable";
 
 export const initialState = Immutable({
