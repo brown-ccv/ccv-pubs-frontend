@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import vegaEmbed from "vega-embed";
-import spec from "../vega/wordCloud";
-import * as selectors from "../reducer";
-import Immutable from "seamless-immutable";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import vegaEmbed from 'vega-embed';
+import Immutable from 'seamless-immutable';
+import spec from '../vega/wordCloud';
+import * as selectors from '../reducer';
 
 export class WordCloud extends Component {
   constructor(props) {
@@ -14,22 +14,17 @@ export class WordCloud extends Component {
   }
 
   embed() {
-    vegaEmbed("#wordcloud", spec, {
-      mode: "vega",
+    vegaEmbed('#wordcloud', spec, {
+      mode: 'vega',
       actions: false,
-      renderer: "svg",
+      renderer: 'svg',
     })
       .then((res) => {
         try {
           //look at async run and componentDidMount, etc.
-          res.view
-            .insert(
-              "table",
-              Immutable.asMutable(this.props.ngrams, { deep: true })
-            )
-            .run();
+          res.view.insert('table', Immutable.asMutable(this.props.ngrams, { deep: true })).run();
         } catch (error) {
-          console.log("OH NO - The Word Cloud Viz Broke!");
+          console.log('OH NO - The Word Cloud Viz Broke!');
         }
       })
       .catch((error) => console.log(error));
@@ -59,7 +54,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setWord: (id) => dispatch({ type: "CHANGE_SELECT_WORD", data: id }),
+    setWord: (id) => dispatch({ type: 'CHANGE_SELECT_WORD', data: id }),
   };
 };
 

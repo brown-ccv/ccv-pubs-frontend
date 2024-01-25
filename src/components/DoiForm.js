@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import Form from "react-bootstrap/Form";
-import Spinner from "./Spinner";
-import { Button } from "react-bootstrap";
-import { connect } from "react-redux";
-import * as selectors from "../reducer";
-import Immutable from "seamless-immutable";
-import * as actions from "../actions";
+import React, { Component } from 'react';
+import Form from 'react-bootstrap/Form';
+import { Button } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import Immutable from 'seamless-immutable';
+import * as selectors from '../reducer';
+import * as actions from '../actions';
+import Spinner from './Spinner';
 
 export class DoiForm extends Component {
   /**
@@ -17,7 +17,7 @@ export class DoiForm extends Component {
     this.props.setFailure(false);
     const newDoiInfo = {
       data: {},
-      status: "empty",
+      status: 'empty',
     };
     this.props.changeDoiInfo(newDoiInfo);
     const doiObject = {
@@ -49,11 +49,7 @@ export class DoiForm extends Component {
         <br />
         <Spinner loading={this.props.loading} className="spinner" size={100} />
         {
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={(event) => this.onSubmit(event)}
-          >
+          <Button variant="contained" color="primary" onClick={(event) => this.onSubmit(event)}>
             Submit
           </Button>
         }

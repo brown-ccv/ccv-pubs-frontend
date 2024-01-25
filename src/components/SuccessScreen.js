@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Button } from "react-bootstrap";
+import React, { Component } from 'react';
+import { Button } from 'react-bootstrap';
 
 export default class SuccessScreen extends Component {
   // constructor(props) {
@@ -18,19 +18,11 @@ export default class SuccessScreen extends Component {
       <div className="success-screen">
         <h1>Success!</h1>
         <br />
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={(event) => this.onDOI(event)}
-        >
+        <Button variant="contained" color="primary" onClick={(event) => this.onDOI(event)}>
           Insert Another Publication
         </Button>
         <div className="divider" />
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={(event) => this.onCancel(event)}
-        >
+        <Button variant="contained" color="primary" onClick={(event) => this.onCancel(event)}>
           Back to Home
         </Button>
       </div>

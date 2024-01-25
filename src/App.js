@@ -1,10 +1,13 @@
-import React from "react";
-import Navbar from "./components/react-ccv-components/Navbar";
-import Footer from "./components/react-ccv-components/Footer";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Navbar from './components/react-ccv-components/Navbar';
+import Footer from './components/react-ccv-components/Footer';
 
-import { ContentPage } from "./components/ContentPage";
-import AddPub from "./components/AddPub";
+import { ContentPage } from './components/ContentPage';
+
+// TODO: Ignoring for now because it's to be refactored
+// eslint-disable-next-line import/no-named-as-default
+import AddPub from './components/AddPub';
 
 export function App() {
   return (

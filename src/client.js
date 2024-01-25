@@ -7,12 +7,12 @@
  * postPub --> TODO
  */
 
-import fetch from "isomorphic-fetch";
+import fetch from 'isomorphic-fetch';
 
 const SERVICE_ENDPOINT =
-  process.env.NODE_ENV === "production"
-    ? "https://publications-api.ccv.brown.edu"
-    : "http://localhost:8080";
+  process.env.NODE_ENV === 'production'
+    ? 'https://publications-api.ccv.brown.edu'
+    : 'http://localhost:8080';
 
 class Client {
   // get all publications from ccvpubs database
@@ -27,9 +27,7 @@ class Client {
     }
 
     if (!response.ok) {
-      throw new Error(
-        `Fetching Publications failed, HTTP status ${response.status}`
-      );
+      throw new Error(`Fetching Publications failed, HTTP status ${response.status}`);
     }
     const data = await response.json();
 
@@ -59,7 +57,7 @@ class Client {
     var data;
     try {
       response = await fetch(url, {
-        method: "POST",
+        method: 'POST',
         body: String(newPub.doi),
       });
 
@@ -79,13 +77,17 @@ class Client {
     var response;
     var update;
     //to make sure order is correct when sent to API
-    let dict = { data: newPub.data["data"], status: newPub.data["status"], abstract: newPub.data["abstract"] };
+    let dict = {
+      data: newPub.data['data'],
+      status: newPub.data['status'],
+      abstract: newPub.data['abstract'],
+    };
     try {
       response = await fetch(url, {
-        method: "POST",
+        method: 'POST',
         body: JSON.stringify(dict),
         headers: {
-          Authorization: "Bearer " + newPub.token,
+          Authorization: 'Bearer ' + newPub.token,
         },
       });
     } catch (error) {
@@ -94,7 +96,7 @@ class Client {
 
     if (response.status === 202) {
       alert(
-        "Could not refresh publication data. Added publication may not be viewed in the table, but is still in the database. Try to refresh page."
+        'Could not refresh publication data. Added publication may not be viewed in the table, but is still in the database. Try to refresh page.'
       );
     } else if (response.status === 401) {
       throw new Error(`Unauthorized`);
@@ -106,5 +108,5 @@ class Client {
   }
 }
 
-const client = new Client()
+const client = new Client();
 export default client;
