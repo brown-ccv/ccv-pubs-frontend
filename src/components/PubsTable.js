@@ -1,8 +1,11 @@
 import ReactTable from 'react-table';
 import React from 'react';
 import 'react-table/react-table.css';
+import { useSelector } from 'react-redux';
+import { selectPublications } from '../store/slice/appState';
 
-export function PubsTable({ publications }) {
+export function PubsTable() {
+  const publications = useSelector(selectPublications);
   const changetoHTML = (url) => <a href={url.value}>{url.value}</a>;
 
   const filterCaseInsensitive = (filter, row) => {

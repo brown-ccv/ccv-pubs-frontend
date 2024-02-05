@@ -4,7 +4,10 @@ import * as yup from 'yup';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+import { useSelector } from 'react-redux';
+
 import { fetchDoi, validateDoi } from '../utils/utils.ts';
+import { selectPublications } from '../store/slice/appState';
 
 const searchFormId = 'searchForm';
 const manualFormId = 'manualForm';
@@ -74,6 +77,8 @@ const SearchDoiForm = ({
   setManual: (manual: boolean) => void;
   setInitialValues: (values: Publication) => void;
 }) => {
+  const publications = useSelector(selectPublications);
+
   return (
     <>
       <Modal.Body>
@@ -85,15 +90,23 @@ const SearchDoiForm = ({
             doi: '',
           }}
           onSubmit={async ({ doi }, { setSubmitting, setErrors }) => {
+            if (publications.find((p) => p.doi.toLowerCase() === doi.toLowerCase())) {
+              setErrors({ doi: 'Publication already exists in database' });
+              setSubmitting(false);
+              return;
+            }
+
             const data = await fetchDoi(doi);
 
             if (!data) {
               setErrors({ doi: 'Invalid DOI. Publication not found. Enter manually instead' });
+              setSubmitting(false);
+              return;
             }
 
             setInitialValues(data);
-            setSubmitting(false);
             setManual(true);
+            setSubmitting(false);
           }}
         >
           {({ handleChange, handleSubmit, values, errors }) => (
@@ -138,6 +151,8 @@ const ManualForm = ({
   initialValues: Publication;
   setInitialValues: (values: Publication) => void;
 }) => {
+  const publications = useSelector(selectPublications);
+
   return (
     <>
       <Modal.Body>
@@ -153,8 +168,12 @@ const ManualForm = ({
             year: yup.number().integer().min(1).max(new Date().getFullYear()).required(),
             abstract: yup.string(),
           })}
-          onSubmit={(values, { setSubmitting }) => {
-            console.log(values);
+          onSubmit={({ doi }, { setSubmitting, setErrors }) => {
+            if (publications.find((p) => p.doi.toLowerCase() === doi.toLowerCase())) {
+              setErrors({ doi: 'Publication already exists in database' });
+              setSubmitting(false);
+              return;
+            }
 
             setInitialValues(getBlankFormValues());
             setSubmitting(false);

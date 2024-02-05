@@ -38,7 +38,7 @@ export function ContentPage() {
       {publications.length !== 0 && (
         <div id="main-content">
           <div className="PubsTable-CP">
-            <PubsTable publications={publications} />
+            <PubsTable />
           </div>
 
           {/* TODO: Word Cloud */}
