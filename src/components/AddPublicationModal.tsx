@@ -4,14 +4,35 @@ import * as yup from 'yup';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
-import { extractDOI, fetchDoi } from '../utils/utils.ts';
+import { fetchDoi } from '../utils/utils.ts';
 
 const searchFormId = 'searchForm';
 const manualFormId = 'manualForm';
 
+interface Publication {
+  title: string;
+  author: string;
+  publisher: string;
+  url: string;
+  doi: string;
+  month: number;
+  year: number;
+  abstract: string;
+}
+
 export function AddPublicationModal() {
   const [show, setShow] = useState(false);
   const [manual, setManual] = useState(false);
+  const [initialValues, setInitialValues] = useState({
+    title: '',
+    author: '',
+    publisher: '',
+    url: '',
+    doi: '',
+    month: 0,
+    year: 0,
+    abstract: '',
+  });
 
   const handleClose: () => void = () => {
     setShow(false);
@@ -30,22 +51,32 @@ export function AddPublicationModal() {
           <Modal.Title>Add Publication</Modal.Title>
         </Modal.Header>
         {manual ? (
-          <ManualForm handleClose={handleClose} setManual={setManual} />
+          <ManualForm
+            handleClose={handleClose}
+            setManual={setManual}
+            initialValues={initialValues}
+          />
         ) : (
-          <SearchDoiForm setManual={setManual} />
+          <SearchDoiForm setManual={setManual} setInitialValues={setInitialValues} />
         )}
       </Modal>
     </>
   );
 }
 
-const SearchDoiForm = ({ setManual }: { setManual: (manual: boolean) => void }) => {
+const SearchDoiForm = ({
+  setManual,
+  setInitialValues,
+}: {
+  setManual: (manual: boolean) => void;
+  setInitialValues: (values: Publication) => void;
+}) => {
   return (
     <>
       <Modal.Body>
         <Formik
           validationSchema={yup.object().shape({
-            doiOrUrl: yup
+            doi: yup
               .string()
               .matches(
                 /^10\.\d{4,9}\/[-._;()/:a-zA-Z0-9]+$/,
@@ -54,34 +85,34 @@ const SearchDoiForm = ({ setManual }: { setManual: (manual: boolean) => void }) 
               .required(),
           })}
           initialValues={{
-            doiOrUrl: '',
+            doi: '',
           }}
-          onSubmit={async ({ doiOrUrl }, { setSubmitting, setErrors }) => {
-            const doi = extractDOI(doiOrUrl);
-
+          onSubmit={async ({ doi }, { setSubmitting, setErrors }) => {
             const data = await fetchDoi(doi);
 
             if (!data) {
-              setErrors({ doiOrUrl: 'Invalid DOI. Publication not found. Enter manually instead' });
+              setErrors({ doi: 'Invalid DOI. Publication not found. Enter manually instead' });
             }
 
+            setInitialValues(data);
             setSubmitting(false);
+            setManual(true);
           }}
         >
           {({ handleChange, handleSubmit, values, errors }) => (
             <Form id={searchFormId} onSubmit={handleSubmit}>
-              <Form.Group className="mb-3" controlId="validationDoiOrUrl">
-                <Form.Label>DOI or DOI URL</Form.Label>
+              <Form.Group className="mb-3" controlId="validationDoi">
+                <Form.Label>DOI</Form.Label>
                 <Form.Control
                   type="text"
-                  name="doiOrUrl"
-                  placeholder="Enter DOI"
-                  value={values.doiOrUrl}
+                  name="doi"
+                  placeholder="Enter DOI. Example: '10.1234/abcd-efg'"
+                  value={values.doi}
                   onChange={handleChange}
-                  isInvalid={!!errors.doiOrUrl}
+                  isInvalid={!!errors.doi}
                   autoFocus
                 />
-                <Form.Control.Feedback type="invalid">{errors.doiOrUrl}</Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">{errors.doi}</Form.Control.Feedback>
               </Form.Group>
             </Form>
           )}
@@ -102,24 +133,17 @@ const SearchDoiForm = ({ setManual }: { setManual: (manual: boolean) => void }) 
 const ManualForm = ({
   handleClose,
   setManual,
+  initialValues,
 }: {
   handleClose: () => void;
   setManual: (manual: boolean) => void;
+  initialValues: Publication;
 }) => {
   return (
     <>
       <Modal.Body>
         <Formik
-          initialValues={{
-            title: '',
-            authors: '',
-            publisher: '',
-            url: '',
-            doi: '',
-            month: 0,
-            year: 0,
-            abstract: '',
-          }}
+          initialValues={initialValues}
           onSubmit={(values) => {
             console.log(values);
             handleClose();
@@ -130,7 +154,8 @@ const ManualForm = ({
               <Form.Group className="mb-3" controlId="title">
                 <Form.Label>Title</Form.Label>
                 <Form.Control
-                  type="text"
+                  as="textarea"
+                  rows={2}
                   name="title"
                   placeholder="Enter title"
                   value={values.title}
@@ -139,15 +164,15 @@ const ManualForm = ({
                   autoFocus
                 />
               </Form.Group>
-              <Form.Group className="mb-3" controlId="authors">
+              <Form.Group className="mb-3" controlId="author">
                 <Form.Label>Author(s)</Form.Label>
                 <Form.Control
                   type="text"
-                  name="authors"
+                  name="author"
                   placeholder="Enter Author(s) names (ex. John Smith, Jane Doe, ...)"
-                  value={values.authors}
+                  value={values.author}
                   onChange={handleChange}
-                  isInvalid={!!errors.authors}
+                  isInvalid={!!errors.author}
                 />
               </Form.Group>
               <Form.Group className="mb-3" controlId="publisher">

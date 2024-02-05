@@ -13,21 +13,25 @@ export const fetchDoi = async (doi: string): Promise<object> => {
     title,
     author,
     publisher,
-    volume, // TODO: Investigate. The form asks for this, but it isn't saved anywhere
     URL: url,
-    // "DOI": fetchedDoi,
+    DOI: fetchedDoi,
     'published-print': publishedPrint,
+    abstract,
   } = await res.json();
+
+  if (doi.toLowerCase() !== fetchedDoi.toLowerCase()) {
+    return null;
+  }
 
   return {
     title,
     author: author.map(({ given, family }) => `${given} ${family}`).join(', '),
     publisher,
-    volume,
     url,
     doi,
     year: publishedPrint['date-parts'][0][0],
     month: publishedPrint['date-parts'][0][1],
+    abstract,
   };
 };
 
