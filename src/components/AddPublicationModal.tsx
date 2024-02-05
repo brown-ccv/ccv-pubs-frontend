@@ -20,19 +20,21 @@ interface Publication {
   abstract: string;
 }
 
+const blankFormValues: Publication = {
+  title: '',
+  author: '',
+  publisher: '',
+  url: '',
+  doi: '',
+  month: 0,
+  year: 0,
+  abstract: '',
+};
+
 export function AddPublicationModal() {
   const [show, setShow] = useState(false);
   const [manual, setManual] = useState(false);
-  const [initialValues, setInitialValues] = useState({
-    title: '',
-    author: '',
-    publisher: '',
-    url: '',
-    doi: '',
-    month: 0,
-    year: 0,
-    abstract: '',
-  });
+  const [initialValues, setInitialValues] = useState(blankFormValues);
 
   const handleClose: () => void = () => {
     setShow(false);
@@ -55,6 +57,7 @@ export function AddPublicationModal() {
             handleClose={handleClose}
             setManual={setManual}
             initialValues={initialValues}
+            setInitialValues={setInitialValues}
           />
         ) : (
           <SearchDoiForm setManual={setManual} setInitialValues={setInitialValues} />
@@ -134,18 +137,23 @@ const ManualForm = ({
   handleClose,
   setManual,
   initialValues,
+  setInitialValues,
 }: {
   handleClose: () => void;
   setManual: (manual: boolean) => void;
   initialValues: Publication;
+  setInitialValues: (values: Publication) => void;
 }) => {
   return (
     <>
       <Modal.Body>
         <Formik
           initialValues={initialValues}
-          onSubmit={(values) => {
+          onSubmit={(values, { setSubmitting }) => {
             console.log(values);
+
+            setInitialValues(blankFormValues);
+            setSubmitting(false);
             handleClose();
           }}
         >
