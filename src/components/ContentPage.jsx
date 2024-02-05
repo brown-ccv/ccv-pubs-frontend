@@ -8,7 +8,7 @@ import { fetchPublicationsData } from '../utils/firebase.ts';
 import { selectPublications, setPublications } from '../store/slice/appState';
 import { PubsTable } from './PubsTable';
 import Spinner from './Spinner';
-import { AddPublicationModal } from './AddPublicationModal';
+import { AddPublicationModal } from './AddPublicationModal.tsx';
 
 export function ContentPage() {
   const publications = useSelector(selectPublications);
