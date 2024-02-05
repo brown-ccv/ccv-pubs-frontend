@@ -4,7 +4,7 @@ import * as yup from 'yup';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
-import { fetchDoi } from '../utils/utils.ts';
+import { fetchDoi, validateDoi } from '../utils/utils.ts';
 
 const searchFormId = 'searchForm';
 const manualFormId = 'manualForm';
@@ -79,13 +79,7 @@ const SearchDoiForm = ({
       <Modal.Body>
         <Formik
           validationSchema={yup.object().shape({
-            doi: yup
-              .string()
-              .matches(
-                /^10\.\d{4,9}\/[-._;()/:a-zA-Z0-9]+$/,
-                "Invalid DOI format. Example: '10.1234/abcd-efg'"
-              )
-              .required(),
+            doi: validateDoi(),
           })}
           initialValues={{
             doi: '',
@@ -149,6 +143,16 @@ const ManualForm = ({
       <Modal.Body>
         <Formik
           initialValues={initialValues}
+          validationSchema={yup.object().shape({
+            title: yup.string().required(),
+            author: yup.string().required(),
+            publisher: yup.string().required(),
+            url: yup.string().url().required(),
+            doi: validateDoi(),
+            month: yup.string().required(),
+            year: yup.string().required(),
+            abstract: yup.string(),
+          })}
           onSubmit={(values, { setSubmitting }) => {
             console.log(values);
 
@@ -157,7 +161,7 @@ const ManualForm = ({
             handleClose();
           }}
         >
-          {({ handleChange, handleSubmit, values, errors }) => (
+          {({ handleChange, handleSubmit, values, errors, touched }) => (
             <Form id={manualFormId} onSubmit={handleSubmit}>
               <Form.Group className="mb-3" controlId="title">
                 <Form.Label>Title</Form.Label>
@@ -168,9 +172,10 @@ const ManualForm = ({
                   placeholder="Enter title"
                   value={values.title}
                   onChange={handleChange}
-                  isInvalid={!!errors.title}
+                  isInvalid={touched.title && !!errors.title}
                   autoFocus
                 />
+                <Form.Control.Feedback type="invalid">{errors.title}</Form.Control.Feedback>
               </Form.Group>
               <Form.Group className="mb-3" controlId="author">
                 <Form.Label>Author(s)</Form.Label>
@@ -180,8 +185,9 @@ const ManualForm = ({
                   placeholder="Enter Author(s) names (ex. John Smith, Jane Doe, ...)"
                   value={values.author}
                   onChange={handleChange}
-                  isInvalid={!!errors.author}
+                  isInvalid={touched.author && !!errors.author}
                 />
+                <Form.Control.Feedback type="invalid">{errors.author}</Form.Control.Feedback>
               </Form.Group>
               <Form.Group className="mb-3" controlId="publisher">
                 <Form.Label>Publisher</Form.Label>
@@ -191,7 +197,7 @@ const ManualForm = ({
                   placeholder="Enter Publisher"
                   value={values.publisher}
                   onChange={handleChange}
-                  isInvalid={!!errors.publisher}
+                  isInvalid={touched.publisher && !!errors.publisher}
                 />
               </Form.Group>
               <Form.Group className="mb-3" controlId="url">
@@ -202,8 +208,9 @@ const ManualForm = ({
                   placeholder="Enter URL"
                   value={values.url}
                   onChange={handleChange}
-                  isInvalid={!!errors.url}
+                  isInvalid={touched.url && !!errors.url}
                 />
+                <Form.Control.Feedback type="invalid">{errors.url}</Form.Control.Feedback>
               </Form.Group>
               <Form.Group className="mb-3" controlId="doi">
                 <Form.Label>DOI</Form.Label>
@@ -213,7 +220,7 @@ const ManualForm = ({
                   placeholder="Enter DOI"
                   value={values.doi}
                   onChange={handleChange}
-                  isInvalid={!!errors.doi}
+                  isInvalid={touched.doi && !!errors.doi}
                 />
               </Form.Group>
               <Form.Group className="mb-3" controlId="month">
@@ -223,8 +230,9 @@ const ManualForm = ({
                   name="month"
                   value={values.month}
                   onChange={handleChange}
-                  isInvalid={!!errors.month}
+                  isInvalid={touched.month && !!errors.month}
                 />
+                <Form.Control.Feedback type="invalid">{errors.month}</Form.Control.Feedback>
               </Form.Group>
               <Form.Group className="mb-3" controlId="year">
                 <Form.Label>Year of Publication</Form.Label>
@@ -233,8 +241,9 @@ const ManualForm = ({
                   name="year"
                   value={values.year}
                   onChange={handleChange}
-                  isInvalid={!!errors.year}
+                  isInvalid={touched.year && !!errors.year}
                 />
+                <Form.Control.Feedback type="invalid">{errors.year}</Form.Control.Feedback>
               </Form.Group>
               <Form.Group className="mb-3" controlId="abstract">
                 <Form.Label>Abstract</Form.Label>
@@ -245,8 +254,9 @@ const ManualForm = ({
                   placeholder="Enter Abstract"
                   value={values.abstract}
                   onChange={handleChange}
-                  isInvalid={!!errors.abstract}
+                  isInvalid={touched.abstract && !!errors.abstract}
                 />
+                <Form.Control.Feedback type="invalid">{errors.abstract}</Form.Control.Feedback>
               </Form.Group>
             </Form>
           )}
