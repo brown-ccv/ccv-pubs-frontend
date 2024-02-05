@@ -13,3 +13,8 @@
 @import './components/_app.scss';
 @import './components/_table.scss';
 @import './components/_addPub.scss';
+
+.form-group.required > .form-label:after{
+  content: "*";
+  color: red;
+}

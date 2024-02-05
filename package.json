@@ -63,7 +63,7 @@
   },
   "prettier": "@brown-ccv/prettier-config",
   "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+    "src/**/*.{js,jsx,ts,tsx}": [
       "prettier --write .",
       "eslint --ext .ts,.js,.jsx src --fix"
     ]

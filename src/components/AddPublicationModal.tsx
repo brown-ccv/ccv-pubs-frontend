@@ -98,7 +98,7 @@ const SearchDoiForm = ({
         >
           {({ handleChange, handleSubmit, values, errors }) => (
             <Form id={searchFormId} onSubmit={handleSubmit}>
-              <Form.Group className="mb-3" controlId="validationDoi">
+              <Form.Group className="form-group mb-3 required" controlId="validationDoi">
                 <Form.Label>DOI</Form.Label>
                 <Form.Control
                   type="text"
@@ -163,7 +163,7 @@ const ManualForm = ({
         >
           {({ handleChange, handleSubmit, values, errors, touched }) => (
             <Form id={manualFormId} onSubmit={handleSubmit}>
-              <Form.Group className="mb-3" controlId="title">
+              <Form.Group className="form-group mb-3 required" controlId="title">
                 <Form.Label>Title</Form.Label>
                 <Form.Control
                   as="textarea"
@@ -174,10 +174,11 @@ const ManualForm = ({
                   onChange={handleChange}
                   isInvalid={touched.title && !!errors.title}
                   autoFocus
+                  required
                 />
                 <Form.Control.Feedback type="invalid">{errors.title}</Form.Control.Feedback>
               </Form.Group>
-              <Form.Group className="mb-3" controlId="author">
+              <Form.Group className="form-group mb-3 required" controlId="author">
                 <Form.Label>Author(s)</Form.Label>
                 <Form.Control
                   type="text"
@@ -189,7 +190,7 @@ const ManualForm = ({
                 />
                 <Form.Control.Feedback type="invalid">{errors.author}</Form.Control.Feedback>
               </Form.Group>
-              <Form.Group className="mb-3" controlId="publisher">
+              <Form.Group className="form-group mb-3 required" controlId="publisher">
                 <Form.Label>Publisher</Form.Label>
                 <Form.Control
                   type="text"
@@ -200,7 +201,7 @@ const ManualForm = ({
                   isInvalid={touched.publisher && !!errors.publisher}
                 />
               </Form.Group>
-              <Form.Group className="mb-3" controlId="url">
+              <Form.Group className="form-group mb-3 required" controlId="url">
                 <Form.Label>URL</Form.Label>
                 <Form.Control
                   type="text"
@@ -212,7 +213,7 @@ const ManualForm = ({
                 />
                 <Form.Control.Feedback type="invalid">{errors.url}</Form.Control.Feedback>
               </Form.Group>
-              <Form.Group className="mb-3" controlId="doi">
+              <Form.Group className="form-group mb-3 required" controlId="doi">
                 <Form.Label>DOI</Form.Label>
                 <Form.Control
                   type="text"
@@ -223,7 +224,7 @@ const ManualForm = ({
                   isInvalid={touched.doi && !!errors.doi}
                 />
               </Form.Group>
-              <Form.Group className="mb-3" controlId="month">
+              <Form.Group className="form-group mb-3 required" controlId="month">
                 <Form.Label>Month of Publication</Form.Label>
                 <Form.Control
                   type="number"
@@ -234,7 +235,7 @@ const ManualForm = ({
                 />
                 <Form.Control.Feedback type="invalid">{errors.month}</Form.Control.Feedback>
               </Form.Group>
-              <Form.Group className="mb-3" controlId="year">
+              <Form.Group className="form-group mb-3 required" controlId="year">
                 <Form.Label>Year of Publication</Form.Label>
                 <Form.Control
                   type="number"
@@ -245,7 +246,7 @@ const ManualForm = ({
                 />
                 <Form.Control.Feedback type="invalid">{errors.year}</Form.Control.Feedback>
               </Form.Group>
-              <Form.Group className="mb-3" controlId="abstract">
+              <Form.Group className="form-group mb-3" controlId="abstract">
                 <Form.Label>Abstract</Form.Label>
                 <Form.Control
                   as="textarea"
