@@ -47,7 +47,10 @@ const SearchDoiForm = ({ setManual }: { setManual: (manual: boolean) => void }) 
           validationSchema={yup.object().shape({
             doiOrUrl: yup
               .string()
-              .matches(/^10\.\d{4,9}\/[-._;()/:a-zA-Z0-9]+$/)
+              .matches(
+                /^10\.\d{4,9}\/[-._;()/:a-zA-Z0-9]+$/,
+                "Invalid DOI format. Example: '10.1234/abcd-efg'"
+              )
               .required(),
           })}
           initialValues={{
