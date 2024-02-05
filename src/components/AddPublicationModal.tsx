@@ -10,8 +10,12 @@ const formID = 'form';
 
 export function AddPublicationModal() {
   const [show, setShow] = useState(false);
+  const [manual, setManual] = useState(false);
 
-  const handleClose: () => void = () => setShow(false);
+  const handleClose: () => void = () => {
+    setShow(false);
+    setManual(false);
+  };
   const handleShow: () => void = () => setShow(true);
 
   return (
@@ -24,13 +28,17 @@ export function AddPublicationModal() {
         <Modal.Header closeButton>
           <Modal.Title>Add Publication</Modal.Title>
         </Modal.Header>
-        <SearchDoiForm handleClose={handleClose} />
+        {manual ? (
+          <ManualForm handleClose={handleClose} setManual={setManual} />
+        ) : (
+          <SearchDoiForm setManual={setManual} />
+        )}
       </Modal>
     </>
   );
 }
 
-const SearchDoiForm = ({ handleClose }: { handleClose: () => void }) => {
+const SearchDoiForm = ({ setManual }: { setManual: (manual: boolean) => void }) => {
   return (
     <>
       <Modal.Body>
@@ -76,7 +84,7 @@ const SearchDoiForm = ({ handleClose }: { handleClose: () => void }) => {
         </Formik>
       </Modal.Body>
       <Modal.Footer>
-        <Button type="button" variant="contained" color="secondary" onClick={handleClose}>
+        <Button type="button" variant="contained" color="secondary" onClick={() => setManual(true)}>
           Enter Manually
         </Button>
         <Button type="submit" variant="contained" color="primary" form={formID}>
@@ -87,6 +95,69 @@ const SearchDoiForm = ({ handleClose }: { handleClose: () => void }) => {
   );
 };
 
-// const ManualForm = () => {
-//
-// }
+const ManualForm = ({
+  handleClose,
+  setManual,
+}: {
+  handleClose: () => void;
+  setManual: (manual: boolean) => void;
+}) => {
+  return (
+    <>
+      <Modal.Body>
+        <Form.Group className="mb-3" controlId="title">
+          <Form.Label>Title</Form.Label>
+          <Form.Control type="text" placeholder="Enter title" />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="authors">
+          <Form.Label>Author(s)</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter Author(s) names (ex. John Smith, Jane Doe, ...)"
+          />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="publisher">
+          <Form.Label>Publisher</Form.Label>
+          <Form.Control type="text" placeholder="Enter Publisher" />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="authors">
+          <Form.Label>Volume</Form.Label>
+          <Form.Control type="text" placeholder="Enter Volume" />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="authors">
+          <Form.Label>URL</Form.Label>
+          <Form.Control type="text" placeholder="Enter URL" />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="DOI">
+          <Form.Label>DOI</Form.Label>
+          <Form.Control type="text" placeholder="Enter DOI" />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="month">
+          <Form.Label>Month of Publication</Form.Label>
+          <Form.Control type="number" />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="year">
+          <Form.Label>Year of Publication</Form.Label>
+          <Form.Control type="number" />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="abstract">
+          <Form.Label>Abstract</Form.Label>
+          <Form.Control as="textarea" rows={3} placeholder="Enter Abstract" />
+        </Form.Group>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button
+          type="button"
+          variant="contained"
+          color="secondary"
+          onClick={() => setManual(false)}
+        >
+          Return to search
+        </Button>
+        <Button type="submit" variant="contained" color="primary" form={formID}>
+          Submit
+        </Button>
+      </Modal.Footer>
+    </>
+  );
+};
