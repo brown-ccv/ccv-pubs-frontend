@@ -20,21 +20,21 @@ interface Publication {
   abstract: string;
 }
 
-const blankFormValues: Publication = {
+const getBlankFormValues: () => Publication = () => ({
   title: '',
   author: '',
   publisher: '',
   url: '',
   doi: '',
-  month: 0,
-  year: 0,
+  month: new Date().getMonth() + 1,
+  year: new Date().getFullYear(),
   abstract: '',
-};
+});
 
 export function AddPublicationModal() {
   const [show, setShow] = useState(false);
   const [manual, setManual] = useState(false);
-  const [initialValues, setInitialValues] = useState(blankFormValues);
+  const [initialValues, setInitialValues] = useState(getBlankFormValues());
 
   const handleClose: () => void = () => {
     setShow(false);
@@ -149,14 +149,14 @@ const ManualForm = ({
             publisher: yup.string().required(),
             url: yup.string().url().required(),
             doi: validateDoi(),
-            month: yup.string().required(),
-            year: yup.string().required(),
+            month: yup.number().integer().min(1).max(12).required(),
+            year: yup.number().integer().min(1).max(new Date().getFullYear()).required(),
             abstract: yup.string(),
           })}
           onSubmit={(values, { setSubmitting }) => {
             console.log(values);
 
-            setInitialValues(blankFormValues);
+            setInitialValues(getBlankFormValues());
             setSubmitting(false);
             handleClose();
           }}
@@ -174,7 +174,6 @@ const ManualForm = ({
                   onChange={handleChange}
                   isInvalid={touched.title && !!errors.title}
                   autoFocus
-                  required
                 />
                 <Form.Control.Feedback type="invalid">{errors.title}</Form.Control.Feedback>
               </Form.Group>
@@ -229,6 +228,7 @@ const ManualForm = ({
                 <Form.Control
                   type="number"
                   name="month"
+                  placeholder="Enter number"
                   value={values.month}
                   onChange={handleChange}
                   isInvalid={touched.month && !!errors.month}
@@ -240,6 +240,7 @@ const ManualForm = ({
                 <Form.Control
                   type="number"
                   name="year"
+                  placeholder="Enter number"
                   value={values.year}
                   onChange={handleChange}
                   isInvalid={touched.year && !!errors.year}
