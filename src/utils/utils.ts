@@ -17,7 +17,7 @@ export const fetchDoi = async (doi: string): Promise<object> => {
     publisher,
     URL: url,
     DOI: fetchedDoi,
-    'published-print': publishedPrint,
+    published,
     abstract,
   } = await res.json();
 
@@ -31,8 +31,8 @@ export const fetchDoi = async (doi: string): Promise<object> => {
     publisher,
     url,
     doi,
-    year: publishedPrint['date-parts'][0][0],
-    month: publishedPrint['date-parts'][0][1],
+    year: published?.['date-parts'][0][0],
+    month: published?.['date-parts'][0][1],
     abstract,
   };
 };

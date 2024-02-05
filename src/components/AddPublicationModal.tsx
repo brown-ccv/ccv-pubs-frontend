@@ -42,6 +42,7 @@ export function AddPublicationModal() {
   const handleClose: () => void = () => {
     setShow(false);
     setManual(false);
+    setInitialValues(getBlankFormValues());
   };
   const handleShow: () => void = () => setShow(true);
 
