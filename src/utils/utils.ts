@@ -26,14 +26,14 @@ export const fetchDoi = async (doi: string): Promise<object> => {
   }
 
   return {
-    title,
+    title: title ?? '',
     author: author.map(({ given, family }) => `${given} ${family}`).join(', '),
-    publisher,
-    url,
-    doi,
+    publisher: publisher ?? '',
+    url: url ?? '',
+    doi: doi ?? '',
     year: published?.['date-parts'][0][0] ?? -1,
     month: published?.['date-parts'][0][1] ?? -1,
-    abstract,
+    abstract: abstract ?? '',
   };
 };
 
