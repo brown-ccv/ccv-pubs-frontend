@@ -21,8 +21,8 @@ export function ContentPage() {
         <AddPublicationModal />
       </div>
       <div className="d-flex flex-row justify-content-center align-items-center">
-        <div className="pub-title pt-2 bg-primary text-white rounded-circle">
-          <FontAwesomeIcon icon={faBook} />
+        <div className="pub-title bg-dark rounded-circle p-2 mx-2">
+          <FontAwesomeIcon icon={faBook} color="white" />
         </div>
         <h1 className="pl-2">Publications</h1>
       </div>
