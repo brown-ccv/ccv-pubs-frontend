@@ -26,6 +26,17 @@ const getBlankFormValues: () => Publication = () => ({
   abstract: '',
 });
 
+const validationSchema = yup.object().shape({
+  title: yup.string().required(),
+  author: yup.string().required(),
+  publisher: yup.string().required(),
+  url: yup.string().url().required(),
+  doi: validateDoi(),
+  month: yup.number().integer().min(1).max(12).required(),
+  year: yup.number().integer().min(1).max(new Date().getFullYear()).required(),
+  abstract: yup.string().default(''),
+});
+
 export function AddPublicationModal() {
   const [show, setShow] = useState(false);
   const [manual, setManual] = useState(false);
@@ -165,16 +176,7 @@ const ManualForm = ({
       <Modal.Body>
         <Formik
           initialValues={initialValues}
-          validationSchema={yup.object().shape({
-            title: yup.string().required(),
-            author: yup.string().required(),
-            publisher: yup.string().required(),
-            url: yup.string().url().required(),
-            doi: validateDoi(),
-            month: yup.number().integer().min(1).max(12).required(),
-            year: yup.number().integer().min(1).max(new Date().getFullYear()).required(),
-            abstract: yup.string().default(''),
-          })}
+          validationSchema={validationSchema}
           onSubmit={async (values, { setSubmitting, setErrors, setStatus }) => {
             setLoading(true);
             const { doi } = values;
@@ -243,6 +245,7 @@ const ManualForm = ({
                     onChange={handleChange}
                     isInvalid={touched.publisher && !!errors.publisher}
                   />
+                  <Form.Control.Feedback type="invalid">{errors.publisher}</Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group className="form-group mb-3 required" controlId="url">
                   <Form.Label>URL</Form.Label>
@@ -266,6 +269,7 @@ const ManualForm = ({
                     onChange={handleChange}
                     isInvalid={touched.doi && !!errors.doi}
                   />
+                  <Form.Control.Feedback type="invalid">{errors.doi}</Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group className="form-group mb-3 required" controlId="month">
                   <Form.Label>Month of Publication</Form.Label>
