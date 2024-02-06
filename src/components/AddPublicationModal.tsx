@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 
 import { fetchDoi, validateDoi } from '../utils/utils.ts';
 import { selectPublications } from '../store/slice/appState';
+import { addPublication } from '../utils/firebase.ts';
 
 const searchFormId = 'searchForm';
 const manualFormId = 'manualForm';
@@ -169,12 +170,16 @@ const ManualForm = ({
             year: yup.number().integer().min(1).max(new Date().getFullYear()).required(),
             abstract: yup.string(),
           })}
-          onSubmit={({ doi }, { setSubmitting, setErrors }) => {
+          onSubmit={async (values, { setSubmitting, setErrors }) => {
+            const { doi } = values;
+
             if (publications.find((p) => p.doi.toLowerCase() === doi.toLowerCase())) {
               setErrors({ doi: 'Publication already exists in database' });
               setSubmitting(false);
               return;
             }
+
+            await addPublication(values);
 
             setInitialValues(getBlankFormValues());
             setSubmitting(false);

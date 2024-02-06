@@ -5,6 +5,7 @@ import {
   DocumentSnapshot,
   getDocFromCache,
   getDocFromServer,
+  updateDoc,
 } from 'firebase/firestore';
 
 const firebaseConfig = {
@@ -20,15 +21,25 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+const publicationsDocRef = doc(db, 'production', 'publications');
+
 export const fetchPublicationsData = async () => {
-  const docRef = doc(db, 'production', 'publications');
   let docSnap: DocumentSnapshot;
 
   try {
-    docSnap = await getDocFromCache(docRef);
+    docSnap = await getDocFromCache(publicationsDocRef);
   } catch (e) {
-    docSnap = await getDocFromServer(docRef);
+    docSnap = await getDocFromServer(publicationsDocRef);
   }
 
   return docSnap.exists() ? docSnap.data().data : [];
+};
+
+export const addPublication = async (newPublication) => {
+  const publications = await fetchPublicationsData();
+  publications.push(newPublication);
+
+  await updateDoc(publicationsDocRef, {
+    data: publications,
+  });
 };
