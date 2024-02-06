@@ -31,8 +31,8 @@ export const fetchDoi = async (doi: string): Promise<object> => {
     publisher,
     url,
     doi,
-    year: published?.['date-parts'][0][0],
-    month: published?.['date-parts'][0][1],
+    year: published?.['date-parts'][0][0] ?? -1,
+    month: published?.['date-parts'][0][1] ?? -1,
     abstract,
   };
 };

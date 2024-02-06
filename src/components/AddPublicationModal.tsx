@@ -170,7 +170,7 @@ const ManualForm = ({
             year: yup.number().integer().min(1).max(new Date().getFullYear()).required(),
             abstract: yup.string(),
           })}
-          onSubmit={async (values, { setSubmitting, setErrors }) => {
+          onSubmit={async (values, { setSubmitting, setErrors, setStatus }) => {
             const { doi } = values;
 
             if (publications.find((p) => p.doi.toLowerCase() === doi.toLowerCase())) {
@@ -179,14 +179,19 @@ const ManualForm = ({
               return;
             }
 
-            await addPublication(values);
-
-            setInitialValues(getBlankFormValues());
-            setSubmitting(false);
-            handleClose();
+            try {
+              await addPublication(values);
+              setInitialValues(getBlankFormValues());
+              setSubmitting(false);
+              handleClose();
+            } catch (error) {
+              setStatus({
+                error: `Submission failed. Please try again. ${error.code}: ${error.message}`,
+              });
+            }
           }}
         >
-          {({ handleChange, handleSubmit, values, errors, touched }) => (
+          {({ handleChange, handleSubmit, values, errors, touched, status }) => (
             <Form id={manualFormId} onSubmit={handleSubmit}>
               <Form.Group className="form-group mb-3 required" controlId="title">
                 <Form.Label>Title</Form.Label>
@@ -285,6 +290,8 @@ const ManualForm = ({
                 />
                 <Form.Control.Feedback type="invalid">{errors.abstract}</Form.Control.Feedback>
               </Form.Group>
+
+              {status?.error && <div className="text-center text-danger">{status.error}</div>}
             </Form>
           )}
         </Formik>
