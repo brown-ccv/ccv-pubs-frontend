@@ -1,12 +1,11 @@
 // Import Bootstrap
 @import '~bootstrap/scss/bootstrap.scss';
-@import '~brown-university-styles/dist/styles.css';
+//@import '~brown-university-styles/dist/styles.css';
 
 // Override Bootstrap Variables
 @import 'variables';
 
 // Import Custom Components
-@import './src/styles/components/_navbar.scss';
 @import './src/styles/components/_brown_fonts.scss';
 @import './src/styles/components/_brown_icons.scss';
 @import './src/styles/components/_brown_footer.scss';
