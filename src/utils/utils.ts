@@ -37,12 +37,6 @@ export const fetchDoi = async (doi: string): Promise<object> => {
   };
 };
 
-export function extractDOI(str: string): string | null {
-  const doiRegex = /10\.\d{4,9}\/[-._;()/:a-zA-Z0-9]+/;
-  const dois = str.match(doiRegex);
-  return dois ? dois[0] : null;
-}
-
 export function validateDoi() {
   return yup
     .string()
