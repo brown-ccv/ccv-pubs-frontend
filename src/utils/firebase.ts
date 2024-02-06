@@ -20,10 +20,6 @@ const db = getFirestore(app);
 
 const collectionName = 'publications';
 
-const sanitizeDoiForFirebase = (doi) => {
-  return doi.toLowerCase().replace(/\//g, '_');
-};
-
 export const usePublicationsCollection = () => {
   const dispatch = useDispatch();
 
@@ -45,7 +41,8 @@ export const usePublicationsCollection = () => {
   }, [dispatch]);
 };
 
-export const addPublication = async (newPublication) => {
-  const docRef = doc(db, collectionName, sanitizeDoiForFirebase(newPublication.doi));
-  await setDoc(docRef, newPublication);
+export const addPublication = async (publication) => {
+  const docId = publication.doi.toLowerCase().replace(/\//g, '_');
+  const docRef = doc(db, collectionName, docId);
+  await setDoc(docRef, publication);
 };
