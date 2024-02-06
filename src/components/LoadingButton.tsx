@@ -6,7 +6,7 @@ interface LoadingButtonProps extends ButtonProps {
   children: ReactNode;
 }
 
-const LoadingButton = ({ loading, children, ...buttonProps }: LoadingButtonProps) => {
+export const LoadingButton = ({ loading, children, ...buttonProps }: LoadingButtonProps) => {
   return (
     <Button disabled={loading} {...buttonProps}>
       {loading ? (
@@ -19,5 +19,3 @@ const LoadingButton = ({ loading, children, ...buttonProps }: LoadingButtonProps
     </Button>
   );
 };
-
-export default LoadingButton;

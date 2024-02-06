@@ -10,7 +10,7 @@ import { fetchDoi, validateDoi } from '../utils/utils.ts';
 import { selectPublications } from '../store/slice/appState';
 import { addPublication } from '../utils/firebase.ts';
 import { Publication } from '../../types';
-import LoadingButton from './LoadingButton.tsx';
+import { LoadingButton } from './LoadingButton.tsx';
 
 const searchFormId = 'searchForm';
 const manualFormId = 'manualForm';
