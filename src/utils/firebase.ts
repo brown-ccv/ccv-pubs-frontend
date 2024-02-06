@@ -1,12 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import {
-  getFirestore,
-  doc,
-  DocumentSnapshot,
-  getDocFromCache,
-  getDocFromServer,
-  updateDoc,
-} from 'firebase/firestore';
+import { getFirestore, doc, setDoc, getDocs, collection } from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBlu1GzA5jvM6mh6taIcjtNgcSEVxlxa1Q',
@@ -21,25 +14,18 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-const publicationsDocRef = doc(db, 'production', 'publications');
+const collectionName = 'publications';
+
+const sanitizeDoiForFirebase = (doi) => {
+  return doi.toLowerCase().replace(/\//g, '_');
+};
 
 export const fetchPublicationsData = async () => {
-  let docSnap: DocumentSnapshot;
-
-  try {
-    docSnap = await getDocFromCache(publicationsDocRef);
-  } catch (e) {
-    docSnap = await getDocFromServer(publicationsDocRef);
-  }
-
-  return docSnap.exists() ? docSnap.data().data : [];
+  const querySnapshot = await getDocs(collection(db, collectionName));
+  return querySnapshot.docs.map((doc) => doc.data());
 };
 
 export const addPublication = async (newPublication) => {
-  const publications = await fetchPublicationsData();
-  publications.push(newPublication);
-
-  await updateDoc(publicationsDocRef, {
-    data: publications,
-  });
+  const docRef = doc(db, collectionName, sanitizeDoiForFirebase(newPublication.doi));
+  await setDoc(docRef, newPublication);
 };
