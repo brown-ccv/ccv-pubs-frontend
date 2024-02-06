@@ -2,12 +2,15 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import { Nav, Navbar as DefaultNavbar } from 'react-bootstrap';
 
+import { useSelector } from 'react-redux';
+import { handleLogin, handleLogout } from '../../utils/firebase.ts';
+import { selectUser } from '../../store/slice/appState';
 import { ReactComponent as CCVLogo } from './assets/svg/ccv-logo.svg';
 import { ReactComponent as BrownLogo } from './assets/svg/brown-logo.svg';
 
-import '../../styles/custom.scss';
-
 export const Navbar = () => {
+  const user = useSelector(selectUser);
+
   return (
     <DefaultNavbar expand="lg" className="bg-body-tertiary">
       <Container>
@@ -20,10 +23,9 @@ export const Navbar = () => {
         <DefaultNavbar.Toggle aria-controls="basic-navbar-nav" />
         <DefaultNavbar.Collapse id="basic-navbar-nav" role="" className="justify-content-end">
           <Nav className="ml-auto">
-            {/*<Navbar.Text>*/}
-            {/*  Signed in as: <a href="#login">Mark Otto</a>*/}
-            {/*</Navbar.Text>*/}
-            <Nav.Link href="#link">Login</Nav.Link>
+            <DefaultNavbar.Text>Signed in as: {user.displayName}</DefaultNavbar.Text>
+            <Nav.Link onClick={handleLogin}>Login</Nav.Link>
+            <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
           </Nav>
         </DefaultNavbar.Collapse>
       </Container>

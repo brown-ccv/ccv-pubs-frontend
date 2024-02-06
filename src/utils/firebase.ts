@@ -10,7 +10,7 @@ import {
 } from 'firebase/auth';
 import { getFirestore, doc, setDoc, collection, onSnapshot } from 'firebase/firestore';
 
-import { setPublications } from '../store/slice/appState';
+import { setPublications, setUser } from '../store/slice/appState';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBlu1GzA5jvM6mh6taIcjtNgcSEVxlxa1Q',
@@ -53,12 +53,26 @@ export const handleLogout = async () => {
  * Custom Reach hook to subscribe to Authentication changes
  */
 export const useAuthStateChanged = () => {
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log(user);
+        const { displayName, email } = user;
+
+        dispatch(
+          setUser({
+            displayName,
+            email,
+          })
+        );
       } else {
-        console.log('Signed Out');
+        dispatch(
+          setUser({
+            displayName: '',
+            email: '',
+          })
+        );
       }
     });
 
