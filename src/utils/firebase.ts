@@ -1,5 +1,9 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore, doc, setDoc, getDocs, collection } from 'firebase/firestore';
+import { getFirestore, doc, setDoc, collection, onSnapshot } from 'firebase/firestore';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+
+import { setPublications } from '../store/slice/appState';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBlu1GzA5jvM6mh6taIcjtNgcSEVxlxa1Q',
@@ -20,9 +24,25 @@ const sanitizeDoiForFirebase = (doi) => {
   return doi.toLowerCase().replace(/\//g, '_');
 };
 
-export const fetchPublicationsData = async () => {
-  const querySnapshot = await getDocs(collection(db, collectionName));
-  return querySnapshot.docs.map((doc) => doc.data());
+export const usePublicationsCollection = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const unsubscribe = onSnapshot(
+      collection(db, collectionName),
+      (snapshot) => {
+        const publications = snapshot.docs.map((doc) => doc.data());
+        dispatch(setPublications(publications));
+      },
+      (error) => {
+        throw error;
+      }
+    );
+
+    return () => {
+      unsubscribe();
+    };
+  }, [dispatch]);
 };
 
 export const addPublication = async (newPublication) => {

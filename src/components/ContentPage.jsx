@@ -1,25 +1,19 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBook } from '@fortawesome/free-solid-svg-icons';
 // import YearChart from "./YearChart";
 // import WordCloud from "./WordCloud";
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchPublicationsData } from '../utils/firebase.ts';
-import { selectPublications, setPublications } from '../store/slice/appState';
+import { useSelector } from 'react-redux';
+import { usePublicationsCollection } from '../utils/firebase.ts';
+import { selectPublications } from '../store/slice/appState';
 import { PubsTable } from './PubsTable';
 import Spinner from './Spinner';
 import { AddPublicationModal } from './AddPublicationModal.tsx';
 
 export function ContentPage() {
   const publications = useSelector(selectPublications);
-  const dispatch = useDispatch();
 
-  useEffect(() => {
-    async function fetch() {
-      dispatch(setPublications(await fetchPublicationsData()));
-    }
-    fetch();
-  }, [dispatch]);
+  usePublicationsCollection();
 
   return (
     <div className="ContentPage main-content">
