@@ -79,7 +79,7 @@ export const useAuthStateChanged = () => {
     return () => {
       unsubscribe();
     };
-  }, []);
+  }, [dispatch]);
 };
 
 /**
