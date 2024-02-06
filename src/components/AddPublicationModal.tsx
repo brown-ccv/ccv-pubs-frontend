@@ -9,20 +9,10 @@ import { useSelector } from 'react-redux';
 import { fetchDoi, validateDoi } from '../utils/utils.ts';
 import { selectPublications } from '../store/slice/appState';
 import { addPublication } from '../utils/firebase.ts';
+import { Publication } from '../../types';
 
 const searchFormId = 'searchForm';
 const manualFormId = 'manualForm';
-
-interface Publication {
-  title: string;
-  author: string;
-  publisher: string;
-  url: string;
-  doi: string;
-  month: number;
-  year: number;
-  abstract: string;
-}
 
 const getBlankFormValues: () => Publication = () => ({
   title: '',
