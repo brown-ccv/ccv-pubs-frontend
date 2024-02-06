@@ -20,6 +20,9 @@ const db = getFirestore(app);
 
 const collectionName = 'publications';
 
+/**
+ * Custom React hook to subscribe to a Firestore collection and update the Redux store with the fetched data.
+ */
 export const usePublicationsCollection = () => {
   const dispatch = useDispatch();
 
