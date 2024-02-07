@@ -4,7 +4,7 @@ import Navbar from './components/react-ccv-components/Navbar';
 import Footer from './components/react-ccv-components/Footer';
 
 import { ContentPage } from './components/ContentPage';
-import { usePublicationsCollection } from './utils/firebase';
+import { usePublicationsCollection } from './utils/firebase.ts';
 
 export function App() {
   usePublicationsCollection();
