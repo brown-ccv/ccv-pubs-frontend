@@ -4,7 +4,6 @@ import { faBook } from '@fortawesome/free-solid-svg-icons';
 // import YearChart from "./YearChart";
 // import WordCloud from "./WordCloud";
 import { useSelector } from 'react-redux';
-import { usePublicationsCollection } from '../utils/firebase.ts';
 import { selectPublications } from '../store/slice/appState';
 import { PubsTable } from './PubsTable';
 import Spinner from './Spinner';
@@ -12,8 +11,6 @@ import { AddPublicationModal } from './AddPublicationModal.tsx';
 
 export function ContentPage() {
   const publications = useSelector(selectPublications);
-
-  usePublicationsCollection();
 
   return (
     <div className="ContentPage main-content">
