@@ -1,5 +1,13 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore, doc, setDoc, collection, onSnapshot } from 'firebase/firestore';
+import {
+  getFirestore,
+  doc,
+  setDoc,
+  collection,
+  onSnapshot,
+  query,
+  limit,
+} from 'firebase/firestore';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
@@ -28,7 +36,10 @@ export const usePublicationsCollection = () => {
 
   useEffect(() => {
     const unsubscribe = onSnapshot(
-      collection(db, collectionName),
+      query(
+        collection(db, collectionName),
+        limit(10) // TODO: TEMPORARY. Limiting right now. Set up pagination?
+      ),
       (snapshot) => {
         const publications = snapshot.docs.map((doc) => doc.data());
         dispatch(setPublications(publications));
