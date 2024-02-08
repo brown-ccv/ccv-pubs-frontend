@@ -8,11 +8,9 @@ import {
   query,
   limit,
   orderBy,
-  serverTimestamp,
 } from 'firebase/firestore';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { formatISO } from 'date-fns';
 
 import { setPublications } from '../store/slice/appState';
 
@@ -45,17 +43,7 @@ export const usePublicationsCollection = () => {
         limit(10) // TODO: TEMPORARY. Limiting right now. Set up pagination?
       ),
       (snapshot) => {
-        const publications = snapshot.docs.map((doc) => {
-          const data = doc.data();
-
-          return {
-            ...data,
-
-            // Note: Needed to convert Timestamp type to a serializable type like a string
-            // Also, formatISO gives the date in ISO format in local time zone by default
-            updatedAt: formatISO(data.updatedAt.toDate()),
-          };
-        });
+        const publications = snapshot.docs.map((doc) => doc.data());
         dispatch(setPublications(publications));
       },
       (error) => {
@@ -75,9 +63,6 @@ export const addPublication = async (publication) => {
 
   await setDoc(docRef, {
     ...publication,
-
-    // Firestore automatically replaces serverTimestamp with the server's timestamp
-    // when the data is written to the database
-    updatedAt: serverTimestamp(),
+    updatedAt: Date.now(),
   });
 };

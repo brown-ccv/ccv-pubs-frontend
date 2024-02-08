@@ -2,7 +2,7 @@ import * as yup from 'yup';
 import { Publication } from '../../types';
 
 export const fetchDoi = async (doi: string): Promise<Publication> => {
-  const res = await fetch(`http://dx.doi.org/${encodeURIComponent(doi)}`, {
+  const res = await fetch(`https://dx.doi.org/${encodeURIComponent(doi)}`, {
     headers: {
       Accept: 'application/vnd.citationstyles.csl+json',
     },
