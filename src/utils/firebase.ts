@@ -2,13 +2,22 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { initializeApp } from 'firebase/app';
 import {
+  getFirestore,
+  doc,
+  setDoc,
+  collection,
+  onSnapshot,
+  query,
+  limit,
+  orderBy,
+} from 'firebase/firestore';
+import {
   getAuth,
   GoogleAuthProvider,
   onAuthStateChanged,
   signInWithRedirect,
   signOut,
 } from 'firebase/auth';
-import { getFirestore, doc, setDoc, collection, onSnapshot } from 'firebase/firestore';
 
 import { setPublications, setUser } from '../store/slice/appState';
 
@@ -90,7 +99,11 @@ export const usePublicationsCollection = () => {
 
   useEffect(() => {
     const unsubscribe = onSnapshot(
-      collection(db, collectionName),
+      query(
+        collection(db, collectionName),
+        orderBy('updatedAt', 'desc'),
+        limit(10) // TODO: TEMPORARY. Limiting right now. Set up pagination?
+      ),
       (snapshot) => {
         const publications = snapshot.docs.map((doc) => doc.data());
         dispatch(setPublications(publications));
@@ -109,5 +122,9 @@ export const usePublicationsCollection = () => {
 export const addPublication = async (publication) => {
   const docId = publication.doi.toLowerCase().replace(/\//g, '_');
   const docRef = doc(db, collectionName, docId);
-  await setDoc(docRef, publication);
+
+  await setDoc(docRef, {
+    ...publication,
+    updatedAt: Date.now(),
+  });
 };

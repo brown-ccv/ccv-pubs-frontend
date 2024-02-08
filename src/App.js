@@ -4,10 +4,11 @@ import { Navbar } from './components/react-ccv-components/Navbar.tsx';
 import Footer from './components/react-ccv-components/Footer';
 
 import { ContentPage } from './components/ContentPage';
-import { useAuthStateChanged } from './utils/firebase.ts';
+import { useAuthStateChanged , usePublicationsCollection } from './utils/firebase.ts';
 
 export function App() {
   useAuthStateChanged();
+  usePublicationsCollection();
 
   return (
     <div aria-live="polite">
