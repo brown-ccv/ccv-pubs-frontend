@@ -1,8 +1,10 @@
 import React from 'react';
 import Container from 'react-bootstrap/Container';
-import { Nav, Navbar as DefaultNavbar } from 'react-bootstrap';
-
+import { Nav, Navbar as DefaultNavbar, NavDropdown } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import { handleLogin, handleLogout } from '../../utils/firebase.ts';
 import { selectUser } from '../../store/slice/appState';
 import { ReactComponent as CCVLogo } from './assets/svg/ccv-logo.svg';
@@ -23,9 +25,20 @@ export const Navbar = () => {
         <DefaultNavbar.Toggle aria-controls="basic-navbar-nav" />
         <DefaultNavbar.Collapse id="basic-navbar-nav" role="" className="justify-content-end">
           <Nav className="ml-auto">
-            <DefaultNavbar.Text>Signed in as: {user.displayName}</DefaultNavbar.Text>
-            <Nav.Link onClick={handleLogin}>Login</Nav.Link>
-            <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
+            {user ? (
+              <NavDropdown
+                title={
+                  <>
+                    <FontAwesomeIcon icon={faUser} /> {user.displayName}
+                  </>
+                }
+                id="userMenu"
+              >
+                <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
+              </NavDropdown>
+            ) : (
+              <Nav.Link onClick={handleLogin}>Login</Nav.Link>
+            )}
           </Nav>
         </DefaultNavbar.Collapse>
       </Container>

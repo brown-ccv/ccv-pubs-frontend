@@ -4,7 +4,7 @@ export const appStateSlice = createSlice({
   name: 'appState',
   initialState: {
     publications: [],
-    user: {},
+    user: null,
   },
   reducers: {
     setPublications: (state, action) => {

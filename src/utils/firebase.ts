@@ -67,21 +67,19 @@ export const useAuthStateChanged = () => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        const { displayName, email } = user;
+        const { displayName, email, uid } = user;
+
+        console.log(user);
 
         dispatch(
           setUser({
             displayName,
             email,
+            uid,
           })
         );
       } else {
-        dispatch(
-          setUser({
-            displayName: '',
-            email: '',
-          })
-        );
+        dispatch(setUser(null));
       }
     });
 
