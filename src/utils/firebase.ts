@@ -15,7 +15,7 @@ import {
   getAuth,
   GoogleAuthProvider,
   onAuthStateChanged,
-  signInWithRedirect,
+  signInWithPopup,
   signOut,
 } from 'firebase/auth';
 
@@ -39,12 +39,11 @@ const provider = new GoogleAuthProvider();
 provider.setCustomParameters({
   hd: 'brown.edu',
 });
-
 const collectionName = 'publications';
 
 export const handleLogin = async () => {
   try {
-    await signInWithRedirect(auth, provider);
+    await signInWithPopup(auth, provider);
   } catch (error) {
     console.log(error);
   }
