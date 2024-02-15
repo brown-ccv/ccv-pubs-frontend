@@ -2,10 +2,17 @@ import { initializeApp } from 'firebase/app';
 import {
   getFirestore,
   doc,
-  DocumentSnapshot,
-  getDocFromCache,
-  getDocFromServer,
+  setDoc,
+  collection,
+  onSnapshot,
+  query,
+  limit,
+  orderBy,
 } from 'firebase/firestore';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+
+import { setPublications } from '../store/slice/appState';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBlu1GzA5jvM6mh6taIcjtNgcSEVxlxa1Q',
@@ -20,15 +27,42 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-export const fetchPublicationsData = async () => {
-  const docRef = doc(db, 'production', 'publications');
-  let docSnap: DocumentSnapshot;
+const collectionName = 'publications';
 
-  try {
-    docSnap = await getDocFromCache(docRef);
-  } catch (e) {
-    docSnap = await getDocFromServer(docRef);
-  }
+/**
+ * Custom React hook to subscribe to a Firestore collection and update the Redux store with the fetched data.
+ */
+export const usePublicationsCollection = () => {
+  const dispatch = useDispatch();
 
-  return docSnap.exists() ? docSnap.data().data : [];
+  useEffect(() => {
+    const unsubscribe = onSnapshot(
+      query(
+        collection(db, collectionName),
+        orderBy('updatedAt', 'desc'),
+        limit(10) // TODO: TEMPORARY. Limiting right now. Set up pagination?
+      ),
+      (snapshot) => {
+        const publications = snapshot.docs.map((doc) => doc.data());
+        dispatch(setPublications(publications));
+      },
+      (error) => {
+        throw error;
+      }
+    );
+
+    return () => {
+      unsubscribe();
+    };
+  }, [dispatch]);
+};
+
+export const addPublication = async (publication) => {
+  const docId = publication.doi.toLowerCase().replace(/\//g, '_');
+  const docRef = doc(db, collectionName, docId);
+
+  await setDoc(docRef, {
+    ...publication,
+    updatedAt: Date.now(),
+  });
 };

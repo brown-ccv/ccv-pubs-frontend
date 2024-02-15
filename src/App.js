@@ -4,12 +4,11 @@ import Navbar from './components/react-ccv-components/Navbar';
 import Footer from './components/react-ccv-components/Footer';
 
 import { ContentPage } from './components/ContentPage';
-
-// TODO: Ignoring for now because it's to be refactored
-// eslint-disable-next-line import/no-named-as-default
-import AddPub from './components/AddPub';
+import { usePublicationsCollection } from './utils/firebase.ts';
 
 export function App() {
+  usePublicationsCollection();
+
   return (
     <div aria-live="polite">
       <Navbar />
@@ -17,7 +16,6 @@ export function App() {
         <BrowserRouter>
           <main>
             <Routes>
-              <Route path="/addpub" className="AddPub" element={<AddPub />} />
               <Route exact path="/" element={<ContentPage />} />
             </Routes>
           </main>

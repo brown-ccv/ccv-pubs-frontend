@@ -1,15 +1,20 @@
-// Override Bootstrap Variables
-@import 'variables';
-
 // Import Bootstrap
 @import '~bootstrap/scss/bootstrap.scss';
 @import '~brown-university-styles/dist/styles.css';
 
+// Override Bootstrap Variables
+@import 'variables';
+
 // Import Custom Components
-@import './components/_navbar.scss';
-@import './components/_brown_fonts.scss';
-@import './components/_brown_icons.scss';
-@import './components/_brown_footer.scss';
-@import './components/_app.scss';
-@import './components/_table.scss';
-@import './components/_addPub.scss';
+@import './src/styles/components/_navbar.scss';
+@import './src/styles/components/_brown_fonts.scss';
+@import './src/styles/components/_brown_icons.scss';
+@import './src/styles/components/_brown_footer.scss';
+@import './src/styles/components/_app.scss';
+@import './src/styles/components/_table.scss';
+@import './src/styles/components/_addPub.scss';
+
+.form-group.required > .form-label:after {
+  content: '*';
+  color: red;
+}

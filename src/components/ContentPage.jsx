@@ -1,39 +1,25 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBook } from '@fortawesome/free-solid-svg-icons';
 // import YearChart from "./YearChart";
 // import WordCloud from "./WordCloud";
-import Button from 'react-bootstrap/Button';
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchPublicationsData } from '../utils/firebase.ts';
-import { selectPublications, setPublications } from '../store/slice/appState';
+import { useSelector } from 'react-redux';
+import { selectPublications } from '../store/slice/appState';
 import { PubsTable } from './PubsTable';
 import Spinner from './Spinner';
+import { AddPublicationModal } from './AddPublicationModal.tsx';
 
 export function ContentPage() {
   const publications = useSelector(selectPublications);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    async function fetch() {
-      dispatch(setPublications(await fetchPublicationsData()));
-    }
-    fetch();
-  }, [dispatch]);
 
   return (
     <div className="ContentPage main-content">
       <div align="right">
-        <Link to="/addpub">
-          <Button variant="contained" color="primary" id="AddPubButton">
-            Add a Publication
-          </Button>
-        </Link>
+        <AddPublicationModal />
       </div>
       <div className="d-flex flex-row justify-content-center align-items-center">
-        <div className="pub-title pt-2 bg-primary text-white rounded-circle">
-          <FontAwesomeIcon icon={faBook} />
+        <div className="pub-title bg-dark rounded-circle p-2 mx-2">
+          <FontAwesomeIcon icon={faBook} color="white" />
         </div>
         <h1 className="pl-2">Publications</h1>
       </div>
@@ -43,7 +29,7 @@ export function ContentPage() {
       {publications.length !== 0 && (
         <div id="main-content">
           <div className="PubsTable-CP">
-            <PubsTable publications={publications} />
+            <PubsTable />
           </div>
 
           {/* TODO: Word Cloud */}
