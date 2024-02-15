@@ -5,7 +5,7 @@ import { faBook } from '@fortawesome/free-solid-svg-icons';
 // import WordCloud from "./WordCloud";
 import { useSelector } from 'react-redux';
 import { selectPublications } from '../store/slice/appState';
-import { PubsTable } from './PubsTable';
+import { PubsTable } from './PubsTable.tsx';
 import Spinner from './Spinner';
 import { AddPublicationModal } from './AddPublicationModal.tsx';
 
