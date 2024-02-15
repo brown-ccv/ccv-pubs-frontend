@@ -68,8 +68,6 @@ export const useAuthStateChanged = () => {
       if (user) {
         const { displayName, email, uid } = user;
 
-        console.log(user);
-
         dispatch(
           setUser({
             displayName,
