@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { initializeApp } from 'firebase/app';
 import {
   getFirestore,
@@ -9,10 +11,15 @@ import {
   limit,
   orderBy,
 } from 'firebase/firestore';
-import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import {
+  getAuth,
+  GoogleAuthProvider,
+  onAuthStateChanged,
+  signInWithPopup,
+  signOut,
+} from 'firebase/auth';
 
-import { setPublications } from '../store/slice/appState';
+import { setPublications, setUser } from '../store/slice/appState';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBlu1GzA5jvM6mh6taIcjtNgcSEVxlxa1Q',
@@ -26,8 +33,58 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const auth = getAuth();
+const provider = new GoogleAuthProvider();
 
+provider.setCustomParameters({
+  hd: 'brown.edu',
+});
 const collectionName = 'publications';
+
+export const handleLogin = async () => {
+  try {
+    await signInWithPopup(auth, provider);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const handleLogout = async () => {
+  try {
+    await signOut(auth);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+/**
+ * Custom Reach hook to subscribe to Authentication changes
+ */
+export const useAuthStateChanged = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const { displayName, email, uid } = user;
+
+        dispatch(
+          setUser({
+            displayName,
+            email,
+            uid,
+          })
+        );
+      } else {
+        dispatch(setUser(null));
+      }
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, [dispatch]);
+};
 
 /**
  * Custom React hook to subscribe to a Firestore collection and update the Redux store with the fetched data.

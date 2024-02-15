@@ -4,19 +4,22 @@ import { faBook } from '@fortawesome/free-solid-svg-icons';
 // import YearChart from "./YearChart";
 // import WordCloud from "./WordCloud";
 import { useSelector } from 'react-redux';
-import { selectPublications } from '../store/slice/appState';
+import { selectPublications, selectUser } from '../store/slice/appState';
 import { PubsTable } from './PubsTable';
 import Spinner from './Spinner';
 import { AddPublicationModal } from './AddPublicationModal.tsx';
 
 export function ContentPage() {
   const publications = useSelector(selectPublications);
+  const user = useSelector(selectUser);
 
   return (
     <div className="ContentPage main-content">
-      <div align="right">
-        <AddPublicationModal />
-      </div>
+      {user ? (
+        <div align="right">
+          <AddPublicationModal />
+        </div>
+      ) : null}
       <div className="d-flex flex-row justify-content-center align-items-center">
         <div className="pub-title bg-dark rounded-circle p-2 mx-2">
           <FontAwesomeIcon icon={faBook} color="white" />
