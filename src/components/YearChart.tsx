@@ -3,6 +3,7 @@ import { Vega } from 'react-vega';
 import { useSelector } from 'react-redux';
 import cloneDeep from 'lodash.clonedeep';
 import { selectPublications } from '../store/slice/appState';
+import { capitalizeFirstLetter } from '../utils/utils.ts';
 
 export function YearChart() {
   const [selected, setSelected] = React.useState(null);
@@ -102,8 +103,17 @@ export function YearChart() {
     ],
 
     axes: [
-      { orient: 'bottom', scale: 'xscale' },
-      { orient: 'left', scale: 'yscale', tickMinStep: 1 },
+      {
+        scale: 'xscale',
+        orient: 'bottom',
+        title: capitalizeFirstLetter(dataField),
+      },
+      {
+        scale: 'yscale',
+        orient: 'left',
+        title: 'Count',
+        tickMinStep: 1,
+      },
     ],
 
     marks: [
@@ -116,16 +126,37 @@ export function YearChart() {
             width: { scale: 'xscale', band: 1 },
             y: { scale: 'yscale', field: 'count' },
             y2: { scale: 'yscale', value: 0 },
+            tooltip: {
+              signal: `{
+              "${capitalizeFirstLetter(dataField)}": datum.${dataField},
+              "Count": datum.count
+              }`,
+            },
           },
           update: {
-            fill: { value: 'steelblue' },
+            fill: {
+              value: '#003c71',
+            },
+            cursor: {
+              value: 'pointer',
+            },
           },
           hover: {
-            fill: { value: 'red' },
+            fill: { value: '#00b398' },
           },
         },
       },
     ],
+
+    config: {
+      title: {
+        fontSize: 24,
+      },
+      axis: {
+        labelFontSize: 16,
+        titleFontSize: 20,
+      },
+    },
   };
 
   const handleSelected = (name, value) => {
