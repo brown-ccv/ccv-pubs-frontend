@@ -5,6 +5,7 @@ import cloneDeep from 'lodash.clonedeep';
 import { selectPublications } from '../store/slice/appState';
 
 export function YearChart() {
+  const [selected, setSelected] = React.useState(null);
   const publications = useSelector(selectPublications);
 
   const sampleSpec = {
@@ -30,7 +31,7 @@ export function YearChart() {
         transform: [
           {
             type: 'filter',
-            expr: 'select == null ? true : true',
+            expr: '!(select && select.year)',
           },
           {
             type: 'aggregate',
@@ -44,7 +45,7 @@ export function YearChart() {
         transform: [
           {
             type: 'filter',
-            expr: 'select !== null ? datum.year === select.year : true',
+            expr: '(select !== null && select.year !== null) ? datum.year === select.year : false',
           },
           {
             type: 'aggregate',
@@ -57,7 +58,7 @@ export function YearChart() {
     signals: [
       {
         name: 'select',
-        value: null,
+        value: selected,
         on: [
           {
             events: 'click',
@@ -81,14 +82,21 @@ export function YearChart() {
       {
         name: 'xscale',
         type: 'band',
-        domain: { data: 'publicationsByYear', field: 'year' },
+        domain: {
+          data: selected ? 'publicationsByMonth' : 'publicationsByYear',
+          field: selected ? 'month' : 'year',
+          sort: true,
+        },
         range: 'width',
         padding: 0.05,
         round: true,
       },
       {
         name: 'yscale',
-        domain: { data: 'publicationsByYear', field: 'count' },
+        domain: {
+          data: selected ? 'publicationsByMonth' : 'publicationsByYear',
+          field: 'count',
+        },
         nice: true,
         range: 'height',
       },
@@ -96,7 +104,7 @@ export function YearChart() {
 
     axes: [
       { orient: 'bottom', scale: 'xscale' },
-      { orient: 'left', scale: 'yscale' },
+      { orient: 'left', scale: 'yscale', tickMinStep: 1 },
     ],
 
     marks: [
@@ -118,26 +126,32 @@ export function YearChart() {
           },
         },
       },
-      // {
-      //   "type": "rect",
-      //   "from": {"data":"publicationsByMonth"},
-      //   "encode": {
-      //     "enter": {
-      //       "x": {"scale": "xscale", "field": "month"},
-      //       "width": {"scale": "xscale", "band": 1},
-      //       "y": {"scale": "yscale", "field": "count"},
-      //       "y2": {"scale": "yscale", "value": 0}
-      //     },
-      //     "update": {
-      //       "fill": {"value": "steelblue"}
-      //     },
-      //     "hover": {
-      //       "fill": {"value": "red"}
-      //     }
-      //   }
-      // },
+      {
+        type: 'rect',
+        from: { data: 'publicationsByMonth' },
+        encode: {
+          enter: {
+            x: { scale: 'xscale', field: 'month' },
+            width: { scale: 'xscale', band: 1 },
+            y: { scale: 'yscale', field: 'count' },
+            y2: { scale: 'yscale', value: 0 },
+          },
+          update: {
+            fill: { value: 'steelblue' },
+          },
+          hover: {
+            fill: { value: 'red' },
+          },
+        },
+      },
     ],
   };
 
-  return <Vega spec={sampleSpec} />;
+  const handleSelected = (name, value) => {
+    setSelected(value);
+  };
+
+  const signalListeners = { select: handleSelected };
+
+  return <Vega spec={sampleSpec} signalListeners={signalListeners} />;
 }
