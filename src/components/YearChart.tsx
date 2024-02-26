@@ -8,6 +8,9 @@ export function YearChart() {
   const [selected, setSelected] = React.useState(null);
   const publications = useSelector(selectPublications);
 
+  const dataCollection = selected && selected.year ? 'publicationsByMonth' : 'publicationsByYear';
+  const dataField = selected && selected.year ? 'month' : 'year';
+
   const sampleSpec = {
     $schema: 'https://vega.github.io/schema/vega/v5.json',
     description: 'Bar Chart of the years of publications',
@@ -30,10 +33,6 @@ export function YearChart() {
         source: 'publications',
         transform: [
           {
-            type: 'filter',
-            expr: '!(select && select.year)',
-          },
-          {
             type: 'aggregate',
             groupby: ['year'],
           },
@@ -45,7 +44,7 @@ export function YearChart() {
         transform: [
           {
             type: 'filter',
-            expr: '(select !== null && select.year !== null) ? datum.year === select.year : false',
+            expr: '(select !== null && select.year !== null) ? datum.year === select.year : true',
           },
           {
             type: 'aggregate',
@@ -83,8 +82,8 @@ export function YearChart() {
         name: 'xscale',
         type: 'band',
         domain: {
-          data: selected ? 'publicationsByMonth' : 'publicationsByYear',
-          field: selected ? 'month' : 'year',
+          data: dataCollection,
+          field: dataField,
           sort: true,
         },
         range: 'width',
@@ -94,7 +93,7 @@ export function YearChart() {
       {
         name: 'yscale',
         domain: {
-          data: selected ? 'publicationsByMonth' : 'publicationsByYear',
+          data: dataCollection,
           field: 'count',
         },
         nice: true,
@@ -110,28 +109,10 @@ export function YearChart() {
     marks: [
       {
         type: 'rect',
-        from: { data: 'publicationsByYear' },
+        from: { data: dataCollection },
         encode: {
           enter: {
-            x: { scale: 'xscale', field: 'year' },
-            width: { scale: 'xscale', band: 1 },
-            y: { scale: 'yscale', field: 'count' },
-            y2: { scale: 'yscale', value: 0 },
-          },
-          update: {
-            fill: { value: 'steelblue' },
-          },
-          hover: {
-            fill: { value: 'red' },
-          },
-        },
-      },
-      {
-        type: 'rect',
-        from: { data: 'publicationsByMonth' },
-        encode: {
-          enter: {
-            x: { scale: 'xscale', field: 'month' },
+            x: { scale: 'xscale', field: dataField },
             width: { scale: 'xscale', band: 1 },
             y: { scale: 'yscale', field: 'count' },
             y2: { scale: 'yscale', value: 0 },
