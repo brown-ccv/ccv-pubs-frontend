@@ -62,8 +62,7 @@ export function YearChart() {
         on: [
           {
             events: 'click',
-            update:
-              'datum !== null && selectedYear === null && datum.year !== null ? datum.year : null',
+            update: 'datum !== null && selectedYear === null ? datum.year : null',
           },
           {
             events: 'dblclick',
