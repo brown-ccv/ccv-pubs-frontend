@@ -8,6 +8,7 @@ import { selectPublications, selectUser } from '../store/slice/appState';
 import { PubsTable } from './PubsTable';
 import Spinner from './Spinner';
 import { AddPublicationModal } from './AddPublicationModal.tsx';
+import { YearChart } from './YearChart.tsx';
 
 export function ContentPage() {
   const publications = useSelector(selectPublications);
@@ -43,7 +44,7 @@ export function ContentPage() {
           {/*</h3>*/}
           {/*<div className="viz d-flex justify-content-center pt-5">*/}
           {/*  <WordCloud />*/}
-          {/*  <YearChart />*/}
+          <YearChart />
           {/*</div>*/}
         </div>
       )}
