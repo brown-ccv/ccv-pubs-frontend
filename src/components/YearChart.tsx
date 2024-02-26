@@ -6,11 +6,11 @@ import { selectPublications } from '../store/slice/appState';
 import { capitalizeFirstLetter } from '../utils/utils.ts';
 
 export function YearChart() {
-  const [selected, setSelected] = React.useState(null);
+  const [selectedYear, setSelectedYear] = React.useState(null);
   const publications = useSelector(selectPublications);
 
-  const dataCollection = selected && selected.year ? 'publicationsByMonth' : 'publicationsByYear';
-  const dataField = selected && selected.year ? 'month' : 'year';
+  const dataCollection = selectedYear ? 'publicationsByMonth' : 'publicationsByYear';
+  const dataField = selectedYear ? 'month' : 'year';
 
   const sampleSpec = {
     $schema: 'https://vega.github.io/schema/vega/v5.json',
@@ -45,7 +45,7 @@ export function YearChart() {
         transform: [
           {
             type: 'filter',
-            expr: '(select !== null && select.year !== null) ? datum.year === select.year : true',
+            expr: 'selectedYear !== null ? datum.year === selectedYear : true',
           },
           {
             type: 'aggregate',
@@ -57,12 +57,12 @@ export function YearChart() {
 
     signals: [
       {
-        name: 'select',
-        value: selected,
+        name: 'selectedYear',
+        value: selectedYear,
         on: [
           {
             events: 'click',
-            update: 'select ? null : datum',
+            update: 'selectedYear ? null : datum.year',
           },
           {
             events: 'dblclick',
@@ -74,7 +74,7 @@ export function YearChart() {
         name: 'title',
         value: 'Number of Publications vs Year',
         update:
-          "select && select.year ? 'Number of Publications vs Month' + ' (' + select.year + ')' : 'Number of Publications vs Year'",
+          "selectedYear ? 'Number of Publications vs Month' + ' (' + selectedYear + ')' : 'Number of Publications vs Year'",
       },
     ],
 
@@ -159,11 +159,11 @@ export function YearChart() {
     },
   };
 
-  const handleSelected = (name, value) => {
-    setSelected(value);
+  const handleSelectedYear = (name, value) => {
+    setSelectedYear(value);
   };
 
-  const signalListeners = { select: handleSelected };
+  const signalListeners = { selectedYear: handleSelectedYear };
 
   return <Vega spec={sampleSpec} signalListeners={signalListeners} />;
 }
