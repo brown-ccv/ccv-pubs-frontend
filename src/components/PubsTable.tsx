@@ -18,6 +18,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
 import { RankingInfo } from '@tanstack/match-sorter-utils';
 
@@ -151,43 +152,50 @@ export function PubsTable() {
         </Table>
       </Row>
       <Row>
-        <Col>
+        <Col sm={12} md={4} lg={4} className="d-grid">
           <Button
             variant="warning"
+            size="lg"
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
           >
             Previous
           </Button>
         </Col>
-        <Col>
-          <span>Page</span>
-          <input
-            type="number"
-            defaultValue={table.getState().pagination.pageIndex + 1}
-            onChange={(e) => {
-              const page = e.target.value ? Number(e.target.value) - 1 : 0;
-              table.setPageIndex(page);
-            }}
-            className="border p-1 rounded w-16"
-          />
-          <span>of {table.getPageCount()}</span>
-          <select
-            value={table.getState().pagination.pageSize}
-            onChange={(e) => {
-              table.setPageSize(Number(e.target.value));
-            }}
-          >
-            {[10, 20, 30, 40, 50].map((pageSize) => (
-              <option key={pageSize} value={pageSize}>
-                {pageSize} rows
-              </option>
-            ))}
-          </select>
+        <Col sm={12} md={4} lg={4} className="d-flex justify-content-around">
+          <div className="d-flex">
+            <span className="me-2">Page</span>
+            <Form.Control
+              type="number"
+              defaultValue={table.getState().pagination.pageIndex + 1}
+              onChange={(e) => {
+                const page = e.target.value ? Number(e.target.value) - 1 : 0;
+                table.setPageIndex(page);
+              }}
+              min={1}
+              max={table.getPageCount()}
+            />
+            <span className="me-2">of {table.getPageCount()}</span>
+          </div>
+          <div>
+            <Form.Select
+              value={table.getState().pagination.pageSize}
+              onChange={(e) => {
+                table.setPageSize(Number(e.target.value));
+              }}
+            >
+              {[5, 10, 20, 25, 50, 100].map((pageSize) => (
+                <option key={pageSize} value={pageSize}>
+                  {pageSize} rows
+                </option>
+              ))}
+            </Form.Select>
+          </div>
         </Col>
-        <Col>
+        <Col sm={12} md={4} lg={4} className="d-grid">
           <Button
             variant="warning"
+            size="lg"
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
           >
@@ -252,7 +260,6 @@ function Filter({ column, table }) {
         type="text"
         value={(columnFilterValue ?? '') as string}
         onChange={(value) => column.setFilterValue(value)}
-        placeholder={`Search... (${column.getFacetedUniqueValues().size})`}
         className="w-36 border shadow rounded"
         list={column.id + 'list'}
       />
@@ -290,5 +297,5 @@ function DebouncedInput({
     [value]
   );
 
-  return <input {...props} value={value} onChange={(e) => setValue(e.target.value)} />;
+  return <Form.Control {...props} value={value} onChange={(e) => setValue(e.target.value)} />;
 }
