@@ -4,15 +4,20 @@ export const appStateSlice = createSlice({
   name: 'appState',
   initialState: {
     publications: [],
+    user: null,
   },
   reducers: {
     setPublications: (state, action) => {
       state.publications = action.payload;
     },
+    setUser: (state, action) => {
+      state.user = action.payload;
+    },
   },
 });
 
-export const { setPublications } = appStateSlice.actions;
+export const { setPublications, setUser } = appStateSlice.actions;
 export const selectPublications = (state) => state.publications;
+export const selectUser = (state) => state.user;
 
 export default appStateSlice.reducer;
