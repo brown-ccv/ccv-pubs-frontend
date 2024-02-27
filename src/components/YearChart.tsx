@@ -101,6 +101,9 @@ export function YearChart() {
         title: capitalizeFirstLetter(timeUnit),
         format: timeUnit === 'month' ? '%b' : '%Y',
         formatType: 'time',
+        labelAngle: 270,
+        labelAlign: 'right',
+        labelBaseline: 'middle',
       },
       {
         scale: 'yscale',
@@ -122,7 +125,7 @@ export function YearChart() {
             y2: { scale: 'yscale', value: 0 },
             tooltip: {
               signal: `{
-              "${capitalizeFirstLetter(timeUnit)}": datum.${timeUnit},
+              "${capitalizeFirstLetter(timeUnit)}": timeFormat(datum.unit0, ${timeUnit === 'month' ? "'%b'" : "'%Y'"}),
               "Count": datum.count
               }`,
             },
