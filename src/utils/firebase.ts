@@ -97,7 +97,7 @@ export const usePublicationsCollection = () => {
       query(
         collection(db, collectionName),
         orderBy('updatedAt', 'desc'),
-        limit(10) // TODO: TEMPORARY. Limiting right now. Set up pagination?
+        limit(100) // TODO: TEMPORARY. Limiting right now. Set up pagination?
       ),
       (snapshot) => {
         const publications = snapshot.docs.map((doc) => doc.data());
