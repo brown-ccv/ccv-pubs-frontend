@@ -9,8 +9,7 @@ export function YearChart() {
   const [selectedYear, setSelectedYear] = React.useState(null);
   const publications = useSelector(selectPublications);
 
-  const dataCollection = selectedYear ? 'publicationsByMonth' : 'publicationsByYear';
-  const dataField = selectedYear ? 'month' : 'year';
+  const timeUnit = selectedYear ? 'month' : 'year';
 
   const sampleSpec = {
     $schema: 'https://vega.github.io/schema/vega/v5.json',
@@ -28,28 +27,20 @@ export function YearChart() {
       {
         name: 'publications',
         values: cloneDeep(publications),
-      },
-      {
-        name: 'publicationsByYear',
-        source: 'publications',
         transform: [
           {
-            type: 'aggregate',
-            groupby: ['year'],
+            type: 'formula',
+            expr: "toDate(datum.year + '-' + datum.month + '-1')",
+            as: 'date',
           },
-        ],
-      },
-      {
-        name: 'publicationsByMonth',
-        source: 'publications',
-        transform: [
           {
-            type: 'filter',
-            expr: 'selectedYear !== null ? datum.year === selectedYear : true',
+            type: 'timeunit',
+            field: 'date',
+            units: [timeUnit],
           },
           {
             type: 'aggregate',
-            groupby: ['month'],
+            groupby: ['unit0'],
           },
         ],
       },
@@ -62,7 +53,8 @@ export function YearChart() {
         on: [
           {
             events: 'click',
-            update: 'datum !== null && selectedYear === null ? datum.year : null',
+            update:
+              'datum !== null && selectedYear === null ? timeFormat(datum.unit0, "%Y") : null',
           },
           {
             events: 'dblclick',
@@ -83,8 +75,8 @@ export function YearChart() {
         name: 'xscale',
         type: 'band',
         domain: {
-          data: dataCollection,
-          field: dataField,
+          data: 'publications',
+          field: 'unit0',
           sort: true,
         },
         range: 'width',
@@ -94,7 +86,7 @@ export function YearChart() {
       {
         name: 'yscale',
         domain: {
-          data: dataCollection,
+          data: 'publications',
           field: 'count',
         },
         nice: true,
@@ -106,7 +98,9 @@ export function YearChart() {
       {
         scale: 'xscale',
         orient: 'bottom',
-        title: capitalizeFirstLetter(dataField),
+        title: capitalizeFirstLetter(timeUnit),
+        format: timeUnit === 'month' ? '%b' : '%Y',
+        formatType: 'time',
       },
       {
         scale: 'yscale',
@@ -119,16 +113,16 @@ export function YearChart() {
     marks: [
       {
         type: 'rect',
-        from: { data: dataCollection },
+        from: { data: 'publications' },
         encode: {
           enter: {
-            x: { scale: 'xscale', field: dataField },
+            x: { scale: 'xscale', field: 'unit0' },
             width: { scale: 'xscale', band: 1 },
             y: { scale: 'yscale', field: 'count' },
             y2: { scale: 'yscale', value: 0 },
             tooltip: {
               signal: `{
-              "${capitalizeFirstLetter(dataField)}": datum.${dataField},
+              "${capitalizeFirstLetter(timeUnit)}": datum.${timeUnit},
               "Count": datum.count
               }`,
             },
