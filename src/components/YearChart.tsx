@@ -159,5 +159,5 @@ export function YearChart() {
 
   const signalListeners = { selectedYear: handleSelectedYear };
 
-  return <Vega spec={sampleSpec} signalListeners={signalListeners} />;
+  return <Vega spec={sampleSpec} signalListeners={signalListeners} actions={false} />;
 }
