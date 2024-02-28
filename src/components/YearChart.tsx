@@ -29,6 +29,10 @@ export function YearChart() {
         values: cloneDeep(publications),
         transform: [
           {
+            type: 'filter',
+            expr: 'selectedYear !== null ? datum.year == selectedYear : true',
+          },
+          {
             type: 'formula',
             expr: "toDate(datum.year + '-' + datum.month + '-1')",
             as: 'date',
@@ -158,6 +162,8 @@ export function YearChart() {
 
   const handleSelectedYear = (name, value) => {
     setSelectedYear(value);
+
+    console.log(value);
   };
 
   const signalListeners = { selectedYear: handleSelectedYear };
