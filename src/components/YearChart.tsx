@@ -3,13 +3,9 @@ import { Vega } from 'react-vega';
 import { useSelector } from 'react-redux';
 import cloneDeep from 'lodash.clonedeep';
 import { selectPublications } from '../store/slice/appState';
-import { capitalizeFirstLetter } from '../utils/utils.ts';
-
 export function YearChart() {
   const [selectedYear, setSelectedYear] = React.useState(null);
   const publications = useSelector(selectPublications);
-
-  const timeUnit = selectedYear ? 'month' : 'year';
 
   const sampleSpec = {
     $schema: 'https://vega.github.io/schema/vega/v5.json',
@@ -29,22 +25,8 @@ export function YearChart() {
         values: cloneDeep(publications),
         transform: [
           {
-            type: 'filter',
-            expr: 'selectedYear !== null ? datum.year == selectedYear : true',
-          },
-          {
-            type: 'formula',
-            expr: "toDate(datum.year + '-' + datum.month + '-1')",
-            as: 'date',
-          },
-          {
-            type: 'timeunit',
-            field: 'date',
-            units: [timeUnit],
-          },
-          {
             type: 'aggregate',
-            groupby: ['unit0'],
+            groupby: ['year'],
           },
         ],
       },
@@ -57,8 +39,7 @@ export function YearChart() {
         on: [
           {
             events: 'click',
-            update:
-              'datum !== null && selectedYear === null ? timeFormat(datum.unit0, "%Y") : null',
+            update: 'datum !== null && selectedYear === null ? datum.year : null',
           },
           {
             events: 'dblclick',
@@ -68,9 +49,7 @@ export function YearChart() {
       },
       {
         name: 'title',
-        value: 'Number of Publications vs Year',
-        update:
-          "selectedYear ? 'Number of Publications vs Month' + ' (' + selectedYear + ')' : 'Number of Publications vs Year'",
+        value: 'Number of Publications by Year',
       },
     ],
 
@@ -80,7 +59,7 @@ export function YearChart() {
         type: 'band',
         domain: {
           data: 'publications',
-          field: 'unit0',
+          field: 'year',
           sort: true,
         },
         range: 'width',
@@ -102,9 +81,7 @@ export function YearChart() {
       {
         scale: 'xscale',
         orient: 'bottom',
-        title: capitalizeFirstLetter(timeUnit),
-        format: timeUnit === 'month' ? '%b' : '%Y',
-        formatType: 'time',
+        title: 'Year',
         labelAngle: 270,
         labelAlign: 'right',
         labelBaseline: 'middle',
@@ -123,21 +100,27 @@ export function YearChart() {
         from: { data: 'publications' },
         encode: {
           enter: {
-            x: { scale: 'xscale', field: 'unit0' },
+            x: { scale: 'xscale', field: 'year' },
             width: { scale: 'xscale', band: 1 },
             y: { scale: 'yscale', field: 'count' },
             y2: { scale: 'yscale', value: 0 },
             tooltip: {
               signal: `{
-              "${capitalizeFirstLetter(timeUnit)}": timeFormat(datum.unit0, ${timeUnit === 'month' ? "'%b'" : "'%Y'"}),
+              "Year": datum.year,
               "Count": datum.count
               }`,
             },
           },
           update: {
-            fill: {
-              value: '#003c71',
-            },
+            fill: [
+              {
+                value: '#ffc72c',
+                test: 'selectedYear == datum.year',
+              },
+              {
+                value: '#003c71',
+              },
+            ],
             cursor: {
               value: 'pointer',
             },
