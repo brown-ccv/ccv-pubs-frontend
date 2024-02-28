@@ -162,8 +162,6 @@ export function YearChart() {
 
   const handleSelectedYear = (name, value) => {
     setSelectedYear(value);
-
-    console.log(value);
   };
 
   const signalListeners = { selectedYear: handleSelectedYear };
