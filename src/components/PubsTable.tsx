@@ -84,7 +84,7 @@ export function PubsTable() {
   return (
     <Container fluid>
       <Row>
-        <Table>
+        <Table className="text-center">
           <thead>
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>

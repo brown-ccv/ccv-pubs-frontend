@@ -14,7 +14,7 @@ export function ContentPage() {
   const user = useSelector(selectUser);
 
   return (
-    <div className="ContentPage main-content">
+    <div className="main-content">
       {user ? (
         <div align="right">
           <AddPublicationModal />
@@ -28,10 +28,8 @@ export function ContentPage() {
       <Spinner loading={publications.length === 0} className="spinner" size={100} />
 
       {publications.length !== 0 && (
-        <div id="main-content">
-          <div className="PubsTable-CP">
-            <PubsTable />
-          </div>
+        <>
+          <PubsTable />
 
           {/* TODO: Word Cloud */}
           {/* TODO: Year Chart */}
@@ -43,7 +41,7 @@ export function ContentPage() {
           {/*  <WordCloud />*/}
           {/*  <YearChart />*/}
           {/*</div>*/}
-        </div>
+        </>
       )}
     </div>
   );
