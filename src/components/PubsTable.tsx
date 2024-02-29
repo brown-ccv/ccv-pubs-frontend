@@ -22,6 +22,8 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
 import { useSelector } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowUpAZ, faArrowDownZA } from '@fortawesome/free-solid-svg-icons';
 import { selectPublications } from '../store/slice/appState';
 import { Publication } from '../../types';
 
@@ -101,8 +103,8 @@ export function PubsTable() {
                           >
                             {flexRender(header.column.columnDef.header, header.getContext())}
                             {{
-                              asc: ' 🔼',
-                              desc: ' 🔽',
+                              asc: <FontAwesomeIcon icon={faArrowUpAZ} />,
+                              desc: <FontAwesomeIcon icon={faArrowDownZA} />,
                             }[header.column.getIsSorted() as string] ?? null}
                           </div>
                           {header.column.getCanFilter() ? (
