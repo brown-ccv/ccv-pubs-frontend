@@ -11,6 +11,7 @@ import {
   getPaginationRowModel,
   getSortedRowModel,
   flexRender,
+  createColumnHelper,
 } from '@tanstack/react-table';
 
 import Table from 'react-bootstrap/Table';
@@ -20,52 +21,35 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-import { RankingInfo } from '@tanstack/match-sorter-utils';
-
 import { useSelector } from 'react-redux';
 import { selectPublications } from '../store/slice/appState';
-
-declare module '@tanstack/table-core' {
-  interface FilterMeta {
-    itemRank: RankingInfo;
-  }
-}
+import { Publication } from '../../types';
 
 export function PubsTable() {
   const publications = useSelector(selectPublications);
-
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
 
-  const columns = React.useMemo(
-    () => [
-      {
-        header: 'Title',
-        accessorKey: 'title',
-        cell: (info) => info.getValue(),
-        // style: { whiteSpace: 'unset' },
-      },
-      {
-        header: 'Author(s)',
-        accessorKey: 'author',
-        cell: (info) => info.getValue(),
-        // style: { whiteSpace: 'unset' },
-      },
-      {
-        header: 'Year',
-        accessorKey: 'year',
-        cell: (info) => info.getValue(),
-        // width: 100,
-      },
-      {
-        header: 'URL',
-        accessorKey: 'url',
-        cell: (info) => info.getValue(),
-        // Cell: (val) => changetoHTML(val),
-        // filterable: false,
-      },
-    ],
-    []
-  );
+  const columnHelper = createColumnHelper<Publication>();
+
+  const columns = [
+    columnHelper.accessor('title', {
+      header: 'Title',
+      cell: (info) => info.getValue(),
+    }),
+    columnHelper.accessor('author', {
+      header: 'Author(s)',
+      cell: (info) => info.getValue(),
+    }),
+    columnHelper.accessor('year', {
+      header: 'Year',
+      cell: (info) => info.getValue(),
+    }),
+    columnHelper.accessor('url', {
+      header: 'URL',
+      cell: (info) => <a href={info.getValue()}>{info.getValue()}</a>,
+      enableColumnFilter: false,
+    }),
+  ];
 
   const table = useReactTable({
     data: publications,
@@ -98,7 +82,7 @@ export function PubsTable() {
   return (
     <Container fluid>
       <Row>
-        <Table bordered>
+        <Table>
           <thead>
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
