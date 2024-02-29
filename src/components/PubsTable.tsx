@@ -98,13 +98,13 @@ export function PubsTable() {
   return (
     <Container fluid>
       <Row>
-        <Table>
+        <Table bordered>
           <thead>
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
-                    <th key={header.id} colSpan={header.colSpan}>
+                    <th className="h3 bg-secondary" key={header.id} colSpan={header.colSpan}>
                       {header.isPlaceholder ? null : (
                         <>
                           <div
@@ -194,7 +194,7 @@ export function PubsTable() {
         </Col>
         <Col sm={12} md={4} lg={4} className="d-grid">
           <Button
-            variant="warning"
+            variant="secondary"
             size="lg"
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
@@ -233,7 +233,6 @@ function Filter({ column, table }) {
           placeholder={`Min ${
             column.getFacetedMinMaxValues()?.[0] ? `(${column.getFacetedMinMaxValues()?.[0]})` : ''
           }`}
-          className="w-24 border shadow rounded"
         />
         <DebouncedInput
           type="number"
@@ -244,7 +243,6 @@ function Filter({ column, table }) {
           placeholder={`Max ${
             column.getFacetedMinMaxValues()?.[1] ? `(${column.getFacetedMinMaxValues()?.[1]})` : ''
           }`}
-          className="w-24 border shadow rounded"
         />
       </div>
       <div className="h-1" />
@@ -260,7 +258,6 @@ function Filter({ column, table }) {
         type="text"
         value={(columnFilterValue ?? '') as string}
         onChange={(value) => column.setFilterValue(value)}
-        className="w-36 border shadow rounded"
         list={column.id + 'list'}
       />
       <div className="h-1" />
