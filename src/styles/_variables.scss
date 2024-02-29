@@ -16,7 +16,7 @@ $dark-brown: #4e3629;
 $brown-100: #a79a94;
 $brown-200: #745d54;
 
-$theme-colors: (
+$custom-colors: (
   'brown': $brown,
   'beige': $beige,
   'sand': $sand,
@@ -24,3 +24,6 @@ $theme-colors: (
   'medium-brown': $medium-brown,
   'dark-brown': $dark-brown,
 );
+
+$primary: $blue;
+$secondary: $yellow;

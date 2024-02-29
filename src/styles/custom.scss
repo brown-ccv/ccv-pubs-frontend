@@ -1,8 +1,8 @@
-// Import Bootstrap
-@import '~bootstrap/scss/bootstrap.scss';
-
 // Override Bootstrap Variables
 @import 'variables';
+
+@import '~bootstrap/scss/bootstrap.scss';
+$theme-colors: map-merge($theme-colors, $custom-colors);
 
 // Import Custom Components
 @import './src/styles/components/_brown_fonts.scss';
