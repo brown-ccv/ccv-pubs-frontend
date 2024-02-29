@@ -9,7 +9,6 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 @import './src/styles/components/_brown_icons.scss';
 @import './src/styles/components/_brown_footer.scss';
 @import './src/styles/components/_app.scss';
-@import './src/styles/components/_addPub.scss';
 
 .form-group.required > .form-label:after {
   content: '*';
