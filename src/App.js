@@ -13,16 +13,14 @@ export function App() {
   return (
     <div aria-live="polite">
       <Navbar />
-      <div className="App">
-        <BrowserRouter>
-          <main>
-            <Routes>
-              <Route exact path="/" element={<ContentPage />} />
-            </Routes>
-          </main>
-        </BrowserRouter>
-        <Footer />
-      </div>
+      <BrowserRouter>
+        <main className="main">
+          <Routes>
+            <Route exact path="/" element={<ContentPage />} />
+          </Routes>
+        </main>
+      </BrowserRouter>
+      <Footer />
     </div>
   );
 }

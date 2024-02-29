@@ -8,7 +8,11 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 @import './src/styles/components/_brown_fonts.scss';
 @import './src/styles/components/_brown_icons.scss';
 @import './src/styles/components/_brown_footer.scss';
-@import './src/styles/components/_app.scss';
+
+.main {
+  min-height: 90vh;
+  padding: 2vw 3vw;
+}
 
 .form-group.required > .form-label:after {
   content: ' *';
