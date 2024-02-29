@@ -163,7 +163,7 @@ export function PubsTable() {
             />
             <span className="mx-2 text-nowrap">of {table.getPageCount()}</span>
           </div>
-          <div>
+          <div className="d-flex align-items-center">
             <Form.Select
               value={table.getState().pagination.pageSize}
               onChange={(e) => {
