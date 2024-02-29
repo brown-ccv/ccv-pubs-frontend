@@ -149,8 +149,8 @@ export function PubsTable() {
           </Button>
         </Col>
         <Col sm={12} md={4} lg={4} className="d-flex justify-content-around">
-          <div className="d-flex">
-            <span className="me-2">Page</span>
+          <div className="d-flex align-items-center">
+            <span className="mx-2">Page</span>
             <Form.Control
               type="number"
               defaultValue={table.getState().pagination.pageIndex + 1}
@@ -161,7 +161,7 @@ export function PubsTable() {
               min={1}
               max={table.getPageCount()}
             />
-            <span className="me-2">of {table.getPageCount()}</span>
+            <span className="mx-2 text-nowrap">of {table.getPageCount()}</span>
           </div>
           <div>
             <Form.Select
