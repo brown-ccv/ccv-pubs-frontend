@@ -21,10 +21,8 @@ export function ContentPage() {
         </div>
       ) : null}
       <div className="d-flex flex-row justify-content-center align-items-center">
-        <div className="pub-title bg-dark rounded-circle p-2 mx-2">
-          <FontAwesomeIcon icon={faBook} color="white" />
-        </div>
-        <h1 className="pl-2">Publications</h1>
+        <FontAwesomeIcon icon={faBook} color="dark" size="2xl" />
+        <h1 className="mx-2">Publications</h1>
       </div>
 
       <Spinner loading={publications.length === 0} className="spinner" size={100} />
