@@ -13,13 +13,14 @@ export function ContentPage() {
   const user = useSelector(selectUser);
 
   return (
-    <div className="main-content">
+    <div className="main-content d-flex flex-column align-items-center">
       {user ? (
-        <div align="right">
+        <div className="align-self-end">
           <AddPublicationModal />
         </div>
       ) : null}
-      <div className="d-flex flex-row justify-content-center align-items-center">
+
+      <div className="d-flex flex-row">
         <FontAwesomeIcon icon={faBook} color="dark" size="2xl" />
         <h1 className="mx-2">Publications</h1>
       </div>
@@ -31,7 +32,9 @@ export function ContentPage() {
           <PublicationsTable />
 
           {/* TODO: Word Cloud */}
-          <h3 className="word-cloud-title pt-4 mt-4">What are these publications all about? </h3>
+          <h2 className="title pt-4 m-4 is-2 text-center">
+            What are these publications all about?{' '}
+          </h2>
           {/*<div className="viz d-flex justify-content-center pt-5">*/}
           {/*  <WordCloud />*/}
           <YearChart />

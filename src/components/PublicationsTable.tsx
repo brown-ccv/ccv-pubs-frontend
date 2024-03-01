@@ -38,7 +38,11 @@ export function PublicationsTable() {
   const columns = [
     columnHelper.accessor('title', {
       header: 'Title',
-      cell: (info) => info.getValue(),
+      cell: (info) => (
+        <a href={info.row.original.url} target="_blank" rel="noopener noreferrer">
+          {info.getValue()}
+        </a>
+      ),
     }),
     columnHelper.accessor('author', {
       header: 'Author(s)',
@@ -48,11 +52,6 @@ export function PublicationsTable() {
       header: 'Year',
       cell: (info) => info.getValue(),
       size: 100,
-    }),
-    columnHelper.accessor('url', {
-      header: 'URL',
-      cell: (info) => info.getValue(),
-      enableColumnFilter: false,
     }),
   ];
 
@@ -82,7 +81,7 @@ export function PublicationsTable() {
   return (
     <Container fluid>
       <Row>
-        <Table className="text-center" bordered>
+        <Table className="align-middle text-break text-center" bordered>
           <thead>
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
@@ -135,7 +134,7 @@ export function PublicationsTable() {
                 <tr key={row.id}>
                   {row.getVisibleCells().map((cell) => {
                     return (
-                      <td key={cell.id} className="text-break">
+                      <td key={cell.id}>
                         {flexRender(cell.column.columnDef.cell, cell.getContext())}
                       </td>
                     );
