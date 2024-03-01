@@ -23,7 +23,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowDownZA, faArrowUpAZ } from '@fortawesome/free-solid-svg-icons';
+import { faArrowDownWideShort, faArrowUpShortWide } from '@fortawesome/free-solid-svg-icons';
 
 import { selectPublications } from '../store/slice/appState';
 import { Publication } from '../../types';
@@ -106,8 +106,8 @@ export function PublicationsTable() {
                             {flexRender(header.column.columnDef.header, header.getContext())}
                             {/* Sorting Icons */}
                             {{
-                              asc: <FontAwesomeIcon icon={faArrowUpAZ} />,
-                              desc: <FontAwesomeIcon icon={faArrowDownZA} />,
+                              asc: <FontAwesomeIcon icon={faArrowUpShortWide} />,
+                              desc: <FontAwesomeIcon icon={faArrowDownWideShort} />,
                             }[header.column.getIsSorted() as string] ?? null}
                           </div>
                           {/* Column Filter */}
