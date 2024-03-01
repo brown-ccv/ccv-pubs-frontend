@@ -1,17 +1,18 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 import {
-  useReactTable,
   ColumnFiltersState,
+  createColumnHelper,
+  flexRender,
   getCoreRowModel,
-  getFilteredRowModel,
+  getFacetedMinMaxValues,
   getFacetedRowModel,
   getFacetedUniqueValues,
-  getFacetedMinMaxValues,
+  getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  flexRender,
-  createColumnHelper,
+  useReactTable,
 } from '@tanstack/react-table';
 
 import Table from 'react-bootstrap/Table';
@@ -21,11 +22,12 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowUpAZ, faArrowDownZA } from '@fortawesome/free-solid-svg-icons';
+import { faArrowDownZA, faArrowUpAZ } from '@fortawesome/free-solid-svg-icons';
+
 import { selectPublications } from '../store/slice/appState';
 import { Publication } from '../../types';
+import { ColumnFilter } from './ColumnFilter.tsx';
 
 export function PubsTable() {
   const publications = useSelector(selectPublications);
@@ -45,6 +47,7 @@ export function PubsTable() {
     columnHelper.accessor('year', {
       header: 'Year',
       cell: (info) => info.getValue(),
+      size: 100,
     }),
     columnHelper.accessor('url', {
       header: 'URL',
@@ -115,7 +118,7 @@ export function PubsTable() {
                             </div>
                             {header.column.getCanFilter() ? (
                               <div>
-                                <Filter column={header.column} table={table} />
+                                <ColumnFilter column={header.column} table={table} />
                               </div>
                             ) : null}
                           </div>
@@ -208,91 +211,4 @@ export function PubsTable() {
       </Row>
     </Container>
   );
-}
-
-function Filter({ column, table }) {
-  const firstValue = table.getPreFilteredRowModel().flatRows[0]?.getValue(column.id);
-
-  const columnFilterValue = column.getFilterValue();
-
-  const sortedUniqueValues = React.useMemo(
-    () =>
-      typeof firstValue === 'number'
-        ? []
-        : Array.from(column.getFacetedUniqueValues().keys()).sort(),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [column.getFacetedUniqueValues()]
-  );
-
-  return typeof firstValue === 'number' ? (
-    <div className="d-flex">
-      <DebouncedInput
-        type="number"
-        min={Number(column.getFacetedMinMaxValues()?.[0] ?? '')}
-        max={Number(column.getFacetedMinMaxValues()?.[1] ?? '')}
-        value={(columnFilterValue as [number, number])?.[0] ?? ''}
-        onChange={(value) => column.setFilterValue((old: [number, number]) => [value, old?.[1]])}
-        placeholder={`Min ${
-          column.getFacetedMinMaxValues()?.[0] ? `(${column.getFacetedMinMaxValues()?.[0]})` : ''
-        }`}
-      />
-      <DebouncedInput
-        type="number"
-        min={Number(column.getFacetedMinMaxValues()?.[0] ?? '')}
-        max={Number(column.getFacetedMinMaxValues()?.[1] ?? '')}
-        value={(columnFilterValue as [number, number])?.[1] ?? ''}
-        onChange={(value) => column.setFilterValue((old: [number, number]) => [old?.[0], value])}
-        placeholder={`Max ${
-          column.getFacetedMinMaxValues()?.[1] ? `(${column.getFacetedMinMaxValues()?.[1]})` : ''
-        }`}
-      />
-    </div>
-  ) : (
-    <>
-      <datalist id={column.id + 'list'}>
-        {sortedUniqueValues.slice(0, 5000).map((value) => (
-          <option value={value} key={value} />
-        ))}
-      </datalist>
-      <DebouncedInput
-        type="text"
-        value={(columnFilterValue ?? '') as string}
-        onChange={(value) => column.setFilterValue(value)}
-        list={column.id + 'list'}
-      />
-      <div className="h-1" />
-    </>
-  );
-}
-
-// A debounced input react component
-function DebouncedInput({
-  value: initialValue,
-  onChange,
-  debounce = 500,
-  ...props
-}: {
-  value: string | number;
-  onChange: (value: string | number) => void;
-  debounce?: number;
-} & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'>) {
-  const [value, setValue] = React.useState(initialValue);
-
-  React.useEffect(() => {
-    setValue(initialValue);
-  }, [initialValue]);
-
-  React.useEffect(
-    () => {
-      const timeout = setTimeout(() => {
-        onChange(value);
-      }, debounce);
-
-      return () => clearTimeout(timeout);
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [value]
-  );
-
-  return <Form.Control {...props} value={value} onChange={(e) => setValue(e.target.value)} />;
 }
