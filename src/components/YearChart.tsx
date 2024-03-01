@@ -7,17 +7,13 @@ export function YearChart() {
   const [selectedYear, setSelectedYear] = React.useState(null);
   const publications = useSelector(selectPublications);
 
-  const sampleSpec = {
+  const spec = {
     $schema: 'https://vega.github.io/schema/vega/v5.json',
     description: 'Bar Chart of the years of publications',
     width: 400,
     height: 400,
     padding: 5,
-    title: {
-      text: {
-        signal: 'title',
-      },
-    },
+    title: 'Number of Publications by Year',
 
     data: [
       {
@@ -46,10 +42,6 @@ export function YearChart() {
             update: 'null',
           },
         ],
-      },
-      {
-        name: 'title',
-        value: 'Number of Publications by Year',
       },
     ],
 
@@ -149,5 +141,5 @@ export function YearChart() {
 
   const signalListeners = { selectedYear: handleSelectedYear };
 
-  return <Vega spec={sampleSpec} signalListeners={signalListeners} actions={false} />;
+  return <Vega spec={spec} signalListeners={signalListeners} actions={false} />;
 }
