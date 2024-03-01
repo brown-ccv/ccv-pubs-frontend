@@ -91,27 +91,28 @@ export function PublicationsTable() {
                     <th
                       key={header.id}
                       colSpan={header.colSpan}
-                      className="h3 bg-secondary"
+                      className={`h3 bg-secondary ${
+                        header.column.getCanSort() ? 'cursor-pointer select-none' : ''
+                      }`}
                       style={{
                         position: 'relative',
                         width: header.getSize(),
                       }}
+                      onClick={header.column.getToggleSortingHandler()}
                     >
                       {header.isPlaceholder ? null : (
                         <div className="d-flex">
                           <div className="flex-grow-1">
-                            <div
-                              className={
-                                header.column.getCanSort() ? 'cursor-pointer select-none' : ''
-                              }
-                              onClick={header.column.getToggleSortingHandler()}
-                            >
+                            <div>
+                              {/* Header */}
                               {flexRender(header.column.columnDef.header, header.getContext())}
+                              {/* Sorting Icons */}
                               {{
                                 asc: <FontAwesomeIcon icon={faArrowUpAZ} />,
                                 desc: <FontAwesomeIcon icon={faArrowDownZA} />,
                               }[header.column.getIsSorted() as string] ?? null}
                             </div>
+                            {/* Column Filter */}
                             {header.column.getCanFilter() ? (
                               <ColumnFilter column={header.column} table={table} />
                             ) : null}
