@@ -29,14 +29,11 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
   cursor: col-resize;
   user-select: none;
   touch-action: none;
+  opacity: 0;
 }
 
 @media (hover: hover) {
-  .resizer {
-    opacity: 0;
-  }
-
-  *:hover > .resizer {
+  .resizer:hover {
     opacity: 1;
   }
 }
