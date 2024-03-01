@@ -18,3 +18,14 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
   content: ' *';
   color: red;
 }
+
+.resizer {
+  width: 4px;
+  height: 100%;
+  background-color: deeppink;
+  cursor: col-resize;
+
+  .is-resizing {
+
+  }
+}

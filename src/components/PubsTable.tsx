@@ -48,7 +48,7 @@ export function PubsTable() {
     }),
     columnHelper.accessor('url', {
       header: 'URL',
-      cell: (info) => <a href={info.getValue()}>{info.getValue()}</a>,
+      cell: (info) => info.getValue(),
       enableColumnFilter: false,
     }),
   ];
@@ -59,6 +59,13 @@ export function PubsTable() {
     state: {
       columnFilters,
     },
+    defaultColumn: {
+      size: 200,
+      minSize: 50,
+      maxSize: 500,
+    },
+    columnResizeMode: 'onChange',
+    columnResizeDirection: 'ltr',
     onColumnFiltersChange: setColumnFilters,
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
@@ -84,35 +91,67 @@ export function PubsTable() {
   return (
     <Container fluid>
       <Row>
-        <Table className="text-center">
+        <Table
+          className="text-center"
+          bordered
+          {...{
+            style: {
+              width: table.getTotalSize(),
+              // tableLayout: 'fixed'
+            },
+          }}
+        >
           <thead>
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
-                    <th className="h3 bg-secondary" key={header.id} colSpan={header.colSpan}>
+                    <th
+                      {...{
+                        key: header.id,
+                        colSpan: header.colSpan,
+                        className: 'h3 bg-secondary',
+                        style: {
+                          width: header.getSize(),
+                        },
+                      }}
+                    >
                       {header.isPlaceholder ? null : (
-                        <>
+                        <div className="d-flex">
+                          <div className="flex-grow-1">
+                            <div
+                              {...{
+                                className: header.column.getCanSort()
+                                  ? 'cursor-pointer select-none'
+                                  : '',
+                                onClick: header.column.getToggleSortingHandler(),
+                              }}
+                            >
+                              {flexRender(header.column.columnDef.header, header.getContext())}
+                              {{
+                                asc: <FontAwesomeIcon icon={faArrowUpAZ} />,
+                                desc: <FontAwesomeIcon icon={faArrowDownZA} />,
+                              }[header.column.getIsSorted() as string] ?? null}
+                            </div>
+                            {header.column.getCanFilter() ? (
+                              <div>
+                                <Filter column={header.column} table={table} />
+                              </div>
+                            ) : null}
+                          </div>
                           <div
                             {...{
-                              className: header.column.getCanSort()
-                                ? 'cursor-pointer select-none'
-                                : '',
-                              onClick: header.column.getToggleSortingHandler(),
+                              onDoubleClick: () => header.column.resetSize(),
+                              onMouseDown: header.getResizeHandler(),
+                              onTouchStart: header.getResizeHandler(),
+                              className: `resizer ${
+                                header.column.getIsResizing() ? 'is-resizing' : ''
+                              }`,
                             }}
                           >
-                            {flexRender(header.column.columnDef.header, header.getContext())}
-                            {{
-                              asc: <FontAwesomeIcon icon={faArrowUpAZ} />,
-                              desc: <FontAwesomeIcon icon={faArrowDownZA} />,
-                            }[header.column.getIsSorted() as string] ?? null}
+                            {header.getSize()} {table.getTotalSize()}
                           </div>
-                          {header.column.getCanFilter() ? (
-                            <div>
-                              <Filter column={header.column} table={table} />
-                            </div>
-                          ) : null}
-                        </>
+                        </div>
                       )}
                     </th>
                   );
@@ -126,7 +165,7 @@ export function PubsTable() {
                 <tr key={row.id}>
                   {row.getVisibleCells().map((cell) => {
                     return (
-                      <td key={cell.id}>
+                      <td key={cell.id} className="text-break">
                         {flexRender(cell.column.columnDef.cell, cell.getContext())}
                       </td>
                     );
@@ -208,30 +247,27 @@ function Filter({ column, table }) {
   );
 
   return typeof firstValue === 'number' ? (
-    <div>
-      <div className="flex space-x-2">
-        <DebouncedInput
-          type="number"
-          min={Number(column.getFacetedMinMaxValues()?.[0] ?? '')}
-          max={Number(column.getFacetedMinMaxValues()?.[1] ?? '')}
-          value={(columnFilterValue as [number, number])?.[0] ?? ''}
-          onChange={(value) => column.setFilterValue((old: [number, number]) => [value, old?.[1]])}
-          placeholder={`Min ${
-            column.getFacetedMinMaxValues()?.[0] ? `(${column.getFacetedMinMaxValues()?.[0]})` : ''
-          }`}
-        />
-        <DebouncedInput
-          type="number"
-          min={Number(column.getFacetedMinMaxValues()?.[0] ?? '')}
-          max={Number(column.getFacetedMinMaxValues()?.[1] ?? '')}
-          value={(columnFilterValue as [number, number])?.[1] ?? ''}
-          onChange={(value) => column.setFilterValue((old: [number, number]) => [old?.[0], value])}
-          placeholder={`Max ${
-            column.getFacetedMinMaxValues()?.[1] ? `(${column.getFacetedMinMaxValues()?.[1]})` : ''
-          }`}
-        />
-      </div>
-      <div className="h-1" />
+    <div className="d-flex">
+      <DebouncedInput
+        type="number"
+        min={Number(column.getFacetedMinMaxValues()?.[0] ?? '')}
+        max={Number(column.getFacetedMinMaxValues()?.[1] ?? '')}
+        value={(columnFilterValue as [number, number])?.[0] ?? ''}
+        onChange={(value) => column.setFilterValue((old: [number, number]) => [value, old?.[1]])}
+        placeholder={`Min ${
+          column.getFacetedMinMaxValues()?.[0] ? `(${column.getFacetedMinMaxValues()?.[0]})` : ''
+        }`}
+      />
+      <DebouncedInput
+        type="number"
+        min={Number(column.getFacetedMinMaxValues()?.[0] ?? '')}
+        max={Number(column.getFacetedMinMaxValues()?.[1] ?? '')}
+        value={(columnFilterValue as [number, number])?.[1] ?? ''}
+        onChange={(value) => column.setFilterValue((old: [number, number]) => [old?.[0], value])}
+        placeholder={`Max ${
+          column.getFacetedMinMaxValues()?.[1] ? `(${column.getFacetedMinMaxValues()?.[1]})` : ''
+        }`}
+      />
     </div>
   ) : (
     <>
