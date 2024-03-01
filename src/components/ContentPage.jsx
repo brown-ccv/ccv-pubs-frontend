@@ -1,13 +1,12 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBook } from '@fortawesome/free-solid-svg-icons';
-// import YearChart from "./YearChart";
-// import WordCloud from "./WordCloud";
 import { useSelector } from 'react-redux';
 import { selectPublications, selectUser } from '../store/slice/appState';
 import { PubsTable } from './PubsTable';
 import Spinner from './Spinner';
 import { AddPublicationModal } from './AddPublicationModal.tsx';
+import { YearChart } from './YearChart.tsx';
 
 export function ContentPage() {
   const publications = useSelector(selectPublications);
@@ -36,14 +35,10 @@ export function ContentPage() {
           </div>
 
           {/* TODO: Word Cloud */}
-          {/* TODO: Year Chart */}
-          {/*<h3 className="word-cloud-title pt-4 mt-4">*/}
-          {/*  {" "}*/}
-          {/*  What are these publications all about?{" "}*/}
-          {/*</h3>*/}
+          <h3 className="word-cloud-title pt-4 mt-4">What are these publications all about? </h3>
           {/*<div className="viz d-flex justify-content-center pt-5">*/}
           {/*  <WordCloud />*/}
-          {/*  <YearChart />*/}
+          <YearChart />
           {/*</div>*/}
         </div>
       )}

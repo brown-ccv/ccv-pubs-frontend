@@ -38,7 +38,7 @@ export const fetchDoi = async (doi: string): Promise<Publication> => {
   };
 };
 
-export function validateDoi() {
+export const validateDoi = () => {
   return yup
     .string()
     .matches(
@@ -46,4 +46,8 @@ export function validateDoi() {
       "Invalid DOI format. Example: '10.1234/abcd-efg'"
     )
     .required();
-}
+};
+
+export const capitalizeFirstLetter = (str) => {
+  return str.charAt(0).toUpperCase() + str.substring(1);
+};
