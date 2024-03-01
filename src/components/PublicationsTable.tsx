@@ -90,18 +90,20 @@ export function PublicationsTable() {
                     <th
                       key={header.id}
                       colSpan={header.colSpan}
-                      className={`h3 bg-secondary ${
-                        header.column.getCanSort() ? 'cursor-pointer select-none' : ''
-                      }`}
+                      className="h3 bg-secondary"
                       style={{
                         position: 'relative',
                         width: header.getSize(),
                       }}
-                      onClick={header.column.getToggleSortingHandler()}
                     >
                       {header.isPlaceholder ? null : (
                         <>
-                          <div>
+                          <div
+                            className={
+                              header.column.getCanSort() ? 'cursor-pointer select-none' : ''
+                            }
+                            onClick={header.column.getToggleSortingHandler()}
+                          >
                             {/* Header */}
                             {flexRender(header.column.columnDef.header, header.getContext())}
                             {/* Sorting Icons */}
