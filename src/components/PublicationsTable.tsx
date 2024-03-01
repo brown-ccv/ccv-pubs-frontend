@@ -101,29 +101,27 @@ export function PublicationsTable() {
                       onClick={header.column.getToggleSortingHandler()}
                     >
                       {header.isPlaceholder ? null : (
-                        <div className="d-flex">
-                          <div className="flex-grow-1">
-                            <div>
-                              {/* Header */}
-                              {flexRender(header.column.columnDef.header, header.getContext())}
-                              {/* Sorting Icons */}
-                              {{
-                                asc: <FontAwesomeIcon icon={faArrowUpAZ} />,
-                                desc: <FontAwesomeIcon icon={faArrowDownZA} />,
-                              }[header.column.getIsSorted() as string] ?? null}
-                            </div>
-                            {/* Column Filter */}
-                            {header.column.getCanFilter() ? (
-                              <ColumnFilter column={header.column} table={table} />
-                            ) : null}
+                        <>
+                          <div>
+                            {/* Header */}
+                            {flexRender(header.column.columnDef.header, header.getContext())}
+                            {/* Sorting Icons */}
+                            {{
+                              asc: <FontAwesomeIcon icon={faArrowUpAZ} />,
+                              desc: <FontAwesomeIcon icon={faArrowDownZA} />,
+                            }[header.column.getIsSorted() as string] ?? null}
                           </div>
+                          {/* Column Filter */}
+                          {header.column.getCanFilter() ? (
+                            <ColumnFilter column={header.column} table={table} />
+                          ) : null}
                           <div
                             onDoubleClick={() => header.column.resetSize()}
                             onMouseDown={header.getResizeHandler()}
                             onTouchStart={header.getResizeHandler()}
                             className={`resizer ${header.column.getIsResizing() ? 'is-resizing' : ''}`}
                           />
-                        </div>
+                        </>
                       )}
                     </th>
                   );
