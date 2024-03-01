@@ -20,12 +20,28 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 }
 
 .resizer {
-  width: 4px;
+  position: absolute;
+  right: 0;
+  top: 0;
   height: 100%;
-  background-color: deeppink;
+  width: 5px;
+  background: $brown;
   cursor: col-resize;
+  user-select: none;
+  touch-action: none;
+}
 
-  .is-resizing {
-
+@media (hover: hover) {
+  .resizer {
+    opacity: 0;
   }
+
+  *:hover > .resizer {
+    opacity: 1;
+  }
+}
+
+.resizer.is-resizing {
+  background: $green;
+  opacity: 1;
 }

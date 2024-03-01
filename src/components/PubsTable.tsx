@@ -76,31 +76,10 @@ export function PubsTable() {
     getFacetedMinMaxValues: getFacetedMinMaxValues(),
   });
 
-  React.useEffect(
-    () => {
-      if (table.getState().columnFilters[0]?.id === 'fullName') {
-        if (table.getState().sorting[0]?.id !== 'fullName') {
-          table.setSorting([{ id: 'fullName', desc: false }]);
-        }
-      }
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [table.getState().columnFilters[0]?.id]
-  );
-
   return (
     <Container fluid>
       <Row>
-        <Table
-          className="text-center"
-          bordered
-          {...{
-            style: {
-              width: table.getTotalSize(),
-              // tableLayout: 'fixed'
-            },
-          }}
-        >
+        <Table className="text-center" bordered>
           <thead>
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
@@ -112,6 +91,7 @@ export function PubsTable() {
                         colSpan: header.colSpan,
                         className: 'h3 bg-secondary',
                         style: {
+                          position: 'relative',
                           width: header.getSize(),
                         },
                       }}
@@ -148,9 +128,7 @@ export function PubsTable() {
                                 header.column.getIsResizing() ? 'is-resizing' : ''
                               }`,
                             }}
-                          >
-                            {header.getSize()} {table.getTotalSize()}
-                          </div>
+                          />
                         </div>
                       )}
                     </th>
