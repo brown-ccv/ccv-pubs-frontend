@@ -29,7 +29,7 @@ import { selectPublications } from '../store/slice/appState';
 import { Publication } from '../../types';
 import { ColumnFilter } from './ColumnFilter.tsx';
 
-export function PubsTable() {
+export function PublicationsTable() {
   const publications = useSelector(selectPublications);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
 
@@ -89,26 +89,22 @@ export function PubsTable() {
                 {headerGroup.headers.map((header) => {
                   return (
                     <th
-                      {...{
-                        key: header.id,
-                        colSpan: header.colSpan,
-                        className: 'h3 bg-secondary',
-                        style: {
-                          position: 'relative',
-                          width: header.getSize(),
-                        },
+                      key={header.id}
+                      colSpan={header.colSpan}
+                      className="h3 bg-secondary"
+                      style={{
+                        position: 'relative',
+                        width: header.getSize(),
                       }}
                     >
                       {header.isPlaceholder ? null : (
                         <div className="d-flex">
                           <div className="flex-grow-1">
                             <div
-                              {...{
-                                className: header.column.getCanSort()
-                                  ? 'cursor-pointer select-none'
-                                  : '',
-                                onClick: header.column.getToggleSortingHandler(),
-                              }}
+                              className={
+                                header.column.getCanSort() ? 'cursor-pointer select-none' : ''
+                              }
+                              onClick={header.column.getToggleSortingHandler()}
                             >
                               {flexRender(header.column.columnDef.header, header.getContext())}
                               {{
@@ -117,20 +113,14 @@ export function PubsTable() {
                               }[header.column.getIsSorted() as string] ?? null}
                             </div>
                             {header.column.getCanFilter() ? (
-                              <div>
-                                <ColumnFilter column={header.column} table={table} />
-                              </div>
+                              <ColumnFilter column={header.column} table={table} />
                             ) : null}
                           </div>
                           <div
-                            {...{
-                              onDoubleClick: () => header.column.resetSize(),
-                              onMouseDown: header.getResizeHandler(),
-                              onTouchStart: header.getResizeHandler(),
-                              className: `resizer ${
-                                header.column.getIsResizing() ? 'is-resizing' : ''
-                              }`,
-                            }}
+                            onDoubleClick={() => header.column.resetSize()}
+                            onMouseDown={header.getResizeHandler()}
+                            onTouchStart={header.getResizeHandler()}
+                            className={`resizer ${header.column.getIsResizing() ? 'is-resizing' : ''}`}
                           />
                         </div>
                       )}

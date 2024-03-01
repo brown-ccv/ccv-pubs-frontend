@@ -5,7 +5,7 @@ import { faBook } from '@fortawesome/free-solid-svg-icons';
 // import WordCloud from "./WordCloud";
 import { useSelector } from 'react-redux';
 import { selectPublications, selectUser } from '../store/slice/appState';
-import { PubsTable } from './PubsTable.tsx';
+import { PublicationsTable } from './PublicationsTable.tsx';
 import Spinner from './Spinner';
 import { AddPublicationModal } from './AddPublicationModal.tsx';
 
@@ -29,7 +29,7 @@ export function ContentPage() {
 
       {publications.length !== 0 && (
         <>
-          <PubsTable />
+          <PublicationsTable />
 
           {/* TODO: Word Cloud */}
           {/* TODO: Year Chart */}
