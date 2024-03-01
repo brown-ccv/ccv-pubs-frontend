@@ -12,6 +12,7 @@ import {
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
+  PaginationState,
   useReactTable,
 } from '@tanstack/react-table';
 
@@ -32,6 +33,10 @@ import { ColumnFilter } from './ColumnFilter.tsx';
 export function PublicationsTable() {
   const publications = useSelector(selectPublications);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
+  const [pagination, setPagination] = React.useState<PaginationState>({
+    pageIndex: 0,
+    pageSize: 5,
+  });
 
   const columnHelper = createColumnHelper<Publication>();
 
@@ -60,15 +65,11 @@ export function PublicationsTable() {
     columns,
     state: {
       columnFilters,
-    },
-    defaultColumn: {
-      size: 200,
-      minSize: 50,
-      maxSize: 500,
+      pagination,
     },
     columnResizeMode: 'onChange',
-    columnResizeDirection: 'ltr',
     onColumnFiltersChange: setColumnFilters,
+    onPaginationChange: setPagination,
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     getSortedRowModel: getSortedRowModel(),
