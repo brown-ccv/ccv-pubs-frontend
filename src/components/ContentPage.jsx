@@ -33,7 +33,7 @@ export function ContentPage() {
 
           {/* TODO: Word Cloud */}
           <h2 className="title pt-4 m-4 is-2 text-center">
-            What are these publications all about?{' '}
+            What are these publications all about?
           </h2>
           {/*<div className="viz d-flex justify-content-center pt-5">*/}
           {/*  <WordCloud />*/}
