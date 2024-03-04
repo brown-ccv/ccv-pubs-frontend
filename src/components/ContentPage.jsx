@@ -20,7 +20,7 @@ export function ContentPage() {
         </div>
       ) : null}
 
-      <div className="d-flex flex-row">
+      <div className="d-flex flex-row align-items-center justify-content-center">
         <FontAwesomeIcon icon={faBook} color="dark" size="2xl" />
         <h1 className="mx-2">Publications</h1>
       </div>
