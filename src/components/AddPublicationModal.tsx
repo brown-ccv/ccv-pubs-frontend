@@ -51,7 +51,7 @@ export function AddPublicationModal() {
 
   return (
     <>
-      <Button variant="contained" color="primary" onClick={handleShow}>
+      <Button variant="primary" onClick={handleShow}>
         Add Publication
       </Button>
 
@@ -149,7 +149,7 @@ const SearchDoiForm = ({
         >
           Enter Manually
         </Button>
-        <LoadingButton loading={loading} type="submit" variant="contained" form={searchFormId}>
+        <LoadingButton loading={loading} type="submit" variant="primary" form={searchFormId}>
           Search
         </LoadingButton>
       </Modal.Footer>
@@ -324,7 +324,7 @@ const ManualForm = ({
         >
           Back
         </Button>
-        <LoadingButton loading={loading} type="submit" variant="contained" form={manualFormId}>
+        <LoadingButton loading={loading} type="submit" variant="primary" form={manualFormId}>
           Submit
         </LoadingButton>
       </Modal.Footer>

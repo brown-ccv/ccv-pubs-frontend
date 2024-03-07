@@ -1,18 +1,44 @@
-// Import Bootstrap
-@import '~bootstrap/scss/bootstrap.scss';
-
 // Override Bootstrap Variables
 @import 'variables';
+
+@import '~bootstrap/scss/bootstrap.scss';
+$theme-colors: map-merge($theme-colors, $custom-colors);
 
 // Import Custom Components
 @import './src/styles/components/_brown_fonts.scss';
 @import './src/styles/components/_brown_icons.scss';
 @import './src/styles/components/_brown_footer.scss';
-@import './src/styles/components/_app.scss';
-@import './src/styles/components/_table.scss';
-@import './src/styles/components/_addPub.scss';
+
+.main {
+  min-height: 90vh;
+  padding: 2vw 3vw;
+}
 
 .form-group.required > .form-label:after {
-  content: '*';
+  content: ' *';
   color: red;
+}
+
+.resizer {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 5px;
+  background: $brown;
+  cursor: col-resize;
+  user-select: none;
+  touch-action: none;
+  opacity: 0;
+}
+
+@media (hover: hover) {
+  .resizer:hover {
+    opacity: 1;
+  }
+}
+
+.resizer.is-resizing {
+  background: $green;
+  opacity: 1;
 }

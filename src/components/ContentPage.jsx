@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBook } from '@fortawesome/free-solid-svg-icons';
 import { useSelector } from 'react-redux';
 import { selectPublications, selectUser } from '../store/slice/appState';
-import { PubsTable } from './PubsTable';
+import { PublicationsTable } from './PublicationsTable.tsx';
 import Spinner from './Spinner';
 import { AddPublicationModal } from './AddPublicationModal.tsx';
 import { YearChart } from './YearChart.tsx';
@@ -13,34 +13,33 @@ export function ContentPage() {
   const user = useSelector(selectUser);
 
   return (
-    <div className="ContentPage main-content">
+    <div className="main-content d-flex flex-column align-items-center">
       {user ? (
-        <div align="right">
+        <div className="align-self-end">
           <AddPublicationModal />
         </div>
       ) : null}
-      <div className="d-flex flex-row justify-content-center align-items-center">
-        <div className="pub-title bg-dark rounded-circle p-2 mx-2">
-          <FontAwesomeIcon icon={faBook} color="white" />
-        </div>
-        <h1 className="pl-2">Publications</h1>
+
+      <div className="d-flex flex-row align-items-center justify-content-center">
+        <FontAwesomeIcon icon={faBook} color="dark" size="2xl" />
+        <h1 className="mx-2">Publications</h1>
       </div>
 
       <Spinner loading={publications.length === 0} className="spinner" size={100} />
 
       {publications.length !== 0 && (
-        <div id="main-content">
-          <div className="PubsTable-CP">
-            <PubsTable />
-          </div>
+        <>
+          <PublicationsTable />
 
-          {/* TODO: Word Cloud */}
-          <h3 className="word-cloud-title pt-4 mt-4">What are these publications all about? </h3>
+          {/* TODO: Word Cloud #58 */}
+          <h2 className="title pt-4 m-4 is-2 text-center">
+            What are these publications all about?
+          </h2>
           {/*<div className="viz d-flex justify-content-center pt-5">*/}
           {/*  <WordCloud />*/}
           <YearChart />
           {/*</div>*/}
-        </div>
+        </>
       )}
     </div>
   );

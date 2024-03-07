@@ -8,7 +8,9 @@ const BrownFooter = () => (
   <footer id="brown-footer" className="d-print-none">
     <div className="marginator">
       <section>
-        <BrownFooterLogo />
+        <div className="p-5">
+          <BrownFooterLogo />
+        </div>
         <div id="give-to-brown">
           <a href="http://giving.brown.edu" className="giving-footer">
             Giving to Brown
