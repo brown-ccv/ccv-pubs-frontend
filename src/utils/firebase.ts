@@ -35,6 +35,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth();
 const provider = new GoogleAuthProvider();
+provider.addScope('https://www.googleapis.com/auth/cloud-identity.groups.readonly');
 
 provider.setCustomParameters({
   hd: 'brown.edu',
@@ -43,7 +44,26 @@ const collectionName = 'publications';
 
 export const handleLogin = async () => {
   try {
-    await signInWithPopup(auth, provider);
+    const result = await signInWithPopup(auth, provider);
+
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+    const { email } = result.user;
+
+    console.log(token);
+    console.log(email);
+
+    // const response = await fetch(`https://cloudidentity.googleapis.com/v1/groups:lookup?groupKey.id=ccv-gsdc@brown.edu`, {
+    const response = await fetch(
+      `https://cloudidentity.googleapis.com/v1/groups/0184mhaj2thv9r6/memberships`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    console.log(response);
   } catch (error) {
     console.log(error);
   }
