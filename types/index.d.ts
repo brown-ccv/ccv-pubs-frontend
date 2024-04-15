@@ -8,3 +8,10 @@ export interface Publication {
   year: number;
   abstract: string;
 }
+
+export interface User {
+  displayName: string;
+  email: string;
+  ccv: boolean;
+  updatedAt: number;
+}

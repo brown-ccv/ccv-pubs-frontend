@@ -4,6 +4,7 @@ import { initializeApp } from 'firebase/app';
 import {
   getFirestore,
   doc,
+  getDoc,
   setDoc,
   collection,
   onSnapshot,
@@ -19,7 +20,8 @@ import {
   signOut,
 } from 'firebase/auth';
 
-import { setPublications, setUser } from '../store/slice/appState';
+import { setPublications, setUser as setUserState } from '../store/slice/appState';
+import { User } from '../../types';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBlu1GzA5jvM6mh6taIcjtNgcSEVxlxa1Q',
@@ -45,15 +47,10 @@ const collectionName = 'publications';
 export const handleLogin = async () => {
   try {
     const result = await signInWithPopup(auth, provider);
-
     const credential = GoogleAuthProvider.credentialFromResult(result);
     const token = credential.accessToken;
     const { email } = result.user;
 
-    console.log(token);
-    console.log(email);
-
-    // const response = await fetch(`https://cloudidentity.googleapis.com/v1/groups:lookup?groupKey.id=ccv-gsdc@brown.edu`, {
     const response = await fetch(
       `https://cloudidentity.googleapis.com/v1/groups/0184mhaj2thv9r6/memberships`,
       {
@@ -63,7 +60,17 @@ export const handleLogin = async () => {
       }
     );
 
-    console.log(response);
+    let ccv = false;
+    if (response.ok) {
+      const { memberships } = (await response.json()) ?? [];
+      ccv = memberships.some((m) => m.preferredMemberKey.id.toLowerCase() === email.toLowerCase());
+    }
+
+    const userDoc = await getUser(email);
+    if (!userDoc || userDoc.ccv !== ccv) {
+      userDoc.ccv = ccv;
+      await updateUser(userDoc);
+    }
   } catch (error) {
     console.log(error);
   }
@@ -84,19 +91,14 @@ export const useAuthStateChanged = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
-        const { displayName, email, uid } = user;
-
-        dispatch(
-          setUser({
-            displayName,
-            email,
-            uid,
-          })
-        );
+        const { email } = user;
+        const userData = await getUser(email);
+        console.log(userData);
+        dispatch(setUserState(userData));
       } else {
-        dispatch(setUser(null));
+        dispatch(setUserState(null));
       }
     });
 
@@ -142,4 +144,22 @@ export const addPublication = async (publication) => {
     ...publication,
     updatedAt: Date.now(),
   });
+};
+
+const updateUser = async ({ displayName, email, ccv }: User) => {
+  const docRef = doc(db, 'users', email);
+
+  await setDoc(docRef, {
+    displayName,
+    email,
+    ccv,
+    updatedAt: Date.now(),
+  });
+};
+
+const getUser = async (email): Promise<User> => {
+  const docRef = doc(db, 'users', email);
+  const docSnap = await getDoc(docRef);
+
+  return docSnap.data() as User;
 };
