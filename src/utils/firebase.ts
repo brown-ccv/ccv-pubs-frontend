@@ -68,8 +68,10 @@ export const handleLogin = async () => {
 
     const userDoc = await getUser(email);
     if (!userDoc || userDoc.ccv !== ccv) {
-      userDoc.ccv = ccv;
-      await updateUser(userDoc);
+      await updateUser({
+        ...userDoc,
+        ccv,
+      });
     }
   } catch (error) {
     console.log(error);
