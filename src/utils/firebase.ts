@@ -107,10 +107,9 @@ export const useAuthStateChanged = () => {
         const unsubscribeUser = onSnapshot(doc(db, usersCollection, email), (doc) => {
           if (doc.exists) {
             dispatch(setUserState(doc.data()));
-            return;
           }
         });
-        unsubscribeUser();
+        return () => unsubscribeUser();
       } else {
         dispatch(setUserState(null));
       }
