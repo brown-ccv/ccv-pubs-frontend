@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "homepage": ".",
+  "proxy": "https://ccv-pubs.web.app/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

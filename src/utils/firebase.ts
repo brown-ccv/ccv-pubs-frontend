@@ -49,7 +49,7 @@ export const handleLogin = async () => {
     const result = await signInWithPopup(auth, provider);
     const credential = GoogleAuthProvider.credentialFromResult(result);
     const token = credential.accessToken;
-    const { email } = result.user;
+    const { displayName, email } = result.user;
 
     const response = await fetch(
       `https://cloudidentity.googleapis.com/v1/groups/0184mhaj2thv9r6/memberships`,
@@ -67,9 +67,10 @@ export const handleLogin = async () => {
     }
 
     const userDoc = await getUser(email);
-    if (!userDoc || userDoc.ccv !== ccv) {
+    if (!userDoc || userDoc.ccv !== ccv || userDoc.displayName !== displayName) {
       await updateUser({
-        ...userDoc,
+        displayName,
+        email,
         ccv,
       });
     }
@@ -148,7 +149,7 @@ export const addPublication = async (publication) => {
   });
 };
 
-const updateUser = async ({ displayName, email, ccv }: User) => {
+const updateUser = async ({ displayName, email, ccv }) => {
   const docRef = doc(db, 'users', email);
 
   await setDoc(docRef, {
