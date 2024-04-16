@@ -14,7 +14,7 @@ export function ContentPage() {
 
   return (
     <div className="main-content d-flex flex-column align-items-center">
-      {user ? (
+      {user?.ccv ? (
         <div className="align-self-end">
           <AddPublicationModal />
         </div>
