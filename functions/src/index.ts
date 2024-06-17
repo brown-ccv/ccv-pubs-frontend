@@ -9,7 +9,7 @@
 
 import {onDocumentUpdated} from "firebase-functions/v2/firestore";
 
-import {nGramsPipeline} from "./ngrams.ts";
+import {nGramsPipeline} from "./ngrams";
 
 // Start writing functions
 // https://firebase.google.com/docs/functions/typescript
@@ -22,11 +22,14 @@ exports.generateKeywords = onDocumentUpdated(
     const data = event.data?.after.data();
     const previousData = event.data?.before.data();
 
-    const {abstract, keywords} = data;
+    const abstract: string | undefined = data?.abstract;
 
-    // Don't update if the abstract is the same
-    if ((abstract == "" && keywords?.length() == 0) ||
-      abstract == previousData?.abstract) {
+    if (
+      // No abstract
+      !abstract ||
+      // Abstract is the same as before
+      abstract == previousData?.abstract
+    ) {
       return null;
     }
 

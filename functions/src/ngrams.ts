@@ -38,7 +38,7 @@ const nGrams = (tokens: string[], n: number): string[] => {
 };
 
 const calcFreqMap = (arr: string[]): { [key: string]: number } => {
-  const result = {};
+  const result: {[key: string]: number} = {};
   arr.forEach((item) => {
     result[item] = (result[item] ?? 0) + 1;
   });
