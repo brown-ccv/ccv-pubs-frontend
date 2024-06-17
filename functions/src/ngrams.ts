@@ -1,18 +1,18 @@
-import stopwords from 'stopwords-en';
+import stopwords from "stopwords-en";
 
 const cleanText = (text: string): string => {
   return (
     text
       // Remove HTML tags
-      .replace(/<\/?[^>]+(>|$)/g, '')
+      .replace(/<\/?[^>]+(>|$)/g, "")
       // Remove punctuation except periods
-      .replace(/[^\w\s.]/g, '')
+      .replace(/[^\w\s.]/g, "")
       // Replace multiple new lines with one period
-      .replace(/\n+/g, '.')
+      .replace(/\n+/g, ".")
       // Remove 'abstract' from the beginning of the text
-      .replace(/^\s*abstract\s*/i, '')
+      .replace(/^\s*abstract\s*/i, "")
       // Replace multiple spaces with one space
-      .replace(/\s+/g, ' ')
+      .replace(/\s+/g, " ")
       // Trim white space
       .trim()
   );
@@ -24,12 +24,12 @@ const nGrams = (tokens: string[], n: number): string[] => {
   for (let i = 0; i < tokens.length - (n - 1); i++) {
     const gram = tokens
       .slice(i, i + n)
-      .join(' ')
+      .join(" ")
       // Remove ending periods
-      .replace(/\.+$/, '');
+      .replace(/\.+$/, "");
 
     // don't push any that has a period
-    if (!gram.includes('.')) {
+    if (!gram.includes(".")) {
       nGrams.push(gram);
     }
   }
@@ -47,16 +47,19 @@ const calcFreqMap = (arr: string[]): { [key: string]: number } => {
 
 // Remove n-grams that contain stopwords in the first or last position
 const filterOutStopwords = (str: string) => {
-  const words = str.split(' ');
+  const words = str.split(" ");
 
   const first = words[0];
   const last = words[words.length - 1];
 
-  return !(stopwords.includes(first.toLowerCase()) || stopwords.includes(last.toLowerCase()));
+  return !(
+    stopwords.includes(first.toLowerCase()) ||
+    stopwords.includes(last.toLowerCase())
+  );
 };
 
 export const nGramsPipeline = (abstract: string) => {
-  const tokenized = cleanText(abstract).split(' ');
+  const tokenized = cleanText(abstract).split(" ");
   const monograms = nGrams(tokenized, 1);
 
   const biGrams = nGrams(tokenized, 2);
