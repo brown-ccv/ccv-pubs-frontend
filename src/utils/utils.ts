@@ -36,7 +36,8 @@ export const fetchDoi = async (doi: string): Promise<Publication> => {
     year: published?.['date-parts'][0][0] ?? -1,
     month: published?.['date-parts'][0][1] ?? -1,
     abstract: abstract ? abstract.replace(/<[^>]+>/g, '').trim() : '', // remove HTML tags and whitespace
-    keywords: subject,
+    subject,
+    keywords: [],
   };
 };
 

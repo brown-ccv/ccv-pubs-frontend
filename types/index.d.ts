@@ -7,7 +7,8 @@ export interface Publication {
   month: number;
   year: number;
   abstract: string;
-  keywords: Array<string>;
+  subject: Array<string>;
+  keywords?: Array<string>;
 }
 
 export interface User {

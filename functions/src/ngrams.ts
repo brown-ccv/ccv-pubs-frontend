@@ -55,10 +55,7 @@ const filterOutStopwords = (str: string) => {
   return !(stopwords.includes(first.toLowerCase()) || stopwords.includes(last.toLowerCase()));
 };
 
-export const nGramsPipeline = () => {
-  const abstract =
-    '<jats:title>Abstract</jats:title><jats:p>Antibiotic-induced gut dysbiosis (AID) is a frequent and serious side effect of antibiotic use and mitigating this dysbiosis is a critical therapeutic target. We propose that the host diet can modulate the chemical environment of the gut resulting in changes to the structure and function of the microbiome during antibiotic treatment. Gut dysbiosis is typically characterized by increases in aerobic respiratory bacterial metabolism, redox potential, and abundance of Proteobacteria. In this study, we explore dietary fiber supplements as potential modulators of the chemical environment in the gut to reduce this pattern of dysbiosis. Using defined-diets and whole-genome sequencing of female murine microbiomes during diet modulation and antibiotic treatment, we find that fiber prebiotics significantly reduced the impact of antibiotic treatment on microbiome composition and function. We observe reduced abundance of aerobic bacteria as well as metabolic pathways associated with oxidative metabolism. These metatranscriptomic results are corroborated by chemical measurements of eH and pH suggesting that fiber dampens the dysbiotic effects of antibiotics. This work indicates that fiber may act as a potential therapeutic for AID by modulating bacterial metabolism in the gut to prevent an increase in redox potential and protect commensal microbes during antibiotic treatment.';
-
+export const nGramsPipeline = (abstract: string) => {
   const tokenized = cleanText(abstract).split(' ');
   const monograms = nGrams(tokenized, 1);
 
