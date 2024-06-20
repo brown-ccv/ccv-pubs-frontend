@@ -28,16 +28,15 @@ export const fetchDoi = async (doi: string): Promise<Publication> => {
   }
 
   return {
-    title: title ? abstract.replace(/<[^>]+>/g, '') : '', // remove HTML tags
+    title: title ? title.replaceAll(/<[^>]+>/g, '').replaceAll('\n', '') : '', // remove HTML tags
     author: author.map(({ given, family }) => `${given} ${family}`).join(', '),
     publisher: publisher ?? '',
     url: url ?? '',
     doi: doi ?? '',
     year: published?.['date-parts'][0][0] ?? -1,
     month: published?.['date-parts'][0][1] ?? -1,
-    abstract: abstract ? abstract.replace(/<[^>]+>/g, '').trim() : '', // remove HTML tags and whitespace
-    subject,
-    keywords: [],
+    abstract: abstract ?? '',
+    keywords: [...(subject ?? [])],
   };
 };
 

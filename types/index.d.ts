@@ -7,8 +7,8 @@ export interface Publication {
   month: number;
   year: number;
   abstract: string;
-  subject: Array<string>;
   keywords?: Array<string>;
+  ngrams?: Array<string>;
 }
 
 export interface User {

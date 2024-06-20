@@ -4,15 +4,15 @@ const cleanText = (text: string): string => {
   return (
     text
       // Remove HTML tags
-      .replace(/<\/?[^>]+(>|$)/g, "")
+      .replaceAll(/<\/?[^>]+(>|$)/g, "")
       // Remove punctuation except periods
-      .replace(/[^\w\s.]/g, "")
-      // Replace multiple new lines with one period
-      .replace(/\n+/g, ".")
+      .replaceAll(/[^\w\s.]/g, "")
+      // Replace multiple new lines with one space
+      .replaceAll(/\n+/g, " ")
       // Remove 'abstract' from the beginning of the text
-      .replace(/^\s*abstract\s*/i, "")
+      .replaceAll(/^\s*abstract\s*/i, "")
       // Replace multiple spaces with one space
-      .replace(/\s+/g, " ")
+      .replaceAll(/\s+/g, " ")
       // Trim white space
       .trim()
   );
