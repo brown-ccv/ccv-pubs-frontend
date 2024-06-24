@@ -1416,8 +1416,8 @@
     "doi": "10.1117/12.2254227",
     "year": 2017,
     "month": 3,
-    "abstract": "",
-    "subject": [],
+    "abstract": "Traumatic brain injury (TBI) is a major cause of death and disability in the United States. Time to treatment is often related to patient outcome. Access to cerebral imaging data in a timely manner is a vital component of patient care. Current methods of detecting and quantifying intracranial pathology can be time-consuming and require careful review of 2D/3D patient images by a radiologist. Additional time is needed for image protocoling, acquisition, and processing. These steps often occur in series, adding more time to the process and potentially delaying time-dependent management decisions for patients with traumatic brain injury.\nOur team adapted machine learning and computer vision methods to develop a technique that rapidly and automatically detects CT-identifiable lesions. Specifically, we use scale invariant feature transform (SIFT)1 and deep convolutional neural networks (CNN)2 to identify important image features that can distinguish TBI lesions from background data. Our learning algorithm is a linear support vector machine (SVM)3. Further, we also employ tools from topological data analysis (TDA) for gleaning insights into the correlation patterns between healthy and pathological data. The technique was validated using 409 CT scans of the brain, acquired via the Progesterone for the Treatment of Traumatic Brain Injury phase III clinical trial (ProTECT_III) which studied patients with moderate to severe TBI4. CT data were annotated by a central radiologist and included patients with positive and negative scans. Additionally, the largest lesion on each positive scan was manually segmented. We reserved 80% of the data for training the SVM and used the remaining 20% for testing. Preliminary results are promising with 92.55% prediction accuracy (sensitivity = 91.15%, specificity = 93.45%), indicating the potential usefulness of this technique in clinical scenarios.",
+    "subject": ["Traumatic brain injury", "Computed tomography", "Machine learning", "Brain", "Neuroimaging", "Visualization", "Data analysis"],
     "keywords": []
   },
   {
@@ -1428,8 +1428,8 @@
     "doi": "10.1016/j.jneumeth.2017.06.013",
     "year": 2017,
     "month": 8,
-    "abstract": "",
-    "subject": [],
+    "abstract": "Background\nWireless neural recording technologies now provide untethered access to large populations of neurons in the nonhuman primate brain. Such technologies enable long-term, continuous interrogation of neural circuits and importantly open the door for chronic neurorehabilitation platforms. For example, by providing continuous consistent closed loop feedback from a brain machine interface, the nervous system can leverage plasticity to integrate more effectively into the system than would be possible in short experimental sessions. However, to fully realize this opportunity necessitates the development of experimental environments that do not hinder wireless data transmission. Traditional nonhuman primate metal cage construction, while durable and standardized around the world, prevents data transmission at the frequencies necessary for high-bandwidth data transfer.\n\nNew method\nTo overcome this limitation, we have engineered and constructed a radio-frequency transparent home environment for nonhuman primates using primarily non-conductive materials.\n\nResults\nComputational modeling and empirical testing were performed to demonstrate the behavior of transmitted signals passing through the enclosure. In addition, neural data were successfully recorded from a freely behaving nonhuman primate inside the housing system.\n\nComparison with existing methods\nOur design outperforms standard metallic home cages by allowing radiation to transmit beyond its boundaries, without significant interference, while simultaneously maintaining the mechanical and operational integrity of existing commercial home cages.\n\nConclusions\nContinuous access to neural signals in combination with other bio-potential and kinematic sensors will empower new insights into unrestrained behavior, aid the development of advanced neural prostheses, and enable neurorehabilitation strategies to be employed outside traditional environments.",
+    "subject": ["Nonhuman primate", "Wireless neural recording", "Husbandry", "Telemetry", "Freely behaving", "Neurorehabilitation"],
     "keywords": []
   },
   {
@@ -1440,8 +1440,8 @@
     "doi": "10.1109/tnsre.2015.2470527",
     "year": 2016,
     "month": 2,
-    "abstract": "",
-    "subject": [],
+    "abstract": "Motor cortex neuronal ensemble spiking activity exhibits strong low-dimensional collective dynamics (i.e., coordinated modes of activity) during behavior. Here, we demonstrate that these low-dimensional dynamics, revealed by unsupervised latent state-space models, can provide as accurate or better reconstruction of movement kinematics as direct decoding from the entire recorded ensemble. Ensembles of single neurons were recorded with triple microelectrode arrays (MEAs) implanted in ventral and dorsal premotor (PMv, PMd) and primary motor (M1) cortices while nonhuman primates performed 3-D reach-to-grasp actions. Low-dimensional dynamics were estimated via various types of latent state-space models including, for example, Poisson linear dynamic system (PLDS) models. Decoding from low-dimensional dynamics was implemented via point process and Kalman filters coupled in series. We also examined decoding based on a predictive subsampling of the recorded population. In this case, a supervised greedy procedure selected neuronal subsets that optimized decoding performance. When comparing decoding based on predictive subsampling and latent state-space models, the size of the neuronal subset was set to the same number of latent state dimensions. Overall, our findings suggest that information about naturalistic reach kinematics present in the recorded population is preserved in the inferred low-dimensional motor cortex dynamics. Furthermore, decoding based on unsupervised PLDS models may also outperform previous approaches based on direct decoding from the recorded population or on predictive subsampling.",
+    "subject": ["Decoding","Sociology","Statistics","State-space methods","Kinematics","Neurons","Three-dimensional displays", "Motor Cortex","Latent Model","State-space Model","Low-dimensional Dynamics","Latent State-space Models","Neuronal Activity","Neuronal Populations","Linear System","Statistical Properties","Kalman Filter","Primary Motor Cortex","Point Process","Subset Of Neurons","Spiking Activity","Latent State","Spiking Neural Networks","Primary Motor","System Dynamics Model","Microelectrode Arrays","Subset Size","Precision Grip","Spike Count","State-space Approach","Random Subsample","Laplace Approximation","Neural Decoding","Expectation Maximization","Decoding Approach","Separate Areas","Cortical Areas", "Brain-machine interfaces (BMI)","collective dynamics","neural encoding","point processes", "Algorithms","Animals","Behavior"," Animal","Biomechanical Phenomena","Brain-Computer Interfaces","Electrodes"," Implanted","Hand Strength","Macaca mulatta","Microelectrodes","Models"," Neurological","Motor Cortex","Movement","Poisson Distribution","Psychomotor Performance"],
     "keywords": []
   },
   {
@@ -1452,8 +1452,8 @@
     "doi": "10.1109/embc.2016.7592181",
     "year": 2016,
     "month": 8,
-    "abstract": "",
-    "subject": [],
+    "abstract": "The need for new therapeutic interventions to treat pharmacologically resistant focal epileptic seizures has led recently to the development of closed-loop systems for seizure control. Once a seizure is predicted/detected by the system, electrical stimulation is delivered to prevent seizure initiation or spread. So far, seizure prediction/detection has been limited to tracking non-invasive electroencephalogram (EEG) or intracranial EEG (iEEG) signals. Here, we examine seizure prediction based on local field potentials (LFPs) from a small neocortical patch recorded via a 10×10 microelectrode array implanted in a patient with focal seizures. We formulate the seizure (ictal) prediction problem in terms of discriminating between interictal and preictal neural activity. Using deep Convolutional Neural Networks (CNNs), we show that periods of preictal activity can be successfully discriminated (80% detection; no false positives) from periods of interictal activity several (2-18) minutes prior to seizure onset. CNN input features consisted of the spectral power of LFP channels (1-second time windows) computed in 50 frequency bands (0-100 Hz; 2 Hz steps). Our preliminary results show that intracortical LFPs may be a promising neural signal for seizure prediction in focal epilepsy.",
+    "subject": ["Microelectrodes","Epilepsy","Training","Convolution","Neuroscience","Electroencephalography","Hospitals", "Single-unit Recordings","Microelectrode Arrays","Local Field Potential Recordings","Convolutional Neural Network","Neural Activity","Electrical Stimulation","Deep Convolutional Neural Network","Spectral Power","Epileptic Seizures","Seizure Onset","Focal Seizures","Electrocorticography","Focal Epilepsy","Interictal Activity","Low-pass","Spectral Features","Power Spectrum","Prediction Score","Feature Matrix","Neural Data","Convolutional Neural Network Training","Interictal Period", "Electrocorticography","Electrophysiological Phenomena","Microelectrodes","Neural Networks","Seizures","Signal Processing"," Computer-Assisted"],
     "keywords": []
   },
   {
@@ -1464,8 +1464,8 @@
     "doi": "10.1016/j.cognition.2016.04.002",
     "year": 2016,
     "month": 7,
-    "abstract": "",
-    "subject": [],
+    "abstract": "Often the world is structured such that distinct sensory contexts signify the same abstract rule set. Learning from feedback thus informs us not only about the value of stimulus-action associations but also about which rule set applies. Hierarchical clustering models suggest that learners discover structure in the environment, clustering distinct sensory events into a single latent rule set. Such structure enables a learner to transfer any newly acquired information to other contexts linked to the same rule set, and facilitates re-use of learned knowledge in novel contexts. Here, we show that humans exhibit this transfer, generalization and clustering during learning. Trial-by-trial model-based analysis of EEG signals revealed that subjects’ reward expectations incorporated this hierarchical structure; these structured neural signals were predictive of behavioral transfer and clustering. These results further our understanding of how humans learn and generalize flexibly by building abstract, behaviorally relevant representations of the complex, high-dimensional sensory environment.",
+    "subject": ["Structure-learning", "EEG", "Transfer", "Clustering", "Prefrontal cortex"],
     "keywords": []
   },
   {
@@ -1476,7 +1476,7 @@
     "doi": "10.1007/s11263-016-0912-7",
     "year": 2016,
     "month": 5,
-    "abstract": "",
+    "abstract": "The field of multiple view geometry has seen tremendous progress in reconstruction and calibration due to methods for extracting reliable point features and key developments in projective geometry. Point features, however, are not available in certain applications and result in unstructured point cloud reconstructions. General image curves provide a complementary feature when keypoints are scarce, and result in 3D curve geometry, but face challenges not addressed by the usual projective geometry of points and algebraic curves. We address these challenges by laying the theoretical foundations of a framework based on the differential geometry of general curves, including stationary curves, occluding contours, and non-rigid curves, aiming at stereo correspondence, camera estimation (including calibration, pose, and multiview epipolar geometry), and 3D reconstruction given measured image curves. By gathering previous results into a cohesive theory, novel results were made possible, yielding three contributions. First, we derive the differential geometry of an image curve (tangent, curvature, curvature derivative) from that of the underlying space curve (tangent, curvature, curvature derivative, torsion). Second, we derive the differential geometry of a space curve from that of two corresponding image curves. Third, the differential motion of an image curve is derived from camera motion and the differential geometry and motion of the space curve. The availability of such a theory enables novel curve-based multiview reconstruction and camera estimation systems to augment existing point-based approaches. This theory has been used to reconstruct a “3D curve sketch”, to determine camera pose from local curve geometry, and tracking; other developments are underway.",
     "subject": [],
     "keywords": []
   },
@@ -1488,7 +1488,7 @@
     "doi": "10.1117/12.2082834",
     "year": 2015,
     "month": 3,
-    "abstract": "",
+    "abstract": "A major challenge for image guided tumor ablation is the high treatment variability due to heterogeneous tissue characteristics and thermal sinks. In this work, we present a methodology to analyze the geometry of the treatment zones and treatment zone variability. Our first contribution is an applicator centric co-ordinate system which enables us to compare treatment zones and vendor specifications across patients. Our second contribution is the analysis of the shape of the ablation zone using applicator centric longitudinal 2D cross sections. We present initial results of applying this methodology to analyze the geometry and variability in synthetic examples like ellipsoid, sphere and real microwave ablation zones in lung and liver.",
     "subject": [],
     "keywords": []
   },
@@ -1500,8 +1500,8 @@
     "doi": "10.1109/wacv.2016.7477701",
     "year": 2016,
     "month": 3,
-    "abstract": "",
-    "subject": [],
+    "abstract": "We describe an end-to-end generative approach for the segmentation and recognition of human activities. In this approach, a visual representation based on reduced Fisher Vectors is combined with a structured temporal model for recognition. We show that the statistical properties of Fisher Vectors make them an especially suitable front-end for generative models such as Gaussian mixtures. The system is evaluated for both the recognition of complex activities as well as their parsing into action units. Using a variety of video datasets ranging from human cooking activities to animal behaviors, our experiments demonstrate that the resulting architecture outperforms state-of-the-art approaches for larger datasets, i.e. when sufficient amount of data is available for training structured generative models.",
+    "subject": ["Hidden Markov models","Principal component analysis","Grammar","Data models","Speech recognition","Visualization","TrainingIndex TermsHuman Activities","Activity Of Complex","Parsing","Visual Representation","Mixture Model","Action Recognition","Temporal Model","Video Dataset","Human Activity Recognition","Action Units","Sufficient Amount Of Data","Training Data","Null Hypothesis","Normality Test","Small Datasets","Hidden Markov Model","Transition Probabilities","Speech Recognition","Video Clips","Recognition Accuracy","Sequence Of Units","Context-free Grammar","Gaussian Mixture Model","Activation Segment","Sufficient Training Data","Single Activity","Segmentation Results","Olympic Games","Video Data"],
     "keywords": []
   },
   {
@@ -1512,7 +1512,7 @@
     "doi": "10.1016/j.cobeha.2016.04.003",
     "year": 2016,
     "month": 10,
-    "abstract": "",
+    "abstract": "Generalizing knowledge from experimental data requires constructing theories capable of explaining observations and extending beyond them. Computational modeling offers formal quantitative methods for generating and testing theories of cognition and neural processing. These techniques can be used to extract general principles from specific experimental measurements, but introduce dangers inherent to theory: model-based analyses are conditioned on a set of fixed assumptions that impact the interpretations of experimental data. When these conditions are not met, model-based results can be misleading or biased. Recent work in computational modeling has highlighted the implications of this problem and developed new methods for minimizing its negative impact. Here we discuss the issues that arise when data is interpreted through models and strategies for avoiding misinterpretation of data through model fitting.",
     "subject": [],
     "keywords": []
   },
@@ -1524,8 +1524,8 @@
     "doi": "10.1016/j.bbr.2015.08.028",
     "year": 2016,
     "month": 1,
-    "abstract": "",
-    "subject": [],
+    "abstract": "The common angiotensinogen (AGT) M268T polymorphism (rs699; historically referred to as M235T) has been identified as a significant risk factor for cerebrovascular pathologies, yet it is unclear if healthy older adults carrying the threonine amino acid variant have a greater risk for white matter damage in specific fiber tracts. Further, the impact of the threonine variant on cognitive function remains unknown. The present study utilized multiple indices of diffusion tensor imaging (DTI) and neuropsychological assessment to examine the integrity of specific white matter tracts and cognition between individuals with homozygous genotypes of M268T (MetMet n = 27, ThrThr n = 27). Differences in subcortical hyperintensity (SH) volume were also examined between groups. Results indicated that the threonine variant was associated with significantly reduced integrity in the superior longitudinal fasciculus (SLF) and the cingulate gyrus segment of the cingulum bundle (cingulum CG) compared to those with the methionine variant, and poorer cognitive performance on tests of attention/processing speed and language. Despite these associations, integrity of these tracts did not significantly mediate relationships between cognition and genetic status, and SH did not differ significantly between groups. Collectively our results suggest that the threonine variant of M268T is a significant risk factor for abnormalities in specific white matter tracts and cognitive domains in healthy older adults, independent of SH burden.",
+    "subject": ["AGT", "M235T", "M268T", "rs699", "White matter", "Cognition"],
     "keywords": []
   },
   {
@@ -1536,8 +1536,8 @@
     "doi": "10.1016/j.jphysparis.2017.02.004",
     "year": 2016,
     "month": 11,
-    "abstract": "",
-    "subject": [],
+    "abstract": "This review presents a perspective on capturing collective dynamics in recorded neuronal ensembles based on multivariate point process models, inference of low-dimensional dynamics and coarse graining of spatiotemporal measurements. A general probabilistic framework for continuous time point processes reviewed, with an emphasis on multivariate nonlinear Hawkes processes with exogenous inputs. A point process generalized linear model (PP-GLM) framework for the estimation of discrete time multivariate nonlinear Hawkes processes is described. The approach is illustrated with the modeling of collective dynamics in neocortical neuronal ensembles recorded in human and non-human primates, and prediction of single-neuron spiking. A complementary approach to capture collective dynamics based on low-dimensional dynamics (“order parameters”) inferred via latent state-space models with point process observations is presented. The approach is illustrated by inferring and decoding low-dimensional dynamics in primate motor cortex during naturalistic reach and grasp movements. Finally, we briefly review hypothesis tests based on conditional inference and spatiotemporal coarse graining for assessing collective dynamics in recorded neuronal ensembles.",
+    "subject": ["Point processes", "Nonlinear Hawkes process", "Generalized Linear Model", "GLM", "Neural decoding", "Order parameters"],
     "keywords": []
   },
   {
@@ -1548,7 +1548,7 @@
     "doi": "10.1371/journal.pone.0148409",
     "year": 2016,
     "month": 2,
-    "abstract": "",
+    "abstract": "Huntington’s disease (HD) is genetically determined but with variability in symptom onset, leading to uncertainty as to when pharmacological intervention should be initiated. Here we take a computational approach based on neurocognitive phenotyping, computational modeling, and classification, in an effort to provide quantitative predictors of HD before symptom onset. A large sample of subjects—consisting of both pre-manifest individuals carrying the HD mutation (pre-HD), and early symptomatic—as well as healthy controls performed the antisaccade conflict task, which requires executive control and response inhibition. While symptomatic HD subjects differed substantially from controls in behavioral measures [reaction time (RT) and error rates], there was no such clear behavioral differences in pre-HD. RT distributions and error rates were fit with an accumulator-based model which summarizes the computational processes involved and which are related to identified mechanisms in more detailed neural models of prefrontal cortex and basal ganglia. Classification based on fitted model parameters revealed a key parameter related to executive control differentiated pre-HD from controls, whereas the response inhibition parameter declined only after symptom onset. These findings demonstrate the utility of computational approaches for classification and prediction of brain disorders, and provide clues as to the underlying neural mechanisms.",
     "subject": [],
     "keywords": []
   },
@@ -1560,7 +1560,7 @@
     "doi": "10.1117/12.2081216",
     "year": 2015,
     "month": 3,
-    "abstract": "",
+    "abstract": "The clinical utility of current thermal ablation planning tools is severely limited by treatment variability. We discuss the development of an open platform for evidence-based thermal ablation treatment planning and validation. Improved predictive treatment modeling and consistent outcome analysis are crucial components for useful planning and guidance tools.",
     "subject": [],
     "keywords": []
   },
@@ -1572,7 +1572,7 @@
     "doi": "10.1016/j.neuron.2015.08.026",
     "year": 2015,
     "month": 9,
-    "abstract": "",
+    "abstract": "Frontal neocortex is thought to support our highest intellectual abilities, including our ability to plan and enact a sequence of tasks toward a desired goal. In everyday life, such task sequences are abstract in that they do not require consistent movement sequences and are often assembled “on the fly.” Yet, remarkably little is known about the necessity of frontal sub-regions for such control. Participants repeatedly completed sequences of simple tasks during fMRI scanning. Rostrolateral prefrontal cortex (RLPFC) activation ramped over sequence position and reset at the initiation of each new sequence. To establish the necessity and function of RLPFC in this task, participants performed the sequential task while undergoing transcranial magnetic stimulation (TMS) of the RLPFC versus two prefrontal control regions. Across two independent experiments, only RLPFC stimulation increasingly disrupted task performance as each sequence progressed. These data establish RLPFC as necessary for uncertainty resolution during sequence-level control.",
     "subject": [],
     "keywords": []
   },
@@ -1584,7 +1584,7 @@
     "doi": "10.3758/s13415-014-0331-6",
     "year": 2015,
     "month": 2,
-    "abstract": "",
+    "abstract": "Extraversion is a fascinating personality dimension that consists of two major components, agentic extraversion and affiliative extraversion. Agentic extraversion involves incentive motivation and is expressed as a tendency toward assertiveness, persistence, and achievement. Affiliative extraversion involves the positive emotion of social warmth and is expressed as a tendency toward amicability, gregariousness, and affection. Here we investigate the neuroanatomical correlates of the personality traits of agentic and affiliative extraversion using the Multidimensional Personality Questionnaire Brief Form, structural magnetic resonance imaging, and voxel-based morphometry in a sample of 83 healthy adult volunteers. We found that trait agentic extraversion and trait affiliative extraversion were each positively associated with the volume of the medial orbitofrontal cortex bilaterally (t’s ≥ 2.03, r’s ≥ .23, p’s < .05). Agentic extraversion was specifically and positively related to the volume of the left parahippocampal gyrus (t = 4.08, r = .21, p < .05), left cingulate gyrus (t = 4.75, r = .28, p < .05), left caudate (t = 4.29, r = .24, p < .05), and left precentral gyrus (t = 4.00, r = .18, p < .05) in males and females, and the volume of the right nucleus accumbens in males (t = 2.92, r = .20, p < .05). Trait affiliative extraversion was not found to be associated with additional regions beyond the medial orbitofrontal cortex. The findings provide the first evidence of a neuroanatomical dissociation between the personality traits of agentic and affiliative extraversion in healthy adults.",
     "subject": [],
     "keywords": []
   },
@@ -1596,8 +1596,8 @@
     "doi": "10.1016/j.jmva.2014.11.005",
     "year": 2015,
     "month": 3,
-    "abstract": "",
-    "subject": [],
+    "abstract": "This paper proposes a new method for estimating sparse precision matrices in the high dimensional setting. It has been popular to study fast computation and adaptive procedures for this problem. We propose a novel approach, called Sparse Column-wise Inverse Operator, to address these two issues. We analyze an adaptive procedure based on cross validation, and establish its convergence rate under the Frobenius norm. The convergence rates under other matrix norms are also established. This method also enjoys the advantage of fast computation for large-scale problems, via a coordinate descent algorithm. Numerical merits are illustrated using both simulated and real datasets. In particular, it performs favorably on an HIV brain tissue dataset and an ADHD resting-state fMRI dataset.",
+    "subject": ["Adaptivity", "Coordinate descent", "Cross validation", "Gaussian graphical models", "Lasso", "Convergence rates"],
     "keywords": []
   },
   {
@@ -1608,7 +1608,7 @@
     "doi": "10.3389/fnsys.2015.00089",
     "year": 2015,
     "month": 6,
-    "abstract": "",
+    "abstract": "Understanding the sources of variability in single-neuron spiking responses is an important open problem for the theory of neural coding. This variability is thought to result primarily from spontaneous collective dynamics in neuronal networks. Here, we investigate how well collective dynamics reflected in motor cortex local field potentials (LFPs) can account for spiking variability during motor behavior. Neural activity was recorded via microelectrode arrays implanted in ventral and dorsal premotor and primary motor cortices of non-human primates performing naturalistic 3-D reaching and grasping actions. Point process models were used to quantify how well LFP features accounted for spiking variability not explained by the measured 3-D reach and grasp kinematics. LFP features included the instantaneous magnitude, phase and analytic-signal components of narrow band-pass filtered (δ,θ,α,β) LFPs, and analytic signal and amplitude envelope features in higher-frequency bands. Multiband LFP features predicted single-neuron spiking (1ms resolution) with substantial accuracy as assessed via ROC analysis. Notably, however, models including both LFP and kinematics features displayed marginal improvement over kinematics-only models. Furthermore, the small predictive information added by LFP features to kinematic models was redundant to information available in fast-timescale (<100 ms) spiking history. Overall, information in multiband LFP features, although predictive of single-neuron spiking during movement execution, was redundant to information available in movement parameters and spiking history. Our findings suggest that, during movement execution, collective dynamics reflected in motor cortex LFPs primarily relate to sensorimotor processes directly controlling movement output, adding little explanatory power to variability not accounted by movement parameters.",
     "subject": [],
     "keywords": []
   },
@@ -1620,7 +1620,7 @@
     "doi": "10.1007/s00702-015-1434-0",
     "year": 2015,
     "month": 8,
-    "abstract": "",
+    "abstract": "Variations of the cholesteryl ester transfer protein polymorphism (CETP I405V/rs5882) have been associated with an increased risk for neurodegeneration, particularly when examined in conjunction with the epsilon 4 isoform of apolipoprotein E (ApoE4). Despite these identified relationships, the impact of I405V on gray matter microstructure remains unknown. The present study examined the impact of the CETP I405V polymorphism on gray matter integrity among 52 healthy adults between ages 51 and 85. Gray matter was measured bilaterally using diffusion tensor imaging (DTI) metrics of fractional anisotropy (FA), mean diffusivity (MD), axial diffusivity (AD), and radial diffusivity (RD). Participants were grouped according to a dominant statistical model (II genotype vs. IV/VV genotypes) and secondary analyses were completed to examine the interactive effects of CETP and ApoE4 on DTI metrics. Compared to individuals with the IV/VV genotypes, II homozygotes demonstrated significantly higher MD in bilateral temporal, parietal, and occipital gray matter. Secondary analyses revealed higher FA and AD in the left temporal lobe of IV/VV genotypes with an ApoE4 allele. Our results provide preliminary evidence that CETP II homozygosity is a predisposing risk factor for gray matter abnormalities in posterior brain regions in healthy older adults, independent of an ApoE4 allele.",
     "subject": [],
     "keywords": []
   },
@@ -1632,8 +1632,8 @@
     "doi": "10.1016/j.neuroimage.2015.08.019",
     "year": 2015,
     "month": 11,
-    "abstract": "",
-    "subject": [],
+    "abstract": "Some of the most clinically consequential aspects of focal epilepsy, e.g. loss of consciousness, arise from the generalization or propagation of seizures through local and large-scale neocortical networks. Yet, the dynamics of such neocortical propagation remain poorly understood. Here, we studied the microdynamics of focal seizure propagation in neocortical patches (4 × 4 mm) recorded via high-density microelectrode arrays (MEAs) implanted in people with pharmacologically resistant epilepsy. Our main findings are threefold: (1) a newly developed stage segmentation method, applied to local field potentials (LFPs) and multiunit activity (MUA), revealed a succession of discrete seizure stages, each lasting several seconds. These different stages showed characteristic evolutions in overall activity and spatial patterns, which were relatively consistent across seizures within each of the 5 patients studied. Interestingly, segmented seizure stages based on LFPs or MUA showed a dissociation of their spatiotemporal dynamics, likely reflecting different contributions of non-local synaptic inputs and local network activity. (2) As previously reported, some of the seizures showed a peak in MUA that happened several seconds after local seizure onset and slowly propagated across the MEA. However, other seizures had a more complex structure characterized by, for example, several MUA peaks, more consistent with the succession of discrete stages than the slow propagation of a simple wavefront of increased MUA. In both cases, nevertheless, seizures characterized by spike-wave discharges (SWDs, ~ 2–3 Hz) eventually evolved into patterns of phase-locked MUA and LFPs. (3) Individual SWDs or gamma oscillation cycles (25–60 Hz), characteristic of two different types of recorded seizures, tended to propagate with varying degrees of directionality, directions of propagation and speeds, depending on the identified seizure stage. However, no clear relationship was observed between the MUA peak onset time (in seizures where such peak onset occurred) and changes in MUA or LFP propagation patterns. Overall, our findings indicate that the recruitment of neocortical territories into ictal activity undergoes complex spatiotemporal dynamics evolving in slow discrete states, which are consistent across seizures within each patient. Furthermore, ictal states at finer spatiotemporal scales (individual SWDs or gamma oscillations) are organized by slower time scale network dynamics evolving through these discrete stages.",
+    "subject": ["Epilepsy", "Collective dynamics", "Secondary generalization", "Cortical waves", "Neural state segmentation"],
     "keywords": []
   },
   {
@@ -1644,8 +1644,8 @@
     "doi": "10.1109/embc.2014.6944262",
     "year": 2014,
     "month": 8,
-    "abstract": "",
-    "subject": [],
+    "abstract": "Ensembles of single-neurons in motor cortex can show strong low-dimensional collective dynamics. In this study, we explore an approach where neural decoding is applied to estimated low-dimensional dynamics instead of to the full recorded neuronal population. A latent state-space model (SSM) approach is used to estimate the low-dimensional neural dynamics from the measured spiking activity in population of neurons. A second state-space model representation is then used to decode kinematics, via a Kalman filter, from the estimated low-dimensional dynamics. The latent SSM-based decoding approach is illustrated on neuronal activity recorded from primary motor cortex in a monkey performing naturalistic 3-D reach and grasp movements. Our analysis show that 3-D reach decoding performance based on estimated low-dimensional dynamics is comparable to the decoding performance based on the full recorded neuronal population.",
+    "subject": ["Sociology","Decoding","Kinematics","Neurons","State-space methods","Covariance matricesIndex TermsLatent Model","State-space Model","Neural Decoding","Latent State Space","Latent State-space Models","Kinematic","Neuronal Activity","Motor Cortex","Population Activity","Kalman Filter","Primary Motor Cortex","Spiking Activity","Decoding Performance","Decoding Approach","Covariance Matrix","Maximum Likelihood Estimation","Gaussian Noise","State Matrix","Latent State","Spiking Neural Networks","Observation Matrix","Linear Dynamical System","Microelectrode Arrays","Decoding Analysis","Neural Recordings","Spike CountMeSH TermsAnimals","Biomechanical Phenomena","Hand Strength","Haplorhini","Models"," Neurological","Models"," Theoretical","Motor Cortex","Movement","Nerve Net","Neurons"],
     "keywords": []
   },
   {
@@ -1655,8 +1655,8 @@
     "url": "http://dx.doi.org/10.1037/a0035813",
     "doi": "10.1037/a0035813",
     "year": 2014,
-    "month": -1,
-    "abstract": "",
+    "month": 2,
+    "abstract": "Can you predict what people are going to do just by watching them? This is certainly difficult: it would require a clear mapping between observable indicators and unobservable cognitive states. In this report, we demonstrate how this is possible by monitoring eye gaze and pupil dilation, which predict dissociable biases during decision making. We quantified decision making using the drift diffusion model (DDM), which provides an algorithmic account of how evidence accumulation and response caution contribute to decisions through separate latent parameters of drift rate and decision threshold, respectively. We used a hierarchical Bayesian estimation approach to assess the single trial influence of observable physiological signals on these latent DDM parameters. Increased eye gaze dwell time specifically predicted an increased drift rate toward the fixated option, irrespective of the value of the option. In contrast, greater pupil dilation specifically predicted an increase in decision threshold during difficult decisions. These findings suggest that eye tracking and pupillometry reflect the operations of dissociated latent decision processes.",
     "subject": [],
     "keywords": []
   },
@@ -1667,9 +1667,9 @@
     "url": "http://dx.doi.org/10.1007/978-3-319-10590-1_43",
     "doi": "10.1007/978-3-319-10590-1_43",
     "year": 2014,
-    "month": -1,
-    "abstract": "",
-    "subject": [],
+    "month": 1,
+    "abstract": "We propose a multi-stage approach to curve extraction where the curve fragment search space is iteratively reduced by removing unlikely candidates using geometric constrains, but without affecting recall, to a point where the application of an objective functional becomes appropriate. The motivation in using multiple stages is to avoid the drawback of using a global functional directly on edges, which can result in non-salient but high scoring curve fragments, which arise from non-uniformly distributed edge evidence. The process progresses in stages from local to global: (i) edges, (ii) curvelets, (iii) unambiguous curve fragments, (iv) resolving ambiguities to generate a full set of curve fragment candidates, (v) merging curve fragments based on a learned photometric and geometric cues as well a novel lateral edge sparsity cue, and (vi) the application of a learned objective functional to get a final selection of curve fragments. The resulting curve fragments are typically visually salient and have been evaluated in two ways. First, we measure the stability of curve fragments when images undergo visual transformations such as change in viewpoints, illumination, and noise, a critical factor for curve fragments to be useful to later visual processes but one often ignored in evaluation. Second, we use a more traditional comparison against human annotation, but using the CFGD dataset and CFGD evaluation strategy rather than the standard BSDS counterpart, which is shown to be not appropriate for evaluating curve fragments. Under both evaluation schemes our results are significantly better than those state of the art algorithms whose implementations are publicly available.",
+    "subject": ["IEEE Computer Society", "Curve Stability", "Zebra Pattern", "Curve Extraction", "Human Annotation"],
     "keywords": []
   },
   {
@@ -1680,8 +1680,8 @@
     "doi": "10.1109/embc.2014.6944945",
     "year": 2014,
     "month": 8,
-    "abstract": "",
-    "subject": [],
+    "abstract": "Approximately 50 million people in the world suffer from epileptic seizures. Reliable early seizure detection could bring significantly beneficial therapeutic alternatives. In recent decades, most approaches have relied on scalp EEG and intracranial EEG signals, but practical early detection for closed-loop seizure control remains challenging. In this study, we present preliminary analyses of an early detection approach based on intracortical neuronal multiunit activity (MUA) recorded from a 96-microelectrode array (MEA). The approach consists of (1) MUA detection from broadband field potentials recorded at 30 kHz by the MEA; (2) MUA feature extraction; (3) cost-sensitive support vector machine classification of ictal and interictal samples; and (4) Kalman-filtering postprocessing. MUA was here defined as the number of threshold crossing (spike counts) applied to the 300 Hz-6 kHz bandpass filtered local field potentials in 0.1 sec time windows. MUA features explored in this study included the mean, variance, and Fano-factor, computed across the MEA channels. In addition, we used the leading eigenvalues of MUA spatial and temporal correlation matrices computed in 1-sec moving time windows. We assessed the seizure detection approach on out-of-sample data from one-participant recordings with six seizure events and 4.73-hour interictal data. The proposed MUA-based detection approach yielded a 100% sensitivity (6/6) and no false positives, and a latency of 4.17 ± 2.27 sec (mean ± SD) with respect to ECoG-identified seizure onsets. These preliminary results indicate intracortical MUA may be a useful signal for early detection of human epileptic seizures.",
+    "subject": ["Epilepsy","Educational institutions","Support vector machines","Feature extraction","Electroencephalography","Band-pass filters","Broadband communicationIndex TermsEarly Detection","Multi-unit Activity","Seizure Detection","Support Vector Machine","Detection Approach","Kalman Filter","Eigenvalues Of Matrix","Reliable Detection","People In The World","Epileptic Seizures","Spatial Matrix","Seizure Onset","Electrocorticography","Spike Count","Seizure Events","Fano Factor","Threshold Crossings","Approach For Early Detection","Electrode","Spearman Correlation","Radial Basis Function Kernel","Radial Basis Function","Rank CorrelationMeSH TermsEarly Diagnosis","Electroencephalography","Female","Humans","Middle Aged","Seizures","Sensitivity and Specificity","Support Vector Machine"],
     "keywords": []
   },
   {
@@ -1692,8 +1692,8 @@
     "doi": "10.1523/jneurosci.4567-13.2014",
     "year": 2014,
     "month": 7,
-    "abstract": "",
-    "subject": [],
+    "abstract": "Seizures are classically characterized as the expression of hypersynchronous neural activity, yet the true degree of synchrony in neuronal spiking (action potentials) during human seizures remains a fundamental question. We quantified the temporal precision of spike synchrony in ensembles of neocortical neurons during seizures in people with pharmacologically intractable epilepsy. Two seizure types were analyzed: those characterized by sustained gamma (∼40–60 Hz) local field potential (LFP) oscillations or by spike-wave complexes (SWCs; ∼3 Hz). Fine (<10 ms) temporal synchrony was rarely present during gamma-band seizures, where neuronal spiking remained highly irregular and asynchronous. In SWC seizures, phase locking of neuronal spiking to the SWC spike phase induced synchrony at a coarse 50–100 ms level. In addition, transient fine synchrony occurred primarily during the initial ∼20 ms period of the SWC spike phase and varied across subjects and seizures. Sporadic coherence events between neuronal population spike counts and LFPs were observed during SWC seizures in high (∼80 Hz) gamma-band and during high-frequency oscillations (∼130 Hz). Maximum entropy models of the joint neuronal spiking probability, constrained only on single neurons' nonstationary coarse spiking rates and local network activation, explained most of the fine synchrony in both seizure types. Our findings indicate that fine neuronal ensemble synchrony occurs mostly during SWC, not gamma-band, seizures, and primarily during the initial phase of SWC spikes. Furthermore, these fine synchrony events result mostly from transient increases in overall neuronal network spiking rates, rather than changes in precise spiking correlations between specific pairs of neurons.",
+    "subject": ["collective dynamics", "conditional inference", "epilepsy", "maximum entropy"],
     "keywords": []
   },
   {
@@ -1704,8 +1704,8 @@
     "doi": "10.1371/journal.pone.0139068",
     "year": 2015,
     "month": 10,
-    "abstract": "",
-    "subject": [],
+    "abstract": "Cnidaria, the sister group to Bilateria, is a highly diverse group of animals in terms of morphology, lifecycles, ecology, and development. How this diversity originated and evolved is not well understood because phylogenetic relationships among major cnidarian lineages are unclear, and recent studies present contrasting phylogenetic hypotheses. Here, we use transcriptome data from 15 newly-sequenced species in combination with 26 publicly available genomes and transcriptomes to assess phylogenetic relationships among major cnidarian lineages. Phylogenetic analyses using different partition schemes and models of molecular evolution, as well as topology tests for alternative phylogenetic relationships, support the monophyly of Medusozoa, Anthozoa, Octocorallia, Hydrozoa, and a clade consisting of Staurozoa, Cubozoa, and Scyphozoa. Support for the monophyly of Hexacorallia is weak due to the equivocal position of Ceriantharia. Taken together, these results further resolve deep cnidarian relationships, largely support traditional phylogenetic views on relationships, and provide a historical framework for studying the evolutionary processes involved in one of the most ancient animal radiations.",
+    "subject": ["Phylogenetics", "Cnidaria", "Phylogenetic analysis", "Animal phylogenetics", "Transcriptome analysis", "Convergent evolution", "Corals", "Paleogenetics"],
     "keywords": []
   },
   {
@@ -1716,7 +1716,7 @@
     "doi": "10.1093/icb/icx060",
     "year": 2017,
     "month": 7,
-    "abstract": "",
+    "abstract": "Standards-based data management facilitates data preservation, discoverability, and access for effective data reuse within research groups and across communities of researchers. Data sharing requires community consensus on standards for data management, such as storage and formats for digital data preservation, metadata (i.e., contextual data about the data) that should be recorded and stored, and data access. Video imaging is a valuable tool for measuring time-varying phenotypes in organismal biology, with particular application for research in functional morphology, comparative biomechanics, and animal behavior. The raw data are the videos, but videos alone are not sufficient for scientific analysis. Nearly endless videos of animals can be found on YouTube and elsewhere on the web, but these videos have little value for scientific analysis because essential metadata such as true frame rate, spatial calibration, genus and species, weight, age, etc. of organisms, are generally unknown. We have embarked on a project to build community consensus on video data management and metadata standards for organismal biology research. We collected input from colleagues at early stages, organized an open workshop, “Establishing Standards for Video Data Management,” at the Society for Integrative and Comparative Biology meeting in January 2017, and then collected two more rounds of input on revised versions of the standards. The result we present here is a rubric consisting of nine standards for video data management, with three levels within each standard: good, better, and best practices. The nine standards are: (1) data storage; (2) video file formats; (3) metadata linkage; (4) video data and metadata access; (5) contact information and acceptable use; (6) camera settings; (7) organism(s); (8) recording conditions; and (9) subject matter/topic. The first four standards address data preservation and interoperability for sharing, whereas standards 5–9 establish minimum metadata standards for organismal biology video, and suggest additional metadata that may be useful for some studies. This rubric was developed with substantial input from researchers and students, but still should be viewed as a living document that should be further refined and updated as technology and research practices change. The audience for these standards includes researchers, journals, and granting agencies, and also the developers and curators of databases that may contribute to video data sharing efforts. We offer this project as an example of building community consensus for data management, preservation, and sharing standards, which may be useful for future efforts by the organismal biology research community.",
     "subject": [],
     "keywords": []
   },
@@ -1726,10 +1726,10 @@
     "publisher": "Brown University",
     "url": "https://repository.library.brown.edu/studio/item/bdr:674209/",
     "doi": "10.7301/Z01G0JQ7",
-    "year": -1,
-    "month": -1,
-    "abstract": "",
-    "keywords": []
+    "year": 2016,
+    "month": 5,
+    "abstract": "We propose a new technique for the calibration of nuclear recoils in large noble element dual-phase time projection chambers (TPCs) used to search for WIMP dark matter in the local galactic halo. This technique provides a measurement of the low-energy nuclear recoil response of the target media using the measured scattering angle between multiple neutron interactions within the detector volume. Several strategies for improving this calibration technique are discussed, including the creation of a new type of quasi-monoenergetic 272 keV neutron source. We report results from a time-of-flight-based measurement of the neutron energy spectrum produced by an Adelphi Technology, Inc. DD108 neutron generator, confirming its suitability for the proposed calibration. The Large Underground Xenon (LUX) experiment is a dual-phase liquid xenon TPC operating at the Sanford Underground Research Facility in Lead, South Dakota. Our proposed calibration technique for nuclear recoils in liquid xenon was performed in situ in the LUX detector using a collimated beam of mono-energetic 2.45 MeV neutrons produced by the DD108 fusion source. The nuclear recoil energy from the first neutron scatter in the TPC was reconstructed using the measured scattering angle defined by two-site neutron events within the active xenon volume. We measured the absolute charge (Qy) and light (Ly) yields at an average electric field of 180 V/cm for nuclear recoil energies spanning 0.7 to 74 keV and 1.1 to 74 keV, respectively. This calibration of the nuclear recoil signal yields will permit the further refinement of liquid xenon nuclear recoil signal models and clearly demonstrates measurable ionization and scintillation signals in this medium at recoil energies down to O(1 keV). The low-energy reach and reduced systematics of this calibration have particular significance for the low-mass WIMP sensitivity of several leading dark matter experiments.",
+    "keywords": ["LUX", "liquid xenon", "nuclear recoil", "light yield", "charge yield", "neutron generator", "dark matter", "WIMP", "Dark matter",  "Astronomy)"]
   },
   {
     "title": "Prototype, Surface Commissioning and Photomultiplier Tube Characterization for the Large Underground Xenon (LUX) Direct Dark Matter Search Experiment",
@@ -1737,9 +1737,9 @@
     "publisher": "Brown University",
     "url": "https://repository.library.brown.edu/studio/item/bdr:386139/",
     "doi": "10.7301/Z0QV3JV5",
-    "year": -1,
-    "month": -1,
-    "abstract": "",
+    "year": 2014,
+    "month": 5,
+    "abstract": "The existence of non-baryonic cold dark matter is well established through a wealth of complementary observations such as the Cosmic Microwave Background, Supernova Type Ia and Big Bang Nucleosynthesis. Despite the overwhelming cosmological evidence, the particle nature of dark matter remains unknown. The leading candidate is a Weakly Interacting Massive Particle (WIMP), a thermal relic from the Big Bang that only interacts through the gravitational and weak forces. A terrestrial detector with high target mass, low background levels and a low energy threshold (keV) should be able to record the rare, faint interactions between ordinary matter and galactic WIMP dark matter. The Large Underground Xenon (LUX) experiment is a 370 kg liquid xenon time projection chamber that aims to detect WIMP recoils with xenon nuclei. The experiment is located a mile underground at the Sanford Underground Research Facility (SURF) in Lead, South Dakota. LUX is poised to become the world's most sensitive dark matter detector after only 2 weeks of exposure and will surpass current detection limits by an order of magnitude after 300 days. The LUX experimental program consists of three phases: (1) the LUX0.1 prototype detector during 2007– 2009, (2) the commissioning and operation of the LUX detector at the Sanford surface laboratory during 2009–2012 and (3) the underground deployment and operation of the detector beginning in 2012. This thesis describes the first two phases of the LUX program. LUX utilizes 122 Hamamatsu R8778 photomultiplier tubes (PMTs) to detect photons produced by particle interactions in liquid xenon. The LUX PMT mounting, high voltage distribution, analog signal shaping and gain calibration system are described in detail. The PMTs are shown to have low radioactive background levels, single-photon sensitivity and a 30% photon detection efficiency at the 175 nm liquid xenon scintillation wavelength. Handling protocols and vacuum integrity control based on ion-initiated afterpulses are presented. Xenon purification and energy calibration results are described for LUX0.1. During the LUX surface run, light collection and statistical position resolution measurements were obtained. Additionally, the xenon circulation path was imaged with alpha particles from a Rn222 injection.",
     "keywords": []
   },
   {
@@ -1750,7 +1750,7 @@
     "doi": "10.3389/fmars.2019.00644",
     "year": 2019,
     "month": 10,
-    "abstract": "",
+    "abstract": "With the ongoing, exponential increase in ocean data from autonomous platforms, satellites, models, and in particular, the growing field of quantitative imaging, there arises a need for scalable and cost-efficient visualization tools to interpret these large volumes of data. With the recent proliferation of consumer grade head-mounted displays, the emerging field of virtual reality (VR) has demonstrated its benefit in numerous disciplines, ranging from medicine to archeology. However, these benefits have not received as much attention in the ocean sciences. Here, we summarize some of the ways that virtual reality has been applied to this field. We highlight a few examples in which we (the authors) demonstrate the utility of VR as a tool for ocean scientists. For oceanic datasets that are well-suited for three-dimensional visualization, virtual reality has the potential to enhance the practice of ocean science.",
     "subject": [],
     "keywords": []
   },
@@ -1762,7 +1762,7 @@
     "doi": "10.1109/embc.2019.8857552",
     "year": 2019,
     "month": 7,
-    "abstract": "",
+    "abstract": "Differentiating epileptic seizures (ES) and psychogenic nonepileptic seizures (PNES) is commonly based on electroencephalogram and concurrent video recordings (vEEG). Here, we demonstrate that these two types of seizures can be discriminated based on signals related to autonomic nervous system activity recorded via wearable sensors. We used Empatica E4 Wristband sensors worn on both arms in vEEG confirmed seizures, and machine learning methods to train classifiers, specifically, extreme gradient boosting (XGBoost). Classification performance achieved a predictive accuracy of 78 ± 1.5% on previously unseen data for whether a seizure was epileptic or psychogenic, which is 6 standard deviations above the baseline of 68% accuracy. Our dataset contained altogether 35 seizures from 18 patients out of which 8 patients had 13 convulsive seizures. Prediction of seizure type was based on simple features derived from the segments of autonomic activity measurements (electrodermal activity, body temperature, blood volume pulse, and heart rate) and forearm acceleration. Features related to heart rate and electrodermal activity were ranked as the top predictors in XGBoost classifiers. We found that patients with PNES had a higher ictal heart rate and electrodermal activity than patients with ES. In contrast to existing published studies of mainly convulsive seizures, our classifier focuses on autonomic signals to differentiate convulsive or nonconvulsive semiology ES from PNES. Our results show that autonomic activity recorded via wearable sensors provides promising signals for detection and discrimination of psychogenic and epileptic seizures, but more work is necessary to improve the predictive power of the model.",
     "subject": [],
     "keywords": []
   },
@@ -1774,8 +1774,8 @@
     "doi": "10.1371/journal.pone.0229967",
     "year": 2020,
     "month": 7,
-    "abstract": "",
-    "subject": [],
+    "abstract": "Phthalic acid esters (phthalates) are male reproductive toxicants, which exert their most potent toxicity during fetal development. In the fetal rat, exposure to phthalates reduces testosterone biosynthesis, alters the development of seminiferous cords and other male reproductive tissues, and induces the formation of abnormal multinucleated germ cells (MNGs). Identification of MNGs is a time-intensive process, and it requires specialized training to identify MNGs in histological sections. As a result, MNGs are not routinely quantified in phthalate toxicity experiments. In order to speed up and standardize this process, we have developed an improved method for automated detection of MNGs. Using hand-labeled histological section images with human-identified MNGs, we trained a convolutional neural network with a U-Net architecture to identify MNGs on unlabeled images. With unseen hand-labeled images not used in model training, we assessed the performance of the model, using five different configurations of the data. On average, the model reached near human accuracy, and in the best model, it exceeded it. The use of automated image analysis will allow data on this histopathological endpoint to be more readily collected for analysis of phthalate toxicity. Our trained model application code is available for download at github.com/brown-ccv/mngcount.",
+    "subject": ["Heart rate","Temperature measurement","Standards","Machine learning","Sensors","Histograms","WristIndex TermsMachine Learning","Epileptic Seizures","Autonomic Activity","Psychogenic Non-epileptic Seizures","Non-epileptic Seizures","Body Temperature","Autonomic Nervous System","Increase In Heart Rate","Wearable Sensors","Autonomic Nervous System Activity","Extreme Gradient Boosting","Seizure Types","Electroencephalogram Recordings","Convulsive Seizures","XGBoost Classifier","Training Set","Null Hypothesis","Kolmogorov-Smirnov Test","Confusion Matrix","Heart Rate Variability","Interictal Period","Hold-out Set","Heart Rate Measurements","Heart Rate In Patients","Feature Importance Measures","Autonomic Dysfunction","Predictive Features","Early Stopping","Tree-based Methods","Number Of TreesMeSH TermsAutonomic Nervous System","Electroencephalography","Epilepsy","Humans","Machine Learning","Seizures","Wearable Electronic Devices"],
     "keywords": []
   },
   {
@@ -1786,8 +1786,8 @@
     "doi": "10.1371/journal.pone.0220219",
     "year": 2020,
     "month": 8,
-    "abstract": "",
-    "subject": [],
+    "abstract": "The location of defunct environmentally hazardous businesses like gas stations has many implications for modern American cities. To track down these locations, we present the directoreadr code (github.com/brown-ccv/directoreadr). Using scans of Polk city directories from Providence, RI, directoreadr extracts and parses business location data with a high degree of accuracy. The image processing pipeline ran without any human input for 94.4% of the pages we examined. For the remaining 5.6%, we processed them with some human input. Through hand-checking a sample of three years, we estimate that ~94.6% of historical gas stations are correctly identified and located, with historical street changes and non-standard address formats being the main drivers of errors. As an example use, we look at gas stations, finding that gas stations were most common early in the study period in 1936, beginning a sharp and steady decline around 1950. We are making the dataset produced by directoreadr publicly available. We hope it will be used to explore a range of important questions about socioeconomic patterns in Providence and cities like it during the transformations of the mid-1900s.",
+    "subject": ["Permeters", "Algorithms", "Grayscale", "Graphics pipelines", "Image processing", "Libraries", "Computer software", "Urban ecnomics"],
     "keywords": []
   },
   {
@@ -1796,10 +1796,10 @@
     "publisher": "International Society for Environmental Information Science (ISEIS)",
     "url": "http://dx.doi.org/10.3808/jei.201700381",
     "doi": "10.3808/jei.201700381",
-    "year": 2018,
-    "month": -1,
-    "abstract": "",
-    "subject": [],
+    "year": 2019,
+    "month": 9,
+    "abstract": "Despite the growing availability of big data in many fields, historical data on socio-evironmental phenomena are often not available due to a lack of automated and scalable approaches for collecting, digitizing, and assembling them. We have developed a datamining method for extracting tabulated, geocoded data from printed directories. While scanning and optical character recognition (OCR) can digitize printed text, these methods alone do not capture the structure of the underlying data. Our pipeline integrates both page layout analysis and OCR to extract tabular, geocoded data from structured text. We demonstrate the utility of this method by applying it to scanned manufacturing registries from Rhode Island that record 41 years of industrial land use. The resulting spatio-temporal data can be used for socio-environmental analyses of industrialization at a resolution that was not previously possible. In particular, we find strong evidence for the dispersion of manufacturing from the urban core of Providence, the stateâ€™s capital, along the Interstate 95 corridor to the north and south.",
+    "subject": ["structured text", "historical data", "geocoding", "page layout analysis", "socio-environmental analysis"],
     "keywords": []
   },
   {
@@ -1810,8 +1810,8 @@
     "doi": "10.1371/journal.pone.0182950",
     "year": 2017,
     "month": 8,
-    "abstract": "",
-    "subject": [],
+    "abstract": "This paper presents five studies on the development and validation of a scale of intellectual humility. This scale captures cognitive, affective, behavioral, and motivational components of the construct that have been identified by various philosophers in their conceptual analyses of intellectual humility. We find that intellectual humility has four core dimensions: Open-mindedness (versus Arrogance), Intellectual Modesty (versus Vanity), Corrigibility (versus Fragility), and Engagement (versus Boredom). These dimensions display adequate self-informant agreement, and adequate convergent, divergent, and discriminant validity. In particular, Open-mindedness adds predictive power beyond the Big Six for an objective behavioral measure of intellectual humility, and Intellectual Modesty is uniquely related to Narcissism. We find that a similar factor structure emerges in Germanophone participants, giving initial evidence for the model’s cross-cultural generalizability.",
+    "subject": ["Factor analysis", "Personality traits", "Emotions", "Personality", "Hispanic people", "Human learning", "Human intelligence"],
     "keywords": []
   },
   {
@@ -1822,8 +1822,8 @@
     "doi": "10.1371/journal.pone.0211847",
     "year": 2019,
     "month": 7,
-    "abstract": "",
-    "subject": [],
+    "abstract": "The apparent unpredictability of epileptic seizures has a major impact in the quality of life of people with pharmacologically resistant seizures. Here, we present initial results and a proof-of-concept of how focal seizures can be predicted early in advance based on intracortical signals recorded from small neocortical patches away from identified seizure onset areas. We show that machine learning algorithms can discriminate between interictal and preictal periods based on multiunit activity (i.e. thresholded action potential counts) and multi-frequency band local field potentials recorded via 4 X 4 mm2 microelectrode arrays. Microelectrode arrays were implanted in 5 patients undergoing neuromonitoring for resective surgery. Post-implant analysis revealed arrays were outside the seizure onset areas. Preictal periods were defined as the 1-hour period leading to a seizure. A 5-minute gap between the preictal period and the putative seizure onset was enforced to account for potential errors in the determination of actual seizure onset times. We used extreme gradient boosting and long short-term memory networks for prediction. Prediction accuracy based on the area under the receiver operating characteristic curves reached 90% for at least one feature type in each patient. Importantly, successful prediction could be achieved based exclusively on multiunit activity. This result indicates that preictal activity in the recorded neocortical patches involved not only subthreshold postsynaptic potentials, perhaps driven by the distal seizure onset areas, but also neuronal spiking in distal recurrent neocortical networks. Beyond the commonly identified seizure onset areas, our findings point to the engagement of large-scale neuronal networks in the neural dynamics building up toward a seizure. Our initial results obtained on currently available human intracortical microelectrode array recordings warrant new studies on larger datasets, and open new perspectives for seizure prediction and control by emphasizing the contribution of multiscale neural signals in large-scale neuronal networks.",
+    "subject": ["Eigenvectors", "Action potentials", "Microelectrodes", "Surgical resection", "Neural networks", "Centrality", "Signal filtering", "Medical implants"],
     "keywords": []
   },
   {
@@ -1834,8 +1834,8 @@
     "doi": "10.1016/j.ygeno.2020.07.028",
     "year": 2020,
     "month": 11,
-    "abstract": "",
-    "subject": [],
+    "abstract": "We posit the likely architecture of complex diseases is that subgroups of patients share variants in genes in specific networks which are sufficient to give rise to a shared phenotype. We developed Proteinarium, a multi-sample protein-protein interaction (PPI) tool, to identify clusters of patients with shared gene networks. Proteinarium converts user defined seed genes to protein symbols and maps them onto the STRING interactome. A PPI network is built for each sample using Dijkstra's algorithm. Pairwise similarity scores are calculated to compare the networks and cluster the samples. A layered graph of PPI networks for the samples in any cluster can be visualized. To test this newly developed analysis pipeline, we reanalyzed publicly available data sets, from which modest outcomes had previously been achieved. We found significant clusters of patients with unique genes which enhanced the findings in the original study.",
+    "subject": ["Software", "Protein-protein interactions", "Networks", "Multi-sample", "Data visualization"],
     "keywords": []
   },
   {
