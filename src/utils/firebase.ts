@@ -9,7 +9,6 @@ import {
   collection,
   onSnapshot,
   query,
-  limit,
   orderBy,
 } from 'firebase/firestore';
 import {
@@ -129,10 +128,7 @@ export const usePublicationsCollection = () => {
 
   useEffect(() => {
     const unsubscribe = onSnapshot(
-      query(
-        collection(db, publicationsCollection),
-        orderBy('updatedAt', 'desc')
-      ),
+      query(collection(db, publicationsCollection), orderBy('updatedAt', 'desc')),
       (snapshot) => {
         const publications = snapshot.docs.map((doc) => doc.data());
         dispatch(setPublications(publications));
