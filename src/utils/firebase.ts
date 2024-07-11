@@ -10,6 +10,7 @@ import {
   onSnapshot,
   query,
   orderBy,
+  Timestamp,
 } from 'firebase/firestore';
 import {
   getAuth,
@@ -144,13 +145,46 @@ export const usePublicationsCollection = () => {
   }, [dispatch]);
 };
 
+/**
+ * Format title and author as searchable arrays.
+ * @param publication
+ */
+export const createPublicationTokens = ({ title, author }: { title: string; author: string }) => {
+  /**
+   * Remove . , ' " : ;
+   * Then, split on space.
+   */
+  const titleTokens = title
+    .toLowerCase()
+    .replace('.', '')
+    .replace(',', '')
+    .replace(':', '')
+    .replace(';', '')
+    .replace("'", '')
+    .replace('"', '')
+    .split(' ');
+  const authorTokens = author
+    .toLowerCase()
+    .replace('.', '')
+    .replace(',', '')
+    .replace(':', '')
+    .replace(';', '')
+    .replace('"', '')
+    .replace("'", '')
+    .split(' ')
+    // It's common to have middle initials -- these dont narrow a search field much, and are trimmed for the
+    .filter((token) => token.length <= 1);
+  return { title: titleTokens, author: authorTokens };
+};
+
 export const addPublication = async (publication) => {
   const docId = publication.doi.toLowerCase().replace(/\//g, '_');
   const docRef = doc(db, publicationsCollection, docId);
 
   await setDoc(docRef, {
     ...publication,
-    updatedAt: Date.now(),
+    tokens: createPublicationTokens(publication),
+    updatedAt: Timestamp.now(),
   });
 };
 
