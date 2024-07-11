@@ -20,6 +20,7 @@ export const fetchDoi = async (doi: string): Promise<Publication> => {
     DOI: fetchedDoi,
     published,
     abstract,
+    subject,
   } = await res.json();
 
   if (doi.toLowerCase() !== fetchedDoi.toLowerCase()) {
@@ -27,14 +28,15 @@ export const fetchDoi = async (doi: string): Promise<Publication> => {
   }
 
   return {
-    title: title ?? '',
+    title: title ? title.replaceAll(/<[^>]+>/g, '').replaceAll('\n', '') : '', // remove HTML tags
     author: author.map(({ given, family }) => `${given} ${family}`).join(', '),
     publisher: publisher ?? '',
     url: url ?? '',
     doi: doi ?? '',
     year: published?.['date-parts'][0][0] ?? -1,
     month: published?.['date-parts'][0][1] ?? -1,
-    abstract: abstract ? abstract.replace(/<[^>]+>/g, '') : '', // remove HTML tags
+    abstract: abstract ?? '',
+    keywords: [...(subject ?? [])],
   };
 };
 
