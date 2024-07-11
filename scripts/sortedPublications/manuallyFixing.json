@@ -2458,8 +2458,8 @@
     "doi": "10.1016/j.optcom.2018.10.016",
     "year": 2019,
     "month": 2,
-    "abstract": "",
-    "subject": [],
+    "abstract": "We analyze, through numerical simulations, a method for generating unidirectional flux in colloidal systems using non-degenerate two-wave mixing. The approach uses a bidirectional PZT modulation and a laser grating amplitude modulation to suppress the reversal of the grating velocity with each cycle of the PZT. The dependence of the particle flux on modulation frequency is determined through numerical solution of the differential equations and the suppression of sedimentation in an extended colloidal system is analyzed.",
+    "subject": ["laser trapping", "two-wave mixing", "nonlinear wave mixing", "nanoparticles", "sedimentation"],
     "keywords": []
   },
   {
@@ -2470,7 +2470,7 @@
     "doi": "10.3389/fnint.2018.00063",
     "year": 2019,
     "month": 1,
-    "abstract": "",
+    "abstract": "Approximately three times per second, human visual perception is interrupted by a saccadic eye movement. In addition to taking the eyes to a new location, several lines of evidence suggest that the saccades play multiple roles in visual perception. Indeed, it may be crucial that visual processing is informed about movements of the eyes in order to analyze visual input distinctly and efficiently on each fixation and preserve stable visual perception of the world across saccades. A variety of studies has demonstrated that activity in multiple brain areas is modulated by saccades. The hypothesis tested here is that these signals carry significant information that could be used in visual processing. To test this hypothesis, local field potentials (LFPs) were simultaneously recorded from multiple electrodes in macaque primary visual cortex (V1); support vector machines (SVMs) were used to classify the peri-saccadic LFPs. We find that LFPs in area V1 carry information that can be used to distinguish neural activity associated with fixations from saccades, precisely estimate the onset time of fixations, and reliably infer the directions of saccades. This information may be used by the brain in processes including visual stability, saccadic suppression, receptive field (RF) remapping, fixation amplification, and trans-saccadic visual perception.",
     "subject": [],
     "keywords": []
   },
@@ -2482,8 +2482,8 @@
     "doi": "10.1080/00987913.2018.1433930",
     "year": 2018,
     "month": 1,
-    "abstract": "",
-    "subject": [],
+    "abstract": "The CNI-ARL Digital Scholarship Planning Workshop at Brown University, November 8–10, 2017, was an intensive, focused workshop for institutions at all stages of the digital scholarship planning process. This report, based on one participant's experience, touches on some of the highlights and takeaways from the sessions, which focused on campus needs and partnerships; staffing; governance and funding models; the applications of library and other content collections in teaching, learning, and research; student roles in digital scholarship; space and place; and the institutionalization of digital scholarship. A fundamental concept of the workshop was the acknowledgement of the wide variety of models and services digital scholarship can encompass and the critical need for each institution to pursue digital scholarship services that are in line with its strengths and the needs of its particular constituencies.",
+    "subject": ["academic libraries", "digital humanities", "digital projects", "digital scholarhip", "library spaces", "research support"],
     "keywords": []
   },
   {
@@ -2494,8 +2494,8 @@
     "doi": "10.1021/acs.jpclett.8b03412",
     "year": 2018,
     "month": 12,
-    "abstract": "",
-    "subject": [],
+    "abstract": "Doped lead halide perovskite nanocrystals (NCs) have garnered significant attention due to their superior optoelectronic properties. Here, we report a synthesis of Cd-doped CsPbCl3 NCs by decoupling Pb- and Cl-precursors in a hot injection method. The resulting Cd-doped perovskite NCs manifest a dual-wavelength emission profile with the first reported example of Cd-dopant emission. By controlling Cd-dopant concentration, the emission profile can be tuned with a dopant emission quantum yield of up to 8%. A new secondary emission (∼610 nm) is induced by an energy transfer process from photoexcited hosts to Cd-dopants and a subsequent electronic transition from the excited state (3Eg) to the ground state (1A1g) of [CdCl6]4– units. This electronic transition matches well with a first-principles density functional theory calculation. Further, the optical behavior of Cd-doped CsPbCl3 NCs can be altered through postsynthetic anion-exchange reactions. Our studies present a new model system for doping chemistry studies in semiconductors for various optoelectronic applications.",
+    "subject": ["doping", "impurities", "ions", "perovskites", "physical and chemical processes"],
     "keywords": []
   },
   {
@@ -2506,7 +2506,7 @@
     "doi": "10.1088/1748-0221/13/11/p11008",
     "year": 2018,
     "month": 11,
-    "abstract": "",
+    "abstract": "This paper presents a hands-on introduction to revisiting a Geant simulated event by a unique pair of seeds numbers. The revisiting can be achieved in two steps: in the first step, for every event, we assign a pair of numbers as two seeds numbers of a random engine of Geant, \"RanecuEngine\", and save the two seeds numbers into a Ntuple. In the second step, for an interesting event, we revisit it by re-assigning the two seeds numbers of the event to the \"RanecuEngine\" and run the same simulative scripts again. This way, we can re-access all info of the interesting event, including the trajectory of the event if visualization is feasible on the machine. As an example, we show in details how to apply the technique to visualize interesting events on a local PC for a large-scale Geant simulation accomplished on a High Performance Computer (HPC) cluster at Brown University.",
     "subject": [],
     "keywords": []
   },
@@ -2518,7 +2518,7 @@
     "doi": "10.1371/journal.pone.0199915",
     "year": 2018,
     "month": 7,
-    "abstract": "",
+    "abstract": "Objectives\nIdentifying prescribing strategies that improve the efficiency of PrEP should increase its impact at the population level. This study identifies PrEP allocation criteria that most effectively reduce 10-year HIV incidence by 25%, in accordance with the US National HIV/AIDS Strategy’s goal for the proportionate reduction in new diagnoses.\n\nMethods\nWe used a discrete-time stochastic agent-based model to simulate several PrEP engagement strategies. The model represented MSM aged 15–74 in Rhode Island and was calibrated to statewide prevalence from 2009–2014. We simulated HIV transmission in the absence of PrEP and compared the following PrEP engagement scenarios: 1) allocation to the current patient population; 2) random allocation; 3) allocation to MSM with greater than 5 sexual partners in one year; 4) allocation to MSM with greater than 10 sexual partners in one year.\n\nFor each scenario and coverage level we estimated the number and proportion of infections averted and the person-years on PrEP per averted infection.\n\nResults\nIn 2014, HIV prevalence before PrEP implementation was between 4% and 5%. In the No PrEP scenario 826 new infections (95% simulation limits [SL]: 711, 955) occurred over 10 years, with an incidence rate of 3.51 per 1000 person-years (95% SL: 3.00, 4.08). Prevalence rose to 7.4% (95% SL: 6.7, 8.1). None of the PrEP scenarios reduced new HIV infections by 25% while covering less than 15% of the HIV-uninfected population. At 15% coverage, allocating PrEP to the current patient population, MSM with greater than 5 sexual partners in a year, and MSM with greater than 10 partners reduced new infections by at least 25%, requiring 161 (95% SL: 115, 289), 150 (95% SL: 107, 252), and 128 (95% SL: 100, 184) person-years on PrEP per averted infection, respectively.\n\nConclusions\nEngaging MSM with high numbers of sexual partners would improve the population-level impact and efficiency of PrEP in settings where PrEP coverage remains low. However, the sustained population-level PrEP coverage needed to reduce new infections by 25% is substantially higher than current levels of PrEP uptake.",
     "subject": [],
     "keywords": []
   },
@@ -2530,7 +2530,7 @@
     "doi": "10.1038/nature26157",
     "year": 2018,
     "month": 3,
-    "abstract": "",
+    "abstract": "A challenge in the treatment of Staphylococcus aureus infections is the high prevalence of methicillin-resistant S. aureus (MRSA) strains and the formation of non-growing, dormant ‘persister’ subpopulations that exhibit high levels of tolerance to antibiotics1,2,3 and have a role in chronic or recurrent infections4,5. As conventional antibiotics are not effective in the treatment of infections caused by such bacteria, novel antibacterial therapeutics are urgently required. Here we used a Caenorhabditis elegans–MRSA infection screen6 to identify two synthetic retinoids, CD437 and CD1530, which kill both growing and persister MRSA cells by disrupting lipid bilayers. CD437 and CD1530 exhibit high killing rates, synergism with gentamicin, and a low probability of resistance selection. All-atom molecular dynamics simulations demonstrated that the ability of retinoids to penetrate and embed in lipid bilayers correlates with their bactericidal ability. An analogue of CD437 was found to retain anti-persister activity and show an improved cytotoxicity profile. Both CD437 and this analogue, alone or in combination with gentamicin, exhibit considerable efficacy in a mouse model of chronic MRSA infection. With further development and optimization, synthetic retinoids have the potential to become a new class of antimicrobials for the treatment of Gram-positive bacterial infections that are currently difficult to cure.",
     "subject": [],
     "keywords": []
   },
@@ -2542,7 +2542,7 @@
     "doi": "10.1021/acs.jpcc.8b07063",
     "year": 2018,
     "month": 9,
-    "abstract": "",
+    "abstract": "We report on plasmon-enhanced hybrid organic–inorganic perovskite solar cells with methylammonium lead iodide (MAPbI3) as the active absorbing material. Three-dimensional finite-difference time-domain simulations were performed on perovskite solar cells that consist of perovskite films with varied thicknesses on top of corrugated gold electrodes with different light trapping geometries, such as arrays of nanoholes and nanodisks. The absorption within the perovskite and gold films was estimated by calculating the electric field at every mesh point within the simulation volume, which allowed for the calculation of the solar cell power conversion efficiency (PCE) as a function of relevant design parameters. Optimal nanostructure designs were obtained by systematically varying the geometry dimensions. The results show that 100 nm-thick perovskite films on top of corrugated gold electrodes can exhibit up to 52% increase in PCE compared to their flat counterparts (i.e., from 19.2% for a flat cell to 29.2% for an optimized nanocorrugated cell). Moreover, we show that a 150 nm-thick perovskite film cell with opportunely corrugated back metal contacts can exhibit a PCE value of 31.3%, which is comparable to that of a 400 nm-thick bulk-like cell (31.6%). These findings may pave the way for plasmon-enhanced high-performance perovskite solar cells with ultrathin absorbing layers.",
     "subject": [],
     "keywords": []
   },
@@ -2554,8 +2554,8 @@
     "doi": "10.1103/physrevd.98.062005",
     "year": 2018,
     "month": 9,
-    "abstract": "",
-    "subject": [],
+    "abstract": "Various dark matter models predict annual and diurnal modulations of dark matter interaction rates in Earth-based experiments as a result of the Earth’s motion in the halo. Observation of such features can provide generic evidence for detection of dark matter interactions. This paper reports a search for both annual and diurnal rate modulations in the LUX dark matter experiment using over 20 calendar months of data acquired between 2013 and 2016. This search focuses on electron recoil events at low energies, where leptophilic dark matter interactions are expected to occur and where the DAMA experiment has observed a strong rate modulation for over two decades. By using the innermost volume of the LUX detector and developing robust cuts and corrections, we obtained a stable event rate of 2.3±0.2  cpd/keVee/tonne, which is among the lowest in all dark matter experiments. No statistically significant annual modulation was observed in energy windows up to 26  keVee. Between 2 and 6  keVee, this analysis demonstrates the most sensitive annual modulation search up to date, with 9.2\u2062\uD835\uDF0E tension with the DAMA/LIBRA result. We also report no observation of diurnal modulations above 0.2  cpd/keVee/tonne amplitude between 2 and 6  keVee.",
+    "subject": ["dark matter", "particle dark matter", "weakly interacting massive particles", "calorimeters", "dark matter detectors", "scintillators", "time-projection chambers"],
     "keywords": []
   },
   {
@@ -2566,7 +2566,7 @@
     "doi": "10.1021/acs.jpclett.8b02733",
     "year": 2018,
     "month": 10,
-    "abstract": "",
+    "abstract": "Neutral molecules with sufficiently large dipole moments can bind electrons in diffuse nonvalence orbitals with most of their charge density far from the nuclei, forming so-called dipole-bound anions. Because long-range correlation effects play an important role in the binding of an excess electron and overall binding energies are often only on the order of 10s–100s of wave numbers, predictively modeling dipole-bound anions remains a challenge. Here, we demonstrate that quantum Monte Carlo methods can accurately characterize molecular dipole-bound anions with near-threshold dipole moments. We also show that correlated sampling Auxiliary Field Quantum Monte Carlo is particularly well-suited for resolving the fine energy differences between the neutral and anionic species. These results shed light on the fundamental limitations of quantum Monte Carlo methods and pave the way toward using them for the study of weakly bound species that are too large to model using traditional electron structure methods.",
     "subject": [],
     "keywords": []
   },
@@ -2578,7 +2578,7 @@
     "doi": "10.1016/j.calphad.2018.04.003",
     "year": 2018,
     "month": 6,
-    "abstract": "",
+    "abstract": "This paper describes an effort to organize the condensed phases thermodynamic data freely available in electronic form within the scientific literature through the design of a special-purpose search engine indexing data electronically available in the “thermodynamic database” (TDB) format. This focus is motivated by the fact that it is widely used and can be readily read or imported into most thermodynamic modeling software. This form of data also provides a rather complete thermodynamic description of a given system and thus enables researchers to generate any phase diagram cross-section of interest, a capability typically not available in traditional phase diagram handbooks. For convenience, users can quickly preview selected cross sections directly online. In designing this system, special emphasis was devoted to ensuring that the bibliographic references of the original data sources are transparently reported and to providing links to the original data sources, rather than the data itself, in order to enforce access rights. This effort was made possible by combining and building upon a number of key components, such as the CALPHAD journal's supplementary information section, the NIMS database, the NIST materials data repository, the Crossref bibliographic service, and various thermodynamic (OpenCalphad, ATAT) and graphical (gnuplot, XTK) software.",
     "subject": [],
     "keywords": []
   },
@@ -2590,7 +2590,7 @@
     "doi": "10.1021/acs.jctc.8b00569",
     "year": 2018,
     "month": 8,
-    "abstract": "",
+    "abstract": "We present an ab initio auxiliary field quantum Monte Carlo method for studying the electronic structure of molecules, solids, and model Hamiltonians at finite temperature. The algorithm marries the ab initio phaseless auxiliary field quantum Monte Carlo algorithm known to produce high accuracy ground state energies of molecules and solids with its finite temperature variant, long used by condensed matter physicists for studying model Hamiltonian phase diagrams, to yield a phaseless, ab initio finite temperature method. We demonstrate that the method produces internal energies within chemical accuracy of exact diagonalization results across a wide range of temperatures for H2O (STO-3G), C2 (STO-6G), the one-dimensional hydrogen chain (STO-6G), and the multiorbital Hubbard model. Our method effectively controls the phase problem through importance sampling, often even without invoking the phaseless approximation, down to temperatures at which the systems studied approach their ground states and may therefore be viewed as exact over wide temperature ranges. This technique embodies a versatile tool for studying the finite temperature phase diagrams of a plethora of systems whose properties cannot be captured by a Hubbard U term alone. Our results moreover illustrate that the severity of the phase problem for model Hamiltonians far exceeds that for many molecules at all of the temperatures studied.",
     "subject": [],
     "keywords": []
   },
@@ -2602,7 +2602,7 @@
     "doi": "10.1016/j.taap.2018.03.021",
     "year": 2018,
     "month": 5,
-    "abstract": "",
+    "abstract": "Bisphenol A (BPA) is a ubiquitous industrial chemical that has been identified as an endocrine disrupting compound (EDC). There is growing concern that early life exposures to EDCs, such as BPA, can adversely affect the male reproductive tract and function. This study was conducted as part of the Consortium Linking Academic and Regulatory Insights on BPA Toxicity (CLARITY-BPA) to further delineate the toxicities associated with continuous exposure to BPA from early gestation, and to comprehensively examine the elicited effects on testes and sperm. NCTR Sprague Dawley rat dams were gavaged from gestational day (GD) 6 until parturition, and their pups were directly gavaged daily from postnatal day (PND) 1 to 90 with BPA (2.5, 25, 250, 2500, 25,000, 250,000 μg/kg/d) or vehicle control. At PND 90, the testes and sperm were collected for evaluation.\n\nThe testes were histologically evaluated for altered germ cell apoptosis, sperm production, and altered spermiation. RNA and DNA isolated from sperm were assessed for elicited changes in global mRNA transcript abundance and altered DNA methylation. Effects of BPA were observed in changes in body, testis and epididymis weights only at the highest administered dose of BPA of 250,000 μg/kg/d. Genome-wide transcriptomic and epigenomic analyses failed to detect robust alterations in sperm mRNA and DNA methylation levels. These data indicate that prolonged exposure starting in utero to BPA over a wide range of levels has little, if any, impact on the testes and sperm molecular profiles of 90 day old rats as assessed by the histopathologic, morphometric, and molecular endpoints evaluated.",
     "subject": [],
     "keywords": []
   },
@@ -2614,7 +2614,7 @@
     "doi": "10.1007/s11340-018-0377-4",
     "year": 2018,
     "month": 3,
-    "abstract": "",
+    "abstract": "Digital image correlation (DIC) has become a widely utilized non-contact, full-field displacement measurement technique for obtaining accurate material kinematics. Despite the significant advances made to date, high resolution reconstruction of finite deformations for images with intrinsically low quality speckle patterns or poor signal-to-noise content has not been fully addressed. In particular, large image distortions imposed by materials undergoing finite deformations create significant challenges for most classical DIC approaches. To address this issue, this paper describes a new open source DIC algorithm (qDIC) that incorporates cross-correlation quality factors (q-factors), which are specifically designed to assess the quality of the reconstructed displacement estimate during the motion reconstruction process. A q-factor provides a robust assessment of the uniqueness and sharpness of the cross-correlation peak, and thus a quantitative estimate of the subset-based displacement measure per given image subset and level of applied deformation. We show that the incorporation of energy- and entropy-based q-factor metrics leads to substantially improved displacement predictions, lower noise floor, and reduced decorrelation even at significant levels of image distortion or poor speckle quality. Furthermore, we show that q-factors can be utilized as a quantitative metric for constructing a hybrid incremental-cumulative displacement correlation scheme for accurately resolving very large homogeneous and inhomogeneous deformations, even in the presence of significant image data loss.",
     "subject": [],
     "keywords": []
   },
@@ -2626,8 +2626,8 @@
     "doi": "10.1016/j.physd.2017.12.002",
     "year": 2018,
     "month": 3,
-    "abstract": "",
-    "subject": [],
+    "abstract": "The Evans function has been used extensively to study spectral stability of travelling-wave solutions in spatially extended partial differential equations. To compute Evans functions numerically, several shooting methods have been developed. In this paper, an alternative scheme for the numerical computation of Evans functions is presented that relies on an appropriate boundary-value problem formulation. Convergence of the algorithm is proved, and several examples, including the computation of eigenvalues for a multi-dimensional problem, are given. The main advantage of the scheme proposed here compared with earlier methods is that the scheme is linear and scalable to large problems.",
+    "subject": ["Evans function", "linear boundary value problem", "travelling waves"],
     "keywords": []
   },
   {
@@ -2638,8 +2638,8 @@
     "doi": "10.1093/gji/ggx506",
     "year": 2017,
     "month": 11,
-    "abstract": "",
-    "subject": [],
+    "abstract": "We characterize the spatial sensitivity of Sp converted waves to improve constraints on lateral variations in uppermost-mantle velocity gradients, such as the lithosphere–asthenosphere boundary (LAB) and the mid-lithospheric discontinuities. We use SPECFEM2D to generate 2-D scattering kernels that relate perturbations from an elastic half-space to Sp waveforms. We then show that these kernels can be well approximated using ray theory, and develop an approach to calculating kernels for layered background models. As proof of concept, we show that lateral variations in uppermost-mantle discontinuity structure are retrieved by implementing these scattering kernels in the first iteration of a conjugate-directions inversion algorithm. We evaluate the performance of this technique on synthetic seismograms computed for 2-D models with undulations on the LAB of varying amplitude, wavelength and depth. The technique reliably images the position of discontinuities with dips <35° and horizontal wavelengths >100–200 km. In cases of mild topography on a shallow LAB, the relative brightness of the LAB and Moho converters approximately agrees with the ratio of velocity contrasts across the discontinuities. Amplitude retrieval degrades at deeper depths. For dominant periods of 4 s, the minimum station spacing required to produce unaliased results is 5 km, but the application of a Gaussian filter can improve discontinuity imaging where station spacing is greater.",
+    "subject": ["Composition and structure of the mantle", "Inverse theory", "Waveform inversion", "Body waves", "Coda waves", "Computational seismology", "Wave scattering and diffraction"],
     "keywords": []
   },
   {
@@ -2650,7 +2650,7 @@
     "doi": "10.1209/0295-5075/123/58005",
     "year": 2018,
     "month": 10,
-    "abstract": "",
+    "abstract": "The expansion of a population into new habitat is a transient process that leaves its footprints in the genetic composition of the expanding population. How the structure of the environment shapes the population front and the evolutionary dynamics during such a range expansion is little understood. Here, we investigate the evolutionary dynamics of populations consisting of many selectively neutral genotypes expanding on curved surfaces. Using a combination of individual-based off-lattice simulations, geometrical arguments, and lattice-based stepping-stone simulations, we characterise the effect of individual bumps on an otherwise flat surface. Compared to the case of a range expansion on a flat surface, we observe a transient relative increase, followed by a decrease, in neutral genetic diversity at the population front. In addition, we find that individuals at the sides of the bump have a dramatically increased expected number of descendants, while their neighbours closer to the bump's centre are far less lucky. Both observations can be explained using an analytical description of straight paths (geodesics) on the curved surface. Complementing previous studies of heterogeneous flat environments, the findings here build our understanding of how complex environments shape the evolutionary dynamics of expanding populations.",
     "subject": [],
     "keywords": []
   },
@@ -2662,7 +2662,7 @@
     "doi": "10.1007/s10704-017-0235-x",
     "year": 2017,
     "month": 7,
-    "abstract": "",
+    "abstract": "The goal of this paper is to predict how the properties of the constituent phases and microstructure of dual phase steels (consisting of ferrite and martensite) influence their fracture resistance. We focus on two commercial low-carbon dual-phase (DP) steels with different ferrite/martensite phase volume fractions and properties. These steels exhibit similar flow behavior and tensile strength but different ductility. Our experimental observations show that the mechanism of ductile fracture in these two DP steels involves nucleation, growth and coalescence of micron scale voids. We thus employ microstructure-based finite element simulations to analyze the ductile fracture of these dual-phase steels. In the microstructure-based simulations, the individual phases of the DP steels are discretely modeled using elastic-viscoplastic constitutive relations for progressively cavitating solids. The flow behavior of the individual phases in both the steels are determined by homogenizing the microscale calibrated crystal plasticity constitutive relations from a previous study (Chen et al. in Acta Mater 65:133–149, 2014) while the damage parameters are determined by void cell model calculations. We then determine microstructural effects on ductile fracture of these steels by analyzing a series of representative volume elements with varying volume fractions, flow and damage behaviors of the constituent phases. Our simulations predict qualitative features of the ductile fracture process in good agreement with experimental observations for both DP steels. A ‘virtual’ DP microstructure, constructed by varying the microstructural parameters in the commercial steels, is predicted to have strength and ductile fracture resistance that is superior to the two commercial DP steels. Our simulations provide guidelines for improving the ductile fracture resistance of DP steels.",
     "subject": [],
     "keywords": []
   },
@@ -2674,8 +2674,8 @@
     "doi": "10.1016/j.astropartphys.2017.10.014",
     "year": 2018,
     "month": 1,
-    "abstract": "",
-    "subject": [],
+    "abstract": "The Large Underground Xenon (LUX) experiment operates at the Sanford Underground Research Facility to detect nuclear recoils from the hypothetical Weakly Interacting Massive Particles (WIMPs) on a liquid xenon target. Liquid xenon typically contains trace amounts of the noble radioactive isotopes 85Kr and 39Ar that are not removed by the in situ gas purification system. The decays of these isotopes at concentrations typical of research-grade xenon would be a dominant background for a WIMP search experiment. To remove these impurities from the liquid xenon, a chromatographic separation system based on adsorption on activated charcoal was built. 400 kg of xenon was processed, reducing the average concentration of krypton from 130 ppb to 3.5 ppt as measured by a cold-trap assisted mass spectroscopy system. A 50 kg batch spiked to 0.001 g/g of krypton was processed twice and reduced to an upper limit of 0.2 ppt.",
+    "subject": ["Xenon", "Krypton", "Adsorption", "Chromatography", "Gas Separation", "Dark Matter"],
     "keywords": []
   },
   {
@@ -2686,8 +2686,8 @@
     "doi": "10.1137/18m1186083",
     "year": 2018,
     "month": 1,
-    "abstract": "",
-    "subject": [],
+    "abstract": "Localization of messenger RNA (mRNA) at the vegetal cortex plays an important role in the early development of Xenopus laevis oocytes. While it is known that molecular motors are responsible for the transport of mRNA cargo along microtubules to the cortex, the mechanisms of localization remain unclear. We model cargo transport along microtubules using partial differential equations with spatially dependent rates. A theoretical analysis of reduced versions of our model predicts effective velocity and diffusion rates for the cargo and shows that randomness of microtubule networks enhances effective transport. A more complex model using parameters estimated from fluorescence microscopy data reproduces the time and spatial scales of mRNA localization observed in Xenopus oocytes, corroborates experimental hypotheses that anchoring may be necessary to achieve complete localization, and shows that anchoring of mRNA complexes actively transported to the cortex is most effective in achieving robust accumulation at the cortex.",
+    "subject": ["intracellular transport", "microtubules", "anchoring", "long-time dynamics", "reaction-diffusion model"],
     "keywords": []
   },
   {
@@ -2698,8 +2698,8 @@
     "doi": "10.1103/physrevd.97.102008",
     "year": 2018,
     "month": 5,
-    "abstract": "",
-    "subject": [],
+    "abstract": "The LUX experiment has performed searches for dark-matter particles scattering elastically on xenon nuclei, leading to stringent upper limits on the nuclear scattering cross sections for dark matter. Here, for results derived from 1.4×104  kg days of target exposure in 2013, details of the calibration, event-reconstruction, modeling, and statistical tests that underlie the results are presented. Detector performance is characterized, including measured efficiencies, stability of response, position resolution, and discrimination between electron- and nuclear-recoil populations. Models are developed for the drift field, optical properties, background populations, the electron- and nuclear-recoil responses, and the absolute rate of low-energy background events. Innovations in the analysis include in situ measurement of the photomultipliers’ response to xenon scintillation photons, verification of fiducial mass with a low-energy internal calibration source, and new empirical models for low-energy signal yield based on large-sample, in situ calibrations.",
+    "subject": ["dark matter detectors"],
     "keywords": []
   },
   {
@@ -2710,8 +2710,8 @@
     "doi": "10.1016/j.eml.2017.12.003",
     "year": 2018,
     "month": 3,
-    "abstract": "",
-    "subject": [],
+    "abstract": "Cellular packing of flexible nanofibers, including natural cytoskeletal microtubules, actin filaments, synthetic nanotubes and nanowires, is of fundamental interest to the understanding of a wide range of cell activities, including cell shape control, cell movement, cell division, and nano-cytotoxicity. Here, we perform molecular dynamics simulations and theoretical analysis to elucidate how the geometrical and mechanical properties of a flexible nanofiber influence its encapsulation within a lipid vesicle. Our analysis indicates that the packing morphology depends on the length and stiffness of the nanofiber, the initial configuration of the nanofiber–vesicle system and the pressure difference across the vesicle membrane. We establish a packing phase diagram based on three distinct vesicle morphologies in equilibrium, including a non-axisymmetric dumpling-shaped vesicle with a strongly curved nanofiber, a cherry-shaped vesicle with a tubular membrane protrusion enclosing a significant portion of the nanofiber, and an axisymmetric lemon-shaped vesicle with a pair of protruding tips induced by the encapsulated nanofiber.\n\n",
+    "subject": ["nanofiber packing", "nanofiber-vesicle interaction", "membrane protrusion", "nanofiber buckling", "cell shape", "molecular dynamics simulations"],
     "keywords": []
   },
   {
@@ -2722,7 +2722,7 @@
     "doi": "10.1016/j.jcp.2018.02.039",
     "year": 2018,
     "month": 6,
-    "abstract": "",
+    "abstract": "We simulate complex fluids by means of an on-the-fly coupling of the bulk rheology to the underlying microstructure dynamics. In particular, a continuum model of polymeric fluids is constructed without a pre-specified constitutive relation, but instead it is actively learned from mesoscopic simulations where the dynamics of polymer chains is explicitly computed. To couple the bulk rheology of polymeric fluids and the microscale dynamics of polymer chains, the continuum approach (based on the finite volume method) provides the transient flow field as inputs for the (mesoscopic) dissipative particle dynamics (DPD), and in turn DPD returns an effective constitutive relation to close the continuum equations. In this multiscale modeling procedure, we employ an active learning strategy based on Gaussian process regression (GPR) to minimize the number of expensive DPD simulations, where adaptively selected DPD simulations are performed only as necessary. Numerical experiments are carried out for flow past a circular cylinder of a non-Newtonian fluid, modeled at the mesoscopic level by bead-spring chains. The results show that only five DPD simulations are required to achieve an effective closure of the continuum equations at Reynolds number \n. Furthermore, when Re is increased to 100, only one additional DPD simulation is required for constructing an extended GPR-informed model closure. Compared to traditional message-passing multiscale approaches, applying an active learning scheme to multiscale modeling of non-Newtonian fluids can significantly increase the computational efficiency. Although the method demonstrated here obtains only a local viscosity from the polymer dynamics, it can be extended to other multiscale models of complex fluids whose macro-rheology is unknown.\n\n",
     "subject": [],
     "keywords": []
   },
@@ -2733,8 +2733,8 @@
     "url": "http://dx.doi.org/10.1007/13836_2018_58",
     "doi": "10.1007/13836_2018_58",
     "year": 2018,
-    "month": -1,
-    "abstract": "",
+    "month": 10,
+    "abstract": "The northern acorn barnacle (Semibalanus balanoides) is a robust system for the study of evolutionary processes in the intertidal. S. balanoides has a well-characterized ecology, a wide circumboreal distribution, and a life history characterized by tractable environmental stressors at various ecological scales. In this chapter, we discuss a variety of topics concerning the development of S. balanoides as a model in ecological genomics as well as inferences of demography and historical phylogeography. In addition, we introduce two novel genomic tools for S. balanoides: the complete mtDNA sequence and the second draft of the nuclear genome (Sbal2). Using these tools, we conducted a reanalysis of previously described mtDNA haplotypes, a and b, as well as genome-wide levels of variation and population structure across the North Atlantic using pooled sequencing approaches. Analyses of sequence data from older and more recent Illumina platforms revealed the effects of technical bias in the estimates of population genomic metrics. We found concordant levels of nuDNA and mtDNA genetic variation with no evidence of demographic bottlenecks. We observed low genome-wide F ST values across the Atlantic, suggesting a large number of ancestral polymorphisms and shared standing variation across the basin. Comparisons of genome-wide estimates of F ST with those derived from a discriminant analysis of principal components uncovered population-structure-informative SNPs. This suggests the existence of latent population structure across broad scales, despite the capacity for extensive planktonic dispersal. Noticeably, our samples collected in Iceland displayed higher similarity to North American populations than to the rest of Europe. We hypothesize this is consistent with a periglacial refugium in Iceland concomitant with a barrier to gene flow caused by the North Atlantic current. Lastly, we discuss challenges and opportunities for the improvement of genomic tools in barnacles. Our reflections in this area are easily generalizable to most natural populations.",
     "subject": [],
     "keywords": []
   },
@@ -2746,7 +2746,7 @@
     "doi": "10.1007/978-3-319-96842-1_4",
     "year": 2018,
     "month": -1,
-    "abstract": "",
+    "abstract": "A number of problems of interest in applied mathematics and biology involve the quantification of uncertainty in computational and real-world models. A recent approach to Bayesian uncertainty quantification using transitional Markov chain Monte Carlo (TMCMC) is extremely parallelizable and has opened the door to a variety of applications which were previously too computationally intensive to be practical. In this chapter, we first explore the machinery required to understand and implement Bayesian uncertainty quantification using TMCMC. We then describe dissipative particle dynamics, a computational particle simulation method which is suitable for modeling biological structures on the subcellular level, and develop an example simulation of a lipid membrane in fluid. Finally, we apply the algorithm to a basic model of uncertainty in our lipid simulation, effectively recovering a target set of parameters (along with distributions corresponding to the uncertainty) and demonstrating the practicality of Bayesian uncertainty quantification for complex particle simulations.",
     "subject": [],
     "keywords": []
   },
@@ -2758,7 +2758,7 @@
     "doi": "10.1016/j.bpj.2018.08.031",
     "year": 2018,
     "month": 10,
-    "abstract": "",
+    "abstract": "Patients with type 2 diabetes mellitus (T2DM) develop thrombotic abnormalities strongly associated with cardiovascular diseases. In addition to the changes of numerous coagulation factors such as elevated levels of thrombin and fibrinogen, the abnormal rheological effects of red blood cells (RBCs) and platelets flowing in blood are crucial in platelet adhesion and thrombus formation in T2DM. An important process contributing to the latter is the platelet margination. We employ the dissipative particle dynamics method to seamlessly model cells, plasma, and vessel walls. We perform a systematic study on RBC and platelet transport in cylindrical vessels by considering different cell shapes, sizes, and RBC deformabilities in healthy and T2DM blood, as well as variable flowrates and hematocrit. In particular, we use cellular-level RBC and platelet models with parameters derived from patient-specific data and present a sensitivity study. We find T2DM RBCs, which are less deformable compared to normal RBCs, lower the transport of platelets toward the vessel walls, whereas platelets with higher mean volume (often observed in T2DM) lead to enhanced margination. Furthermore, increasing the flowrate or hematocrit enhances platelet margination. We also investigated the effect of platelet shape and observed a nonmonotonic variation with the highest near-wall concentration corresponding to platelets with a moderate aspect ratio of 0.38. We examine the role of white blood cells (WBCs), whose count is increased notably in T2DM patients. We find that WBC rolling or WBC adhesion tends to decrease platelet margination due to hydrodynamic effects. To the best of our knowledge, such simulations of blood including all blood cells have not been performed before, and our quantitative findings can help separate the effects of hydrodynamic interactions from adhesive interactions and potentially shed light on the associated pathological processes in T2DM such as increased inflammatory response, platelet activation and adhesion, and ultimately thrombus formation.",
     "subject": [],
     "keywords": []
   },
@@ -2770,7 +2770,7 @@
     "doi": "10.2514/6.2018-3524",
     "year": 2018,
     "month": 6,
-    "abstract": "",
+    "abstract": "A combined experimental and numerical investigations were conducted to understand the effect of forcing by Dielectric-barrier-discharge (DBD) plasma actuators on the strength of the tip-leakage vortices formed in the tip-gap of a single NACA 65 airfoil. A proof-of-concept experiment was conducted, where the airfoil was mounted with variable tip gaps in the test-section of a suction-type wind tunnel. The objective was to understand the difference of three-dimensional (3D) forcing over regular two-dimensional (2D) actuation. The continuous 3D forcing was generated by using segmented DBD actuators, where the buried electrodes were designed to generate secondary vortices along the tip gap flow, and across the tip gap flow. The flow field was investigated experimentally by dynamic-pressure measurements, and by stereo-particle-image-velocimetry (SPIV). Numerical study was conducted by using RANS computations for different forcing configurations. With a tip gap of 2 mm and free stream velocity of 2.7 m/s, the strength of the tip leakage vortex was significantly attenuated for a blowing ratio of approximately 1. For the segmented forcing cases, the location of the tip-leakage vortex was altered, however no perceptible change in the strength of the vortex was observed compared to the steady forcing. Overall, the effectiveness of forcing decreased with increasing tip-gaps and free-stream velocity.",
     "subject": [],
     "keywords": []
   },
@@ -2782,8 +2782,8 @@
     "doi": "10.1016/j.calphad.2017.10.008",
     "year": 2018,
     "month": 3,
-    "abstract": "",
-    "subject": [],
+    "abstract": "The CALPHAD framework is built on assumption that all phases have a well-defined free energy over all accessible composition, temperature and pressure conditions. Unfortunately, it is common for phases to exhibit mechanical instabilities in at least some range of conditions, thus precluding direct experimental measurements and hindering computational efforts. A pragmatic solution has often been to extrapolate free energies from stable region into the unstable regions, but extrapolations from different systems that share a common phase may not agree and extrapolated free energies can unintentionally lie below the free energy of stable phases. Computational approaches that aim to directly calculate the free energy of unstable phases offer a promising avenue to address these issues. Among them, the recently proposed “inflection detection” scheme lies on a strong theoretical footing. We provide further support for this approach by demonstrating that it yield free energies that agree very well with the widely used SGTE (Scientific Group Thermodata Europe) data for pure elements. This finding suggest that it may be possible to get the best of both worlds: obtain a theoretically justified definition of the free energy of mechanically unstable phases and preserve much of existing empirical standards for the assignments of such free energies.",
+    "subject": ["mechanical instability", "inflection point", "first-principles calculations"],
     "keywords": []
   },
   {
@@ -2794,7 +2794,7 @@
     "doi": "10.1088/1361-6463/aabf79",
     "year": 2018,
     "month": 5,
-    "abstract": "",
+    "abstract": "To understand the mechanics of cellular packing of two-dimensional (2D) materials, we perform systematic molecular dynamics simulations and theoretical analysis to investigate the packing of a flexible circular sheet in a spherical vesicle and the 2D packing problem of a strip in a cylindrical vesicle. Depending on the system dimensions and the bending rigidity ratio between the confined sheet and the vesicle membrane, a variety of packing morphologies are observed, including a conical shape, a shape of three-fold symmetry, a cylindrically curved shape, an axisymmetrically buckled shape, as well as the initial circular shape. A set of buckling analyses lead to phase diagrams of the packing morphologies of the encapsulated sheets. These results may have important implications on the mechanism of intracellular packing and toxicity of 2D materials.",
     "subject": [],
     "keywords": []
   },
@@ -2806,7 +2806,7 @@
     "doi": "10.1016/j.jmps.2017.12.006",
     "year": 2018,
     "month": 3,
-    "abstract": "",
+    "abstract": "Mechanical characterization of soft materials at high strain-rates is challenging due to their high compliance, slow wave speeds, and non-linear viscoelasticity. Yet, knowledge of their material behavior is paramount across a spectrum of biological and engineering applications from minimizing tissue damage in ultrasound and laser surgeries to diagnosing and mitigating impact injuries. To address this significant experimental hurdle and the need to accurately measure the viscoelastic properties of soft materials at high strain-rates (103–108 s\n), we present a minimally invasive, local 3D microrheology technique based on inertial microcavitation. By combining high-speed time-lapse imaging with an appropriate theoretical cavitation framework, we demonstrate that this technique has the capability to accurately determine the general viscoelastic material properties of soft matter as compliant as a few kilopascals. Similar to commercial characterization algorithms, we provide the user with significant flexibility in evaluating several constitutive laws to determine the most appropriate physical model for the material under investigation. Given its straightforward implementation into most current microscopy setups, we anticipate that this technique can be easily adopted by anyone interested in characterizing soft material properties at high loading rates including hydrogels, tissues and various polymeric specimens.",
     "subject": [],
     "keywords": []
   },
@@ -2817,8 +2817,8 @@
     "url": "http://dx.doi.org/10.1039/c7nr01193h",
     "doi": "10.1039/c7nr01193h",
     "year": 2017,
-    "month": -1,
-    "abstract": "",
+    "month": 4,
+    "abstract": "This letter demonstrates a simple method to achieve high-yields of 1H semiconducting MoS2 monolayers in concentrated, colloidally-stable aqueous suspension. The method is based on oxidation suppression during the hydrothermal processing step used for metal-to-semiconductor phase reversion. Accompanying DFT calculations on elementary steps in the MoS2 wet oxidation reaction suggest that a two-site corrosion mechanism is responsible for the observed high reactivity and low stability of 1T metallic MoS2.",
     "subject": [],
     "keywords": []
   },
@@ -2829,8 +2829,8 @@
     "url": "http://dx.doi.org/10.4172/2161-0703.1000265",
     "doi": "10.4172/2161-0703.1000265",
     "year": 2017,
-    "month": -1,
-    "abstract": "",
+    "month": 11,
+    "abstract": "An amino acid position with maximum Shannon information entropy and maximum cumulative mutual information is identified in Zika virus polyprotein. This amino acid position is used to sort the subset of Zika virus polyprotein mutations found exclusively in viruses isolated from human hosts but not from vector Aedes mosquitos. The identified mutational amino acid position is a component of a 20-mer peptide in the NS1 protein that has been reported with putative epitopic activity by Freire et al. It is suggested that the observed dual maxima bioinformatic parameters reported here for an exclusively human mutational site support the proposed function of that site in immunological activity.",
     "subject": [],
     "keywords": []
   },
@@ -2842,7 +2842,7 @@
     "doi": "10.1038/ng.3837",
     "year": 2017,
     "month": 4,
-    "abstract": "",
+    "abstract": "The lack of tools to identify causative variants from sequencing data greatly limits the promise of precision medicine. Previous studies suggest that one-third of disease-associated alleles alter splicing. We discovered that the alleles causing splicing defects cluster in disease-associated genes (for example, haploinsufficient genes). We analyzed 4,964 published disease-causing exonic mutations using a massively parallel splicing assay (MaPSy), which showed an 81% concordance rate with splicing in patient tissue. Approximately 10% of exonic mutations altered splicing, mostly by disrupting multiple stages of spliceosome assembly. We present a large-scale characterization of exonic splicing mutations using a new technology that facilitates variant classification and keeps pace with variant discovery.",
     "subject": [],
     "keywords": []
   },
@@ -2854,8 +2854,8 @@
     "doi": "10.1103/physrevlett.118.251302",
     "year": 2017,
     "month": 6,
-    "abstract": "",
-    "subject": [],
+    "abstract": "We present experimental constraints on the spin-dependent WIMP-nucleon elastic cross sections from the total 129.5  kg yr exposure acquired by the Large Underground Xenon experiment (LUX), operating at the Sanford Underground Research Facility in Lead, South Dakota (USA). A profile likelihood ratio analysis allows 90% C.L. upper limits to be set on the WIMP-neutron (WIMP-proton) cross section of \uD835\uDF0E\uD835\uDC5B=1.6×10−41  cm2 (\uD835\uDF0E\uD835\uDC5D=5×10−40  cm2) at 35  GeV \uD835\uDC50−2, almost a sixfold improvement over the previous LUX spin-dependent results. The spin-dependent WIMP-neutron limit is the most sensitive constraint to date.",
+    "subject": ["particle dark matter", "weakly interacting massive particles", "dark matter detectors"],
     "keywords": []
   },
   {
@@ -2866,7 +2866,7 @@
     "doi": "10.1103/physrevd.96.112009",
     "year": 2017,
     "month": 12,
-    "abstract": "",
+    "abstract": "LUX was the first dark matter experiment to use a  \n83\u2062m\n Kr \n  calibration source. In this paper, we describe the source preparation and injection. We also present several  \n83\u2062m\n Kr \n  calibration applications in the context of the 2013 LUX exposure, including the measurement of temporal and spatial variation in scintillation and charge signal amplitudes, and several methods to understand the electric field within the time projection chamber.",
     "subject": [],
     "keywords": []
   },
@@ -2878,8 +2878,8 @@
     "doi": "10.1021/acs.jpclett.7b01274",
     "year": 2017,
     "month": 7,
-    "abstract": "",
-    "subject": [],
+    "abstract": "We have observed time-resolved, structural dynamics of a coherent vibrational wavepacket in Rydberg-excited N-methyl morpholine, a molecule with 48 internal degrees of freedom. The molecular structure was established by associating the time-dependent Rydberg electron binding energy, obtained from time-resolved photoionization–photoelectron spectroscopy, to the molecular structure using self-interaction corrected density functional calculations. Optical excitation at 226 nm launches an oscillatory wavepacket in the amine umbrella coordinate with a 650 fs period. Even though the Franck–Condon excitation is at an angle of 17°, the wavepacket settles into an oscillation between 4° and −10° within a fraction of a vibrational period and then dephases with a time constant of 750 fs.",
+    "subject": ["binding energy", "molecular structure", "molecules", "oscillation", "quantum mechanics"],
     "keywords": []
   },
   {
