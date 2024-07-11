@@ -131,8 +131,7 @@ export const usePublicationsCollection = () => {
     const unsubscribe = onSnapshot(
       query(
         collection(db, publicationsCollection),
-        orderBy('updatedAt', 'desc'),
-        limit(100) // TODO: TEMPORARY. Limiting right now. Set up pagination?
+        orderBy('updatedAt', 'desc')
       ),
       (snapshot) => {
         const publications = snapshot.docs.map((doc) => doc.data());
