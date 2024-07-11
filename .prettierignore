@@ -23,7 +23,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-keycloak.json
+firebase.json
 
 # checkpoints
 .ipynb_checkpoints

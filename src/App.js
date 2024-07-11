@@ -1,31 +1,26 @@
-import React, { Component } from "react";
-import Navbar from "./components/react-ccv-components/Navbar";
-import Footer from "./components/react-ccv-components/Footer";
-import { BrowserRouter, Route } from "react-router-dom";
+import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Navbar } from './components/react-ccv-components/Navbar.tsx';
+import Footer from './components/react-ccv-components/Footer';
 
-// import components
-import ContentPage from "./components/ContentPage";
-import AddPub from "./components/AddPub";
+import { ContentPage } from './components/ContentPage';
+import { useAuthStateChanged, usePublicationsCollection } from './utils/firebase.ts';
 
-class App extends Component {
-  render() {
-    return (
-      <div aria-live="polite" aria-busy={this.props.loading}>
-        <Navbar />
-        <div className="App">
-          <BrowserRouter>
-            <main>
-              <div className="AddPub">
-                <Route path="/addpub" component={AddPub} />
-              </div>
-              <Route exact path="/" component={ContentPage} />
-            </main>
-          </BrowserRouter>
-          <Footer />
-        </div>
-      </div>
-    );
-  }
+export function App() {
+  useAuthStateChanged();
+  usePublicationsCollection();
+
+  return (
+    <div aria-live="polite">
+      <Navbar />
+      <BrowserRouter>
+        <main className="main">
+          <Routes>
+            <Route exact path="/" element={<ContentPage />} />
+          </Routes>
+        </main>
+      </BrowserRouter>
+      <Footer />
+    </div>
+  );
 }
-
-export default App;
