@@ -11,6 +11,9 @@ import {
   query,
   orderBy,
   Timestamp,
+  and,
+  where,
+  QueryConstraint,
 } from 'firebase/firestore';
 import {
   getAuth,
@@ -21,7 +24,7 @@ import {
 } from 'firebase/auth';
 
 import { setPublications, setUser as setUserState } from '../store/slice/appState';
-import { User } from '../../types';
+import { PublicationFilters, User } from '../../types';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBlu1GzA5jvM6mh6taIcjtNgcSEVxlxa1Q',
@@ -143,6 +146,40 @@ export const usePublicationsCollection = () => {
       unsubscribe();
     };
   }, [dispatch]);
+};
+
+export const makePubsSnapshot = (
+  setPubs: (publications) => void,
+  filterOpts: PublicationFilters
+) => {
+  const {
+    filters,
+    orderBy: { field, dir },
+  } = filterOpts;
+  const orderConstraint = orderBy(field, dir);
+  const constraints = [
+    filters.title.length !== 0
+      ? where('tokens.title', 'array-contains-any', filters.title)
+      : undefined,
+    filters.author.length !== 0
+      ? where('tokens.author', 'array-contains-any', filters.author)
+      : undefined,
+    filters.year.min !== undefined ? where('year', '>=', filters.year.min) : undefined,
+    filters.year.max !== undefined ? where('year', '<=', filters.year.max) : undefined,
+  ].filter((constraint) => constraint !== undefined);
+  const queryConditions = (
+    constraints.length === 0 ? [orderConstraint] : [and(...constraints), orderConstraint]
+  ) as QueryConstraint[];
+  return onSnapshot(
+    query(collection(db, publicationsCollection), ...queryConditions),
+    (snapshot) => {
+      const publications = snapshot.docs.map((doc) => doc.data());
+      setPubs(publications);
+    },
+    (error) => {
+      throw error;
+    }
+  );
 };
 
 /**

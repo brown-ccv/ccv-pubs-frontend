@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+//import { useSelector } from 'react-redux';
 
 import {
   ColumnFiltersState,
@@ -26,12 +26,12 @@ import Form from 'react-bootstrap/Form';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowDownWideShort, faArrowUpShortWide } from '@fortawesome/free-solid-svg-icons';
 
-import { selectPublications } from '../store/slice/appState';
 import { Publication } from '../../types';
+import { usePublicationContext } from '../contexts/PublicationsContext.tsx';
 import { ColumnFilter } from './ColumnFilter.tsx';
 
 export function PublicationsTable() {
-  const publications = useSelector(selectPublications);
+  const { pubs: publications } = usePublicationContext();
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
   const [pagination, setPagination] = React.useState<PaginationState>({
     pageIndex: 0,

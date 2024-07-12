@@ -4,23 +4,25 @@ import { Navbar } from './components/react-ccv-components/Navbar.tsx';
 import Footer from './components/react-ccv-components/Footer';
 
 import { ContentPage } from './components/ContentPage';
-import { useAuthStateChanged, usePublicationsCollection } from './utils/firebase.ts';
+import { useAuthStateChanged } from './utils/firebase.ts';
+import { PublicationsProvider } from './contexts/PublicationsContext.tsx';
 
 export function App() {
   useAuthStateChanged();
-  usePublicationsCollection();
 
   return (
-    <div aria-live="polite">
-      <Navbar />
-      <BrowserRouter>
-        <main className="main">
-          <Routes>
-            <Route exact path="/" element={<ContentPage />} />
-          </Routes>
-        </main>
-      </BrowserRouter>
-      <Footer />
-    </div>
+    <PublicationsProvider>
+      <div aria-live="polite">
+        <Navbar />
+        <BrowserRouter>
+          <main className="main">
+            <Routes>
+              <Route exact path="/" element={<ContentPage />} />
+            </Routes>
+          </main>
+        </BrowserRouter>
+        <Footer />
+      </div>
+    </PublicationsProvider>
   );
 }
