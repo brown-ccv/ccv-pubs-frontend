@@ -1,5 +1,4 @@
 import React from 'react';
-//import { useSelector } from 'react-redux';
 
 import {
   ColumnFiltersState,
@@ -12,7 +11,6 @@ import {
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  PaginationState,
   useReactTable,
 } from '@tanstack/react-table';
 
@@ -34,15 +32,14 @@ import { ColumnFilter } from './ColumnFilter.tsx';
 export function PublicationsTable() {
   const {
     pubs,
-    setters: { setAuthorFilters, setTitleFilters, setYearMax, setYearMin },
+    count,
+    pagination,
+    setters: { setAuthorFilters, setTitleFilters, setYearMax, setYearMin, setPagination },
   } = usePublicationContext();
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
-  const [pagination, setPagination] = React.useState<PaginationState>({
-    pageIndex: 0,
-    pageSize: 5,
-  });
 
   React.useEffect(() => {
+    console.log({ columnFilters });
     const authorFilters = columnFilters.filter((filter) => filter.id === 'author').pop();
     const titleFilters = columnFilters.filter((filter) => filter.id === 'title').pop();
     const yearFilters = columnFilters.filter((filter) => filter.id === 'year').pop();
@@ -90,10 +87,13 @@ export function PublicationsTable() {
     },
     columnResizeMode: 'onChange',
     onColumnFiltersChange: setColumnFilters,
-    onPaginationChange: setPagination,
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     getSortedRowModel: getSortedRowModel(),
+    manualFiltering: true,
+    manualPagination: true,
+    onPaginationChange: setPagination as any,
+    pageCount: Math.ceil(count / pagination.pageSize),
     getPaginationRowModel: getPaginationRowModel(),
     getFacetedRowModel: getFacetedRowModel(),
     getFacetedUniqueValues: getFacetedUniqueValues(),

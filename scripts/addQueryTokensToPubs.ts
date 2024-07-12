@@ -16,13 +16,11 @@ function setup() {
     process.env.GOOGLE_APPLICATION_CREDENTIALS = SERVICE_ACCOUNT_PATH;
     console.log('Using Service Account Json');
   } else {
-    console.log(
-      'Unable to find Service Account Json. Aborting...'
-    );
+    console.log('Unable to find Service Account Json. Aborting...');
     process.exit(-1);
   }
 
-  admin.initializeApp({ credential: applicationDefault(), projectId: "ccv-pubs" });
+  admin.initializeApp({ credential: applicationDefault(), projectId: 'ccv-pubs' });
   const db = admin.firestore();
   return { admin, db };
 }
@@ -53,7 +51,7 @@ async function updatePubsWithTokens(db: DB, pubs: Pubs) {
 async function main() {
   const { db } = setup();
   const pubs = await getPubs(db);
-  console.log("fetched", pubs.length, "publications");
+  console.log('fetched', pubs.length, 'publications');
   await updatePubsWithTokens(db, pubs);
   console.log('Done.');
 }

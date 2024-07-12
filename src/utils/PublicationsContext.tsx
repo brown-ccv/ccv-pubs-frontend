@@ -1,5 +1,13 @@
 import React from 'react';
-import { Publication, PublicationOrderFields, PublicationContextData } from '../../types';
+import { PaginationState } from '@tanstack/react-table';
+import {
+  Publication,
+  PublicationOrderFields,
+  PublicationContextData,
+  PublicationOrderOpts,
+  PublicationOrderDirs,
+  SnapshotDocs,
+} from '../../types';
 import { makePubsSnapshot } from './firebase.ts';
 
 const setterStub = () => {
@@ -8,6 +16,7 @@ const setterStub = () => {
 
 export const PublicationContext = React.createContext({
   pubs: [],
+  count: 0,
   filters: {
     title: [],
     author: [],
@@ -26,19 +35,30 @@ export const PublicationContext = React.createContext({
     setYearMin: setterStub,
     setYearMax: setterStub,
     setOrderBy: setterStub,
+    setPagination: setterStub,
   },
+  pagination: { pageIndex: 0, pageSize: 10 },
 } as PublicationContextData);
 
 export function PublicationsProvider({ children }: React.PropsWithChildren) {
   const [pubs, setPubs] = React.useState<Publication[]>([]);
+  const [pubsTotal, setPubsTotal] = React.useState<number>(0);
+  const [pubCheckpoints, setPubsCheckpoints] = React.useState<SnapshotDocs>([]);
   const [titleFilters, setTitleFilters] = React.useState<string[]>([]);
   const [authorFilters, setAuthorFilters] = React.useState<string[]>([]);
   const [yearMin, setYearMin] = React.useState<number | undefined>();
   const [yearMax, setYearMax] = React.useState<number | undefined>();
   const [orderByField, setOrderByField] = React.useState<PublicationOrderFields>('title');
-  const [orderByDir, setOrderByDir] = React.useState<'asc' | 'desc'>('desc');
+  const [orderByDir, setOrderByDir] = React.useState<PublicationOrderDirs>('desc');
+  const [pagination, setPagination] = React.useState<PaginationState>({
+    pageIndex: 0,
+    pageSize: 10,
+  });
+
+  console.log({ pagination, pubsTotal });
+
   const setOrderBy = React.useCallback(
-    ({ field, dir }: { field: PublicationOrderFields; dir: 'asc' | 'desc' }) => {
+    ({ field, dir }: PublicationOrderOpts) => {
       setOrderByField(field);
       setOrderByDir(dir);
     },
@@ -65,6 +85,7 @@ export function PublicationsProvider({ children }: React.PropsWithChildren) {
           setYearMin,
           setYearMax,
           setOrderBy,
+          setPagination,
         },
       }) as Exclude<PublicationContextData, 'pubs'>,
     [
@@ -79,15 +100,36 @@ export function PublicationsProvider({ children }: React.PropsWithChildren) {
       setYearMin,
       setYearMax,
       setOrderBy,
+      setPagination,
     ]
   );
 
+  /**
+   * Whenever the filter properties change, reset the page index to zero...?
+   */
   React.useEffect(() => {
-    console.log({ filters: filterData.filters });
-    return makePubsSnapshot(setPubs, filterData);
+    setPubsCheckpoints([]);
+    setPagination({ ...pagination, pageIndex: 0 });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterData]);
 
-  const contextData = React.useMemo(() => ({ ...filterData, pubs }), [pubs, filterData]);
+  React.useEffect(() => {
+    console.log({ filters: filterData.filters });
+    return makePubsSnapshot(
+      setPubs,
+      setPubsTotal,
+      filterData,
+      pagination,
+      pubCheckpoints,
+      setPubsCheckpoints
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filterData, pagination]);
+
+  const contextData = React.useMemo(
+    () => ({ ...filterData, pubs, count: pubsTotal, pagination }),
+    [pubs, pagination, filterData, pubsTotal]
+  );
 
   return <PublicationContext.Provider value={contextData}>{children}</PublicationContext.Provider>;
 }

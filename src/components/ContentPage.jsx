@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux';
 import { selectUser } from '../store/slice/appState';
 import { usePublicationContext } from '../utils/PublicationsContext.tsx';
 import { PublicationsTable } from './PublicationsTable.tsx';
-import Spinner from './Spinner';
 import { AddPublicationModal } from './AddPublicationModal.tsx';
 import { YearChart } from './YearChart.tsx';
 
@@ -26,22 +25,15 @@ export function ContentPage() {
         <h1 className="mx-2">Publications</h1>
       </div>
 
-      <Spinner loading={pubs.length === 0} className="spinner" size={100} />
+      <PublicationsTable />
 
-      {pubs.length !== 0 && (
-        <>
-          <PublicationsTable />
-
-          {/* TODO: Word Cloud #58 */}
-          <h2 className="title pt-4 m-4 is-2 text-center">
-            What are these publications all about?
-          </h2>
-          {/*<div className="viz d-flex justify-content-center pt-5">*/}
-          {/*  <WordCloud />*/}
-          <YearChart />
-          {/*</div>*/}
-        </>
-      )}
+      {/* TODO: Word Cloud #58 */}
+      <h2 className="title pt-4 m-4 is-2 text-center">What are these publications all about?</h2>
+      {/*<div className="viz d-flex justify-content-center pt-5">*/}
+      {/*  <WordCloud />*/}
+      <YearChart />
+      {/*</div>*/}
+      {pubs.length !== 0 && <></>}
     </div>
   );
 }

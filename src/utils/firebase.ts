@@ -14,6 +14,9 @@ import {
   and,
   where,
   QueryConstraint,
+  getCountFromServer,
+  limit,
+  startAfter,
 } from 'firebase/firestore';
 import {
   getAuth,
@@ -23,8 +26,9 @@ import {
   signOut,
 } from 'firebase/auth';
 
+import { PaginationState } from '@tanstack/react-table';
 import { setPublications, setUser as setUserState } from '../store/slice/appState';
-import { PublicationFilters, User } from '../../types';
+import { PublicationFilters, SnapshotDocs, User } from '../../types';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBlu1GzA5jvM6mh6taIcjtNgcSEVxlxa1Q',
@@ -150,7 +154,11 @@ export const usePublicationsCollection = () => {
 
 export const makePubsSnapshot = (
   setPubs: (publications) => void,
-  filterOpts: PublicationFilters
+  setCount: (count: number) => void,
+  filterOpts: PublicationFilters,
+  pagination: PaginationState,
+  pubCheckpoints: SnapshotDocs,
+  setPubsCheckpoints: (newCheckpoints: SnapshotDocs) => void
 ) => {
   const {
     filters,
@@ -170,11 +178,30 @@ export const makePubsSnapshot = (
   const queryConditions = (
     constraints.length === 0 ? [orderConstraint] : [and(...constraints), orderConstraint]
   ) as QueryConstraint[];
-  return onSnapshot(
-    query(collection(db, publicationsCollection), ...queryConditions),
+  getCountFromServer(query(collection(db, publicationsCollection), ...queryConditions)).then(
     (snapshot) => {
+      setCount(snapshot.data().count);
+    }
+  );
+  return onSnapshot(
+    query(
+      collection(db, publicationsCollection),
+      ...queryConditions,
+      ...(pubCheckpoints[pagination.pageIndex] === undefined
+        ? [limit(pagination.pageSize)]
+        : [limit(pagination.pageSize), startAfter(pubCheckpoints[pagination.pageIndex])])
+    ),
+    (snapshot) => {
+      const newCheckpoints = [...pubCheckpoints];
+      newCheckpoints[pagination.pageIndex] = snapshot.docs[0];
+      newCheckpoints[pagination.pageIndex + 1] = snapshot.docs[snapshot.docs.length - 1];
+      setPubsCheckpoints(newCheckpoints);
       const publications = snapshot.docs.map((doc) => doc.data());
       console.log({ publications });
+      /**
+       * QueryDocumentSnapshot<DocumentData, DocumentData>
+       * QueryDocumentSnapshot<DocumentData, DocumentData>
+       */
       setPubs(publications);
     },
     (error) => {
