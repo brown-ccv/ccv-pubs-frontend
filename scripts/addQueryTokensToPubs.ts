@@ -17,11 +17,12 @@ function setup() {
     console.log('Using Service Account Json');
   } else {
     console.log(
-      'Unable to find Service Account Json. Script will fail to write to the remote database.'
+      'Unable to find Service Account Json. Aborting...'
     );
+    process.exit(-1);
   }
 
-  admin.initializeApp({ credential: applicationDefault() });
+  admin.initializeApp({ credential: applicationDefault(), projectId: "ccv-pubs" });
   const db = admin.firestore();
   return { admin, db };
 }
@@ -39,11 +40,12 @@ async function updatePubsWithTokens(db: DB, pubs: Pubs) {
   await Promise.all(
     pubs.map((pub) => {
       const pubData = pub.data() as { title: string; author: string; updatedAt: number };
-      return db.doc(`publications/${pub.id}`).set({
+      const newData = {
         ...pubData,
         updatedAt: Timestamp.fromDate(new Date(pubData.updatedAt)),
         tokens: createPublicationTokens(pubData),
-      });
+      };
+      return db.doc(`publications/${pub.id}`).set(newData);
     })
   );
 }
@@ -51,6 +53,7 @@ async function updatePubsWithTokens(db: DB, pubs: Pubs) {
 async function main() {
   const { db } = setup();
   const pubs = await getPubs(db);
+  console.log("fetched", pubs.length, "publications");
   await updatePubsWithTokens(db, pubs);
   console.log('Done.');
 }

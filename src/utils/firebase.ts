@@ -194,6 +194,7 @@ export const cleanTokenString = (tokenString: string) => {
     .replace(',', '')
     .replace(':', '')
     .replace(';', '')
+    .replace('-', ' ')
     .replace("'", '')
     .replace('"', '')
     .split(' ');
@@ -207,7 +208,7 @@ export const createPublicationTokens = ({ title, author }: { title: string; auth
   return {
     title: cleanTokenString(title),
     // It's common to have middle initials -- these dont narrow a search field much, and are trimmed for the
-    author: cleanTokenString(author).filter((token) => token.length <= 1),
+    author: cleanTokenString(author).filter((token) => token.length > 1),
   };
 };
 
