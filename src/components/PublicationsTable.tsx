@@ -92,6 +92,7 @@ export function PublicationsTable() {
     getSortedRowModel: getSortedRowModel(),
     manualFiltering: true,
     manualPagination: true,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     onPaginationChange: setPagination as any,
     pageCount: Math.ceil(count / pagination.pageSize),
     getPaginationRowModel: getPaginationRowModel(),
