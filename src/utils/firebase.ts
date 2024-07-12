@@ -174,6 +174,7 @@ export const makePubsSnapshot = (
     query(collection(db, publicationsCollection), ...queryConditions),
     (snapshot) => {
       const publications = snapshot.docs.map((doc) => doc.data());
+      console.log({ publications });
       setPubs(publications);
     },
     (error) => {
@@ -182,16 +183,12 @@ export const makePubsSnapshot = (
   );
 };
 
-/**
- * Format title and author as searchable arrays.
- * @param publication
- */
-export const createPublicationTokens = ({ title, author }: { title: string; author: string }) => {
+export const cleanTokenString = (tokenString: string) => {
   /**
-   * Remove . , ' " : ;
-   * Then, split on space.
+   * Query strings are converted to lower case and split on spaces, after the following characters are removed:
+   *    . , : ; ' "
    */
-  const titleTokens = title
+  return tokenString
     .toLowerCase()
     .replace('.', '')
     .replace(',', '')
@@ -200,18 +197,18 @@ export const createPublicationTokens = ({ title, author }: { title: string; auth
     .replace("'", '')
     .replace('"', '')
     .split(' ');
-  const authorTokens = author
-    .toLowerCase()
-    .replace('.', '')
-    .replace(',', '')
-    .replace(':', '')
-    .replace(';', '')
-    .replace('"', '')
-    .replace("'", '')
-    .split(' ')
+};
+
+/**
+ * Format title and author as searchable arrays.
+ * @param publication
+ */
+export const createPublicationTokens = ({ title, author }: { title: string; author: string }) => {
+  return {
+    title: cleanTokenString(title),
     // It's common to have middle initials -- these dont narrow a search field much, and are trimmed for the
-    .filter((token) => token.length <= 1);
-  return { title: titleTokens, author: authorTokens };
+    author: cleanTokenString(author).filter((token) => token.length <= 1),
+  };
 };
 
 export const addPublication = async (publication) => {

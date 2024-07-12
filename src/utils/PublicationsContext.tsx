@@ -1,6 +1,6 @@
 import React from 'react';
-import { makePubsSnapshot } from '../utils/firebase';
 import { Publication, PublicationOrderFields, PublicationContextData } from '../../types';
+import { makePubsSnapshot } from './firebase.ts';
 
 const setterStub = () => {
   throw new Error('Function not implemented.');
@@ -83,6 +83,7 @@ export function PublicationsProvider({ children }: React.PropsWithChildren) {
   );
 
   React.useEffect(() => {
+    console.log({ filters: filterData.filters });
     return makePubsSnapshot(setPubs, filterData);
   }, [filterData]);
 

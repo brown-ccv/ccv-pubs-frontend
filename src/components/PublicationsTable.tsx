@@ -27,16 +27,37 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowDownWideShort, faArrowUpShortWide } from '@fortawesome/free-solid-svg-icons';
 
 import { Publication } from '../../types';
-import { usePublicationContext } from '../contexts/PublicationsContext.tsx';
+import { usePublicationContext } from '../utils/PublicationsContext.tsx';
+import { cleanTokenString } from '../utils/firebase.ts';
 import { ColumnFilter } from './ColumnFilter.tsx';
 
 export function PublicationsTable() {
-  const { pubs: publications } = usePublicationContext();
+  const {
+    pubs,
+    setters: { setAuthorFilters, setTitleFilters, setYearMax, setYearMin },
+  } = usePublicationContext();
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
   const [pagination, setPagination] = React.useState<PaginationState>({
     pageIndex: 0,
     pageSize: 5,
   });
+
+  React.useEffect(() => {
+    const authorFilters = columnFilters.filter((filter) => filter.id === 'author').pop();
+    const titleFilters = columnFilters.filter((filter) => filter.id === 'title').pop();
+    const yearFilters = columnFilters.filter((filter) => filter.id === 'year').pop();
+    if (authorFilters !== undefined) {
+      setAuthorFilters(cleanTokenString(authorFilters.value as string));
+    }
+    if (titleFilters !== undefined) {
+      setTitleFilters(cleanTokenString(titleFilters.value as string));
+    }
+    if (yearFilters !== undefined) {
+      const [yearMin, yearMax] = yearFilters.value as [number | undefined, number | undefined];
+      if (yearMin !== undefined) setYearMin(yearMin);
+      if (yearMax !== undefined) setYearMax(yearMax);
+    }
+  }, [columnFilters, setAuthorFilters, setTitleFilters, setYearMax, setYearMin]);
 
   const columnHelper = createColumnHelper<Publication>();
 
@@ -61,7 +82,7 @@ export function PublicationsTable() {
   ];
 
   const table = useReactTable({
-    data: publications,
+    data: pubs,
     columns,
     state: {
       columnFilters,

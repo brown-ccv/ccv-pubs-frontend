@@ -2,14 +2,15 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBook } from '@fortawesome/free-solid-svg-icons';
 import { useSelector } from 'react-redux';
-import { selectPublications, selectUser } from '../store/slice/appState';
+import { selectUser } from '../store/slice/appState';
+import { usePublicationContext } from '../utils/PublicationsContext.tsx';
 import { PublicationsTable } from './PublicationsTable.tsx';
 import Spinner from './Spinner';
 import { AddPublicationModal } from './AddPublicationModal.tsx';
 import { YearChart } from './YearChart.tsx';
 
 export function ContentPage() {
-  const publications = useSelector(selectPublications);
+  const { pubs } = usePublicationContext();
   const user = useSelector(selectUser);
 
   return (
@@ -25,9 +26,9 @@ export function ContentPage() {
         <h1 className="mx-2">Publications</h1>
       </div>
 
-      <Spinner loading={publications.length === 0} className="spinner" size={100} />
+      <Spinner loading={pubs.length === 0} className="spinner" size={100} />
 
-      {publications.length !== 0 && (
+      {pubs.length !== 0 && (
         <>
           <PublicationsTable />
 
