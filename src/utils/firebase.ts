@@ -214,11 +214,11 @@ export const cleanTokenString = (tokenString: string) => {
    */
   return tokenString
     .toLowerCase()
+    .replace('-', ' ')
     .replace('.', '')
     .replace(',', '')
     .replace(':', '')
     .replace(';', '')
-    .replace('-', ' ')
     .replace("'", '')
     .replace('"', '')
     .split(' ');

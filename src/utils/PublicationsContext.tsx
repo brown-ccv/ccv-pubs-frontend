@@ -55,8 +55,6 @@ export function PublicationsProvider({ children }: React.PropsWithChildren) {
     pageSize: 10,
   });
 
-  console.log({ pagination, pubsTotal });
-
   const setOrderBy = React.useCallback(
     ({ field, dir }: PublicationOrderOpts) => {
       setOrderByField(field);
@@ -114,7 +112,6 @@ export function PublicationsProvider({ children }: React.PropsWithChildren) {
   }, [filterData]);
 
   React.useEffect(() => {
-    console.log({ filters: filterData.filters });
     return makePubsSnapshot(
       setPubs,
       setPubsTotal,

@@ -49,7 +49,6 @@ export function PublicationsTable() {
   ]);
 
   React.useEffect(() => {
-    console.log({ sorting });
     const sortingValue = sorting[0];
     if (sortingValue !== undefined) {
       setOrderBy({
