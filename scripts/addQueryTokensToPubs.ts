@@ -40,7 +40,7 @@ async function updatePubsWithTokens(db: DB, pubs: Pubs) {
       const pubData = pub.data() as { title: string; author: string; updatedAt: number };
       const newData = {
         ...pubData,
-        updatedAt: Timestamp.fromDate(new Date(pubData.updatedAt)),
+        //updatedAt: Timestamp.fromDate(new Date(pubData.updatedAt)),
         tokens: createPublicationTokens(pubData),
       };
       return db.doc(`publications/${pub.id}`).set(newData);

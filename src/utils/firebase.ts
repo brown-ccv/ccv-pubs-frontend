@@ -166,15 +166,17 @@ export const makePubsSnapshot = (
   } = filterOpts;
   const orderConstraint = orderBy(field, dir);
   const constraints = [
-    filters.title.length !== 0
-      ? where('tokens.title', 'array-contains-any', filters.title)
-      : undefined,
-    filters.author.length !== 0
-      ? where('tokens.author', 'array-contains-any', filters.author)
-      : undefined,
-    filters.year.min !== undefined ? where('year', '>=', filters.year.min) : undefined,
-    filters.year.max !== undefined ? where('year', '<=', filters.year.max) : undefined,
-  ].filter((constraint) => constraint !== undefined);
+    ...(filters.title.length + filters.author.length > 0
+      ? [
+          where('tokens', 'array-contains-any', [
+            ...filters.title.map((titleFilter) => `title:${titleFilter}`),
+            ...filters.author.map((authorFilter) => `author:${authorFilter}`),
+          ]),
+        ]
+      : []),
+    ...(filters.year.min !== undefined ? [where('year', '>=', filters.year.min)] : []),
+    ...(filters.year.max !== undefined ? [where('year', '<=', filters.year.max)] : []),
+  ];
   const queryConditions = (
     constraints.length === 0 ? [orderConstraint] : [and(...constraints), orderConstraint]
   ) as QueryConstraint[];
@@ -197,11 +199,6 @@ export const makePubsSnapshot = (
       newCheckpoints[pagination.pageIndex + 1] = snapshot.docs[snapshot.docs.length - 1];
       setPubsCheckpoints(newCheckpoints);
       const publications = snapshot.docs.map((doc) => doc.data());
-      console.log({ publications });
-      /**
-       * QueryDocumentSnapshot<DocumentData, DocumentData>
-       * QueryDocumentSnapshot<DocumentData, DocumentData>
-       */
       setPubs(publications);
     },
     (error) => {
@@ -232,11 +229,14 @@ export const cleanTokenString = (tokenString: string) => {
  * @param publication
  */
 export const createPublicationTokens = ({ title, author }: { title: string; author: string }) => {
-  return {
-    title: cleanTokenString(title),
+  // Split Title and Author into a list of individual tokens, and combine into a single token list.
+  return [
+    ...cleanTokenString(title).map((token) => `title:${token}`),
     // It's common to have middle initials -- these dont narrow a search field much, and are trimmed for the
-    author: cleanTokenString(author).filter((token) => token.length > 1),
-  };
+    ...cleanTokenString(author)
+      .filter((token) => token.length > 1)
+      .map((token) => `author:${token}`),
+  ];
 };
 
 export const addPublication = async (publication) => {

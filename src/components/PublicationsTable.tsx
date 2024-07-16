@@ -39,20 +39,19 @@ export function PublicationsTable() {
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
 
   React.useEffect(() => {
-    console.log({ columnFilters });
     const authorFilters = columnFilters.filter((filter) => filter.id === 'author').pop();
     const titleFilters = columnFilters.filter((filter) => filter.id === 'title').pop();
     const yearFilters = columnFilters.filter((filter) => filter.id === 'year').pop();
     if (authorFilters !== undefined) {
       setAuthorFilters(cleanTokenString(authorFilters.value as string));
-    }
+    } else setAuthorFilters([]);
     if (titleFilters !== undefined) {
       setTitleFilters(cleanTokenString(titleFilters.value as string));
-    }
+    } else setTitleFilters([]);
     if (yearFilters !== undefined) {
       const [yearMin, yearMax] = yearFilters.value as [number | undefined, number | undefined];
-      if (yearMin !== undefined) setYearMin(yearMin);
-      if (yearMax !== undefined) setYearMax(yearMax);
+      if (yearMin !== undefined) setYearMin(Number(yearMin));
+      if (yearMax !== undefined) setYearMax(Number(yearMax));
     }
   }, [columnFilters, setAuthorFilters, setTitleFilters, setYearMax, setYearMin]);
 
