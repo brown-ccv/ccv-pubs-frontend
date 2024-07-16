@@ -3,13 +3,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBook } from '@fortawesome/free-solid-svg-icons';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../store/slice/appState';
-import { usePublicationContext } from '../utils/PublicationsContext.tsx';
 import { PublicationsTable } from './PublicationsTable.tsx';
 import { AddPublicationModal } from './AddPublicationModal.tsx';
-import { YearChart } from './YearChart.tsx';
 
 export function ContentPage() {
-  const { pubs } = usePublicationContext();
   const user = useSelector(selectUser);
 
   return (
@@ -28,12 +25,11 @@ export function ContentPage() {
       <PublicationsTable />
 
       {/* TODO: Word Cloud #58 */}
-      <h2 className="title pt-4 m-4 is-2 text-center">What are these publications all about?</h2>
+      {/*<h2 className="title pt-4 m-4 is-2 text-center">What are these publications all about?</h2>*/}
       {/*<div className="viz d-flex justify-content-center pt-5">*/}
       {/*  <WordCloud />*/}
-      <YearChart />
+      {/*<YearChart />*/}
       {/*</div>*/}
-      {pubs.length !== 0 && <></>}
     </div>
   );
 }
