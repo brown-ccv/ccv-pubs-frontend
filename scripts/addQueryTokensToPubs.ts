@@ -2,7 +2,7 @@ import { existsSync } from 'fs';
 
 import admin from 'firebase-admin';
 import { applicationDefault } from 'firebase-admin/app';
-import { Timestamp } from 'firebase-admin/firestore';
+// import { Timestamp } from 'firebase-admin/firestore';
 
 import { createPublicationTokens } from '../src/utils/firebase';
 

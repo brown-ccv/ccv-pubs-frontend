@@ -19,18 +19,6 @@ export interface User {
   updatedAt: number;
 }
 
-/*export type Publication = {
-  abstract: string;
-  author: string; 
-  doi: string;
-  id: number;
-  month: number;
-  title: string;
-  updatedAt: Timestamp;
-  url: string;
-  year: number;
-};*/
-
 export type SnapshotDocs = Parameters<Parameters<typeof onSnapshot>['2']>['0']['docs'];
 
 export type PublicationOrderFields = 'title' | 'author' | 'year';

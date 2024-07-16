@@ -8,9 +8,8 @@ import {
   getFacetedMinMaxValues,
   getFacetedRowModel,
   getFacetedUniqueValues,
-  getFilteredRowModel,
   getPaginationRowModel,
-  getSortedRowModel,
+  SortingState,
   useReactTable,
 } from '@tanstack/react-table';
 
@@ -24,7 +23,7 @@ import Form from 'react-bootstrap/Form';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowDownWideShort, faArrowUpShortWide } from '@fortawesome/free-solid-svg-icons';
 
-import { Publication } from '../../types';
+import { Publication, PublicationOrderFields } from '../../types';
 import { usePublicationContext } from '../utils/PublicationsContext.tsx';
 import { cleanTokenString } from '../utils/firebase.ts';
 import { ColumnFilter } from './ColumnFilter.tsx';
@@ -33,10 +32,34 @@ export function PublicationsTable() {
   const {
     pubs,
     count,
+    orderBy,
     pagination,
-    setters: { setAuthorFilters, setTitleFilters, setYearMax, setYearMin, setPagination },
+    setters: {
+      setAuthorFilters,
+      setTitleFilters,
+      setYearMax,
+      setYearMin,
+      setPagination,
+      setOrderBy,
+    },
   } = usePublicationContext();
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
+  const [sorting, setSorting] = React.useState<SortingState>([
+    { id: orderBy.field, desc: orderBy.dir === 'desc' },
+  ]);
+
+  React.useEffect(() => {
+    console.log({ sorting });
+    const sortingValue = sorting[0];
+    if (sortingValue !== undefined) {
+      setOrderBy({
+        field: sortingValue.id as PublicationOrderFields,
+        dir: sortingValue.desc ? 'desc' : 'asc',
+      });
+    } else {
+      setSorting([{ id: orderBy.field, desc: orderBy.dir !== 'desc' }]);
+    }
+  }, [sorting, orderBy, setSorting, setOrderBy]);
 
   React.useEffect(() => {
     const authorFilters = columnFilters.filter((filter) => filter.id === 'author').pop();
@@ -53,7 +76,7 @@ export function PublicationsTable() {
       if (yearMin !== undefined) setYearMin(Number(yearMin));
       if (yearMax !== undefined) setYearMax(Number(yearMax));
     }
-  }, [columnFilters, setAuthorFilters, setTitleFilters, setYearMax, setYearMin]);
+  }, [sorting, columnFilters, setAuthorFilters, setTitleFilters, setYearMax, setYearMin]);
 
   const columnHelper = createColumnHelper<Publication>();
 
@@ -83,12 +106,13 @@ export function PublicationsTable() {
     state: {
       columnFilters,
       pagination,
+      sorting,
     },
     columnResizeMode: 'onChange',
     onColumnFiltersChange: setColumnFilters,
     getCoreRowModel: getCoreRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
-    getSortedRowModel: getSortedRowModel(),
+    manualSorting: true,
+    onSortingChange: setSorting,
     manualFiltering: true,
     manualPagination: true,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
