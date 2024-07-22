@@ -1,5 +1,4 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 
 import {
   ColumnFiltersState,
@@ -9,10 +8,8 @@ import {
   getFacetedMinMaxValues,
   getFacetedRowModel,
   getFacetedUniqueValues,
-  getFilteredRowModel,
   getPaginationRowModel,
-  getSortedRowModel,
-  PaginationState,
+  SortingState,
   useReactTable,
 } from '@tanstack/react-table';
 
@@ -26,17 +23,59 @@ import Form from 'react-bootstrap/Form';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowDownWideShort, faArrowUpShortWide } from '@fortawesome/free-solid-svg-icons';
 
-import { selectPublications } from '../store/slice/appState';
-import { Publication } from '../../types';
+import { Publication, PublicationOrderFields } from '../../types';
+import { usePublicationContext } from '../utils/PublicationsContext.tsx';
+import { cleanTokenString } from '../utils/firebase.ts';
 import { ColumnFilter } from './ColumnFilter.tsx';
 
 export function PublicationsTable() {
-  const publications = useSelector(selectPublications);
+  const {
+    pubs,
+    count,
+    orderBy,
+    pagination,
+    setters: {
+      setAuthorFilters,
+      setTitleFilters,
+      setYearMax,
+      setYearMin,
+      setPagination,
+      setOrderBy,
+    },
+  } = usePublicationContext();
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
-  const [pagination, setPagination] = React.useState<PaginationState>({
-    pageIndex: 0,
-    pageSize: 5,
-  });
+  const [sorting, setSorting] = React.useState<SortingState>([
+    { id: orderBy.field, desc: orderBy.dir === 'desc' },
+  ]);
+
+  React.useEffect(() => {
+    const sortingValue = sorting[0];
+    if (sortingValue !== undefined) {
+      setOrderBy({
+        field: sortingValue.id as PublicationOrderFields,
+        dir: sortingValue.desc ? 'desc' : 'asc',
+      });
+    } else {
+      setSorting([{ id: orderBy.field, desc: orderBy.dir !== 'desc' }]);
+    }
+  }, [sorting, orderBy, setSorting, setOrderBy]);
+
+  React.useEffect(() => {
+    const authorFilters = columnFilters.filter((filter) => filter.id === 'author').pop();
+    const titleFilters = columnFilters.filter((filter) => filter.id === 'title').pop();
+    const yearFilters = columnFilters.filter((filter) => filter.id === 'year').pop();
+    if (authorFilters !== undefined) {
+      setAuthorFilters(cleanTokenString(authorFilters.value as string));
+    } else setAuthorFilters([]);
+    if (titleFilters !== undefined) {
+      setTitleFilters(cleanTokenString(titleFilters.value as string));
+    } else setTitleFilters([]);
+    if (yearFilters !== undefined) {
+      const [yearMin, yearMax] = yearFilters.value as [number | undefined, number | undefined];
+      if (yearMin !== undefined) setYearMin(Number(yearMin));
+      if (yearMax !== undefined) setYearMax(Number(yearMax));
+    }
+  }, [sorting, columnFilters, setAuthorFilters, setTitleFilters, setYearMax, setYearMin]);
 
   const columnHelper = createColumnHelper<Publication>();
 
@@ -61,18 +100,23 @@ export function PublicationsTable() {
   ];
 
   const table = useReactTable({
-    data: publications,
+    data: pubs,
     columns,
     state: {
       columnFilters,
       pagination,
+      sorting,
     },
     columnResizeMode: 'onChange',
     onColumnFiltersChange: setColumnFilters,
-    onPaginationChange: setPagination,
     getCoreRowModel: getCoreRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
-    getSortedRowModel: getSortedRowModel(),
+    manualSorting: true,
+    onSortingChange: setSorting,
+    manualFiltering: true,
+    manualPagination: true,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    onPaginationChange: setPagination as any,
+    pageCount: Math.ceil(count / pagination.pageSize),
     getPaginationRowModel: getPaginationRowModel(),
     getFacetedRowModel: getFacetedRowModel(),
     getFacetedUniqueValues: getFacetedUniqueValues(),

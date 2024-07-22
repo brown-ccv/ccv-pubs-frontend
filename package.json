@@ -11,7 +11,8 @@
     "eject": "react-scripts eject",
     "format": "prettier --write .",
     "lint": "eslint --ext .ts,.js,.jsx,.tsx src types --fix",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "scripts:addQueryTokens": "tsx scripts/addQueryTokensToPubs.ts"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
@@ -46,7 +47,8 @@
     "firebase-tools": "^13.0.3",
     "husky": "^8.0.3",
     "lint-staged": "^15.2.0",
-    "prettier": "^3.2.4"
+    "prettier": "^3.2.4",
+    "tsx": "^4.16.2"
   },
   "eslintConfig": {
     "extends": [
