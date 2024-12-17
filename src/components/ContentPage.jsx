@@ -32,7 +32,7 @@ export function ContentPage() {
       {/*<YearChart />*/}
       <YearBarPlot />
       <YearLinePlotCumu />
-      {/* <YearBarPlotCumu /> */}
+      <YearBarPlotCumu />
       {/*</div>*/}
     </div>
   );
