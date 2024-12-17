@@ -31,7 +31,7 @@ export function ContentPage() {
       {/*  <WordCloud />*/}
       {/*<YearChart />*/}
       <YearBarPlot />
-      {/* <YearLinePlotCumu /> */}
+      <YearLinePlotCumu />
       {/* <YearBarPlotCumu /> */}
       {/*</div>*/}
     </div>
