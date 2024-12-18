@@ -467,7 +467,7 @@ export function CountsByYearPlot({ type }) {
       yLabel: 'Cumulative Publications',
     });
   } else if (type === 'bar-cumu-line') {
-    vegaSpec = generateBarPlotWithCumuSum(inputJson, 'Year');
+    vegaSpec = generateBarPlotWithCumuSum(inputJson, xLabel);
   }
 
   return <Vega spec={vegaSpec} />;
