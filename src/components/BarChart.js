@@ -451,27 +451,24 @@ const inputJson = [
   { label: '2024', count: 5 },
 ];
 
-export function YearBarPlot() {
-  // Generate the Vega spec
-  const vegaSpec = generateBarPlot({ data: inputJson, xLabel: 'Year', yLabel: 'Publications' });
-
-  return <Vega spec={vegaSpec} />;
-}
-
-export function YearLinePlotCumu() {
-  // Generate the Vega spec
-  const vegaSpec = generateCumuSumPlot({
-    data: inputJson,
-    xLabel: 'Year',
-    yLabel: 'Cumulative Publications',
-  });
-
-  return <Vega spec={vegaSpec} />;
-}
-
-export function YearBarPlotCumu() {
-  // Generate the Vega spec
-  const vegaSpec = generateBarPlotWithCumuSum(inputJson, 'Year');
+export function CountsByYearPlot({ type }) {
+  let vegaSpec = {};
+  const xLabel = 'Year';
+  if (type === 'bar') {
+    vegaSpec = generateBarPlot({
+      data: inputJson,
+      xLabel: xLabel,
+      yLabel: 'Publications',
+    });
+  } else if (type === 'cumu-line') {
+    vegaSpec = generateCumuSumPlot({
+      data: inputJson,
+      xLabel: xLabel,
+      yLabel: 'Cumulative Publications',
+    });
+  } else if (type === 'bar-cumu-line') {
+    vegaSpec = generateBarPlotWithCumuSum(inputJson, 'Year');
+  }
 
   return <Vega spec={vegaSpec} />;
 }

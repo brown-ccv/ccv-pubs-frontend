@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { selectUser } from '../store/slice/appState';
 import { PublicationsTable } from './PublicationsTable.tsx';
 import { AddPublicationModal } from './AddPublicationModal.tsx';
-import { YearBarPlot, YearBarPlotCumu, YearLinePlotCumu } from './BarChart.js';
+import { CountsByYearPlot } from './BarChart.js';
 
 export function ContentPage() {
   const user = useSelector(selectUser);
@@ -30,9 +30,9 @@ export function ContentPage() {
       {/*<div className="viz d-flex justify-content-center pt-5">*/}
       {/*  <WordCloud />*/}
       {/*<YearChart />*/}
-      <YearBarPlot />
-      <YearLinePlotCumu />
-      <YearBarPlotCumu />
+      <CountsByYearPlot type="bar" />
+      <CountsByYearPlot type="cumu-line" />
+      <CountsByYearPlot type="bar-cumu-line" />
       {/*</div>*/}
     </div>
   );
