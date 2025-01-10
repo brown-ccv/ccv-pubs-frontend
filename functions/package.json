@@ -2,10 +2,10 @@
   "name": "functions",
   "description": "Cloud Functions for Firebase",
   "scripts": {
-    "test": "jest",
     "serve": "firebase emulators:start --only functions",
     "shell": "firebase functions:shell",
     "start": "npm run shell",
+    "test": "jest",
     "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log"
   },
