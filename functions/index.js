@@ -1,30 +1,21 @@
 const { onDocumentWritten } = require('firebase-functions/v2/firestore');
 const { initializeApp } = require('firebase-admin/app');
 const { getFirestore } = require('firebase-admin/firestore');
+const { calculateYearCounts } = require('./aggregator');
 
 // Initialize Firebase Admin SDK
 initializeApp();
 const db = getFirestore();
 
-// Recalculate publication counts by year
+// Calculate and save aggregations 
 async function calculateAggregatedCounts() {
   const publicationsSnapshot = await db.collection('publications').get();
-  const yearCounts = {};
+  const publications = publicationsSnapshot.docs.map(doc => doc.data());
 
-  publicationsSnapshot.forEach((doc) => {
-    const year = doc.data().year;
-    if (year) {
-      yearCounts[year] = (yearCounts[year] || 0) + 1;
-    }
-  });
+  // Count of docs by year 
+  const aggregatedCounts = calculateYearCounts(publications);
 
-  // Convert to required format
-  const aggregatedCounts = Object.entries(yearCounts).map(([label, count]) => ({
-    label,
-    count,
-  }));
-
-  // Save the aggregation
+  // Save the aggregation(s)
   await db.collection('aggregations').doc('publicationCounts').set({
     counts: aggregatedCounts,
   });
