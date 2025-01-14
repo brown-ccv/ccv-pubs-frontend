@@ -22,7 +22,7 @@ async function calculateAggregatedCounts() {
 }
 
 // onDocumentWritten triggers on create, update, or delete
-exports.aggregatePublicationsByYearOnWrite = onDocumentWritten(
+exports.aggregatePublicationsOnWrite = onDocumentWritten(
   'publications/{docId}',
   async (event) => {
     try {
