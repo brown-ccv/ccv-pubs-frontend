@@ -16,7 +16,7 @@ async function calculateAggregatedCounts() {
   const aggregatedCounts = calculateYearCounts(publications);
 
   // Save the aggregation(s)
-  await db.collection('aggregations').doc('publicationCounts').set({
+  await db.collection('aggregations').doc('publicationsByYear').set({
     counts: aggregatedCounts,
   });
 }
