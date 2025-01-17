@@ -7,12 +7,12 @@ const { calculateYearCounts } = require('./aggregator');
 initializeApp();
 const db = getFirestore();
 
-// Calculate and save aggregations 
+// Calculate and save aggregations
 async function calculateAggregatedCounts() {
   const publicationsSnapshot = await db.collection('publications').get();
-  const publications = publicationsSnapshot.docs.map(doc => doc.data());
+  const publications = publicationsSnapshot.docs.map((doc) => doc.data());
 
-  // Count of docs by year 
+  // Count of docs by year
   const aggregatedCounts = calculateYearCounts(publications);
 
   // Save the aggregation(s)
@@ -22,21 +22,18 @@ async function calculateAggregatedCounts() {
 }
 
 // onDocumentWritten triggers on create, update, or delete
-exports.aggregatePublicationsOnWrite = onDocumentWritten(
-  'publications/{docId}',
-  async (event) => {
-    try {
-      // log before and after data
-      const beforeData = event.data.before.data();
-      const afterData = event.data.after.data();
+exports.aggregatePublicationsOnWrite = onDocumentWritten('publications/{docId}', async (event) => {
+  try {
+    // log before and after data
+    const beforeData = event.data.before.data();
+    const afterData = event.data.after.data();
 
-      console.log(`Document written: ${event.params.docId}`);
-      console.log('Before data:', beforeData);
-      console.log('After data:', afterData);
+    console.log(`Document written: ${event.params.docId}`);
+    console.log('Before data:', beforeData);
+    console.log('After data:', afterData);
 
-      await calculateAggregatedCounts();
-    } catch (error) {
-      console.error('Error recalculating counts on document write:', error);
-    }
+    await calculateAggregatedCounts();
+  } catch (error) {
+    console.error('Error recalculating counts on document write:', error);
   }
-);
+});
