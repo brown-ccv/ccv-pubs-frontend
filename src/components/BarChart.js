@@ -441,7 +441,6 @@ export const CountsByYearPlot = ({ type }) => {
     const fetchData = async () => {
       try {
         const fetchedData = await getAggregation({ documentName: 'publicationsByYear' });
-        // console.log(fetchedData);
         let spec;
         if (type === 'bar') {
           spec = generateBarPlot({
