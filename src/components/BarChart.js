@@ -476,5 +476,15 @@ export const CountsByYearPlot = ({ type }) => {
     return <div>Error: Invalid plot type specified</div>;
   }
 
-  return <Vega spec={vegaSpec} />;
+  return (
+    <Vega
+      spec={vegaSpec}
+      actions={{
+        export: true,
+        source: false,
+        compiled: false,
+        editor: false,
+      }}
+    />
+  );
 };
