@@ -267,3 +267,15 @@ const getUser = async (email): Promise<User> => {
 
   return docSnap.data() as User;
 };
+
+export async function getAggregation({ documentName }) {
+  const docRef = doc(db, 'aggregations', documentName);
+  const docSnap = await getDoc(docRef);
+
+  if (docSnap.exists()) {
+    return docSnap.data()['counts'];
+  } else {
+    console.log('Document not found.');
+    return null;
+  }
+}

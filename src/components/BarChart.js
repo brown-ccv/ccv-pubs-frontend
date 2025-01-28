@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Vega } from 'react-vega';
+import { getAggregation } from '../utils/firebase.ts';
 
 const bar_color = '#00c398'; // ccv green
 const bar_hover_color = '#ffc72c'; // ccv yellow
@@ -431,44 +432,59 @@ const generateBarPlotWithCumuSum = (dataJson, xLabel) => {
   return spec;
 };
 
-const inputJson = [
-  { label: '2008', count: 1 },
-  { label: '2009', count: 2 },
-  { label: '2010', count: 6 },
-  { label: '2011', count: 3 },
-  { label: '2012', count: 8 },
-  { label: '2013', count: 18 },
-  { label: '2014', count: 35 },
-  { label: '2015', count: 41 },
-  { label: '2016', count: 35 },
-  { label: '2017', count: 60 },
-  { label: '2018', count: 70 },
-  { label: '2019', count: 60 },
-  { label: '2020', count: 70 },
-  { label: '2021', count: 58 },
-  { label: '2022', count: 62 },
-  { label: '2023', count: 80 },
-  { label: '2024', count: 5 },
-];
-
-export function CountsByYearPlot({ type }) {
-  let vegaSpec = {};
+export const CountsByYearPlot = ({ type }) => {
   const xLabel = 'Year';
-  if (type === 'bar') {
-    vegaSpec = generateBarPlot({
-      data: inputJson,
-      xLabel: xLabel,
-      yLabel: 'Publications',
-    });
-  } else if (type === 'cumu-line') {
-    vegaSpec = generateCumuSumPlot({
-      data: inputJson,
-      xLabel: xLabel,
-      yLabel: 'Cumulative Publications',
-    });
-  } else if (type === 'bar-cumu-line') {
-    vegaSpec = generateBarPlotWithCumuSum(inputJson, xLabel);
+  const [vegaSpec, setVegaSpec] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const fetchedData = await getAggregation({ documentName: 'publicationsByYear' });
+        let spec;
+        if (type === 'bar') {
+          spec = generateBarPlot({
+            data: fetchedData,
+            xLabel: xLabel,
+            yLabel: 'Publications',
+          });
+        } else if (type === 'cumu-line') {
+          spec = generateCumuSumPlot({
+            data: fetchedData,
+            xLabel: xLabel,
+            yLabel: 'Cumulative Publications',
+          });
+        } else if (type === 'bar-cumu-line') {
+          spec = generateBarPlotWithCumuSum(fetchedData, xLabel);
+        }
+        setVegaSpec(spec);
+      } catch (error) {
+        console.error('Error fetching document:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [type]);
+
+  if (loading) {
+    return <div>Loading...</div>;
   }
 
-  return <Vega spec={vegaSpec} />;
-}
+  if (!vegaSpec) {
+    return <div>Error: Invalid plot type specified</div>;
+  }
+
+  return (
+    <Vega
+      spec={vegaSpec}
+      actions={{
+        export: true,
+        source: false,
+        compiled: false,
+        editor: false,
+      }}
+    />
+  );
+};
