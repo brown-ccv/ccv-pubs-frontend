@@ -16,7 +16,7 @@ export function ContentPage() {
       {/* Header Section */}
       <div className="row mb-4">
         <div className="col">
-          <h2 className="h3 mb-3">Research Impact & Publications</h2>
+          <h2 className="h2 mb-3">Publications</h2>
           <p className="lead">
             The Center for Computation and Visualization (CCV) has been a cornerstone of Brown
             University's research infrastructure. We provide essential computational resources and
@@ -35,7 +35,7 @@ export function ContentPage() {
       {/* Visualization Section */}
       <div className="mb-5">
         <div className="d-flex justify-content-between align-items-center mb-4 border-bottom pb-3">
-          <h3 className="h5 mb-0">Publication Metrics</h3>
+          <h3 className="h4 mb-0">Publication Metrics</h3>
           <div className="btn-group">
             <button
               className={`btn ${plotType === 'bar' ? 'btn-primary' : 'btn-outline-primary'}`}
@@ -70,7 +70,7 @@ export function ContentPage() {
       <div className="mb-4">
         <div className="d-flex align-items-center mb-3">
           <FontAwesomeIcon icon={faBook} className="me-2 fs-4" />
-          <h3 className="h5 mb-0">Publications Database</h3>
+          <h3 className="h3 mb-0">Publications Database</h3>
         </div>
         <PublicationsTable />
       </div>
