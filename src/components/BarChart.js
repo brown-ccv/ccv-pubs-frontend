@@ -4,6 +4,8 @@ import { getAggregation } from '../utils/firebase.ts';
 
 const bar_color = '#00c398'; // ccv green
 const bar_hover_color = '#ffc72c'; // ccv yellow
+const plot_width = 1000;
+const plot_height = 400;
 
 function generateBarPlot({ data = {}, xLabel = '', yLabel = '' }) {
   // Validate input JSON structure
@@ -20,8 +22,8 @@ function generateBarPlot({ data = {}, xLabel = '', yLabel = '' }) {
   // Define the Vega specification
   const spec = {
     $schema: 'https://vega.github.io/schema/vega/v5.json',
-    width: 800,
-    height: 400,
+    width: plot_width,
+    height: plot_height,
     padding: 5,
     data: [
       {
@@ -137,7 +139,7 @@ function generateCumuSumPlot({ data = {}, xLabel = '', yLabel = '' }) {
   // Define the Vega specification
   const spec = {
     $schema: 'https://vega.github.io/schema/vega/v5.json',
-    width: 800,
+    width: plot_width,
     height: 400,
     padding: 5,
     data: [
@@ -275,7 +277,7 @@ const generateBarPlotWithCumuSum = (dataJson, xLabel) => {
   // Define the Vega specification
   const spec = {
     $schema: 'https://vega.github.io/schema/vega/v5.json',
-    width: 800,
+    width: plot_width,
     height: 400,
     padding: 5,
     data: [
