@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBook, faChartBar, faChartLine } from '@fortawesome/free-solid-svg-icons';
+import { faBook, faChartBar, faChartLine, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../store/slice/appState';
 import { PublicationsTable } from './PublicationsTable.tsx';
@@ -53,12 +53,16 @@ export function ContentPage() {
             </button>
           </div>
         </div>
-        <div className="d-flex justify-content-center py-4 rounded">
+        <div className="d-flex justify-content-center py-2 rounded">
           {plotType === 'bar' ? (
             <CountsByYearPlot type="bar" />
           ) : (
             <CountsByYearPlot type="cumu-line" />
           )}
+        </div>
+        <div className="mt-2 text-muted small text-center">
+          <FontAwesomeIcon icon={faInfoCircle} className="me-2" />
+          Publication counts for recent years may be incomplete.
         </div>
       </div>
 
