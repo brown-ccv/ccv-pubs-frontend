@@ -215,6 +215,7 @@ export function PublicationsTable() {
               }}
               min={1}
               max={table.getPageCount()}
+              aria-label="Page number"
             />
             <span className="mx-2 text-nowrap">of {table.getPageCount()}</span>
           </div>
@@ -224,6 +225,7 @@ export function PublicationsTable() {
               onChange={(e) => {
                 table.setPageSize(Number(e.target.value));
               }}
+              aria-label="Current rows per page"
             >
               {[5, 10, 20, 25, 50, 100].map((pageSize) => (
                 <option key={pageSize} value={pageSize}>
