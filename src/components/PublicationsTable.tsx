@@ -143,20 +143,23 @@ export function PublicationsTable() {
                     >
                       {header.isPlaceholder ? null : (
                         <>
-                          <div
-                            className={
-                              header.column.getCanSort() ? 'cursor-pointer select-none' : ''
-                            }
-                            onClick={header.column.getToggleSortingHandler()}
-                          >
-                            {/* Header */}
-                            {flexRender(header.column.columnDef.header, header.getContext())}
-                            {/* Sorting Icons */}
-                            {{
-                              asc: <FontAwesomeIcon icon={faArrowUpShortWide} />,
-                              desc: <FontAwesomeIcon icon={faArrowDownWideShort} />,
-                            }[header.column.getIsSorted() as string] ?? null}
-                          </div>
+                          {header.column.getCanSort() ? (
+                            <button
+                              type="button"
+                              className="btn btn-link text-decoration-none text-reset p-0 w-100"
+                              onClick={header.column.getToggleSortingHandler()}
+                            >
+                              {flexRender(header.column.columnDef.header, header.getContext())}
+                              {{
+                                asc: <FontAwesomeIcon icon={faArrowUpShortWide} className="ms-2" />,
+                                desc: (
+                                  <FontAwesomeIcon icon={faArrowDownWideShort} className="ms-2" />
+                                ),
+                              }[header.column.getIsSorted() as string] ?? null}
+                            </button>
+                          ) : (
+                            flexRender(header.column.columnDef.header, header.getContext())
+                          )}
                           {/* Column Filter */}
                           {header.column.getCanFilter() ? (
                             <ColumnFilter column={header.column} table={table} />
