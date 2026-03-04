@@ -107,7 +107,6 @@ export function PublicationsTable() {
       pagination,
       sorting,
     },
-    columnResizeMode: 'onChange',
     onColumnFiltersChange: setColumnFilters,
     getCoreRowModel: getCoreRowModel(),
     manualSorting: true,
