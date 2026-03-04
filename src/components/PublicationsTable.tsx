@@ -161,12 +161,6 @@ export function PublicationsTable() {
                           {header.column.getCanFilter() ? (
                             <ColumnFilter column={header.column} table={table} />
                           ) : null}
-                          <div
-                            onDoubleClick={() => header.column.resetSize()}
-                            onMouseDown={header.getResizeHandler()}
-                            onTouchStart={header.getResizeHandler()}
-                            className={`resizer ${header.column.getIsResizing() ? 'is-resizing' : ''}`}
-                          />
                         </>
                       )}
                     </th>
