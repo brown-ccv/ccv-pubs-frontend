@@ -73,12 +73,12 @@ export const CountsByYearPlot = ({ type }) => {
     maintainAspectRatio: false,
     scales: {
       x: {
-        title: { display: true, text: xLabel },
+        title: { display: true, text: xLabel, font: { size: 18, weight: 500 } },
         ticks: { maxRotation: 50, minRotation: 50 },
       },
       y: {
         beginAtZero: true,
-        title: { display: true, text: 'Publications' },
+        title: { display: true, text: 'Publications', font: { size: 18, weight: 500 } },
       },
     },
     plugins: {
