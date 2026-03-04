@@ -144,19 +144,52 @@ export function PublicationsTable() {
                       {header.isPlaceholder ? null : (
                         <>
                           {header.column.getCanSort() ? (
-                            <button
-                              type="button"
-                              className="btn btn-link text-decoration-none text-reset p-0 w-100"
-                              onClick={header.column.getToggleSortingHandler()}
-                            >
-                              {flexRender(header.column.columnDef.header, header.getContext())}
-                              {{
-                                asc: <FontAwesomeIcon icon={faArrowUpShortWide} className="ms-2" />,
-                                desc: (
-                                  <FontAwesomeIcon icon={faArrowDownWideShort} className="ms-2" />
-                                ),
-                              }[header.column.getIsSorted() as string] ?? null}
-                            </button>
+                            <>
+                              <button
+                                type="button"
+                                className="btn btn-link text-decoration-none text-reset p-0 w-100"
+                                onClick={header.column.getToggleSortingHandler()}
+                                aria-label={`${flexRender(header.column.columnDef.header, header.getContext())}, ${
+                                  header.column.getIsSorted() === 'asc'
+                                    ? 'sorted ascending'
+                                    : header.column.getIsSorted() === 'desc'
+                                      ? 'sorted descending'
+                                      : 'not sorted'
+                                }`}
+                              >
+                                {flexRender(header.column.columnDef.header, header.getContext())}
+                                {{
+                                  asc: (
+                                    <FontAwesomeIcon
+                                      icon={faArrowUpShortWide}
+                                      className="ms-2"
+                                      aria-hidden="true"
+                                    />
+                                  ),
+                                  desc: (
+                                    <FontAwesomeIcon
+                                      icon={faArrowDownWideShort}
+                                      className="ms-2"
+                                      aria-hidden="true"
+                                    />
+                                  ),
+                                }[header.column.getIsSorted() as string] ?? null}
+                              </button>
+                              <div
+                                className="visually-hidden"
+                                role="status"
+                                aria-live="polite"
+                                aria-atomic="true"
+                              >
+                                {header.column.getIsSorted()
+                                  ? `Table sorted by ${flexRender(header.column.columnDef.header, header.getContext())}, ${
+                                      header.column.getIsSorted() === 'asc'
+                                        ? 'ascending'
+                                        : 'descending'
+                                    }`
+                                  : ''}
+                              </div>
+                            </>
                           ) : (
                             flexRender(header.column.columnDef.header, header.getContext())
                           )}
