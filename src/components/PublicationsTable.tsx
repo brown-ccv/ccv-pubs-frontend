@@ -181,7 +181,7 @@ export function PublicationsTable() {
                 <tr key={row.id}>
                   {row.getVisibleCells().map((cell) => {
                     return (
-                      <td key={cell.id}>
+                      <td key={cell.id} className="align-top">
                         {flexRender(cell.column.columnDef.cell, cell.getContext())}
                       </td>
                     );
