@@ -34,23 +34,36 @@ export function ContentPage() {
 
       {/* Visualization Section */}
       <div className="mb-5">
-        <div className="d-flex justify-content-between align-items-center mb-4 border-bottom pb-3">
-          <h3 className="h4 mb-0">Publication Metrics</h3>
-          <div className="btn-group">
-            <button
-              className={`btn ${plotType === 'bar' ? 'btn-primary' : 'btn-outline-primary'}`}
-              onClick={() => setPlotType('bar')}
-            >
+        <div className="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4 border-bottom pb-3">
+          <h3 className="h4 mb-3 mb-md-0">Publication Metrics</h3>
+          <div className="btn-group" role="group" aria-label="Chart type selection">
+            <input
+              type="radio"
+              className="btn-check"
+              name="plotType"
+              id="plotType-bar"
+              autoComplete="off"
+              checked={plotType === 'bar'}
+              onChange={() => setPlotType('bar')}
+            />
+            <label className="btn btn-outline-primary" htmlFor="plotType-bar">
               <FontAwesomeIcon icon={faChartBar} className="me-2" />
               Annual Counts
-            </button>
-            <button
-              className={`btn ${plotType === 'cumu-line' ? 'btn-primary' : 'btn-outline-primary'}`}
-              onClick={() => setPlotType('cumu-line')}
-            >
+            </label>
+
+            <input
+              type="radio"
+              className="btn-check"
+              name="plotType"
+              id="plotType-cumu-line"
+              autoComplete="off"
+              checked={plotType === 'cumu-line'}
+              onChange={() => setPlotType('cumu-line')}
+            />
+            <label className="btn btn-outline-primary" htmlFor="plotType-cumu-line">
               <FontAwesomeIcon icon={faChartLine} className="me-2" />
               Cumulative Growth
-            </button>
+            </label>
           </div>
         </div>
         <div className="d-flex justify-content-center py-2 rounded">
