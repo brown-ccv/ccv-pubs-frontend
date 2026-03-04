@@ -8,7 +8,7 @@ export function YearChart() {
   const publications = useSelector(selectPublications);
 
   const spec = {
-    $schema: 'https://vega.github.io/schema/vega/v5.json',
+    $schema: 'https://vega.github.io/schema/vega/v6.json',
     description: 'Bar Chart of the years of publications',
     width: 400,
     height: 400,

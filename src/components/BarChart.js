@@ -21,7 +21,7 @@ function generateBarPlot({ data = {}, xLabel = '', yLabel = '' }) {
 
   // Define the Vega specification
   const spec = {
-    $schema: 'https://vega.github.io/schema/vega/v5.json',
+    $schema: 'https://vega.github.io/schema/vega/v6.json',
     width: plot_width,
     height: plot_height,
     padding: 5,
@@ -138,7 +138,7 @@ function generateCumuSumPlot({ data = {}, xLabel = '', yLabel = '' }) {
 
   // Define the Vega specification
   const spec = {
-    $schema: 'https://vega.github.io/schema/vega/v5.json',
+    $schema: 'https://vega.github.io/schema/vega/v6.json',
     width: plot_width,
     height: 400,
     padding: 5,
@@ -276,7 +276,7 @@ const generateBarPlotWithCumuSum = (dataJson, xLabel) => {
 
   // Define the Vega specification
   const spec = {
-    $schema: 'https://vega.github.io/schema/vega/v5.json',
+    $schema: 'https://vega.github.io/schema/vega/v6.json',
     width: plot_width,
     height: 400,
     padding: 5,
