@@ -192,7 +192,7 @@ export function PublicationsTable() {
           </tbody>
         </Table>
       </Row>
-      <Row>
+      <Row className="gap-2 gap-md-0">
         <Col sm={12} md={4} lg={4} className="d-grid">
           <Button
             variant="warning"
