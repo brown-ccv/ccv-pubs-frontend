@@ -15,6 +15,8 @@ export function ColumnFilter({ column, table }) {
     [column.getFacetedUniqueValues()]
   );
 
+  const columnName = column.id;
+
   return typeof firstValue === 'number' ? (
     <div className="d-flex">
       <DebouncedInput
@@ -24,6 +26,7 @@ export function ColumnFilter({ column, table }) {
         value={(columnFilterValue as [number, number])?.[0] ?? ''}
         onChange={(value) => column.setFilterValue((old: [number, number]) => [value, old?.[1]])}
         placeholder="min"
+        aria-label={`Filter ${columnName} minimum value`}
       />
       <DebouncedInput
         type="number"
@@ -32,6 +35,7 @@ export function ColumnFilter({ column, table }) {
         value={(columnFilterValue as [number, number])?.[1] ?? ''}
         onChange={(value) => column.setFilterValue((old: [number, number]) => [old?.[0], value])}
         placeholder="max"
+        aria-label={`Filter ${columnName} maximum value`}
       />
     </div>
   ) : (
@@ -46,6 +50,7 @@ export function ColumnFilter({ column, table }) {
         value={(columnFilterValue ?? '') as string}
         onChange={(value) => column.setFilterValue(value)}
         list={column.id + 'list'}
+        aria-label={`Filter by ${columnName}`}
       />
       <div className="h-1" />
     </>

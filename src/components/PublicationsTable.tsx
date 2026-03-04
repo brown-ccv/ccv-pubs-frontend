@@ -205,8 +205,11 @@ export function PublicationsTable() {
         </Col>
         <Col sm={12} md={4} lg={4} className="d-flex justify-content-around">
           <div className="d-flex align-items-center">
-            <span className="mx-2">Page</span>
+            <label htmlFor="page-number-input" className="mx-2">
+              Page
+            </label>
             <Form.Control
+              id="page-number-input"
               type="number"
               value={table.getState().pagination.pageIndex + 1}
               onChange={(e) => {
@@ -219,7 +222,11 @@ export function PublicationsTable() {
             <span className="mx-2 text-nowrap">of {table.getPageCount()}</span>
           </div>
           <div className="d-flex align-items-center">
+            <label htmlFor="rows-per-page-select" className="visually-hidden">
+              Rows per page
+            </label>
             <Form.Select
+              id="rows-per-page-select"
               value={table.getState().pagination.pageSize}
               onChange={(e) => {
                 table.setPageSize(Number(e.target.value));
