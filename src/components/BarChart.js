@@ -75,123 +75,181 @@ export const CountsByYearPlot = ({ type }) => {
       x: {
         title: { display: true, text: xLabel, font: { size: 18, weight: 500 } },
         ticks: { maxRotation: 50, minRotation: 50 },
+        grid: { display: false },
       },
       y: {
         beginAtZero: true,
         title: { display: true, text: 'Publications', font: { size: 18, weight: 500 } },
+        grid: { display: false },
       },
     },
     plugins: {
       legend: { display: false },
       tooltip: { enabled: true },
+      ticks: {
+        showLabelBackdrop: false,
+        backdropColor: 'transparent',
+      },
     },
   };
 
   // 1) BAR
   if (type === 'bar') {
     return (
-      <Bar
-        data={{
-          labels,
-          datasets: [
-            {
-              data: counts,
-              backgroundColor: bar_color,
-              hoverBackgroundColor: bar_hover_color,
-            },
-          ],
-        }}
-        options={baseOptions}
-        role="img"
-        aria-label={ariaLabel}
-        aria-describedby={descId}
-      />
+      <div className="container-fluid">
+        <p id={descId} className="visually-hidden">
+          {ariaLabel}
+        </p>
+
+        <div className="position-relative" style={{ minHeight: 'clamp(20rem, 50vh, 40rem)' }}>
+          <Bar
+            data={{
+              labels,
+              datasets: [
+                {
+                  data: counts,
+                  backgroundColor: bar_color,
+                  hoverBackgroundColor: bar_hover_color,
+                },
+              ],
+            }}
+            options={baseOptions}
+            role="img"
+            aria-label={ariaLabel}
+            aria-describedby={descId}
+          />
+        </div>
+      </div>
     );
   }
 
   // 2) CUMULATIVE LINE
   if (type === 'cumu-line') {
     return (
-      <Line
-        data={{
-          labels,
-          datasets: [
-            {
-              label: 'Cumulative',
-              data: cumulative,
-              borderColor: 'steelblue',
-              backgroundColor: 'steelblue',
-              pointRadius: 4,
-              pointHoverRadius: 7,
-              tension: 0.2,
-            },
-          ],
-        }}
-        options={{
-          ...baseOptions,
-          scales: {
-            ...baseOptions.scales,
-            y: { title: { display: true, text: 'Cumulative Publications' } },
-          },
-        }}
-        role="img"
-        aria-label={ariaLabel}
-        aria-describedby={descId}
-      />
+      <div className="container-fluid">
+        <p id={descId} className="visually-hidden">
+          {ariaLabel}
+        </p>
+
+        <div className="position-relative" style={{ minHeight: 'clamp(20rem, 50vh, 40rem)' }}>
+          <Line
+            data={{
+              labels,
+              datasets: [
+                {
+                  label: 'Cumulative',
+                  data: cumulative,
+                  borderColor: 'steelblue',
+                  backgroundColor: 'steelblue',
+                  pointRadius: 4,
+                  pointHoverRadius: 7,
+                  tension: 0.2,
+                },
+              ],
+            }}
+            options={{
+              ...baseOptions,
+              scales: {
+                ...baseOptions.scales,
+                y: {
+                  title: {
+                    display: true,
+                    text: 'Cumulative Publications',
+                    font: { size: 18, weight: 500 },
+                  },
+                  ticks: {
+                    showLabelBackdrop: false,
+                    backdropColor: 'transparent',
+                  },
+                },
+              },
+            }}
+            role="img"
+            aria-label={ariaLabel}
+            aria-describedby={descId}
+          />
+        </div>
+      </div>
     );
   }
 
   // 3) BAR + CUMULATIVE LINE
   if (type === 'bar-cumu-line') {
     return (
-      <Chart
-        type="bar"
-        data={{
-          labels,
-          datasets: [
-            {
-              type: 'bar',
-              data: counts,
-              backgroundColor: bar_color,
-              hoverBackgroundColor: bar_hover_color,
-              yAxisID: 'y',
-            },
-            {
-              type: 'line',
-              data: cumulative,
-              borderColor: 'steelblue',
-              backgroundColor: 'steelblue',
-              pointRadius: 4,
-              pointHoverRadius: 6,
-              tension: 0.2,
-              yAxisID: 'y1',
-            },
-          ],
-        }}
-        options={{
-          responsive: true,
-          maintainAspectRatio: false,
-          scales: {
-            x: {
-              title: { display: true, text: xLabel },
-            },
-            y: {
-              beginAtZero: true,
-              position: 'left',
-              title: { display: true, text: 'Publications' },
-            },
-            y1: {
-              beginAtZero: true,
-              position: 'right',
-              grid: { drawOnChartArea: false },
-              title: { display: true, text: 'Cumulative' },
-            },
-          },
-        }}
-        role="img"
-        aria-label={ariaLabel}
-        aria-describedby={descId}
-      />
+      <div className="container-fluid">
+        <p id={descId} className="visually-hidden">
+          {ariaLabel}
+        </p>
+
+        <div className="position-relative" style={{ minHeight: 'clamp(20rem, 50vh, 40rem)' }}>
+          <Chart
+            type="bar"
+            data={{
+              labels,
+              datasets: [
+                {
+                  type: 'bar',
+                  data: counts,
+                  backgroundColor: bar_color,
+                  hoverBackgroundColor: bar_hover_color,
+                  yAxisID: 'y',
+                },
+                {
+                  type: 'line',
+                  data: cumulative,
+                  borderColor: 'steelblue',
+                  backgroundColor: 'steelblue',
+                  pointRadius: 4,
+                  pointHoverRadius: 6,
+                  tension: 0.2,
+                  yAxisID: 'y1',
+                },
+              ],
+            }}
+            options={{
+              responsive: true,
+              maintainAspectRatio: false,
+              scales: {
+                x: {
+                  title: { display: true, text: xLabel, font: { size: 18, weight: 500 } },
+                  ticks: {
+                    maxRotation: 50,
+                    minRotation: 50,
+                    showLabelBackdrop: false,
+                    backdropColor: 'transparent',
+                  },
+                },
+                y: {
+                  beginAtZero: true,
+                  position: 'left',
+                  title: { display: true, text: 'Publications', font: { size: 18, weight: 500 } },
+                  ticks: {
+                    showLabelBackdrop: false,
+                    backdropColor: 'transparent',
+                  },
+                },
+                y1: {
+                  beginAtZero: true,
+                  position: 'right',
+                  grid: { drawOnChartArea: false },
+                  title: { display: true, text: 'Cumulative', font: { size: 18, weight: 500 } },
+                  ticks: {
+                    showLabelBackdrop: false,
+                    backdropColor: 'transparent',
+                  },
+                },
+              },
+              plugins: {
+                legend: { display: false },
+                tooltip: { enabled: true },
+              },
+            }}
+            role="img"
+            aria-label={ariaLabel}
+            aria-describedby={descId}
+          />
+        </div>
+      </div>
     );
   }
 
