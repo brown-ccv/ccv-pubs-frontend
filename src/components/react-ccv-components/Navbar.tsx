@@ -16,14 +16,20 @@ export const Navbar = () => {
   return (
     <DefaultNavbar expand="lg" className="bg-body-tertiary">
       <Container>
-        <DefaultNavbar.Brand href="https://www.brown.edu">
-          <BrownLogo style={{ height: 50 }} />
+        <DefaultNavbar.Brand href="https://www.brown.edu" aria-label="Brown University home">
+          <BrownLogo style={{ height: 50 }} aria-hidden="true" focusable="false" />
         </DefaultNavbar.Brand>
-        <DefaultNavbar.Brand href="https://ccv.brown.edu/">
-          <CCVLogo style={{ height: 50 }} />
+
+        <DefaultNavbar.Brand href="https://ccv.brown.edu/" aria-label="CCV home">
+          <CCVLogo style={{ height: 50 }} aria-hidden="true" focusable="false" />
         </DefaultNavbar.Brand>
+
         <DefaultNavbar.Toggle aria-controls="basic-navbar-nav" />
-        <DefaultNavbar.Collapse id="basic-navbar-nav" role="" className="justify-content-end">
+        <DefaultNavbar.Collapse
+          id="basic-navbar-nav"
+          className="justify-content-end"
+          role="navigation"
+        >
           <Nav className="ml-auto">
             {user ? (
               <NavDropdown
