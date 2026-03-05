@@ -97,10 +97,6 @@ export const CountsByYearPlot = ({ type }) => {
   if (type === 'bar') {
     return (
       <div className="container-fluid">
-        <p id={descId} className="visually-hidden">
-          {ariaLabel}
-        </p>
-
         <div className="position-relative" style={{ minHeight: 'clamp(20rem, 50vh, 40rem)' }}>
           <Bar
             data={{
@@ -127,10 +123,6 @@ export const CountsByYearPlot = ({ type }) => {
   if (type === 'cumu-line') {
     return (
       <div className="container-fluid">
-        <p id={descId} className="visually-hidden">
-          {ariaLabel}
-        </p>
-
         <div className="position-relative" style={{ minHeight: 'clamp(20rem, 50vh, 40rem)' }}>
           <Line
             data={{
@@ -177,10 +169,6 @@ export const CountsByYearPlot = ({ type }) => {
   if (type === 'bar-cumu-line') {
     return (
       <div className="container-fluid">
-        <p id={descId} className="visually-hidden">
-          {ariaLabel}
-        </p>
-
         <div className="position-relative" style={{ minHeight: 'clamp(20rem, 50vh, 40rem)' }}>
           <Chart
             type="bar"
