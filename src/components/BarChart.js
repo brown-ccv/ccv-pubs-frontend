@@ -86,10 +86,6 @@ export const CountsByYearPlot = ({ type }) => {
     plugins: {
       legend: { display: false },
       tooltip: { enabled: true },
-      ticks: {
-        showLabelBackdrop: false,
-        backdropColor: 'transparent',
-      },
     },
   };
 
@@ -149,10 +145,6 @@ export const CountsByYearPlot = ({ type }) => {
                     text: 'Cumulative Publications',
                     font: { size: 18, weight: 500 },
                   },
-                  ticks: {
-                    showLabelBackdrop: false,
-                    backdropColor: 'transparent',
-                  },
                 },
               },
             }}
@@ -211,20 +203,12 @@ export const CountsByYearPlot = ({ type }) => {
                   beginAtZero: true,
                   position: 'left',
                   title: { display: true, text: 'Publications', font: { size: 18, weight: 500 } },
-                  ticks: {
-                    showLabelBackdrop: false,
-                    backdropColor: 'transparent',
-                  },
                 },
                 y1: {
                   beginAtZero: true,
                   position: 'right',
                   grid: { drawOnChartArea: false },
                   title: { display: true, text: 'Cumulative', font: { size: 18, weight: 500 } },
-                  ticks: {
-                    showLabelBackdrop: false,
-                    backdropColor: 'transparent',
-                  },
                 },
               },
               plugins: {
