@@ -42,7 +42,6 @@ export function ContentPage() {
               className="btn-check"
               name="plotType"
               id="plotType-bar"
-              autoComplete="off"
               checked={plotType === 'bar'}
               onChange={() => setPlotType('bar')}
             />
@@ -56,7 +55,6 @@ export function ContentPage() {
               className="btn-check"
               name="plotType"
               id="plotType-cumu-line"
-              autoComplete="off"
               checked={plotType === 'cumu-line'}
               onChange={() => setPlotType('cumu-line')}
             />
