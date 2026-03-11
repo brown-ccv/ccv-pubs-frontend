@@ -163,6 +163,7 @@ export const CountsByYearPlot = ({ type }) => {
               scales: {
                 ...baseOptions.scales,
                 y: {
+                  ...baseOptions.scales.y,
                   title: {
                     display: true,
                     text: 'Cumulative Publications',
