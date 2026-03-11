@@ -51,16 +51,39 @@ const getAriaLabel = (type) => {
 export const CountsByYearPlot = ({ type }) => {
   const xLabel = 'Year';
   const [chartData, setChartData] = useState(null);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getAggregation({ documentName: 'publicationsByYear' });
-      setChartData(buildData(data));
+      try {
+        setLoading(true);
+        setError(null);
+
+        const data = await getAggregation({ documentName: 'publicationsByYear' });
+
+        if (!data || !Array.isArray(data) || data.length === 0) {
+          setError('No data available');
+          setChartData(null);
+          return;
+        }
+
+        setChartData(buildData(data));
+      } catch (err) {
+        console.error('Error fetching chart data:', err);
+        setError('Failed to load chart data');
+        setChartData(null);
+      } finally {
+        setLoading(false);
+      }
     };
+
     fetchData();
   }, [type]);
 
-  if (!chartData) return <div>Loading…</div>;
+  if (loading) return <div className="text-center p-4">Loading…</div>;
+  if (error) return <div className="alert alert-warning">{error}</div>;
+  if (!chartData) return <div className="alert alert-info">No data available</div>;
 
   const ariaLabel = getAriaLabel(type);
   const descId = `chart-desc-${type}`;
