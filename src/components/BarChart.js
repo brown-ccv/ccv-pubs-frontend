@@ -24,6 +24,7 @@ ChartJS.register(
 
 const bar_color = '#00c398';
 const bar_hover_color = '#ffc72c';
+const font_color = '#212529';
 
 const buildData = (data) => {
   const labels = data.map((d) => d.label);
@@ -49,7 +50,6 @@ const getAriaLabel = (type) => {
 };
 
 export const CountsByYearPlot = ({ type }) => {
-  const xLabel = 'Year';
   const [chartData, setChartData] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -87,6 +87,8 @@ export const CountsByYearPlot = ({ type }) => {
 
   const ariaLabel = getAriaLabel(type);
   const descId = `chart-desc-${type}`;
+  const xLabel = 'Year';
+  ChartJS.defaults.color = font_color;
 
   const { labels, counts, cumulative } = chartData;
 
