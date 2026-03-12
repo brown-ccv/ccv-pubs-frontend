@@ -197,38 +197,24 @@ export function PublicationsTable() {
             Previous
           </Button>
         </Col>
-
         <Col xs={12} md className="d-flex justify-content-center order-md-1">
           <div className="d-flex align-items-center">
             <label htmlFor="page-number-input" className="mx-2">
               Page
             </label>
-
-            {(() => {
-              const rawPageCount = table.getPageCount();
-              const pageCount = Math.max(1, rawPageCount);
-              const pageIndex = table.getState().pagination.pageIndex;
-              const currentPage = Math.min(pageIndex + 1, pageCount);
-
-              return (
-                <>
-                  <Form.Control
-                    id="page-number-input"
-                    type="number"
-                    value={currentPage}
-                    onChange={(e) => {
-                      const page = e.target.value ? Number(e.target.value) - 1 : 0;
-                      table.setPageIndex(Math.max(0, Math.min(page, pageCount - 1)));
-                    }}
-                    min={1}
-                    max={pageCount}
-                  />
-                  <span className="mx-2 text-nowrap">of {pageCount}</span>
-                </>
-              );
-            })()}
+            <Form.Control
+              id="page-number-input"
+              type="number"
+              value={table.getState().pagination.pageIndex + 1}
+              onChange={(e) => {
+                const page = e.target.value ? Number(e.target.value) - 1 : 0;
+                table.setPageIndex(page);
+              }}
+              min={1}
+              max={table.getPageCount()}
+            />
+            <span className="mx-2 text-nowrap">of {table.getPageCount()}</span>
           </div>
-
           <div className="d-flex align-items-center ms-3">
             <label htmlFor="rows-per-page-select" className="visually-hidden">
               Rows per page
@@ -248,7 +234,6 @@ export function PublicationsTable() {
             </Form.Select>
           </div>
         </Col>
-
         <Col xs={12} md="auto" lg={4} className="d-grid order-md-2">
           <Button
             variant="secondary"
