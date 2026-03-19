@@ -37,35 +37,41 @@ const BrownFooter = () => (
       </div>
 
       <div id="social-media">
-        <ul>
+        <ul className="list-unstyled">
           <li>
             <a href="https://www.facebook.com/BrownUniversity" title="Facebook">
-              <i className="i-facebook" aria-label="Facebook"></i>
+              <i className="i-facebook" aria-hidden="true"></i>
+              <span className="visually-hidden">Facebook</span>
             </a>
           </li>
           <li>
-            <a href="https://twitter.com/BrownUniversity">
-              <i className="i-twitter" aria-label="Twitter"></i>
+            <a href="https://twitter.com/BrownUniversity" title="Twitter">
+              <i className="i-twitter" aria-hidden="true"></i>
+              <span className="visually-hidden">Twitter</span>
             </a>
           </li>
           <li>
-            <a href="http://www.youtube.com/brownuniversity">
-              <i className="i-youtube" aria-label="Youtube"></i>
+            <a href="http://www.youtube.com/brownuniversity" title="YouTube">
+              <i className="i-youtube" aria-hidden="true"></i>
+              <span className="visually-hidden">YouTube</span>
             </a>
           </li>
           <li>
-            <a href="http://instagram.com/brownu">
-              <i className="i-instagram" aria-label="Instagram"></i>
+            <a href="http://instagram.com/brownu" title="Instagram">
+              <i className="i-instagram" aria-hidden="true"></i>
+              <span className="visually-hidden">Instagram</span>
             </a>
           </li>
           <li>
-            <a href="https://www.linkedin.com/edu/school?id=19348&amp;trk=tyah">
-              <i className="i-linkedin" aria-label="LinkedIn"></i>
+            <a href="https://www.linkedin.com/edu/school?id=19348&trk=tyah" title="LinkedIn">
+              <i className="i-linkedin" aria-hidden="true"></i>
+              <span className="visually-hidden">LinkedIn</span>
             </a>
           </li>
           <li>
-            <a href="https://www.snapchat.com/add/brown-u">
-              <i className="i-snapchat" aria-label="Snapchat"></i>{' '}
+            <a href="https://www.snapchat.com/add/brown-u" title="Snapchat">
+              <i className="i-snapchat" aria-hidden="true"></i>
+              <span className="visually-hidden">Snapchat</span>
             </a>
           </li>
         </ul>

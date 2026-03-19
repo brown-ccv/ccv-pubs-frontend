@@ -161,12 +161,6 @@ export function PublicationsTable() {
                           {header.column.getCanFilter() ? (
                             <ColumnFilter column={header.column} table={table} />
                           ) : null}
-                          <div
-                            onDoubleClick={() => header.column.resetSize()}
-                            onMouseDown={header.getResizeHandler()}
-                            onTouchStart={header.getResizeHandler()}
-                            className={`resizer ${header.column.getIsResizing() ? 'is-resizing' : ''}`}
-                          />
                         </>
                       )}
                     </th>
@@ -181,7 +175,7 @@ export function PublicationsTable() {
                 <tr key={row.id}>
                   {row.getVisibleCells().map((cell) => {
                     return (
-                      <td key={cell.id}>
+                      <td key={cell.id} className="align-top">
                         {flexRender(cell.column.columnDef.cell, cell.getContext())}
                       </td>
                     );
@@ -192,8 +186,8 @@ export function PublicationsTable() {
           </tbody>
         </Table>
       </Row>
-      <Row>
-        <Col sm={12} md={4} lg={4} className="d-grid">
+      <Row className="gap-2 gap-md-0 align-items-center">
+        <Col xs={12} md="auto" lg={4} className="d-grid order-md-0">
           <Button
             variant="warning"
             size="lg"
@@ -203,10 +197,13 @@ export function PublicationsTable() {
             Previous
           </Button>
         </Col>
-        <Col sm={12} md={4} lg={4} className="d-flex justify-content-around">
+        <Col xs={12} md className="d-flex justify-content-center order-md-1">
           <div className="d-flex align-items-center">
-            <span className="mx-2">Page</span>
+            <label htmlFor="page-number-input" className="mx-2">
+              Page
+            </label>
             <Form.Control
+              id="page-number-input"
               type="number"
               value={table.getState().pagination.pageIndex + 1}
               onChange={(e) => {
@@ -218,8 +215,12 @@ export function PublicationsTable() {
             />
             <span className="mx-2 text-nowrap">of {table.getPageCount()}</span>
           </div>
-          <div className="d-flex align-items-center">
+          <div className="d-flex align-items-center ms-3">
+            <label htmlFor="rows-per-page-select" className="visually-hidden">
+              Rows per page
+            </label>
             <Form.Select
+              id="rows-per-page-select"
               value={table.getState().pagination.pageSize}
               onChange={(e) => {
                 table.setPageSize(Number(e.target.value));
@@ -233,7 +234,7 @@ export function PublicationsTable() {
             </Form.Select>
           </div>
         </Col>
-        <Col sm={12} md={4} lg={4} className="d-grid">
+        <Col xs={12} md="auto" lg={4} className="d-grid order-md-2">
           <Button
             variant="secondary"
             size="lg"
