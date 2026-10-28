@@ -4,8 +4,6 @@ The frontend for the CCV Publications WebApp (https://publications.ccv.brown.edu
 
 **NOTE:** Preview deployments will not work for the authenticated part of the app (adding publications) due to the dynamism of the redirect URL.
 
-<!-- Retrigger the build preview workflow for busboy 3.2.4. -->
-
 ## Installation
 
 - git clone this repository
