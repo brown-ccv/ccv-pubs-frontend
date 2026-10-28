@@ -4,8 +4,6 @@ The frontend for the CCV Publications WebApp (https://publications.ccv.brown.edu
 
 **NOTE:** Preview deployments will not work for the authenticated part of the app (adding publications) due to the dynamism of the redirect URL.
 
-<!-- Retrigger the build preview workflow for js-yaml 3.15.2. -->
-
 ## Installation
 
 - git clone this repository
