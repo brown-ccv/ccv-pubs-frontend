@@ -1,0 +1,126 @@
+version: 2
+
+updates:
+  # Root npm package.json and package-lock.json.
+  - package-ecosystem: "npm"
+    directory: "/"
+
+    # Check every Monday at 09:00 Eastern time.
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "America/New_York"
+
+    # Limit open version-update PRs; security updates have a separate limit.
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+
+    # Prefix commits according to whether the updated dependency is development-only.
+    commit-message:
+      prefix: "chore(deps)"
+      prefix-development: "chore(deps-dev)"
+
+    # Delay version updates for five days; cooldown does not apply to security updates.
+    cooldown:
+      default-days: 5
+
+    # Security updates are separate from version updates and are grouped together.
+    groups:
+      security-updates:
+        applies-to: "security-updates"
+        patterns:
+          - "*"
+
+      # Specific groups come before the catch-all groups because the first match wins.
+      firebase:
+        applies-to: "version-updates"
+        patterns:
+          - "firebase"
+          - "firebase-admin"
+          - "firebase-tools"
+        update-types:
+          - "minor"
+          - "patch"
+
+      redux:
+        applies-to: "version-updates"
+        patterns:
+          - "@reduxjs/toolkit"
+          - "redux"
+          - "react-redux"
+        update-types:
+          - "minor"
+          - "patch"
+
+      fortawesome:
+        applies-to: "version-updates"
+        patterns:
+          - "@fortawesome/*"
+        update-types:
+          - "minor"
+          - "patch"
+
+      tanstack:
+        applies-to: "version-updates"
+        patterns:
+          - "@tanstack/*"
+        update-types:
+          - "minor"
+          - "patch"
+
+      lint-and-format:
+        applies-to: "version-updates"
+        patterns:
+          - "prettier"
+          - "husky"
+          - "lint-staged"
+          - "@brown-ccv/*"
+        update-types:
+          - "minor"
+          - "patch"
+
+      react-ui:
+        applies-to: "version-updates"
+        patterns:
+          - "react-bootstrap"
+          - "bootstrap"
+          - "react-chartjs-2"
+          - "chart.js"
+          - "react-spinners"
+          - "react-router-dom"
+          - "formik"
+          - "yup"
+        update-types:
+          - "minor"
+          - "patch"
+
+      # Catch-all groups collect remaining production and development minor/patch updates.
+      prod-minor-patch:
+        applies-to: "version-updates"
+        dependency-type: "production"
+        update-types:
+          - "minor"
+          - "patch"
+
+      dev-minor-patch:
+        applies-to: "version-updates"
+        dependency-type: "development"
+        update-types:
+          - "minor"
+          - "patch"
+
+    # Ignore all react-scripts versions: it is deprecated; the project plans to migrate to Vite.
+    ignore:
+      - dependency-name: "react-scripts"
+        versions:
+          - "*"
+
+      # Keep React major upgrades separate for a planned React 19 migration.
+      - dependency-name: "react"
+        update-types:
+          - "version-update:semver-major"
+      - dependency-name: "react-dom"
+        update-types:
+          - "version-update:semver-major"
